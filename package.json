@@ -12,7 +12,10 @@
     "@types/react-dom": "^16.9.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-icons": "^3.9.0",
     "react-scripts": "3.4.0",
+    "react-test-renderer": "^16.13.0",
+    "styled-components": "^5.0.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -21,7 +24,9 @@
     "test": "react-scripts test",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "format": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +44,13 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/preset-create-react-app": "^2.0.0",
+    "@storybook/react": "^5.3.14",
+    "@types/react-test-renderer": "^16.9.2",
+    "@types/styled-components": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
     "eslint": "^6.8.0",
@@ -55,6 +67,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.3",
+    "jest-styled-components": "^7.0.0",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",

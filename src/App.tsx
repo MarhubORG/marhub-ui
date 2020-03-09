@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from 'styled-components';
+import Nav from './components/Nav/nav';
+import Footer from './components/Footer/Footer';
+import GlobalStyles from './styles/globalStyles';
+import { mainTheme } from './styles/themes';
+
+const StyledLayout = styled.div`
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  flex-direction: column;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+  overflow-y: scroll;
+`;
+
+const CoverDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CoverImage = styled.img`
+  width: 90%;
+`;
+
+const COVER_SOURCE = `${process.env.PUBLIC_URL}cover.jpg`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>Test Jest</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={mainTheme}>
+      <StyledLayout>
+        <GlobalStyles />
+        <Nav />
+        <MainContent>
+          <CoverDiv>
+            <CoverImage src={COVER_SOURCE} alt="Cover" />
+          </CoverDiv>
+        </MainContent>
+        <Footer />
+      </StyledLayout>
+    </ThemeProvider>
   );
 }
 
