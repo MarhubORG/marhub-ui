@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     Powered by 
   </span>
   <a
-    className="sc-AxirZ brfdJE"
+    className="sc-AxirZ dJtYJo"
     href="https://www.marhubinternational.org/"
     rel="noopener noreferrer"
     target="_blank"
@@ -20,9 +20,12 @@ exports[`renders correctly 1`] = `
   >
     <a
       className="sc-AxheI chbQKq"
+      href="https://www.facebook.com/marhub.co/"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <svg
-        className="sc-AxhCb gmwKdo"
+        className="sc-AxhCb iJNfOd"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
@@ -43,9 +46,12 @@ exports[`renders correctly 1`] = `
     </a>
     <a
       className="sc-AxheI chbQKq"
+      href="https://twitter.com/marhub_co"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <svg
-        className="sc-AxhUy fncQzZ"
+        className="sc-AxhUy jKjDts"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
@@ -66,9 +72,12 @@ exports[`renders correctly 1`] = `
     </a>
     <a
       className="sc-AxheI chbQKq"
+      href="https://www.linkedin.com/company/marhubco/"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <svg
-        className="sc-AxgMl fPshKF"
+        className="sc-AxgMl dBbKXs"
         fill="currentColor"
         height="1em"
         stroke="currentColor"

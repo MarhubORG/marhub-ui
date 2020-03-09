@@ -24,18 +24,27 @@ const FacebookLink = styled(FaFacebookF)`
   height: 1.55rem;
   width: 1.55rem;
   color: ${props => props.theme.socialLinkGray};
+  &:hover {
+    color: ${props => props.theme.darkGray};
+  }
 `;
 
 const TwitterLink = styled(FaTwitter)`
   height: 1.55rem;
   width: 1.55rem;
   color: ${props => props.theme.socialLinkGray};
+  &:hover {
+    color: ${props => props.theme.darkGray};
+  }
 `;
 
 const LinkedInLink = styled(FaLinkedin)`
   height: 1.55rem;
   width: 1.55rem;
   color: ${props => props.theme.socialLinkGray};
+  &:hover {
+    color: ${props => props.theme.darkGray};
+  }
   padding-left: 0.2rem;
 `;
 
@@ -55,13 +64,25 @@ export default function Footer() {
         Marhub
       </MarhubLink>
       <SocialLinksSection>
-        <SocialLink>
+        <SocialLink
+          href="https://www.facebook.com/marhub.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FacebookLink />
         </SocialLink>
-        <SocialLink>
+        <SocialLink
+          href="https://twitter.com/marhub_co"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <TwitterLink />
         </SocialLink>
-        <SocialLink>
+        <SocialLink
+          href="https://www.linkedin.com/company/marhubco/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <LinkedInLink />
         </SocialLink>
       </SocialLinksSection>
