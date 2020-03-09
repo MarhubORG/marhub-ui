@@ -23,7 +23,7 @@ const Anchor = styled.a`
   margin-top: 0.1rem;
   margin-left: auto;
   margin-right: 1rem;
-  background-color: #3366ff;
+  background-color: ${props => props.theme.primaryColor};
   padding-top: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;

@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Nav from './components/Nav/nav';
 import Footer from './components/Footer/Footer';
-import GlobalStyles from './globalStyles';
+import GlobalStyles from './styles/globalStyles';
+import { mainTheme } from './styles/themes';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -18,12 +19,14 @@ const MainContent = styled.main`
 
 function App() {
   return (
-    <StyledLayout>
-      <GlobalStyles />
-      <Nav />
-      <MainContent />
-      <Footer />
-    </StyledLayout>
+    <ThemeProvider theme={mainTheme}>
+      <StyledLayout>
+        <GlobalStyles />
+        <Nav />
+        <MainContent />
+        <Footer />
+      </StyledLayout>
+    </ThemeProvider>
   );
 }
 

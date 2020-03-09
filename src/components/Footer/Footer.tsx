@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
 
 const MarhubLink = styled.a`
   margin-left: 0.2rem;
-  color: #3366ff;
+  color: ${props => props.theme.primaryColor};
   text-decoration: none;
   font-weight: 600;
 `;
@@ -23,19 +23,19 @@ const SocialLinksSection = styled.section`
 const FacebookLink = styled(FaFacebookF)`
   height: 1.55rem;
   width: 1.55rem;
-  color: #8f9bb3;
+  color: ${props => props.theme.socialLinkGray};
 `;
 
 const TwitterLink = styled(FaTwitter)`
   height: 1.55rem;
   width: 1.55rem;
-  color: #8f9bb3;
+  color: ${props => props.theme.socialLinkGray};
 `;
 
 const LinkedInLink = styled(FaLinkedin)`
   height: 1.55rem;
   width: 1.55rem;
-  color: #8f9bb3;
+  color: ${props => props.theme.socialLinkGray};
   padding-left: 0.2rem;
 `;
 
