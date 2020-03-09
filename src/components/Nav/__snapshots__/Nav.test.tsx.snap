@@ -1,11 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
+.c0 {
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 1.75rem;
+  color: white;
+  margin-top: 0.1rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.c1 {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-bottom: -0.35rem;
+  margin-right: 0.5rem;
+}
+
 <a
-  className="sc-AxiKw dPZmIc"
+  className="c0"
 >
   <svg
-    className="sc-AxhCb icsYYY"
+    className="c1"
     fill="none"
     height="1em"
     stroke="currentColor"
@@ -39,19 +61,56 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
 `;
 
 exports[`renders correctly 1`] = `
+.c0 {
+  height: 2.75rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  background-color: white;
+}
+
+.c1 {
+  padding-top: 0.3rem;
+  height: 2rem;
+}
+
+.c2 {
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 1.75rem;
+  color: white;
+  margin-top: 0.1rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.c3 {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-bottom: -0.35rem;
+  margin-right: 0.5rem;
+}
+
 <nav
-  className="sc-AxjAm gZArjw"
+  className="c0"
 >
   <img
     alt="logo"
-    className="sc-AxirZ brTHAv"
+    className="c1"
     src="logo.png"
   />
   <a
-    className="sc-AxiKw dPZmIc"
+    className="c2"
   >
     <svg
-      className="sc-AxhCb icsYYY"
+      className="c3"
       fill="none"
       height="1em"
       stroke="currentColor"

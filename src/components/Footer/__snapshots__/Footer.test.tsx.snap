@@ -1,14 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white;
+  height: 1.3rem;
+  padding: 2rem 1.2rem;
+}
+
+.c1 {
+  margin-left: 0.2rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.c2 {
+  margin-left: auto;
+}
+
+.c4 {
+  height: 1.55rem;
+  width: 1.55rem;
+}
+
+.c5 {
+  height: 1.55rem;
+  width: 1.55rem;
+}
+
+.c6 {
+  height: 1.55rem;
+  width: 1.55rem;
+  padding-left: 0.2rem;
+}
+
+.c3 {
+  padding-left: 0.7rem;
+}
+
 <footer
-  className="sc-AxjAm ewtVSU"
+  className="c0"
 >
   <span>
     Powered by 
   </span>
   <a
-    className="sc-AxirZ dJtYJo"
+    className="c1"
     href="https://www.marhubinternational.org/"
     rel="noopener noreferrer"
     target="_blank"
@@ -16,16 +57,16 @@ exports[`renders correctly 1`] = `
     Marhub
   </a>
   <section
-    className="sc-AxiKw lfphCc"
+    className="c2"
   >
     <a
-      className="sc-AxheI chbQKq"
+      className="c3"
       href="https://www.facebook.com/marhub.co/"
       rel="noopener noreferrer"
       target="_blank"
     >
       <svg
-        className="sc-AxhCb iJNfOd"
+        className="c4"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
@@ -45,13 +86,13 @@ exports[`renders correctly 1`] = `
       </svg>
     </a>
     <a
-      className="sc-AxheI chbQKq"
+      className="c3"
       href="https://twitter.com/marhub_co"
       rel="noopener noreferrer"
       target="_blank"
     >
       <svg
-        className="sc-AxhUy jKjDts"
+        className="c5"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
@@ -71,13 +112,13 @@ exports[`renders correctly 1`] = `
       </svg>
     </a>
     <a
-      className="sc-AxheI chbQKq"
+      className="c3"
       href="https://www.linkedin.com/company/marhubco/"
       rel="noopener noreferrer"
       target="_blank"
     >
       <svg
-        className="sc-AxgMl dBbKXs"
+        className="c6"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
