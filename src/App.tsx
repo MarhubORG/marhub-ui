@@ -17,13 +17,29 @@ const MainContent = styled.main`
   overflow-y: scroll;
 `;
 
+const CoverDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CoverImage = styled.img`
+  width: 90%;
+`;
+
+const COVER_SOURCE = `${process.env.PUBLIC_URL}cover.jpg`;
+
 function App() {
   return (
     <ThemeProvider theme={mainTheme}>
       <StyledLayout>
         <GlobalStyles />
         <Nav />
-        <MainContent />
+        <MainContent>
+          <CoverDiv>
+            <CoverImage src={COVER_SOURCE} alt="Cover" />
+          </CoverDiv>
+        </MainContent>
         <Footer />
       </StyledLayout>
     </ThemeProvider>
