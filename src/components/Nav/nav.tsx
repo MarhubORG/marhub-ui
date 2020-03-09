@@ -6,6 +6,7 @@ const StyledNav = styled.nav`
   height: 2.75rem;
   display: flex;
   padding: 1rem;
+  background-color: white;
 `;
 
 const Logo = styled.img`
@@ -14,6 +15,7 @@ const Logo = styled.img`
 `;
 
 const Anchor = styled.a`
+  text-align: center;
   min-width: 8rem;
   border-radius: 5px;
   height: 1.75rem;
