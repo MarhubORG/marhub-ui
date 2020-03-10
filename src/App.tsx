@@ -1,9 +1,11 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Router } from '@reach/router';
 import Nav from './components/Nav/nav';
 import Footer from './components/Footer/Footer';
 import GlobalStyles from './styles/globalStyles';
 import { mainTheme } from './styles/themes';
+import Home from './routes/Home/Home';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -17,18 +19,6 @@ const MainContent = styled.main`
   overflow-y: scroll;
 `;
 
-const CoverDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CoverImage = styled.img`
-  width: 90%;
-`;
-
-const COVER_SOURCE = `${process.env.PUBLIC_URL}cover.jpg`;
-
 function App() {
   return (
     <ThemeProvider theme={mainTheme}>
@@ -36,9 +26,9 @@ function App() {
         <GlobalStyles />
         <Nav />
         <MainContent>
-          <CoverDiv>
-            <CoverImage src={COVER_SOURCE} alt="Cover" />
-          </CoverDiv>
+          <Router>
+            <Home path="/" />
+          </Router>
         </MainContent>
         <Footer />
       </StyledLayout>
