@@ -21,12 +21,22 @@ const Layout = styled.div`
 
 const TextInput = styled.input`
   height: 2rem;
-  width: 20rem;
+  min-width: 18rem;
+  max-width: 18rem;
   border-radius: 0.2rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 const Label = styled.label`
   display: block;
+  color: ${({ theme }) => theme.grayText};
+  font-family: Open Sans, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
 `;
 
 const Header = styled.h1`
@@ -35,32 +45,44 @@ const Header = styled.h1`
 `;
 
 const Button = styled.button`
-  margin-top: 1rem;
+  margin-top: 2rem;
   align-self: center;
-  height: 2rem;
+  height: 2.4rem;
   width: 20.4rem;
-  border: 1px solid black;
+  background-color: ${({ theme }) => theme.disabledButtonBackground};
+  color: ${({ theme }) => theme.disabledButtonText};
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-radius: 0.2rem;
+`;
+
+const Container = styled.div`
+  margin-top: -5rem;
 `;
 
 export default function Login(props: RouteComponentProps) {
   return (
     <Layout>
-      <div>
+      <Container>
         <div>
           <Header>Login</Header>
         </div>
         <div>
           <Label htmlFor="email">Email:</Label>
-          <TextInput type="text" name="email" />
+          <TextInput type="text" placeholder="Email" name="email" />
         </div>
         <div>
           <Label htmlFor="email">Password:</Label>
-          <TextInput type="password" name="password" />
+          <TextInput type="password" placeholder="Password" name="password" />
         </div>
         <div>
-          <Button type="submit">Log in</Button>
+          <Button disabled type="submit">
+            Login
+          </Button>
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 }
