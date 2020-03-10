@@ -57,7 +57,7 @@ const StyledLink = styled(Link)`
 
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
-export function LoginAnchor() {
+export function LoginAnchor(): JSX.Element {
   return (
     <Anchor>
       <LoginIcon />
@@ -65,7 +65,7 @@ export function LoginAnchor() {
     </Anchor>
   );
 }
-export default function Nav() {
+export default function Nav(): JSX.Element {
   return (
     <StyledNav>
       <Link to="/">

@@ -21,7 +21,7 @@ const MainContent = styled.main`
   overflow-y: scroll;
 `;
 
-function App() {
+function App(): JSX.Element {
   return (
     <ThemeProvider theme={mainTheme}>
       <StyledLayout>

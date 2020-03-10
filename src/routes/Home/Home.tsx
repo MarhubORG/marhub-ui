@@ -14,7 +14,7 @@ const CoverImage = styled.img`
 
 const COVER_SOURCE = `${process.env.PUBLIC_URL}cover.jpg`;
 
-export default function Home(props: RouteComponentProps) {
+export default function Home(props: RouteComponentProps): JSX.Element {
   return (
     <CoverDiv>
       <CoverImage src={COVER_SOURCE} alt="Cover" />

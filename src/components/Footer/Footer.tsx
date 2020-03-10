@@ -52,7 +52,7 @@ const SocialLink = styled.a`
   padding-left: 0.7rem;
 `;
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <StyledFooter>
       <span>Powered by </span>

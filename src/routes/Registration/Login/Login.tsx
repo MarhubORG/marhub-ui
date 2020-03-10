@@ -64,7 +64,7 @@ const Container = styled.div`
   margin-top: -5rem;
 `;
 
-export default function Login(props: RouteComponentProps) {
+export default function Login(props: RouteComponentProps): JSX.Element {
   return (
     <Layout>
       <Container>
