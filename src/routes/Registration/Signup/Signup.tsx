@@ -27,6 +27,7 @@ const TextInput = styled.input`
   font-size: 0.9rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  border: 1px solid #edf1f7;
 `;
 
 const Label = styled.label`
@@ -48,7 +49,7 @@ const Button = styled.button`
   margin-top: 2rem;
   align-self: center;
   height: 2.4rem;
-  width: 20.4rem;
+  width: 20rem;
   background-color: ${({ theme }) => theme.disabledButtonBackground};
   color: ${({ theme }) => theme.disabledButtonText};
   font-family: Open Sans, sans-serif;
@@ -56,6 +57,7 @@ const Button = styled.button`
   font-size: 0.9rem;
   text-transform: uppercase;
   border-radius: 0.2rem;
+  border: none;
 `;
 
 const Container = styled.div`
