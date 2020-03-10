@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.2rem;
+  margin: 2rem 3rem;
+  min-width: 90%;
+  min-height: 65vh;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,0.1);
+}
+
+.c4 {
+  height: 2rem;
+  min-width: 18rem;
+  max-width: 18rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.c3 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c2 {
+  text-align: center;
+  font-family: Open Sans,sans-serif;
+}
+
+.c5 {
+  margin-top: 2rem;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  height: 2.4rem;
+  width: 20.4rem;
+  font-family: Open Sans,sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-radius: 0.2rem;
+}
+
+.c1 {
+  margin-top: -5rem;
+}
+
+@media (max-width:768px) {
+  .c0 {
+    margin: 0rem 0rem;
+    min-height: 75vh;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div>
+      <h1
+        className="c2"
+      >
+        Signup
+      </h1>
+    </div>
+    <div>
+      <label
+        className="c3"
+        htmlFor="email"
+      >
+        Email:
+      </label>
+      <input
+        className="c4"
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        className="c3"
+        htmlFor="email"
+      >
+        Password:
+      </label>
+      <input
+        className="c4"
+        name="password"
+        placeholder="Password"
+        type="password"
+      />
+    </div>
+    <div>
+      <button
+        className="c5"
+        disabled={true}
+        type="submit"
+      >
+        Signup
+      </button>
+    </div>
+  </div>
+</div>
+`;

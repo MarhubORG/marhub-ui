@@ -7,6 +7,7 @@ import GlobalStyles from './styles/globalStyles';
 import { mainTheme } from './styles/themes';
 import Home from './routes/Home/Home';
 import Login from './routes/Registration/Login/Login';
+import Signup from './routes/Registration/Signup/Signup';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ function App() {
           <Router>
             <Home path="/" />
             <Login path="/login" />
+            <Signup path="/signup" />
           </Router>
         </MainContent>
         <Footer />
