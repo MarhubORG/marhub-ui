@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import GlobalStyles from './styles/globalStyles';
 import { mainTheme } from './styles/themes';
 import Home from './routes/Home/Home';
+import Login from './routes/Registration/Login/Login';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ function App() {
         <MainContent>
           <Router>
             <Home path="/" />
+            <Login path="/login" />
           </Router>
         </MainContent>
         <Footer />
