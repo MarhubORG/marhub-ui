@@ -32,7 +32,7 @@ const TextInput = styled.input`
 
 const Label = styled.label`
   display: block;
-  color: ${({ theme }) => theme.grayText};
+  color: ${({ theme }): string => theme.grayText};
   font-family: Open Sans, sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
@@ -50,8 +50,8 @@ const Button = styled.button`
   align-self: center;
   height: 2.4rem;
   width: 20rem;
-  background-color: ${({ theme }) => theme.disabledButtonBackground};
-  color: ${({ theme }) => theme.disabledButtonText};
+  background-color: ${({ theme }): string => theme.disabledButtonBackground};
+  color: ${({ theme }): string => theme.disabledButtonText};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   font-size: 0.9rem;

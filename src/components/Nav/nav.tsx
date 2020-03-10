@@ -23,7 +23,7 @@ const Anchor = styled.a`
   color: white;
   margin-top: 0.1rem;
   margin-right: 1rem;
-  background-color: ${({ theme }) => theme.primaryColor};
+  background-color: ${({ theme }): string => theme.primaryColor};
   padding-top: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -47,7 +47,7 @@ const StyledLink = styled(Link)`
   margin-top: 0.1rem;
   margin-left: auto;
   margin-right: 1rem;
-  background-color: ${({ theme }) => theme.primaryColor};
+  background-color: ${({ theme }): string => theme.primaryColor};
   padding-top: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
