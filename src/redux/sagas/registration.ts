@@ -7,7 +7,7 @@ function* signup(action: SignupAction) {
     const url = 'http://localhost:8080/api/v1/register';
     const json = yield axios.post(url, {
       name: action.payload.name,
-      organization: action.payload.organization,
+      organisation: action.payload.organization,
       email: action.payload.email,
       password: action.payload.password,
     });

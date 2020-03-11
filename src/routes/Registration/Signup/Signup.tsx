@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import styled from 'styled-components';
+import { RouteComponentProps, Redirect } from '@reach/router';
 import { Dispatch } from 'redux';
-import { RouteComponentProps } from '@reach/router';
+
 import { connect } from 'react-redux';
 import {
   Action,
   RootState,
   RegistrationState,
 } from '../../../types/interfaces';
-import { signup } from '../../../redux/actions/index';
+import { signup, signupRedirecting } from '../../../redux/actions/index';
 
 const Layout = styled.div`
   display: flex;
@@ -89,73 +90,122 @@ interface SignupProps extends RouteComponentProps {
     email: string,
     password: string
   ): Action;
+  signupRedirecting?(): Action;
 }
-export function UnconnectedSignup(props: SignupProps): JSX.Element {
-  const [name, setName] = useState('');
-  const [organization, setOrganization] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  console.log({ props });
-  return (
-    <Layout>
-      <Container>
-        <div>
-          <Header>Signup</Header>
-        </div>
-        <Errors />
-        <div>
-          <Label htmlFor="name">Name:</Label>
-          <TextInput
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={(e): void => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="organization">Organization:</Label>
-          <TextInput
-            type="text"
-            placeholder="Organization"
-            name="organization"
-            value={organization}
-            onChange={(e): void => setOrganization(e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="email">Email:</Label>
-          <TextInput
-            type="text"
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={(e): void => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="password">Password:</Label>
-          <TextInput
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={(e): void => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <Button
-            type="submit"
-            onClick={(): Action =>
-              props.signup(name, organization, email, password)
-            }
-          >
-            Signup
-          </Button>
-        </div>
-      </Container>
-    </Layout>
-  );
+
+interface SignupState {
+  name: string;
+  organization: string;
+  email: string;
+  password: string;
+}
+
+function redirectToLogin(props: SignupProps): void {
+  console.log('redirectToLogin');
+  if (props.signupRedirecting !== undefined) {
+    props.signupRedirecting();
+  }
+  if (props.navigate !== undefined) {
+    props.navigate('/login');
+  }
+}
+
+export class UnconnectedSignup extends Component<SignupProps, SignupState> {
+  constructor(props: SignupProps) {
+    super(props);
+    this.state = {
+      name: '',
+      organization: '',
+      email: '',
+      password: '',
+    };
+  }
+
+  componentDidUpdate() {
+    if (
+      this.props.registration !== undefined &&
+      this.props.registration.redirect
+    ) {
+      if (
+        this.props.navigate !== undefined &&
+        this.props.signupRedirecting !== undefined
+      ) {
+        this.props.signupRedirecting();
+        this.props.navigate('/login');
+      }
+    }
+  }
+
+  render() {
+    const { name, organization, email, password } = this.state;
+    return (
+      <Layout>
+        <Container>
+          <div>
+            <Header>Signup</Header>
+          </div>
+          <Errors>
+            {this.props.registration !== undefined &&
+              this.props.registration.error}
+          </Errors>
+          <div>
+            <Label htmlFor="name">Name:</Label>
+            <TextInput
+              type="text"
+              placeholder="Name"
+              name="name"
+              value={name}
+              onChange={(e): void => this.setState({ name: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label htmlFor="organization">Organization:</Label>
+            <TextInput
+              type="text"
+              placeholder="Organization"
+              name="organization"
+              value={organization}
+              onChange={(e): void =>
+                this.setState({ organization: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <Label htmlFor="email">Email:</Label>
+            <TextInput
+              type="text"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(e): void => this.setState({ email: e.target.value })}
+            />
+          </div>
+          <div>
+            <Label htmlFor="password">Password:</Label>
+            <TextInput
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={(e): void =>
+                this.setState({ password: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <Button
+              type="submit"
+              onClick={(): Action =>
+                this.props.signup(name, organization, email, password)
+              }
+            >
+              Signup
+            </Button>
+          </div>
+        </Container>
+      </Layout>
+    );
+  }
 }
 
 export interface MapDispatchToProps {
@@ -165,6 +215,7 @@ export interface MapDispatchToProps {
     email: string,
     password: string
   ): Action;
+  signupRedirecting(): Action;
 }
 
 export interface MapStateToProps {
@@ -184,6 +235,7 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
       email: string,
       password: string
     ): Action => dispatch(signup(name, organization, email, password)),
+    signupRedirecting: (): Action => dispatch(signupRedirecting()),
   };
 }
 
