@@ -43,6 +43,7 @@ describe('mapDispatchToProps', () => {
     expect(Object.keys(dispatches).includes('signup')).toBeTruthy();
     expect(typeof dispatches.signup).toEqual('function');
     expect(dispatches.signup.name).toEqual('signup');
+    expect(dispatches.signup('a', 'b', 'c', 'd')).toBeUndefined();
   });
   it('contains a function called signupRedirecting', () => {
     const dispatch = jest.fn();
@@ -50,6 +51,7 @@ describe('mapDispatchToProps', () => {
     expect(Object.keys(dispatches).includes('signupRedirecting')).toBeTruthy();
     expect(typeof dispatches.signupRedirecting).toEqual('function');
     expect(dispatches.signupRedirecting.name).toEqual('signupRedirecting');
+    expect(dispatches.signupRedirecting()).toBeUndefined();
   });
 });
 

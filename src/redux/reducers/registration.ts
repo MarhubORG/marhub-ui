@@ -6,7 +6,7 @@ import {
   SIGNUP_REDIRECTING,
 } from '../constants/actionTypes';
 
-function registrationReducer(
+export function registrationReducer(
   state = initialState,
   action: Action
 ): RegistrationState {
