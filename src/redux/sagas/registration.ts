@@ -1,20 +1,19 @@
 import axios from 'axios';
 import { put, takeLatest, all } from 'redux-saga/effects';
-import { SIGNUP_SUCCESS, SIGNUP } from '../constants/actionTypes';
+import { SIGNUP_SUCCESS, SIGNUP, SIGNUP_ERROR } from '../constants/actionTypes';
 
 function* signup(action: SignupAction) {
   try {
     const url = 'http://localhost:8080/api/v1/register';
     const json = yield axios.post(url, {
       name: action.payload.name,
-      organisation: action.payload.organization,
+      organization: action.payload.organization,
       email: action.payload.email,
       password: action.payload.password,
     });
     yield put({ type: SIGNUP_SUCCESS, payload: { json } });
   } catch (error) {
-    // hand error and put() into redux
-    // console.log(error.response.data);
+    yield put({ type: SIGNUP_ERROR, payload: error.response.data.message });
   }
 }
 

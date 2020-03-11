@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { Dispatch } from 'redux';
 import { RouteComponentProps } from '@reach/router';
 import { connect } from 'react-redux';
-import { Action } from '../../../types/interfaces';
+import {
+  Action,
+  RootState,
+  RegistrationState,
+} from '../../../types/interfaces';
 import { signup } from '../../../redux/actions/index';
 
 const Layout = styled.div`
@@ -15,6 +19,7 @@ const Layout = styled.div`
   margin: 2rem 3rem;
   min-width: 90%;
   min-height: 65vh;
+  overflow-y: scroll;
   box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 
   @media (max-width: 768px) {
@@ -48,10 +53,11 @@ const Header = styled.h1`
   text-align: center;
   font-family: Open Sans, sans-serif;
   margin-bottom: -0.5rem;
+  padding-top: 1rem;
 `;
 
 const Button = styled.button`
-  margin-top: 2rem;
+  margin-top: 1rem;
   align-self: center;
   height: 2.4rem;
   width: 20rem;
@@ -66,10 +72,17 @@ const Button = styled.button`
 `;
 
 const Container = styled.div`
-  margin-top: -5rem;
+  margin-top: -2rem;
+  padding: 1rem 0rem;
+`;
+
+const Errors = styled.div`
+  padding: 1rem 0rem;
+  width: 20rem;
 `;
 
 interface SignupProps extends RouteComponentProps {
+  registration?: RegistrationState;
   signup(
     name: string,
     organization: string,
@@ -77,19 +90,19 @@ interface SignupProps extends RouteComponentProps {
     password: string
   ): Action;
 }
-
 export function UnconnectedSignup(props: SignupProps): JSX.Element {
   const [name, setName] = useState('');
   const [organization, setOrganization] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  console.log({ props });
   return (
     <Layout>
       <Container>
         <div>
           <Header>Signup</Header>
         </div>
+        <Errors />
         <div>
           <Label htmlFor="name">Name:</Label>
           <TextInput
@@ -154,6 +167,15 @@ export interface MapDispatchToProps {
   ): Action;
 }
 
+export interface MapStateToProps {
+  registration: RegistrationState;
+}
+
+function mapStateToProps(state: RootState): MapStateToProps {
+  const { registration } = state;
+  return { registration };
+}
+
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
     signup: (
@@ -165,4 +187,4 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedSignup);
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedSignup);

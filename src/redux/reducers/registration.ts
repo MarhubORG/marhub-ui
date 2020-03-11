@@ -1,15 +1,22 @@
-import { Action } from '../../types/interfaces';
-import { SIGNUP, SIGNUP_SUCCESS } from '../constants/actionTypes';
+import { Action, RegistrationState } from '../../types/interfaces';
+import { SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR } from '../constants/actionTypes';
 
 function registrationReducer(
   state = initialState,
   action: Action
-): RegistrationReducer {
+): RegistrationState {
   switch (action.type) {
     case SIGNUP:
       return { ...state, loading: true, isLoggedIn: false };
     case SIGNUP_SUCCESS:
-      return { ...state, loading: false, isLoggedIn: true };
+      return { ...state, loading: false, isLoggedIn: false };
+    case SIGNUP_ERROR:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -17,12 +24,8 @@ function registrationReducer(
 
 export default registrationReducer;
 
-interface RegistrationReducer {
-  loading: boolean;
-  isLoggedIn: boolean;
-}
-
-const initialState: RegistrationReducer = {
+const initialState: RegistrationState = {
   loading: false,
-  isLoggedIn: true,
+  isLoggedIn: false,
+  error: {},
 };

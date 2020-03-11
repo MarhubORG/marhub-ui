@@ -7,5 +7,6 @@ export function signup(
   email: string,
   password: string
 ): Action {
+  console.log('SIGNUP action');
   return { type: SIGNUP, payload: { name, organization, email, password } };
 }
