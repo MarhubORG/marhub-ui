@@ -17,5 +17,6 @@ describe('mapDispatchToProps', () => {
     const dispatches: MapDispatchToProps = mapDispatchToProps(dispatch);
     expect(Object.keys(dispatches).includes('signup')).toBeTruthy();
     expect(typeof dispatches.signup).toEqual('function');
+    expect(dispatches.signup.name).toEqual('signup');
   });
 });
