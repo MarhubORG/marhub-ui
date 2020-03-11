@@ -11,10 +11,10 @@ function* signup(action: SignupAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
-    yield put({ type: SIGNUP_SUCCESS, payload: {} });
+    yield put({ type: SIGNUP_SUCCESS, payload: { json } });
   } catch (error) {
     // hand error and put() into redux
-    console.log(error.response.data);
+    // console.log(error.response.data);
   }
 }
 
