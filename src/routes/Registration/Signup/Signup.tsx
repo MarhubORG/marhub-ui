@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
 import { RouteComponentProps } from '@reach/router';
@@ -47,6 +47,7 @@ const Label = styled.label`
 const Header = styled.h1`
   text-align: center;
   font-family: Open Sans, sans-serif;
+  margin-bottom: -0.5rem;
 `;
 
 const Button = styled.button`
@@ -69,10 +70,20 @@ const Container = styled.div`
 `;
 
 interface SignupProps extends RouteComponentProps {
-  signup(): Action;
+  signup(
+    name: string,
+    organization: string,
+    email: string,
+    password: string
+  ): Action;
 }
 
 export function UnconnectedSignup(props: SignupProps): JSX.Element {
+  const [name, setName] = useState('');
+  const [organization, setOrganization] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <Layout>
       <Container>
@@ -80,15 +91,52 @@ export function UnconnectedSignup(props: SignupProps): JSX.Element {
           <Header>Signup</Header>
         </div>
         <div>
+          <Label htmlFor="name">Name:</Label>
+          <TextInput
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e): void => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label htmlFor="organization">Organization:</Label>
+          <TextInput
+            type="text"
+            placeholder="Organization"
+            name="organization"
+            value={organization}
+            onChange={(e): void => setOrganization(e.target.value)}
+          />
+        </div>
+        <div>
           <Label htmlFor="email">Email:</Label>
-          <TextInput type="text" placeholder="Email" name="email" />
+          <TextInput
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={(e): void => setEmail(e.target.value)}
+          />
         </div>
         <div>
-          <Label htmlFor="email">Password:</Label>
-          <TextInput type="password" placeholder="Password" name="password" />
+          <Label htmlFor="password">Password:</Label>
+          <TextInput
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={(e): void => setPassword(e.target.value)}
+          />
         </div>
         <div>
-          <Button disabled type="submit">
+          <Button
+            type="submit"
+            onClick={(): Action =>
+              props.signup(name, organization, email, password)
+            }
+          >
             Signup
           </Button>
         </div>
@@ -98,12 +146,22 @@ export function UnconnectedSignup(props: SignupProps): JSX.Element {
 }
 
 export interface MapDispatchToProps {
-  signup(): Action;
+  signup(
+    name: string,
+    organization: string,
+    email: string,
+    password: string
+  ): Action;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
-    signup: (): Action => dispatch(signup()),
+    signup: (
+      name: string,
+      organization: string,
+      email: string,
+      password: string
+    ): Action => dispatch(signup(name, organization, email, password)),
   };
 }
 
