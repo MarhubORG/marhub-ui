@@ -15,7 +15,7 @@ const Logo = styled.img`
   height: 2rem;
 `;
 
-const Anchor = styled.a`
+const Span = styled.span`
   text-align: center;
   min-width: 8rem;
   border-radius: 5px;
@@ -57,12 +57,12 @@ const StyledLink = styled(Link)`
 
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
-export function LoginAnchor(): JSX.Element {
+export function Login(): JSX.Element {
   return (
-    <Anchor>
+    <Span>
       <LoginIcon />
       Login
-    </Anchor>
+    </Span>
   );
 }
 export default function Nav(): JSX.Element {
@@ -72,7 +72,7 @@ export default function Nav(): JSX.Element {
         <Logo src={LOGO_SOURCE} alt="logo" />
       </Link>
       <StyledLink to="login">
-        <LoginAnchor />
+        <Login />
       </StyledLink>
     </StyledNav>
   );

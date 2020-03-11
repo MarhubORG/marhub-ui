@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
+exports[`has a secondary element Login which renders correctly 1`] = `
 .c0 {
   text-align: center;
   min-width: 8rem;
@@ -24,7 +24,7 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
   margin-right: 0.5rem;
 }
 
-<a
+<span
   className="c0"
 >
   <svg
@@ -58,7 +58,7 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
     />
   </svg>
   Login
-</a>
+</span>
 `;
 
 exports[`renders correctly 1`] = `
@@ -136,7 +136,7 @@ exports[`renders correctly 1`] = `
     href="/login"
     onClick={[Function]}
   >
-    <a
+    <span
       className="c3"
     >
       <svg
@@ -170,7 +170,7 @@ exports[`renders correctly 1`] = `
         />
       </svg>
       Login
-    </a>
+    </span>
   </a>
 </nav>
 `;

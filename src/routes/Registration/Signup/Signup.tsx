@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
 import { RouteComponentProps } from '@reach/router';
+import { connect } from 'react-redux';
+import { Action } from '../../../types/interfaces';
+import { signup } from '../../../redux/actions/index';
 
 const Layout = styled.div`
   display: flex;
@@ -64,7 +68,11 @@ const Container = styled.div`
   margin-top: -5rem;
 `;
 
-export default function Login(props: RouteComponentProps): JSX.Element {
+interface SignupProps extends RouteComponentProps {
+  signup?(): Action;
+}
+
+export function UnconnectedSignup(props: SignupProps): JSX.Element {
   return (
     <Layout>
       <Container>
@@ -88,3 +96,15 @@ export default function Login(props: RouteComponentProps): JSX.Element {
     </Layout>
   );
 }
+
+export interface MapDispatchToProps {
+  signup(): Action;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    signup: (): Action => dispatch(signup()),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(UnconnectedSignup);

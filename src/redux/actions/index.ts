@@ -1,9 +1,6 @@
-import { IS_SIGNING_UP } from '../constants/actionTypes';
+import { SIGNUP } from '../constants/actionTypes';
+import { Action } from '../../types/interfaces';
 
-interface Action {
-  type: string;
-  payload?: object;
-}
-export function isSigningUp(): Action {
-  return { type: IS_SIGNING_UP };
+export function signup(): Action {
+  return { type: SIGNUP };
 }

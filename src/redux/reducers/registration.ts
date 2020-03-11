@@ -1,7 +1,4 @@
-interface Action {
-  type: string;
-  payload?: object;
-}
+import { Action } from '../../types/interfaces';
 
 const initialState: object = {};
 
