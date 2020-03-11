@@ -69,7 +69,7 @@ const Container = styled.div`
 `;
 
 interface SignupProps extends RouteComponentProps {
-  signup?(): Action;
+  signup(): Action;
 }
 
 export function UnconnectedSignup(props: SignupProps): JSX.Element {
