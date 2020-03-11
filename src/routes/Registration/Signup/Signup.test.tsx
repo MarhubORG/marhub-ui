@@ -4,6 +4,8 @@ import {
   UnconnectedSignup,
   mapDispatchToProps,
   MapDispatchToProps,
+  MapStateToProps,
+  mapStateToProps,
 } from './Signup';
 import { Action } from '../../../types/interfaces';
 
@@ -14,6 +16,13 @@ const action = {
 function actionFunction(): Action {
   return action;
 }
+
+const initialState = {
+  loading: false,
+  isLoggedIn: false,
+  redirect: false,
+  error: '',
+};
 
 it('renders correctly', () => {
   const tree = renderer
@@ -41,5 +50,14 @@ describe('mapDispatchToProps', () => {
     expect(Object.keys(dispatches).includes('signupRedirecting')).toBeTruthy();
     expect(typeof dispatches.signupRedirecting).toEqual('function');
     expect(dispatches.signupRedirecting.name).toEqual('signupRedirecting');
+  });
+});
+
+describe('mapStateToProps', () => {
+  it('contains registration state', () => {
+    expect(mapStateToProps({ registration: initialState })).toBeDefined();
+    expect(
+      mapStateToProps({ registration: initialState }).registration.loading
+    ).toEqual(false);
   });
 });

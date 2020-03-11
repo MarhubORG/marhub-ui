@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { RouteComponentProps } from '@reach/router';
 import { Dispatch } from 'redux';
@@ -12,7 +12,6 @@ import {
 import { signup, signupRedirecting } from '../../../redux/actions/index';
 
 interface SignupProps extends RouteComponentProps {
-  registration?: RegistrationState;
   signup(
     name: string,
     organization: string,
@@ -20,6 +19,7 @@ interface SignupProps extends RouteComponentProps {
     password: string
   ): Action;
   signupRedirecting(): Action;
+  registration?: RegistrationState;
 }
 
 interface SignupState {
@@ -40,7 +40,7 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     if (
       this.props.registration !== undefined &&
       this.props.registration.redirect
@@ -52,7 +52,7 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { name, organization, email, password } = this.state;
     return (
       <Layout>
@@ -205,15 +205,6 @@ export interface MapDispatchToProps {
   ): Action;
 }
 
-export interface MapStateToProps {
-  registration: RegistrationState;
-}
-
-function mapStateToProps(state: RootState): MapStateToProps {
-  const { registration } = state;
-  return { registration };
-}
-
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
     signupRedirecting: (): Action => dispatch(signupRedirecting()),
@@ -226,4 +217,13 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedSignup);
+export interface MapStateToProps {
+  registration: RegistrationState;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { registration } = state;
+  return { registration };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedSignup);
