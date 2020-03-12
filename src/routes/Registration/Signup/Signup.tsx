@@ -4,6 +4,7 @@ import { RouteComponentProps } from '@reach/router';
 import { Dispatch } from 'redux';
 
 import { connect } from 'react-redux';
+import TextInput from '../../../components/Forms/TextInput/TextInput';
 import {
   Action,
   RootState,
@@ -52,6 +53,22 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
     }
   }
 
+  onNameChange = (name: string): void => {
+    this.setState({ name });
+  };
+
+  onOrgChange = (organization: string): void => {
+    this.setState({ organization });
+  };
+
+  onEmailChange = (email: string): void => {
+    this.setState({ email });
+  };
+
+  onPasswordChange = (password: string): void => {
+    this.setState({ password });
+  };
+
   render(): JSX.Element {
     const { name, organization, email, password } = this.state;
     return (
@@ -65,47 +82,44 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
               this.props.registration.error}
           </Errors>
           <div>
-            <Label htmlFor="name">Name:</Label>
             <TextInput
-              type="text"
+              htmlFor="name"
+              labelText="Name:"
               placeholder="Name"
               name="name"
-              value={name}
-              onChange={(e): void => this.setState({ name: e.target.value })}
+              value={this.state.name}
+              onChange={this.onNameChange}
             />
           </div>
           <div>
-            <Label htmlFor="organization">Organization:</Label>
             <TextInput
-              type="text"
+              htmlFor="organization"
+              labelText="Organization:"
               placeholder="Organization"
               name="organization"
-              value={organization}
-              onChange={(e): void =>
-                this.setState({ organization: e.target.value })
-              }
+              value={this.state.organization}
+              onChange={this.onOrgChange}
             />
           </div>
           <div>
-            <Label htmlFor="email">Email:</Label>
             <TextInput
-              type="text"
+              htmlFor="email"
+              labelText="Email:"
               placeholder="Email"
               name="email"
-              value={email}
-              onChange={(e): void => this.setState({ email: e.target.value })}
+              value={this.state.email}
+              onChange={this.onEmailChange}
             />
           </div>
           <div>
-            <Label htmlFor="password">Password:</Label>
             <TextInput
-              type="password"
+              htmlFor="password"
+              labelText="Password:"
               placeholder="Password"
               name="password"
-              value={password}
-              onChange={(e): void =>
-                this.setState({ password: e.target.value })
-              }
+              value={this.state.password}
+              onChange={this.onPasswordChange}
+              password
             />
           </div>
           <div>
@@ -140,27 +154,6 @@ const Layout = styled.div`
     margin: 0rem 0rem;
     min-height: 75vh;
   }
-`;
-
-const TextInput = styled.input`
-  height: 2rem;
-  min-width: 18rem;
-  max-width: 18rem;
-  border-radius: 0.2rem;
-  font-size: 0.9rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: 1px solid #edf1f7;
-`;
-
-const Label = styled.label`
-  display: block;
-  color: ${({ theme }): string => theme.grayText};
-  font-family: Open Sans, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1rem;
-  margin: 0.5rem 0rem;
 `;
 
 const Header = styled.h1`
