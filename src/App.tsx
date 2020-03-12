@@ -8,6 +8,7 @@ import { mainTheme } from './styles/themes';
 import Home from './routes/Home/Home';
 import Login from './routes/Registration/Login/Login';
 import Signup from './routes/Registration/Signup/Signup';
+import Dashboard from './routes/Dashboard/Dashboard';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ function App(): JSX.Element {
             <Home path="/" />
             <Login path="/login" />
             <Signup path="/signup" />
+            <Dashboard path="/dashboard" />
           </Router>
         </MainContent>
         <Footer />

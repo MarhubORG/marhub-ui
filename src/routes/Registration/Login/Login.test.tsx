@@ -57,19 +57,3 @@ describe('mapStateToProps', () => {
     ).toEqual(false);
   });
 });
-
-describe('class methods', () => {
-  it('should ', () => {
-    const component = create(
-      <UnconnectedLogin
-        login={login}
-        registration={initialState}
-        loginRedirecting={loginRedirecting}
-      />
-    );
-    const instance = component.getInstance();
-    instance.handleButtonClick();
-    // instance.onEmailChange('hi');
-    // expect(instance.state.email).toBe('');
-  });
-});

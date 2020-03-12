@@ -123,7 +123,7 @@ describe('registrationReducer', () => {
     });
     const expected = {
       loading: false,
-      isLoggedIn: false,
+      isLoggedIn: true,
       redirect: false,
       loginRedirect: true,
       error: '',

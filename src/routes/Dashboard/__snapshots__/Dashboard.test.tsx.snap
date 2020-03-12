@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when logged in 1`] = `
+<div>
+  Dashboard 
+</div>
+`;
+
+exports[`renders correctly when not logged in 1`] = `
+<div>
+  Dashboard 
+</div>
+`;
