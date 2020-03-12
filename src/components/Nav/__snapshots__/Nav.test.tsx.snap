@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
+exports[`has a secondary element Login which renders correctly 1`] = `
 .c0 {
   text-align: center;
   min-width: 8rem;
@@ -8,12 +8,13 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
   height: 1.75rem;
   color: white;
   margin-top: 0.1rem;
-  margin-left: auto;
   margin-right: 1rem;
   padding-top: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.8rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .c1 {
@@ -23,7 +24,7 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
   margin-right: 0.5rem;
 }
 
-<a
+<span
   className="c0"
 >
   <svg
@@ -57,7 +58,7 @@ exports[`has a secondary element LoginAnchor which renders correctly 1`] = `
     />
   </svg>
   Login
-</a>
+</span>
 `;
 
 exports[`renders correctly 1`] = `
@@ -76,6 +77,29 @@ exports[`renders correctly 1`] = `
   height: 2rem;
 }
 
+.c3 {
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 1.75rem;
+  color: white;
+  margin-top: 0.1rem;
+  margin-right: 1rem;
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c4 {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-bottom: -0.35rem;
+  margin-right: 0.5rem;
+}
+
 .c2 {
   text-align: center;
   min-width: 8rem;
@@ -89,57 +113,64 @@ exports[`renders correctly 1`] = `
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.8rem;
-}
-
-.c3 {
-  height: 1.2rem;
-  width: 1.2rem;
-  margin-bottom: -0.35rem;
-  margin-right: 0.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 <nav
   className="c0"
 >
-  <img
-    alt="logo"
-    className="c1"
-    src="logo.png"
-  />
+  <a
+    aria-current="page"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="logo"
+      className="c1"
+      src="logo.png"
+    />
+  </a>
   <a
     className="c2"
+    href="/login"
+    onClick={[Function]}
   >
-    <svg
+    <span
       className="c3"
-      fill="none"
-      height="1em"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
-      viewBox="0 0 24 24"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
-      />
-      <polyline
-        points="10 17 15 12 10 7"
-      />
-      <line
-        x1="15"
-        x2="3"
-        y1="12"
-        y2="12"
-      />
-    </svg>
-    Login
+      <svg
+        className="c4"
+        fill="none"
+        height="1em"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
+        />
+        <polyline
+          points="10 17 15 12 10 7"
+        />
+        <line
+          x1="15"
+          x2="3"
+          y1="12"
+          y2="12"
+        />
+      </svg>
+      Login
+    </span>
   </a>
 </nav>
 `;

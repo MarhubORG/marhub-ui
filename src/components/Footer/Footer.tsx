@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
 
 const MarhubLink = styled.a`
   margin-left: 0.2rem;
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }): string => theme.primaryColor};
   text-decoration: none;
   font-weight: 600;
 `;
@@ -23,27 +23,27 @@ const SocialLinksSection = styled.section`
 const FacebookLink = styled(FaFacebookF)`
   height: 1.55rem;
   width: 1.55rem;
-  color: ${({ theme }) => theme.socialLinkGray};
+  color: ${({ theme }): string => theme.socialLinkGray};
   &:hover {
-    color: ${({ theme }) => theme.darkGray};
+    color: ${({ theme }): string => theme.darkGray};
   }
 `;
 
 const TwitterLink = styled(FaTwitter)`
   height: 1.55rem;
   width: 1.55rem;
-  color: ${({ theme }) => theme.socialLinkGray};
+  color: ${({ theme }): string => theme.socialLinkGray};
   &:hover {
-    color: ${({ theme }) => theme.darkGray};
+    color: ${({ theme }): string => theme.darkGray};
   }
 `;
 
 const LinkedInLink = styled(FaLinkedin)`
   height: 1.55rem;
   width: 1.55rem;
-  color: ${({ theme }) => theme.socialLinkGray};
+  color: ${({ theme }): string => theme.socialLinkGray};
   &:hover {
-    color: ${({ theme }) => theme.darkGray};
+    color: ${({ theme }): string => theme.darkGray};
   }
   padding-left: 0.2rem;
 `;
@@ -52,7 +52,7 @@ const SocialLink = styled.a`
   padding-left: 0.7rem;
 `;
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <StyledFooter>
       <span>Powered by </span>
