@@ -5,7 +5,6 @@ import {
   UnconnectedSignup,
   mapDispatchToProps,
   MapDispatchToProps,
-  MapStateToProps,
   mapStateToProps,
 } from './Signup';
 
@@ -21,6 +20,7 @@ const initialState = {
   loading: false,
   isLoggedIn: false,
   redirect: false,
+  loginRedirect: false,
   error: '',
 };
 
