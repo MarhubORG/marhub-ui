@@ -6,6 +6,7 @@ import {
   LOGIN,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
+  LOGIN_REDIRECTING,
 } from '../constants/actionTypes';
 
 // #region region signup
@@ -89,6 +90,22 @@ export function loginError(message: string): LoginErrorAction {
   return { type: LOGIN_ERROR, payload: { message } };
 }
 
+export interface LoginSuccessAction {
+  type: typeof LOGIN_SUCCESS;
+}
+
+export function loginSuccess(): LoginSuccessAction {
+  return { type: LOGIN_SUCCESS };
+}
+
+export interface LoginRedirectingAction {
+  type: typeof LOGIN_REDIRECTING;
+}
+
+export function loginRedirecting(): LoginRedirectingAction {
+  return { type: LOGIN_REDIRECTING };
+}
+
 // #endregion
 export type RegistrationActionTypes =
   | SignupAction
@@ -96,4 +113,6 @@ export type RegistrationActionTypes =
   | SignupSuccessAction
   | SignupErrorAction
   | LoginAction
-  | LoginErrorAction;
+  | LoginErrorAction
+  | LoginSuccessAction
+  | LoginRedirectingAction;

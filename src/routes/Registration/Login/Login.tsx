@@ -3,7 +3,12 @@ import { RouteComponentProps } from '@reach/router';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import React, { Component } from 'react';
-import { login, LoginAction } from '../../../redux/actions/index';
+import {
+  login,
+  LoginAction,
+  loginRedirecting,
+  LoginRedirectingAction,
+} from '../../../redux/actions/index';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import { RootState, RegistrationState } from '../../../types/interfaces';
@@ -11,6 +16,7 @@ import { RootState, RegistrationState } from '../../../types/interfaces';
 interface LoginProps extends RouteComponentProps {
   login(email: string, password: string): LoginAction;
   registration: RegistrationState;
+  loginRedirecting(): LoginRedirectingAction;
 }
 
 interface LoginState {
@@ -25,6 +31,17 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
       email: '',
       password: '',
     };
+  }
+
+  componentDidUpdate(): void {
+    if (
+      this.props.registration.loginRedirect &&
+      this.props.navigate !== undefined
+    ) {
+      this.props.loginRedirecting();
+      // this.props.navigate('/dashboard');
+      this.props.navigate('/');
+    }
   }
 
   onEmailChange = (email: string): void => {
@@ -123,10 +140,13 @@ const Container = styled.div`
 
 export interface MapDispatchToProps {
   login(email: string, password: string): LoginAction;
+  loginRedirecting(): LoginRedirectingAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
+    loginRedirecting: (): LoginRedirectingAction =>
+      dispatch(loginRedirecting()),
     login: (email: string, password: string): LoginAction =>
       dispatch(login(email, password)),
   };

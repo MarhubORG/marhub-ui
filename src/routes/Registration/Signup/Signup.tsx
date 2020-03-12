@@ -78,7 +78,6 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
   };
 
   render(): JSX.Element {
-    const { name, organization, email, password } = this.state;
     return (
       <Layout>
         <Container>

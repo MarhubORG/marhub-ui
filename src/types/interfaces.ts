@@ -3,6 +3,7 @@ export interface RegistrationState {
   isLoggedIn: boolean;
   error: string;
   redirect: boolean;
+  loginRedirect: boolean;
 }
 
 export interface RootState {

@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest, all } from 'redux-saga/effects';
+import cookie from 'react-cookies';
+
 import { SIGNUP, LOGIN } from '../constants/actionTypes';
 import {
   signupSuccess,
   signupError,
   loginError,
+  loginSuccess,
   SignupAction,
   LoginAction,
 } from '../actions/index';
@@ -35,7 +38,13 @@ function* login(action: LoginAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
-    // yield put(signupSuccess());
+    cookie.save('token', json.data.user.sessionToken, {
+      path: '/',
+      domain: 'http://localhost:8080',
+      secure: true,
+      httpOnly: true,
+    });
+    yield put(loginSuccess());
   } catch (error) {
     yield put(loginError(error.response.data.message));
   }

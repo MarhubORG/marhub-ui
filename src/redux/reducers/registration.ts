@@ -6,6 +6,8 @@ import {
   SIGNUP_REDIRECTING,
   LOGIN,
   LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_REDIRECTING,
 } from '../constants/actionTypes';
 import { RegistrationActionTypes } from '../actions/index';
 
@@ -36,6 +38,10 @@ export function registrationReducer(
         isLoggedIn: false,
         error: action.payload.message,
       };
+    case LOGIN_SUCCESS:
+      return { ...state, loading: false, loginRedirect: true };
+    case LOGIN_REDIRECTING:
+      return { ...state, loginRedirect: false };
     default:
       return state;
   }
@@ -47,5 +53,6 @@ const initialState: RegistrationState = {
   loading: false,
   isLoggedIn: false,
   redirect: false,
+  loginRedirect: false,
   error: '',
 };
