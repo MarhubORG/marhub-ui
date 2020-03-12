@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 
 import { connect } from 'react-redux';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import {
   Action,
   RootState,
@@ -77,10 +78,9 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
           <div>
             <Header>Signup</Header>
           </div>
-          <Errors>
-            {this.props.registration !== undefined &&
-              this.props.registration.error}
-          </Errors>
+          {this.props.registration !== undefined && (
+            <ErrorMessage message={this.props.registration.error} />
+          )}
           <div>
             <TextInput
               htmlFor="name"
@@ -181,11 +181,6 @@ const Button = styled.button`
 const Container = styled.div`
   margin-top: -2rem;
   padding: 1rem 0rem;
-`;
-
-const Errors = styled.div`
-  padding: 1rem 0rem;
-  width: 20rem;
 `;
 
 export interface MapDispatchToProps {

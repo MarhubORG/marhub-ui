@@ -11,7 +11,7 @@ interface Props {
   password?: boolean;
 }
 
-function TextInput(props: Props) {
+function TextInput(props: Props): JSX.Element {
   return (
     <div>
       <Label htmlFor={props.htmlFor}>{props.labelText}</Label>
