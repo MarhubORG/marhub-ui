@@ -57,6 +57,7 @@ exports[`renders correctly 1`] = `
   align-self: center;
   height: 2.4rem;
   width: 20rem;
+  color: white;
   font-family: Open Sans,sans-serif;
   font-weight: 700;
   font-size: 0.9rem;

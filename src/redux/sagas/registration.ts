@@ -40,9 +40,9 @@ function* login(action: LoginAction) {
     });
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
-      domain: 'http://localhost:8080',
-      secure: true,
-      httpOnly: true,
+      // domain: 'http://localhost:8080',
+      // secure: true,
+      // httpOnly: true,
     });
     yield put(loginSuccess());
   } catch (error) {

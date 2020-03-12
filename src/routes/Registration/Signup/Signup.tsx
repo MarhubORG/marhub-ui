@@ -44,6 +44,16 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
     };
   }
 
+  componentDidMount(): void {
+    if (
+      this.props.registration !== undefined &&
+      this.props.registration.isLoggedIn === true &&
+      this.props.navigate !== undefined
+    ) {
+      this.props.navigate('/dashboard');
+    }
+  }
+
   componentDidUpdate(): void {
     if (
       this.props.registration !== undefined &&
@@ -169,8 +179,8 @@ const Button = styled.button`
   align-self: center;
   height: 2.4rem;
   width: 20rem;
-  background-color: ${({ theme }): string => theme.disabledButtonBackground};
-  color: ${({ theme }): string => theme.disabledButtonText};
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: white;
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
