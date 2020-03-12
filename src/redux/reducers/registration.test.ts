@@ -28,7 +28,7 @@ describe('registrationReducer', () => {
     const errorMessage = 'some error';
     const state = registrationReducer(initialState, {
       type: SIGNUP_ERROR,
-      payload: errorMessage,
+      payload: { message: errorMessage },
     });
     const expected = {
       loading: false,
@@ -37,14 +37,6 @@ describe('registrationReducer', () => {
       error: errorMessage,
     };
     expect(state).toEqual(expected);
-  });
-  it("returns the initial state if the payload isn't a string", () => {
-    const errorMessage = undefined;
-    const state = registrationReducer(initialState, {
-      type: SIGNUP_ERROR,
-      payload: errorMessage,
-    });
-    expect(state).toEqual(initialState);
   });
   it('accepts the SIGNUP_REDIRECTING action type', () => {
     const state = registrationReducer(initialState, {

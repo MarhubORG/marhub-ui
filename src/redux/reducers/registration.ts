@@ -1,14 +1,15 @@
-import { Action, RegistrationState } from '../../types/interfaces';
+import { RegistrationState } from '../../types/interfaces';
 import {
   SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   SIGNUP_REDIRECTING,
 } from '../constants/actionTypes';
+import { RegistrationActionTypes } from '../actions/index';
 
 export function registrationReducer(
   state = initialState,
-  action: Action
+  action: RegistrationActionTypes
 ): RegistrationState {
   switch (action.type) {
     case SIGNUP:
@@ -18,15 +19,12 @@ export function registrationReducer(
     case SIGNUP_REDIRECTING:
       return { ...state, redirect: false };
     case SIGNUP_ERROR:
-      if (typeof action.payload === 'string') {
-        return {
-          ...state,
-          loading: false,
-          isLoggedIn: false,
-          error: action.payload,
-        };
-      }
-      return state;
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+        error: action.payload.message,
+      };
     default:
       return state;
   }

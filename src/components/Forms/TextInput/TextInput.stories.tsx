@@ -11,7 +11,7 @@ storiesOf('TextInput', module).add('TextInput Component', () => (
       labelText="Organization:"
       placeholder="Organization"
       name="organization"
-      value="val"
+      value=""
       onChange={(): void => {}}
     />
   </ThemeProvider>

@@ -1,5 +1,10 @@
-import { signup, signupRedirecting } from './index';
-import { SIGNUP, SIGNUP_REDIRECTING } from '../constants/actionTypes';
+import { signup, signupRedirecting, signupSuccess, signupError } from './index';
+import {
+  SIGNUP,
+  SIGNUP_REDIRECTING,
+  SIGNUP_ERROR,
+  SIGNUP_SUCCESS,
+} from '../constants/actionTypes';
 
 describe('signup', () => {
   it('should return a properly formatted action', () => {
@@ -26,5 +31,20 @@ describe('signupRedirecting', () => {
       type: SIGNUP_REDIRECTING,
     };
     expect(signupRedirecting()).toEqual(expected);
+  });
+});
+
+describe('signupSuccess', () => {
+  it('should return a properly formatted action', () => {
+    const expected = { type: SIGNUP_SUCCESS };
+    expect(signupSuccess()).toEqual(expected);
+  });
+});
+
+describe('signupError', () => {
+  it('should return a properly formatted action', () => {
+    const message = 'message';
+    const expected = { type: SIGNUP_ERROR, payload: { message } };
+    expect(signupError(message)).toEqual(expected);
   });
 });

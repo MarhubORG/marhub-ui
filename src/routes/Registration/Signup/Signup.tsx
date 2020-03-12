@@ -6,12 +6,14 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+
+import { RootState, RegistrationState } from '../../../types/interfaces';
 import {
-  Action,
-  RootState,
-  RegistrationState,
-} from '../../../types/interfaces';
-import { signup, signupRedirecting } from '../../../redux/actions/index';
+  signup,
+  signupRedirecting,
+  SignupAction,
+  SignupRedirectingAction,
+} from '../../../redux/actions/index';
 
 interface SignupProps extends RouteComponentProps {
   signup(
@@ -19,8 +21,8 @@ interface SignupProps extends RouteComponentProps {
     organization: string,
     email: string,
     password: string
-  ): Action;
-  signupRedirecting(): Action;
+  ): SignupAction;
+  signupRedirecting(): SignupRedirectingAction;
   registration?: RegistrationState;
 }
 
@@ -125,7 +127,7 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
           <div>
             <Button
               type="submit"
-              onClick={(): Action =>
+              onClick={(): SignupAction =>
                 this.props.signup(name, organization, email, password)
               }
             >
@@ -184,24 +186,25 @@ const Container = styled.div`
 `;
 
 export interface MapDispatchToProps {
-  signupRedirecting(): Action;
+  signupRedirecting(): SignupRedirectingAction;
   signup(
     name: string,
     organization: string,
     email: string,
     password: string
-  ): Action;
+  ): SignupAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
-    signupRedirecting: (): Action => dispatch(signupRedirecting()),
+    signupRedirecting: (): SignupRedirectingAction =>
+      dispatch(signupRedirecting()),
     signup: (
       name: string,
       organization: string,
       email: string,
       password: string
-    ): Action => dispatch(signup(name, organization, email, password)),
+    ): SignupAction => dispatch(signup(name, organization, email, password)),
   };
 }
 

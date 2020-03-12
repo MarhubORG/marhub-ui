@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { Action } from 'redux';
 import {
   UnconnectedSignup,
   mapDispatchToProps,
@@ -7,7 +8,6 @@ import {
   MapStateToProps,
   mapStateToProps,
 } from './Signup';
-import { Action } from '../../../types/interfaces';
 
 const action = {
   type: 'action',

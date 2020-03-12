@@ -1,8 +1,3 @@
-export interface Action {
-  type: string;
-  payload?: string | object | undefined;
-}
-
 export interface RegistrationState {
   loading: boolean;
   isLoggedIn: boolean;
