@@ -4,12 +4,17 @@ import {
   SIGNUP_ERROR,
   SIGNUP_REDIRECTING,
   SIGNUP_SUCCESS,
+  LOGIN,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_REDIRECTING,
 } from '../constants/actionTypes';
 
 const initialState = {
   loading: false,
   isLoggedIn: false,
   redirect: false,
+  loginRedirect: false,
   error: '',
 };
 
@@ -20,6 +25,7 @@ describe('registrationReducer', () => {
       loading: true,
       isLoggedIn: false,
       redirect: false,
+      loginRedirect: false,
       error: '',
     };
     expect(state).toEqual(expected);
@@ -34,6 +40,7 @@ describe('registrationReducer', () => {
       loading: false,
       isLoggedIn: false,
       redirect: false,
+      loginRedirect: false,
       error: errorMessage,
     };
     expect(state).toEqual(expected);
@@ -46,6 +53,7 @@ describe('registrationReducer', () => {
       loading: false,
       isLoggedIn: false,
       redirect: false,
+      loginRedirect: false,
       error: '',
     };
     expect(state).toEqual(expected);
@@ -58,6 +66,7 @@ describe('registrationReducer', () => {
       loading: false,
       isLoggedIn: false,
       redirect: true,
+      loginRedirect: false,
       error: '',
     };
     expect(state).toEqual(expected);
@@ -70,6 +79,73 @@ describe('registrationReducer', () => {
       loading: false,
       isLoggedIn: false,
       redirect: false,
+      loginRedirect: false,
+      error: '',
+    };
+    expect(state).toEqual(expected);
+  });
+  it('accepts the LOGIN action type', () => {
+    const state = registrationReducer(initialState, {
+      type: LOGIN,
+      payload: {
+        email: 'email',
+        password: 'password',
+      },
+    });
+    const expected = {
+      loading: true,
+      isLoggedIn: false,
+      redirect: false,
+      loginRedirect: false,
+      error: '',
+    };
+    expect(state).toEqual(expected);
+  });
+  it('accepts the LOGIN_ERROR action type', () => {
+    const state = registrationReducer(initialState, {
+      type: LOGIN_ERROR,
+      payload: {
+        message: 'message',
+      },
+    });
+    const expected = {
+      loading: false,
+      isLoggedIn: false,
+      redirect: false,
+      loginRedirect: false,
+      error: 'message',
+    };
+    expect(state).toEqual(expected);
+  });
+  it('accepts the LOGIN_SUCCESS action type', () => {
+    const state = registrationReducer(initialState, {
+      type: LOGIN_SUCCESS,
+    });
+    const expected = {
+      loading: false,
+      isLoggedIn: false,
+      redirect: false,
+      loginRedirect: true,
+      error: '',
+    };
+    expect(state).toEqual(expected);
+  });
+  it('accepts the LOGIN_REDIRECTING action type ', () => {
+    const initial = {
+      loading: false,
+      isLoggedIn: false,
+      redirect: false,
+      loginRedirect: true,
+      error: '',
+    };
+    const state = registrationReducer(initial, {
+      type: LOGIN_REDIRECTING,
+    });
+    const expected = {
+      loading: false,
+      isLoggedIn: false,
+      redirect: false,
+      loginRedirect: false,
       error: '',
     };
     expect(state).toEqual(expected);

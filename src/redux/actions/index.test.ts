@@ -1,9 +1,22 @@
-import { signup, signupRedirecting, signupSuccess, signupError } from './index';
+import {
+  signup,
+  signupRedirecting,
+  signupSuccess,
+  signupError,
+  login,
+  loginError,
+  loginSuccess,
+  loginRedirecting,
+} from './index';
 import {
   SIGNUP,
   SIGNUP_REDIRECTING,
   SIGNUP_ERROR,
   SIGNUP_SUCCESS,
+  LOGIN,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_REDIRECTING,
 } from '../constants/actionTypes';
 
 describe('signup', () => {
@@ -47,4 +60,33 @@ describe('signupError', () => {
     const expected = { type: SIGNUP_ERROR, payload: { message } };
     expect(signupError(message)).toEqual(expected);
   });
+});
+
+describe('login', () => {
+  it('should return a properly formatted action', () => {
+    const email = 'email';
+    const password = 'password';
+    const expected = { type: LOGIN, payload: { email, password } };
+    expect(login(email, password)).toEqual(expected);
+  });
+});
+
+describe('loginError', () => {
+  it('should return a properly formatted action', () => {
+    const message = 'message';
+    const expected = { type: LOGIN_ERROR, payload: { message } };
+    expect(loginError(message)).toEqual(expected);
+  });
+});
+
+describe('loginSuccess', () => {
+  it('should return a properly formatted action', () => {
+    const expected = { type: LOGIN_SUCCESS };
+    expect(loginSuccess()).toEqual(expected);
+  });
+});
+
+describe('loginRedirecting', () => {
+  const expected = { type: LOGIN_REDIRECTING };
+  expect(loginRedirecting()).toEqual(expected);
 });
