@@ -3,7 +3,12 @@ import {
   SIGNUP_REDIRECTING,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  LOGIN,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
 } from '../constants/actionTypes';
+
+// #region region signup
 
 export interface SignupPayload {
   name: string;
@@ -55,8 +60,26 @@ export function signupError(message: string): SignupErrorAction {
   return { type: SIGNUP_ERROR, payload: { message } };
 }
 
+// #endregion
+// #region login
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export interface LoginAction {
+  type: typeof LOGIN;
+  payload: LoginPayload;
+}
+
+export function login(email: string, password: string): LoginAction {
+  return { type: LOGIN, payload: { email, password } };
+}
+
+// #endregion
 export type RegistrationActionTypes =
   | SignupAction
   | SignupRedirectingAction
   | SignupSuccessAction
-  | SignupErrorAction;
+  | SignupErrorAction
+  | LoginAction;

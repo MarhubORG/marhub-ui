@@ -72,6 +72,11 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
     this.setState({ password });
   };
 
+  handleButtonClick = (): void => {
+    const { name, organization, email, password } = this.state;
+    this.props.signup(name, organization, email, password);
+  };
+
   render(): JSX.Element {
     const { name, organization, email, password } = this.state;
     return (
@@ -125,12 +130,7 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
             />
           </div>
           <div>
-            <Button
-              type="submit"
-              onClick={(): SignupAction =>
-                this.props.signup(name, organization, email, password)
-              }
-            >
+            <Button type="submit" onClick={this.handleButtonClick}>
               Signup
             </Button>
           </div>

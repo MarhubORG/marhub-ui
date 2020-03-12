@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c4 {
+  height: 2rem;
+  min-width: 18rem;
+  max-width: 18rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+}
+
+.c3 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -20,26 +40,6 @@ exports[`renders correctly 1`] = `
   min-width: 90%;
   min-height: 65vh;
   box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,0.1);
-}
-
-.c4 {
-  height: 2rem;
-  min-width: 18rem;
-  max-width: 18rem;
-  border-radius: 0.2rem;
-  font-size: 0.9rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: 1px solid #edf1f7;
-}
-
-.c3 {
-  display: block;
-  font-family: Open Sans,sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1rem;
-  margin: 0.5rem 0rem;
 }
 
 .c2 {
@@ -87,37 +87,45 @@ exports[`renders correctly 1`] = `
       </h1>
     </div>
     <div>
-      <label
-        className="c3"
-        htmlFor="email"
-      >
-        Email:
-      </label>
-      <input
-        className="c4"
-        name="email"
-        placeholder="Email"
-        type="text"
-      />
+      <div>
+        <label
+          className="c3"
+          htmlFor="email"
+        >
+          Email:
+        </label>
+        <input
+          className="c4"
+          name="email"
+          onChange={[Function]}
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
     <div>
-      <label
-        className="c3"
-        htmlFor="email"
-      >
-        Password:
-      </label>
-      <input
-        className="c4"
-        name="password"
-        placeholder="Password"
-        type="password"
-      />
+      <div>
+        <label
+          className="c3"
+          htmlFor="password"
+        >
+          Password:
+        </label>
+        <input
+          className="c4"
+          name="password"
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
     </div>
     <div>
       <button
         className="c5"
-        disabled={true}
+        onClick={[Function]}
         type="submit"
       >
         Login

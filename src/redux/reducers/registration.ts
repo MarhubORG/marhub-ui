@@ -4,6 +4,7 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   SIGNUP_REDIRECTING,
+  LOGIN,
 } from '../constants/actionTypes';
 import { RegistrationActionTypes } from '../actions/index';
 
@@ -25,6 +26,9 @@ export function registrationReducer(
         isLoggedIn: false,
         error: action.payload.message,
       };
+    case LOGIN:
+      console.log('reducer LOGIN');
+      return { ...state, loading: true };
     default:
       return state;
   }

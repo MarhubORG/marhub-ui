@@ -1,6 +1,82 @@
-import React from 'react';
 import styled from 'styled-components';
 import { RouteComponentProps } from '@reach/router';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import React, { Component } from 'react';
+import { login, LoginAction } from '../../../redux/actions/index';
+import TextInput from '../../../components/Forms/TextInput/TextInput';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+
+interface LoginProps extends RouteComponentProps {
+  login(email: string, password: string): LoginAction;
+}
+
+interface LoginState {
+  email: string;
+  password: string;
+}
+
+export class UnconnectedLogin extends Component<LoginProps, LoginState> {
+  constructor(props: LoginProps) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
+  onEmailChange = (email: string): void => {
+    this.setState({ email });
+  };
+
+  onPasswordChange = (password: string): void => {
+    this.setState({ password });
+  };
+
+  handleButtonClick = (): void => {
+    console.log('click');
+    const { email, password } = this.state;
+    this.props.login(email, password);
+  };
+
+  render(): JSX.Element {
+    return (
+      <Layout>
+        <Container>
+          <div>
+            <Header>Login</Header>
+          </div>
+          <div>
+            <TextInput
+              htmlFor="email"
+              labelText="Email:"
+              placeholder="Email"
+              name="email"
+              value={this.state.email}
+              onChange={this.onEmailChange}
+            />
+          </div>
+          <div>
+            <TextInput
+              htmlFor="password"
+              labelText="Password:"
+              placeholder="Password"
+              name="password"
+              value={this.state.password}
+              onChange={this.onPasswordChange}
+              password
+            />
+          </div>
+          <div>
+            <Button type="submit" onClick={this.handleButtonClick}>
+              Login
+            </Button>
+          </div>
+        </Container>
+      </Layout>
+    );
+  }
+}
 
 const Layout = styled.div`
   display: flex;
@@ -17,27 +93,6 @@ const Layout = styled.div`
     margin: 0rem 0rem;
     min-height: 75vh;
   }
-`;
-
-const TextInput = styled.input`
-  height: 2rem;
-  min-width: 18rem;
-  max-width: 18rem;
-  border-radius: 0.2rem;
-  font-size: 0.9rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: 1px solid #edf1f7;
-`;
-
-const Label = styled.label`
-  display: block;
-  color: ${({ theme }): string => theme.grayText};
-  font-family: Open Sans, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1rem;
-  margin: 0.5rem 0rem;
 `;
 
 const Header = styled.h1`
@@ -64,27 +119,15 @@ const Container = styled.div`
   margin-top: -5rem;
 `;
 
-export default function Login(props: RouteComponentProps): JSX.Element {
-  return (
-    <Layout>
-      <Container>
-        <div>
-          <Header>Login</Header>
-        </div>
-        <div>
-          <Label htmlFor="email">Email:</Label>
-          <TextInput type="text" placeholder="Email" name="email" />
-        </div>
-        <div>
-          <Label htmlFor="email">Password:</Label>
-          <TextInput type="password" placeholder="Password" name="password" />
-        </div>
-        <div>
-          <Button disabled type="submit">
-            Login
-          </Button>
-        </div>
-      </Container>
-    </Layout>
-  );
+export interface MapDispatchToProps {
+  login(email: string, password: string): LoginAction;
 }
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    login: (email: string, password: string): LoginAction =>
+      dispatch(login(email, password)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(UnconnectedLogin);
