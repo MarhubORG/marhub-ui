@@ -27,7 +27,7 @@ function* signup(action: SignupAction) {
   }
 }
 
-function* actionWatcher() {
+export function* actionWatcher() {
   yield takeLatest(SIGNUP, signup);
 }
 
@@ -38,6 +38,7 @@ function* login(action: LoginAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
+    console.log('token', json.data.user.sessionToken);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
@@ -50,10 +51,6 @@ function* login(action: LoginAction) {
   }
 }
 
-function* watchLogin() {
+export function* watchLogin() {
   yield takeLatest(LOGIN, login);
-}
-
-export default function* rootSaga() {
-  yield all([actionWatcher(), watchLogin()]);
 }
