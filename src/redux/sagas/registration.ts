@@ -4,6 +4,7 @@ import { SIGNUP, LOGIN } from '../constants/actionTypes';
 import {
   signupSuccess,
   signupError,
+  loginError,
   SignupAction,
   LoginAction,
 } from '../actions/index';
@@ -29,17 +30,14 @@ function* actionWatcher() {
 
 function* login(action: LoginAction) {
   try {
-    console.log('here saga');
     const url = 'http://localhost:8080/api/v1/login';
     const json = yield axios.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
-    console.log({ json });
     // yield put(signupSuccess());
   } catch (error) {
-    console.log('error', error.response.data.message);
-    yield put(signupError(error.response.data.message));
+    yield put(loginError(error.response.data.message));
   }
 }
 

@@ -76,10 +76,24 @@ export function login(email: string, password: string): LoginAction {
   return { type: LOGIN, payload: { email, password } };
 }
 
+interface LoginErrorPayload {
+  message: string;
+}
+
+export interface LoginErrorAction {
+  type: typeof LOGIN_ERROR;
+  payload: LoginErrorPayload;
+}
+
+export function loginError(message: string): LoginErrorAction {
+  return { type: LOGIN_ERROR, payload: { message } };
+}
+
 // #endregion
 export type RegistrationActionTypes =
   | SignupAction
   | SignupRedirectingAction
   | SignupSuccessAction
   | SignupErrorAction
-  | LoginAction;
+  | LoginAction
+  | LoginErrorAction;

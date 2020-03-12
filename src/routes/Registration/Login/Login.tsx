@@ -36,13 +36,11 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
   };
 
   handleButtonClick = (): void => {
-    console.log('click');
     const { email, password } = this.state;
     this.props.login(email, password);
   };
 
   render(): JSX.Element {
-    console.log('props', this.props);
     return (
       <Layout>
         <Container>
