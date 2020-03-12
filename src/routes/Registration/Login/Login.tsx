@@ -6,9 +6,11 @@ import React, { Component } from 'react';
 import { login, LoginAction } from '../../../redux/actions/index';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+import { RootState, RegistrationState } from '../../../types/interfaces';
 
 interface LoginProps extends RouteComponentProps {
   login(email: string, password: string): LoginAction;
+  registration: RegistrationState;
 }
 
 interface LoginState {
@@ -40,12 +42,14 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
   };
 
   render(): JSX.Element {
+    console.log('props', this.props);
     return (
       <Layout>
         <Container>
           <div>
             <Header>Login</Header>
           </div>
+          <ErrorMessage message={this.props.registration.error} />
           <div>
             <TextInput
               htmlFor="email"
@@ -130,4 +134,13 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedLogin);
+export interface MapStateToProps {
+  registration: RegistrationState;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { registration } = state;
+  return { registration };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedLogin);
