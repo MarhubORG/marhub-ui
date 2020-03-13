@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
 import { SIGNUP, LOGIN } from '../constants/actionTypes';

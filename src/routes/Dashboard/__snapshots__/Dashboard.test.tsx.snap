@@ -15,6 +15,7 @@ exports[`renders correctly when logged in 1`] = `
 <div>
   <button
     className="c0"
+    onClick={[Function]}
   >
     Download IRAP Data
   </button>
@@ -36,6 +37,7 @@ exports[`renders correctly when not logged in 1`] = `
 <div>
   <button
     className="c0"
+    onClick={[Function]}
   >
     Download IRAP Data
   </button>

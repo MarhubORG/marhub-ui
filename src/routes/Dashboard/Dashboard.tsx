@@ -3,20 +3,35 @@ import styled from 'styled-components';
 import cookie from 'react-cookies';
 import { RouteComponentProps } from '@reach/router';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { RootState } from '../../types/interfaces';
 import Login from '../Registration/Login/Login';
+import {
+  ExportingIrapDataAction,
+  exportingIrapData,
+} from '../../redux/actions/api';
 
 interface DashboardProps extends RouteComponentProps {
   isLoggedIn: boolean;
+  exportingIrapData(): ExportingIrapDataAction;
 }
 
 export function UnconnectedDashboard(props: DashboardProps): JSX.Element {
   if (props.isLoggedIn !== true) {
     return <Login />;
   }
+
   return (
     <div>
-      <Button>Download IRAP Data</Button>
+      <Button
+        onClick={() =>
+          props.exportingIrapData !== undefined
+            ? props.exportingIrapData()
+            : null
+        }
+      >
+        Download IRAP Data
+      </Button>
     </div>
   );
 }
@@ -28,6 +43,17 @@ export interface MapStateToProps {
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { isLoggedIn } = state.registration;
   return { isLoggedIn };
+}
+
+export interface MapDispatchToProps {
+  exportingIrapData(): ExportingIrapDataAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    exportingIrapData: (): ExportingIrapDataAction =>
+      dispatch(exportingIrapData()),
+  };
 }
 
 const Button = styled.button`
@@ -42,4 +68,7 @@ const Button = styled.button`
   font-size: 0.8rem;
 `;
 
-export default connect(mapStateToProps)(UnconnectedDashboard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedDashboard);
