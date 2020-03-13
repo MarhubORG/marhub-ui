@@ -17,9 +17,9 @@ interface DashboardProps extends RouteComponentProps {
 }
 
 export function UnconnectedDashboard(props: DashboardProps): JSX.Element {
-  if (props.isLoggedIn !== true) {
-    return <Login />;
-  }
+  // if (props.isLoggedIn !== true) {
+  //   return <Login />;
+  // }
 
   return (
     <div>

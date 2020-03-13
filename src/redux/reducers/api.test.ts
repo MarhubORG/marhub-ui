@@ -1,5 +1,9 @@
 import apiReducer from './api';
-import { EXPORTING_IRAP_DATA } from '../constants/actionTypes';
+import {
+  EXPORTING_IRAP_DATA,
+  EXPORT_IRAP_DATA_FAILURE,
+  EXPORT_IRAP_DATA_SUCCESS,
+} from '../constants/actionTypes';
 
 const initialState = {
   loading: false,
@@ -24,5 +28,31 @@ describe('apiReducer', () => {
       type: 'SOME_OTHER_TYPE',
     });
     expect(state).toEqual(initialState);
+  });
+  it('handles EXPORT_IRAP_DATA_FAILURE action type', () => {
+    const message = 'failure message';
+    const state = apiReducer(initialState, {
+      type: EXPORT_IRAP_DATA_FAILURE,
+      payload: message,
+    });
+    const expected = {
+      loading: false,
+      irapState: {},
+      error: message,
+    };
+    expect(state).toEqual(expected);
+  });
+  it('handles EXPORT_IRAP_DATA_SUCCESS action type', () => {
+    const data = { some: 'data' };
+    const state = apiReducer(initialState, {
+      type: EXPORT_IRAP_DATA_SUCCESS,
+      payload: data,
+    });
+    const expected = {
+      loading: false,
+      irapState: data,
+      error: '',
+    };
+    expect(state).toEqual(expected);
   });
 });
