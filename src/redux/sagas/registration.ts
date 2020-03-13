@@ -46,7 +46,11 @@ function* login(action: LoginAction) {
     });
     yield put(loginSuccess());
   } catch (error) {
-    yield put(loginError(error.response.data.message));
+    try {
+      yield put(loginError(error.response.data.message));
+    } catch (e) {
+      yield put(loginError("Sorry! We can't reach the server."));
+    }
   }
 }
 

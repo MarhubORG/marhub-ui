@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const StyledFooter = styled.footer`
   display: flex;
-  background-color: white;
+  background-color: ${({ theme }): string => theme.white};
   height: 1.3rem;
   padding: 2rem 1.2rem;
 `;

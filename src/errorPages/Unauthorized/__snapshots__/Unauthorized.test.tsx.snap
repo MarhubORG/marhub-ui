@@ -2,8 +2,6 @@
 
 exports[`renders correctly 1`] = `
 .c0 {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,19 +10,28 @@ exports[`renders correctly 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 2rem;
-  min-width: 18rem;
-  max-width: 18rem;
-  border-radius: 0.2rem;
-  font-size: 0.9rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  color: red;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 37.5vh;
+}
+
+.c1 {
+  margin: 0 0.2rem;
 }
 
 <div
   className="c0"
 >
-  message
+  Unauthorized user, please click
+  <a
+    className="c1"
+    href="/login"
+    onClick={[Function]}
+  >
+    login
+  </a>
+   to continue.
 </div>
 `;

@@ -26,18 +26,18 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
   border: 0px red;
-  color: white;
+  color: ${({ theme }): string => theme.white};
   input {
-    color: white;
+    color: ${({ theme }): string => theme.white};
   }
   input::placeholder {
-    color: white;
+    color: ${({ theme }): string => theme.white};
   }
   padding: 0.5rem 1rem;
   .react-date-picker__wrapper {
     border: 0px;
   }
   svg {
-    stroke: white;
+    stroke: ${({ theme }): string => theme.white};
   }
 `;

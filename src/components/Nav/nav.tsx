@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
 import { Link } from '@reach/router';
+import { connect } from 'react-redux';
+import { RootState } from '../../types/interfaces';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
   display: flex;
   padding: 1rem;
-  background-color: white;
+  background-color: ${({ theme }): string => theme.white};
 `;
 
 const Logo = styled.img`
@@ -20,7 +22,7 @@ const Span = styled.span`
   min-width: 8rem;
   border-radius: 5px;
   height: 1.75rem;
-  color: white;
+  color: ${({ theme }): string => theme.white};
   margin-top: 0.1rem;
   margin-right: 1rem;
   background-color: ${({ theme }): string => theme.primaryColor};
@@ -43,7 +45,7 @@ const StyledLink = styled(Link)`
   min-width: 8rem;
   border-radius: 5px;
   height: 1.75rem;
-  color: white;
+  color: ${({ theme }): string => theme.white};
   margin-top: 0.1rem;
   margin-left: auto;
   margin-right: 1rem;
@@ -65,15 +67,33 @@ export function Login(): JSX.Element {
     </Span>
   );
 }
-export default function Nav(): JSX.Element {
+
+interface NavProps {
+  isLoggedIn: boolean;
+}
+
+export function UnconnectedNav(props: NavProps): JSX.Element {
   return (
     <StyledNav>
       <Link to="/">
         <Logo src={LOGO_SOURCE} alt="logo" />
       </Link>
-      <StyledLink to="login">
-        <Login />
-      </StyledLink>
+      {!props.isLoggedIn && (
+        <StyledLink to="login">
+          <Login />
+        </StyledLink>
+      )}
     </StyledNav>
   );
 }
+
+export interface MapStateToProps {
+  isLoggedIn: boolean;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { isLoggedIn } = state.registration;
+  return { isLoggedIn };
+}
+
+export default connect(mapStateToProps)(UnconnectedNav);

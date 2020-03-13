@@ -7,4 +7,5 @@ export const mainTheme = {
   grayText: '#8f9bb3',
   disabledButtonBackground: '#edf1f7',
   disabledButtonText: '#c5cee0',
+  white: '#ffffff',
 };

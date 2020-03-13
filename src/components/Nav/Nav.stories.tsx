@@ -2,10 +2,16 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../../styles/themes';
-import Nav from './nav';
+import { UnconnectedNav } from './nav';
 
-storiesOf('Nav', module).add('Nav Component', () => (
+storiesOf('Nav', module).add('Not logged in', () => (
   <ThemeProvider theme={mainTheme}>
-    <Nav />
+    <UnconnectedNav isLoggedIn={false} />
+  </ThemeProvider>
+));
+
+storiesOf('Nav', module).add('Logged in', () => (
+  <ThemeProvider theme={mainTheme}>
+    <UnconnectedNav isLoggedIn={true} />
   </ThemeProvider>
 ));

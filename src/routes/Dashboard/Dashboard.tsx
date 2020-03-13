@@ -7,7 +7,7 @@ import DatePicker, {
   DatePickerType,
 } from '../../components/Forms/DatePicker/DatePicker';
 import { RootState } from '../../types/interfaces';
-import Login from '../Registration/Login/Login';
+import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import {
   ExportingIrapDataAction,
   exportingIrapData,
@@ -58,7 +58,7 @@ export class UnconnectedDashboard extends Component<
 
   render(): JSX.Element {
     if (this.props.isLoggedIn !== true) {
-      return <Login />;
+      return <Unauthorized />;
     }
     const { startDate, endDate } = this.state;
     return (
@@ -104,7 +104,7 @@ const Button = styled.button`
   width: 12rem;
   height: 3rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  color: white;
+  color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;

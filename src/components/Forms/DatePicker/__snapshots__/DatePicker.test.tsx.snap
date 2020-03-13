@@ -5,36 +5,23 @@ exports[`renders correctly 1`] = `
   margin: 1rem;
   border-radius: 2rem;
   border: 0px red;
-  color: white;
   padding: 0.5rem 1rem;
-}
-
-.c0 input {
-  color: white;
-}
-
-.c0 input::-webkit-input-placeholder {
-  color: white;
-}
-
-.c0 input::-moz-placeholder {
-  color: white;
-}
-
-.c0 input:-ms-input-placeholder {
-  color: white;
-}
-
-.c0 input::placeholder {
-  color: white;
 }
 
 .c0 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c0 svg {
-  stroke: white;
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
 }
 
 <div
