@@ -7,7 +7,7 @@ import DatePicker, {
   DatePickerType,
 } from '../../components/Forms/DatePicker/DatePicker';
 import { RootState } from '../../types/interfaces';
-import Login from '../Registration/Login/Login';
+import Unauthorized from '../../errorPages/Unauthorized';
 import {
   ExportingIrapDataAction,
   exportingIrapData,
@@ -58,7 +58,7 @@ export class UnconnectedDashboard extends Component<
 
   render(): JSX.Element {
     if (this.props.isLoggedIn !== true) {
-      return <Login />;
+      return <Unauthorized />;
     }
     const { startDate, endDate } = this.state;
     return (
