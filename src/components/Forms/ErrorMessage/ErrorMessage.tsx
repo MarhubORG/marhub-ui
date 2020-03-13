@@ -22,5 +22,4 @@ const Layout = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   color: red;
-  border: 1px solid #edf1f7;
 `;

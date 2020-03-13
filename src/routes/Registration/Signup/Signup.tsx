@@ -139,7 +139,15 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
             />
           </div>
           <div>
-            <Button type="submit" onClick={this.handleButtonClick}>
+            <Button
+              type="submit"
+              onClick={this.handleButtonClick}
+              disabled={
+                this.props.registration
+                  ? this.props.registration.loading
+                  : false
+              }
+            >
               Signup
             </Button>
           </div>
@@ -153,7 +161,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: ${({ theme }): string => theme.white};
   border-radius: 0.2rem;
   margin: 2rem 3rem;
   min-width: 90%;
@@ -180,7 +188,7 @@ const Button = styled.button`
   height: 2.4rem;
   width: 20rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  color: white;
+  color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   font-size: 0.9rem;

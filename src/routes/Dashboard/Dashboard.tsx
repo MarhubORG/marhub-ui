@@ -104,7 +104,7 @@ const Button = styled.button`
   width: 12rem;
   height: 3rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  color: white;
+  color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;

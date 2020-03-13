@@ -9,7 +9,7 @@ const StyledNav = styled.nav`
   height: 2.75rem;
   display: flex;
   padding: 1rem;
-  background-color: white;
+  background-color: ${({ theme }): string => theme.white};
 `;
 
 const Logo = styled.img`
@@ -22,7 +22,7 @@ const Span = styled.span`
   min-width: 8rem;
   border-radius: 5px;
   height: 1.75rem;
-  color: white;
+  color: ${({ theme }): string => theme.white};
   margin-top: 0.1rem;
   margin-right: 1rem;
   background-color: ${({ theme }): string => theme.primaryColor};
@@ -45,7 +45,7 @@ const StyledLink = styled(Link)`
   min-width: 8rem;
   border-radius: 5px;
   height: 1.75rem;
-  color: white;
+  color: ${({ theme }): string => theme.white};
   margin-top: 0.1rem;
   margin-left: auto;
   margin-right: 1rem;

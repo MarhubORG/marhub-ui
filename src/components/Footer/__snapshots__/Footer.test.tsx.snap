@@ -6,7 +6,6 @@ exports[`renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: white;
   height: 1.3rem;
   padding: 2rem 1.2rem;
 }

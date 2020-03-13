@@ -5,43 +5,29 @@ exports[`renders correctly when logged in 1`] = `
   margin: 1rem;
   border-radius: 2rem;
   border: 0px red;
-  color: white;
   padding: 0.5rem 1rem;
-}
-
-.c0 input {
-  color: white;
-}
-
-.c0 input::-webkit-input-placeholder {
-  color: white;
-}
-
-.c0 input::-moz-placeholder {
-  color: white;
-}
-
-.c0 input:-ms-input-placeholder {
-  color: white;
-}
-
-.c0 input::placeholder {
-  color: white;
 }
 
 .c0 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c0 svg {
-  stroke: white;
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
 }
 
 .c1 {
   margin: 1rem;
   width: 12rem;
   height: 3rem;
-  color: white;
   font-family: Open Sans,sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;
@@ -391,43 +377,29 @@ exports[`renders correctly when not logged in 1`] = `
   margin: 1rem;
   border-radius: 2rem;
   border: 0px red;
-  color: white;
   padding: 0.5rem 1rem;
-}
-
-.c0 input {
-  color: white;
-}
-
-.c0 input::-webkit-input-placeholder {
-  color: white;
-}
-
-.c0 input::-moz-placeholder {
-  color: white;
-}
-
-.c0 input:-ms-input-placeholder {
-  color: white;
-}
-
-.c0 input::placeholder {
-  color: white;
 }
 
 .c0 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c0 svg {
-  stroke: white;
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c0 .react-date-picker__wrapper {
+  border: 0px;
 }
 
 .c1 {
   margin: 1rem;
   width: 12rem;
   height: 3rem;
-  color: white;
   font-family: Open Sans,sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;

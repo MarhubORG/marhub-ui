@@ -34,12 +34,10 @@ export function* actionWatcher() {
 function* login(action: LoginAction) {
   try {
     const url = 'http://localhost:8080/api/v1/login';
-    console.log({ url });
     const json = yield axios.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
-    console.log({ json });
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
@@ -48,7 +46,11 @@ function* login(action: LoginAction) {
     });
     yield put(loginSuccess());
   } catch (error) {
-    yield put(loginError(error.response.data.message));
+    try {
+      yield put(loginError(error.response.data.message));
+    } catch (e) {
+      yield put(loginError("Sorry! We can't reach the server."));
+    }
   }
 }
 
