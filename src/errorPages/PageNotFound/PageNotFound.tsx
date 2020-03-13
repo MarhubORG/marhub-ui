@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
 
 export default function Unauthorized(): JSX.Element {
   return (
     <StyledDiv>
-      Unauthorized user, please click
-      <StyledLink to="/login">login</StyledLink> to continue.
+      Sorry! This page doesn't exist. Click back or the link to go to the
+      <StyledLink to="/">home page</StyledLink>.
     </StyledDiv>
   );
 }
@@ -19,5 +19,5 @@ const StyledDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  margin: 0 2rem;
+  margin: 0 0.2rem;
 `;

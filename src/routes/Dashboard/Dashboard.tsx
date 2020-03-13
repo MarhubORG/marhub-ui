@@ -7,7 +7,7 @@ import DatePicker, {
   DatePickerType,
 } from '../../components/Forms/DatePicker/DatePicker';
 import { RootState } from '../../types/interfaces';
-import Unauthorized from '../../errorPages/Unauthorized';
+import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import {
   ExportingIrapDataAction,
   exportingIrapData,

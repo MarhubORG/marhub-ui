@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 37.5vh;
+}
+
+.c1 {
+  margin: 0 0.2rem;
+}
+
+<div
+  className="c0"
+>
+  Sorry! This page doesn't exist. Click back or the link to go to the
+  <a
+    aria-current="page"
+    className="c1"
+    href="/"
+    onClick={[Function]}
+  >
+    home page
+  </a>
+  .
+</div>
+`;

@@ -9,6 +9,7 @@ import Home from './routes/Home/Home';
 import Login from './routes/Registration/Login/Login';
 import Signup from './routes/Registration/Signup/Signup';
 import Dashboard from './routes/Dashboard/Dashboard';
+import PageNotFound from './errorPages/PageNotFound/PageNotFound';
 
 const StyledLayout = styled.div`
   display: flex;
