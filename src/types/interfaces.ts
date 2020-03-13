@@ -9,3 +9,9 @@ export interface RegistrationState {
 export interface RootState {
   registration: RegistrationState;
 }
+
+export interface ApiState {
+  irapState: object;
+  loading: boolean;
+  error: string;
+}

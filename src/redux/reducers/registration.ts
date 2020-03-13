@@ -39,7 +39,12 @@ export function registrationReducer(
         error: action.payload.message,
       };
     case LOGIN_SUCCESS:
-      return { ...state, loading: false, loginRedirect: true };
+      return {
+        ...state,
+        loading: false,
+        loginRedirect: true,
+        isLoggedIn: true,
+      };
     case LOGIN_REDIRECTING:
       return { ...state, loginRedirect: false };
     default:

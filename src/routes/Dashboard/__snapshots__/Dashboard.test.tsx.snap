@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when logged in 1`] = `
+.c0 {
+  margin: 1rem;
+  width: 12rem;
+  height: 3rem;
+  color: white;
+  font-family: Open Sans,sans-serif;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+}
+
+<div>
+  <button
+    className="c0"
+    onClick={[Function]}
+  >
+    Download IRAP Data
+  </button>
+</div>
+`;
+
+exports[`renders correctly when not logged in 1`] = `
+.c0 {
+  margin: 1rem;
+  width: 12rem;
+  height: 3rem;
+  color: white;
+  font-family: Open Sans,sans-serif;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+}
+
+<div>
+  <button
+    className="c0"
+    onClick={[Function]}
+  >
+    Download IRAP Data
+  </button>
+</div>
+`;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
 import { SIGNUP, LOGIN } from '../constants/actionTypes';
@@ -27,7 +27,7 @@ function* signup(action: SignupAction) {
   }
 }
 
-function* actionWatcher() {
+export function* actionWatcher() {
   yield takeLatest(SIGNUP, signup);
 }
 
@@ -38,11 +38,12 @@ function* login(action: LoginAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
+    console.log('token', json.data.user.sessionToken);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
-      domain: 'http://localhost:8080',
-      secure: true,
-      httpOnly: true,
+      // domain: 'http://localhost:8080',
+      // secure: true,
+      // httpOnly: true,
     });
     yield put(loginSuccess());
   } catch (error) {
@@ -50,10 +51,6 @@ function* login(action: LoginAction) {
   }
 }
 
-function* watchLogin() {
+export function* watchLogin() {
   yield takeLatest(LOGIN, login);
-}
-
-export default function* rootSaga() {
-  yield all([actionWatcher(), watchLogin()]);
 }

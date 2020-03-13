@@ -33,14 +33,22 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
     };
   }
 
+  componentDidMount() {
+    if (
+      this.props.registration.isLoggedIn &&
+      this.props.navigate !== undefined
+    ) {
+      this.props.navigate('/dashboard');
+    }
+  }
+
   componentDidUpdate(): void {
     if (
       this.props.registration.loginRedirect &&
       this.props.navigate !== undefined
     ) {
       this.props.loginRedirecting();
-      // this.props.navigate('/dashboard');
-      this.props.navigate('/');
+      this.props.navigate('/dashboard');
     }
   }
 
@@ -124,8 +132,8 @@ const Button = styled.button`
   align-self: center;
   height: 2.4rem;
   width: 20rem;
-  background-color: ${({ theme }): string => theme.disabledButtonBackground};
-  color: ${({ theme }): string => theme.disabledButtonText};
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: white;
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
