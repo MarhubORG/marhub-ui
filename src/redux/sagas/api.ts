@@ -10,7 +10,7 @@ import {
 
 function* exportIrapData(action: ExportingIrapDataAction) {
   try {
-    const token = '';
+    const token = cookie.load('token');
     const axiosConfig = {
       headers: {
         Authorization: `Bearer ${token}`,
