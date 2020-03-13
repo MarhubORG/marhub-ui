@@ -6,8 +6,8 @@ import {
   mapDispatchToProps,
   MapDispatchToProps,
 } from './Dashboard';
-import { RegistrationState } from '../../types/interfaces';
 import { exportingIrapData } from '../../redux/actions/api';
+import { initialState } from '../../redux/reducers/registration';
 
 it('renders correctly when logged in', () => {
   const tree = renderer
@@ -29,13 +29,6 @@ it('renders correctly when not logged in', () => {
 
 describe('mapStateToProps', () => {
   it('contains registration state', () => {
-    const initialState: RegistrationState = {
-      loading: false,
-      isLoggedIn: false,
-      redirect: false,
-      loginRedirect: false,
-      error: '',
-    };
     expect(mapStateToProps({ registration: initialState })).toBeDefined();
     expect(mapStateToProps({ registration: initialState }).isLoggedIn).toEqual(
       false

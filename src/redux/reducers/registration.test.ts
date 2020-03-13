@@ -1,4 +1,4 @@
-import { registrationReducer } from './registration';
+import { registrationReducer, initialState } from './registration';
 import {
   SIGNUP,
   SIGNUP_ERROR,
@@ -10,17 +10,16 @@ import {
   LOGIN_REDIRECTING,
 } from '../constants/actionTypes';
 
-const initialState = {
-  loading: false,
-  isLoggedIn: false,
-  redirect: false,
-  loginRedirect: false,
-  error: '',
-};
-
 describe('registrationReducer', () => {
   it('handles the SIGNUP action type', () => {
-    const state = registrationReducer(initialState, { type: SIGNUP });
+    const name = 'name';
+    const organization = 'org';
+    const email = 'email';
+    const password = 'password';
+    const state = registrationReducer(initialState, {
+      type: SIGNUP,
+      payload: { name, organization, email, password },
+    });
     const expected = {
       loading: true,
       isLoggedIn: false,

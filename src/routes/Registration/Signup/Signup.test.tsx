@@ -1,35 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Action } from 'redux';
 import {
   UnconnectedSignup,
   mapDispatchToProps,
   MapDispatchToProps,
   mapStateToProps,
 } from './Signup';
-
-const action = {
-  type: 'action',
-};
-
-function actionFunction(): Action {
-  return action;
-}
-
-const initialState = {
-  loading: false,
-  isLoggedIn: false,
-  redirect: false,
-  loginRedirect: false,
-  error: '',
-};
+import { initialState } from '../../../redux/reducers/registration';
+import { signup, signupRedirecting } from '../../../redux/actions/index';
 
 it('renders correctly', () => {
   const tree = renderer
     .create(
       <UnconnectedSignup
-        signupRedirecting={actionFunction}
-        signup={actionFunction}
+        signupRedirecting={signupRedirecting}
+        signup={signup}
       />
     )
     .toJSON();

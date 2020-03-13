@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { UnconnectedNav, Login, mapStateToProps } from './nav';
-import { RegistrationState } from '../../types/interfaces';
+import { initialState } from '../../redux/reducers/registration';
 
 it('renders correctly while logged in', () => {
   const tree = renderer.create(<UnconnectedNav isLoggedIn={true} />).toJSON();
@@ -19,13 +19,6 @@ it('has a secondary element Login which renders correctly', () => {
 });
 
 describe('mapStateToProps', () => {
-  const initialState: RegistrationState = {
-    loading: false,
-    isLoggedIn: false,
-    redirect: false,
-    loginRedirect: false,
-    error: '',
-  };
   it('contains registration state', () => {
     expect(mapStateToProps({ registration: initialState })).toBeDefined();
   });

@@ -7,15 +7,7 @@ import {
   MapDispatchToProps,
 } from './Login';
 import { login, loginRedirecting } from '../../../redux/actions/index';
-import { RegistrationState } from '../../../types/interfaces';
-
-const initialState: RegistrationState = {
-  loading: false,
-  isLoggedIn: false,
-  redirect: false,
-  loginRedirect: false,
-  error: '',
-};
+import { initialState } from '../../../redux/reducers/registration';
 
 it('renders correctly', () => {
   const tree = renderer

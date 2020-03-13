@@ -6,7 +6,7 @@ import {
 } from '../constants/actionTypes';
 import { ApiActionTypes } from '../actions/api';
 
-const initialState = {
+export const initialState = {
   loading: false,
   irapState: {},
   error: '',

@@ -1,15 +1,9 @@
-import apiReducer from './api';
+import apiReducer, { initialState } from './api';
 import {
   EXPORTING_IRAP_DATA,
   EXPORT_IRAP_DATA_FAILURE,
   EXPORT_IRAP_DATA_SUCCESS,
 } from '../constants/actionTypes';
-
-const initialState = {
-  loading: false,
-  irapState: {},
-  error: '',
-};
 
 describe('apiReducer', () => {
   it('handles EXPORTING_IRAP_DATA action type', () => {

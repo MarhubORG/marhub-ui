@@ -9,15 +9,7 @@ import {
 } from '../../../redux/actions/index';
 import { mainTheme } from '../../../styles/themes';
 import { UnconnectedLogin } from './Login';
-import { RegistrationState } from '../../../types/interfaces';
-
-const initialState: RegistrationState = {
-  loading: false,
-  isLoggedIn: false,
-  redirect: false,
-  loginRedirect: false,
-  error: '',
-};
+import { initialState } from '../../../redux/reducers/registration';
 
 storiesOf('Login', module).add('Login Component', () => (
   <ThemeProvider theme={mainTheme}>
