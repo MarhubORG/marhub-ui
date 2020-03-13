@@ -34,10 +34,12 @@ export function* actionWatcher() {
 function* login(action: LoginAction) {
   try {
     const url = 'http://localhost:8080/api/v1/login';
+    console.log({ url });
     const json = yield axios.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
+    console.log({ json });
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',

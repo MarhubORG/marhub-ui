@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
 import { Link } from '@reach/router';
+import { connect } from 'react-redux';
+import { RootState } from '../../types/interfaces';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
@@ -65,15 +67,33 @@ export function Login(): JSX.Element {
     </Span>
   );
 }
-export default function Nav(): JSX.Element {
+
+interface NavProps {
+  isLoggedIn: boolean;
+}
+
+export function UnconnectedNav(props: NavProps): JSX.Element {
   return (
     <StyledNav>
       <Link to="/">
         <Logo src={LOGO_SOURCE} alt="logo" />
       </Link>
-      <StyledLink to="login">
-        <Login />
-      </StyledLink>
+      {!props.isLoggedIn && (
+        <StyledLink to="login">
+          <Login />
+        </StyledLink>
+      )}
     </StyledNav>
   );
 }
+
+export interface MapStateToProps {
+  isLoggedIn: boolean;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { isLoggedIn } = state.registration;
+  return { isLoggedIn };
+}
+
+export default connect(mapStateToProps)(UnconnectedNav);
