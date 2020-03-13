@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import cookie from 'react-cookies';
 import { RouteComponentProps } from '@reach/router';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import DatePicker, {
+  DatePickerType,
+} from '../../components/Forms/DatePicker/DatePicker';
 import { RootState } from '../../types/interfaces';
 import Login from '../Registration/Login/Login';
 import {
@@ -16,24 +18,65 @@ interface DashboardProps extends RouteComponentProps {
   exportingIrapData(): ExportingIrapDataAction;
 }
 
-export function UnconnectedDashboard(props: DashboardProps): JSX.Element {
-  if (props.isLoggedIn !== true) {
-    return <Login />;
+interface DashboardState {
+  startDate: DatePickerType;
+  endDate: DatePickerType;
+}
+
+const d = new Date();
+d.setFullYear(2020);
+d.setMonth(2);
+d.setDate(1);
+
+/* eslint-disable @typescript-eslint/indent */
+export class UnconnectedDashboard extends Component<
+  DashboardProps,
+  DashboardState
+> {
+  /* eslint-enable @typescript-eslint/indent */
+  constructor(props: DashboardProps) {
+    super(props);
+    this.state = {
+      startDate: d,
+      endDate: d,
+    };
   }
 
-  return (
-    <div>
-      <Button
-        onClick={() =>
-          props.exportingIrapData !== undefined
-            ? props.exportingIrapData()
-            : null
-        }
-      >
-        Download IRAP Data
-      </Button>
-    </div>
-  );
+  handleStartDateChange = (startDate: DatePickerType): void => {
+    this.setState({ startDate });
+  };
+
+  handleEndDateChange = (endDate: DatePickerType): void => {
+    this.setState({ endDate });
+  };
+
+  handleClick = (): object | null => {
+    return this.props.exportingIrapData !== undefined
+      ? this.props.exportingIrapData()
+      : null;
+  };
+
+  render(): JSX.Element {
+    if (this.props.isLoggedIn !== true) {
+      return <Login />;
+    }
+    const { startDate, endDate } = this.state;
+    return (
+      <div>
+        <div>
+          <p>Start date:</p>
+          <DatePicker value={startDate} onChange={this.handleStartDateChange} />
+        </div>
+        <div>
+          <p>End date:</p>
+          <DatePicker value={endDate} onChange={this.handleEndDateChange} />
+        </div>
+        <Button onClick={(): object | null => this.handleClick}>
+          Download IRAP Data
+        </Button>
+      </div>
+    );
+  }
 }
 
 export interface MapStateToProps {
