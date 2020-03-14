@@ -54,7 +54,7 @@ export function registrationReducer(
 
 export default registrationReducer;
 
-const initialState: RegistrationState = {
+export const initialState: RegistrationState = {
   loading: false,
   isLoggedIn: false,
   redirect: false,
