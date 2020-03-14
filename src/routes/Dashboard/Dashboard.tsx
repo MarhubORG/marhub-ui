@@ -62,19 +62,19 @@ export class UnconnectedDashboard extends Component<
     }
     const { startDate, endDate } = this.state;
     return (
-      <div>
+      <Layout>
         <div>
-          <p>Start date:</p>
+          <Label>Start date:</Label>
           <DatePicker value={startDate} onChange={this.handleStartDateChange} />
         </div>
         <div>
-          <p>End date:</p>
+          <Label>End date:</Label>
           <DatePicker value={endDate} onChange={this.handleEndDateChange} />
         </div>
         <Button onClick={(): object | null => this.handleClick}>
           Download IRAP Data
         </Button>
-      </div>
+      </Layout>
     );
   }
 }
@@ -99,6 +99,10 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
+const Layout = styled.div`
+  margin-top: 2rem;
+`;
+
 const Button = styled.button`
   margin: 1rem;
   width: 12rem;
@@ -109,6 +113,11 @@ const Button = styled.button`
   font-weight: 700;
   border-radius: 0.2rem;
   font-size: 0.8rem;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-left: 4.7rem;
 `;
 
 export default connect(
