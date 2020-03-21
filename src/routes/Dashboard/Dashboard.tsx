@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { RouteComponentProps } from '@reach/router';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { start } from 'repl';
+import { FaTruckMonster } from 'react-icons/fa';
 import DatePicker, {
   DatePickerType,
 } from '../../components/Forms/DatePicker/DatePicker';
@@ -23,11 +25,6 @@ interface DashboardState {
   endDate: DatePickerType;
 }
 
-const d = new Date();
-d.setFullYear(2020);
-d.setMonth(2);
-d.setDate(1);
-
 /* eslint-disable @typescript-eslint/indent */
 export class UnconnectedDashboard extends Component<
   DashboardProps,
@@ -37,14 +34,10 @@ export class UnconnectedDashboard extends Component<
   constructor(props: DashboardProps) {
     super(props);
     this.state = {
-      startDate: d,
-      endDate: d,
+      startDate: this.oneWeekAgo(),
+      endDate: new Date(),
     };
   }
-
-  handleStartDateChange = (startDate: DatePickerType): void => {
-    this.setState({ startDate });
-  };
 
   handleEndDateChange = (endDate: DatePickerType): void => {
     this.setState({ endDate });
@@ -56,11 +49,52 @@ export class UnconnectedDashboard extends Component<
       : null;
   };
 
-  render(): JSX.Element {
-    if (this.props.isLoggedIn !== true) {
-      return <Unauthorized />;
-    }
+  oneWeekAgo = (): Date => {
+    const newDate = new Date();
+    const year = newDate.getFullYear();
+    const month = newDate.getMonth();
+    const date = newDate.getDate();
+    newDate.setDate(date - 7);
+    return newDate;
+  };
+
+  // equality = (): boolean => {
+  //   const { startDate, endDate } = this.state;
+  //   const startYear = startDate.getFullYear();
+  //   const startMonth = startDate.getMonth();
+  //   const startGetDate = startDate.getDate();
+  //   const endYear = endDate.getFullYear();
+  //   const endMonth = endDate.getMonth();
+  //   const endGetDate = endDate.getDate();
+  //   if (
+  //     startYear === endYear &&
+  //     startMonth === endMonth &&
+  //     startGetDate === endGetDate
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  handleStartDateChange = (startDate: DatePickerType): void => {
+    this.setState({ startDate });
+  };
+
+  updateEndDate = (): void => {
     const { startDate, endDate } = this.state;
+    if (startDate > endDate) {
+      const startDateToLocaleString = startDate.toLocaleString();
+      const someDate = new Date(startDateToLocaleString);
+      this.setState({ endDate: someDate });
+    }
+  };
+
+  render(): JSX.Element {
+    // if (this.props.isLoggedIn !== true) {
+    //   return <Unauthorized />;
+    // }
+    const { startDate, endDate } = this.state;
+    this.updateEndDate();
     return (
       <Layout>
         <div>
