@@ -58,24 +58,6 @@ export class UnconnectedDashboard extends Component<
     return newDate;
   };
 
-  // equality = (): boolean => {
-  //   const { startDate, endDate } = this.state;
-  //   const startYear = startDate.getFullYear();
-  //   const startMonth = startDate.getMonth();
-  //   const startGetDate = startDate.getDate();
-  //   const endYear = endDate.getFullYear();
-  //   const endMonth = endDate.getMonth();
-  //   const endGetDate = endDate.getDate();
-  //   if (
-  //     startYear === endYear &&
-  //     startMonth === endMonth &&
-  //     startGetDate === endGetDate
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
   handleStartDateChange = (startDate: DatePickerType): void => {
     this.setState({ startDate });
   };
@@ -90,9 +72,9 @@ export class UnconnectedDashboard extends Component<
   };
 
   render(): JSX.Element {
-    // if (this.props.isLoggedIn !== true) {
-    //   return <Unauthorized />;
-    // }
+    if (this.props.isLoggedIn !== true) {
+      return <Unauthorized />;
+    }
     const { startDate, endDate } = this.state;
     this.updateEndDate();
     return (
