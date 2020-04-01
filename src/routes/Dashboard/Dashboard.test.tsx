@@ -2,7 +2,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import { UnconnectedDashboard, mapStateToProps } from './Dashboard';
+import {
+  UnconnectedDashboard,
+  mapStateToProps,
+  hasPermission,
+} from './Dashboard';
 import { initialState } from '../../redux/reducers/registration';
 
 const mockStore = configureMockStore();
@@ -36,5 +40,23 @@ describe('mapStateToProps', () => {
     expect(mapStateToProps({ registration: initialState }).isLoggedIn).toEqual(
       false
     );
+  });
+});
+
+describe('hasPermission', () => {
+  it('should return true if a predefined role is within the permissions array', () => {
+    const allowedRole = 'allowedRole';
+    const obj = {
+      permissions: [allowedRole],
+    };
+    expect(hasPermission(obj, allowedRole)).toBeTruthy();
+  });
+  it('should return false if the role is not in the permissions array', () => {
+    const allowedRole = 'allowedRole';
+    const myRole = 'myRole';
+    const obj = {
+      permissions: [allowedRole],
+    };
+    expect(hasPermission(obj, myRole)).toBeFalsy();
   });
 });

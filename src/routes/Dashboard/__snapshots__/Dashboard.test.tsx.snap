@@ -17,36 +17,10 @@ exports[`renders correctly when logged in 1`] = `
   padding: 0.5rem;
 }
 
-.c4 {
+.c2 {
   -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 5rem;
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-}
-
-.c2 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
 }
 
 <div
@@ -54,21 +28,9 @@ exports[`renders correctly when logged in 1`] = `
 >
   <div
     className="c1"
-  >
-    <a
-      className="c2"
-      href="/dashboard/irap-download"
-      onClick={[Function]}
-    >
-      <div
-        className="c3"
-      >
-        IRAP Download
-      </div>
-    </a>
-  </div>
+  />
   <div
-    className="c4"
+    className="c2"
   />
 </div>
 `;

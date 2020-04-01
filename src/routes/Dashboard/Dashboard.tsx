@@ -6,15 +6,55 @@ import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
+import { MARHUB_ADMIN } from '../../auth/permissionTypes';
+
+const DashboardItems = [
+  {
+    component: IrapDownload,
+    buttonText: 'Irap Download',
+    pathString: '/irap-download',
+    permissions: [MARHUB_ADMIN],
+  },
+];
+
+interface DashboardItem {
+  permissions: string[];
+}
+
+export function hasPermission(el: DashboardItem, role: string): boolean {
+  if (el.permissions.includes(role)) {
+    return true;
+  }
+  return false;
+}
 
 interface DashboardProps extends RouteComponentProps {
   isLoggedIn: boolean;
   role?: string;
 }
 
-/* eslint-disable @typescript-eslint/indent */
 export class UnconnectedDashboard extends Component<DashboardProps> {
-  /* eslint-enable @typescript-eslint/indent */
+  createActionItems = () => {
+    const { role } = this.props;
+    return DashboardItems.map(el => {
+      if (role !== undefined && hasPermission(el, role)) {
+        return <ActionItem key={el.pathString} text={el.buttonText} />;
+      }
+      return null;
+    });
+  };
+
+  createRouterItems = () => {
+    const { role } = this.props;
+
+    return DashboardItems.map(el => {
+      if (role !== undefined && hasPermission(el, role)) {
+        const DashboardComponent = el.component;
+        return <DashboardComponent key={el.pathString} path={el.pathString} />;
+      }
+      return null;
+    });
+  };
 
   render(): JSX.Element {
     if (this.props.isLoggedIn !== true) {
@@ -22,13 +62,9 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
     }
     return (
       <Container>
-        <OptionsPanel>
-          <ActionItem text="IRAP Download" />
-        </OptionsPanel>
+        <OptionsPanel>{this.createActionItems()}</OptionsPanel>
         <ActionPanel>
-          <Router>
-            <IrapDownload path="/irap-download" />
-          </Router>
+          <Router>{this.createRouterItems()}</Router>
         </ActionPanel>
       </Container>
     );
