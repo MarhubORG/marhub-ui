@@ -1,18 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {
-  UnconnectedDashboard,
-  mapStateToProps,
-  mapDispatchToProps,
-  MapDispatchToProps,
-} from './Dashboard';
-import { exportingIrapData } from '../../redux/actions/api';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import { UnconnectedDashboard, mapStateToProps } from './Dashboard';
 import { initialState } from '../../redux/reducers/registration';
+
+const mockStore = configureMockStore();
+const store = mockStore({ registration: initialState });
 
 it('renders correctly when logged in', () => {
   const tree = renderer
     .create(
-      <UnconnectedDashboard isLoggedIn exportingIrapData={exportingIrapData} />
+      <Provider store={store}>
+        <UnconnectedDashboard isLoggedIn />
+      </Provider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
@@ -21,7 +22,9 @@ it('renders correctly when logged in', () => {
 it('renders correctly when not logged in', () => {
   const tree = renderer
     .create(
-      <UnconnectedDashboard isLoggedIn exportingIrapData={exportingIrapData} />
+      <Provider store={store}>
+        <UnconnectedDashboard isLoggedIn />
+      </Provider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
@@ -33,16 +36,5 @@ describe('mapStateToProps', () => {
     expect(mapStateToProps({ registration: initialState }).isLoggedIn).toEqual(
       false
     );
-  });
-});
-
-describe('mapDispatchToProps', () => {
-  it('contains a function called exportingIrapData', () => {
-    const dispatch = jest.fn();
-    const dispatches: MapDispatchToProps = mapDispatchToProps(dispatch);
-    expect(Object.keys(dispatches).includes('exportingIrapData')).toBeTruthy();
-    expect(typeof dispatches.exportingIrapData).toEqual('function');
-    expect(dispatches.exportingIrapData.name).toEqual('exportingIrapData');
-    expect(dispatches.exportingIrapData()).toBeUndefined();
   });
 });

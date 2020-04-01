@@ -34,7 +34,7 @@ function App(): JSX.Element {
             <Home path="/" />
             <Login path="/login" />
             <Signup path="/signup" />
-            <Dashboard path="/dashboard" />
+            <Dashboard path="/dashboard/*" />
             <PageNotFound default />
           </Router>
         </MainContent>
