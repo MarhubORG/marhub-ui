@@ -26,6 +26,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: '',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -41,6 +42,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: errorMessage,
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -54,6 +56,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: '',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -67,6 +70,7 @@ describe('registrationReducer', () => {
       redirect: true,
       loginRedirect: false,
       error: '',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -80,6 +84,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: '',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -97,6 +102,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: '',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
@@ -113,12 +119,15 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: false,
       error: 'message',
+      role: '',
     };
     expect(state).toEqual(expected);
   });
   it('accepts the LOGIN_SUCCESS action type', () => {
+    const role = 'admin';
     const state = registrationReducer(initialState, {
       type: LOGIN_SUCCESS,
+      payload: { role },
     });
     const expected = {
       loading: false,
@@ -126,6 +135,7 @@ describe('registrationReducer', () => {
       redirect: false,
       loginRedirect: true,
       error: '',
+      role: 'admin',
     };
     expect(state).toEqual(expected);
   });

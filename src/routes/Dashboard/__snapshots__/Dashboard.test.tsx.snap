@@ -79,28 +79,6 @@ exports[`renders correctly when not logged in 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-.c1 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  height: 72.37vh;
-  border: 1px solid;
-  padding: 0.5rem;
-}
-
-.c4 {
-  -webkit-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -109,17 +87,34 @@ exports[`renders correctly when not logged in 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  height: 5rem;
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  -webkit-text-decoration: none;
-  text-decoration: none;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 0.2rem;
+  margin: 2rem 3rem;
+  min-width: 90%;
+  min-height: 65vh;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,0.1);
+}
+
+.c1 {
+  font-size: 2rem;
 }
 
 .c2 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.c3 {
+  margin: 0 0.2rem;
+}
+
+@media (max-width:768px) {
+  .c0 {
+    margin: 0rem 0rem;
+    min-height: 75vh;
+  }
 }
 
 <div
@@ -128,20 +123,21 @@ exports[`renders correctly when not logged in 1`] = `
   <div
     className="c1"
   >
-    <a
-      className="c2"
-      href="/dashboard/irap-download"
-      onClick={[Function]}
-    >
-      <div
-        className="c3"
-      >
-        IRAP Download
-      </div>
-    </a>
+    Unauthorized user
   </div>
   <div
-    className="c4"
-  />
+    className="c2"
+  >
+    Click back or click the link to go to the
+    <a
+      aria-current="page"
+      className="c3"
+      href="/"
+      onClick={[Function]}
+    >
+      home page
+    </a>
+    .
+  </div>
 </div>
 `;

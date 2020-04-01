@@ -5,9 +5,11 @@ import { RouteComponentProps, Router, Link } from '@reach/router';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
+import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 
 interface DashboardProps extends RouteComponentProps {
   isLoggedIn: boolean;
+  role?: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -15,9 +17,9 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   /* eslint-enable @typescript-eslint/indent */
 
   render(): JSX.Element {
-    // if (this.props.isLoggedIn !== true) {
-    //   return <Unauthorized />;
-    // }
+    if (this.props.isLoggedIn !== true) {
+      return <Unauthorized />;
+    }
     return (
       <Container>
         <OptionsPanel>
@@ -42,15 +44,6 @@ export function ActionItem(props: ActionItemProps): JSX.Element {
       <ActionItemLayout>{props.text}</ActionItemLayout>
     </StyledLink>
   );
-}
-
-export interface MapStateToProps {
-  isLoggedIn: boolean;
-}
-
-export function mapStateToProps(state: RootState): MapStateToProps {
-  const { isLoggedIn } = state.registration;
-  return { isLoggedIn };
 }
 
 const Container = styled.div`
@@ -85,5 +78,15 @@ const ActionItemLayout = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+
+export interface MapStateToProps {
+  isLoggedIn: boolean;
+  role: string;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { isLoggedIn, role } = state.registration;
+  return { isLoggedIn, role };
+}
 
 export default connect(mapStateToProps)(UnconnectedDashboard);

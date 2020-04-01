@@ -9,10 +9,7 @@ storiesOf('IrapDownload', module).add(
   'IrapDownload Component when logged in',
   () => (
     <ThemeProvider theme={mainTheme}>
-      <UnconnectedIrapDownload
-        isLoggedIn
-        exportingIrapData={exportingIrapData}
-      />
+      <UnconnectedIrapDownload exportingIrapData={exportingIrapData} />
     </ThemeProvider>
   )
 );

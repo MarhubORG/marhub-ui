@@ -90,12 +90,17 @@ export function loginError(message: string): LoginErrorAction {
   return { type: LOGIN_ERROR, payload: { message } };
 }
 
-export interface LoginSuccessAction {
-  type: typeof LOGIN_SUCCESS;
+export interface LoginSuccessPayload {
+  role: string;
 }
 
-export function loginSuccess(): LoginSuccessAction {
-  return { type: LOGIN_SUCCESS };
+export interface LoginSuccessAction {
+  type: typeof LOGIN_SUCCESS;
+  payload: LoginSuccessPayload;
+}
+
+export function loginSuccess(role: string): LoginSuccessAction {
+  return { type: LOGIN_SUCCESS, payload: { role } };
 }
 
 export interface LoginRedirectingAction {

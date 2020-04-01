@@ -23,7 +23,7 @@ it('renders correctly when not logged in', () => {
   const tree = renderer
     .create(
       <Provider store={store}>
-        <UnconnectedDashboard isLoggedIn />
+        <UnconnectedDashboard isLoggedIn={false} />
       </Provider>
     )
     .toJSON();

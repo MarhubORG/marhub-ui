@@ -44,7 +44,13 @@ function* login(action: LoginAction) {
       // secure: true,
       // httpOnly: true,
     });
-    yield put(loginSuccess());
+    let role = '';
+    try {
+      role = json.data.user.profile.role;
+    } catch (error) {
+      console.log("Role doesn't exist.");
+    }
+    yield put(loginSuccess(role));
   } catch (error) {
     try {
       yield put(loginError(error.response.data.message));
