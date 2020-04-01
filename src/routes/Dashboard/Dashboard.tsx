@@ -5,6 +5,7 @@ import { RouteComponentProps, Router, Link } from '@reach/router';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
+import OrganizationList from './OrganizationList/OrganizationList';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import { MARHUB_ADMIN } from '../../auth/permissionTypes';
 
@@ -13,7 +14,13 @@ const DashboardItems = [
     component: IrapDownload,
     buttonText: 'Irap Download',
     pathString: '/irap-download',
-    permissions: [MARHUB_ADMIN],
+    permissions: [MARHUB_ADMIN, ''],
+  },
+  {
+    component: OrganizationList,
+    buttonText: 'Organizations',
+    pathString: '/organizations',
+    permissions: [MARHUB_ADMIN, ''],
   },
 ];
 
@@ -38,7 +45,13 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
     const { role } = this.props;
     return DashboardItems.map(el => {
       if (role !== undefined && hasPermission(el, role)) {
-        return <ActionItem key={el.pathString} text={el.buttonText} />;
+        return (
+          <ActionItem
+            key={el.pathString}
+            text={el.buttonText}
+            path={el.pathString}
+          />
+        );
       }
       return null;
     });
@@ -57,9 +70,9 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   };
 
   render(): JSX.Element {
-    if (this.props.isLoggedIn !== true) {
-      return <Unauthorized />;
-    }
+    // if (this.props.isLoggedIn !== true) {
+    //   return <Unauthorized />;
+    // }
     return (
       <Container>
         <OptionsPanel>{this.createActionItems()}</OptionsPanel>
@@ -73,10 +86,11 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
 
 interface ActionItemProps {
   text: string;
+  path: string;
 }
 export function ActionItem(props: ActionItemProps): JSX.Element {
   return (
-    <StyledLink to="/dashboard/irap-download">
+    <StyledLink to={`/dashboard${props.path}`}>
       <ActionItemLayout>{props.text}</ActionItemLayout>
     </StyledLink>
   );
@@ -109,6 +123,7 @@ const ActionItemLayout = styled.div`
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
   text-decoration: none;
+  margin-bottom: 1rem;
 `;
 
 const StyledLink = styled(Link)`
