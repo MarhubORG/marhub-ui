@@ -13,7 +13,6 @@ import {
 } from '../../../redux/actions/api';
 
 interface IrapDownloadProps extends RouteComponentProps {
-  isLoggedIn: boolean;
   exportingIrapData(): ExportingIrapDataAction;
 }
 
@@ -87,15 +86,6 @@ export class UnconnectedIrapDownload extends Component<
   }
 }
 
-export interface MapStateToProps {
-  isLoggedIn: boolean;
-}
-
-export function mapStateToProps(state: RootState): MapStateToProps {
-  const { isLoggedIn } = state.registration;
-  return { isLoggedIn };
-}
-
 export interface MapDispatchToProps {
   exportingIrapData(): ExportingIrapDataAction;
 }
@@ -128,7 +118,4 @@ const Label = styled.label`
   margin-left: 4.7rem;
 `;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UnconnectedIrapDownload);
+export default connect(null, mapDispatchToProps)(UnconnectedIrapDownload);

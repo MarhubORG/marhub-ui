@@ -81,8 +81,9 @@ describe('loginError', () => {
 
 describe('loginSuccess', () => {
   it('should return a properly formatted action', () => {
-    const expected = { type: LOGIN_SUCCESS };
-    expect(loginSuccess()).toEqual(expected);
+    const role = 'role';
+    const expected = { type: LOGIN_SUCCESS, payload: { role } };
+    expect(loginSuccess(role)).toEqual(expected);
   });
 });
 

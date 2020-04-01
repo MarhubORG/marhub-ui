@@ -4,6 +4,7 @@ export interface RegistrationState {
   error: string;
   redirect: boolean;
   loginRedirect: boolean;
+  role: string;
 }
 
 export interface RootState {
