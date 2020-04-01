@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, Router, Link } from '@reach/router';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
@@ -20,13 +20,28 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
     // }
     return (
       <Container>
-        <OptionsPanel>Hi</OptionsPanel>
+        <OptionsPanel>
+          <ActionItem text="IRAP Download" />
+        </OptionsPanel>
         <ActionPanel>
-          <IrapDownload />
+          <Router>
+            <IrapDownload path="/irap-download" />
+          </Router>
         </ActionPanel>
       </Container>
     );
   }
+}
+
+interface ActionItemProps {
+  text: string;
+}
+export function ActionItem(props: ActionItemProps): JSX.Element {
+  return (
+    <StyledLink to="/dashboard/irap-download">
+      <ActionItemLayout>{props.text}</ActionItemLayout>
+    </StyledLink>
+  );
 }
 
 export interface MapStateToProps {
@@ -45,12 +60,30 @@ const Container = styled.div`
 const OptionsPanel = styled.div`
   flex: 1;
   background-color: ${({ theme }): string => theme.white};
-  height: 74.8vh;
+  height: 72.37vh;
   border: 1px solid ${({ theme }): string => theme.grayText};
+  padding: 0.5rem;
 `;
 
 const ActionPanel = styled.div`
   flex: 3;
+`;
+
+const ActionItemLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  text-decoration: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export default connect(mapStateToProps)(UnconnectedDashboard);
