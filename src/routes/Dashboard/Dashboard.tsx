@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
 import OrganizationList from './OrganizationList/OrganizationList';
+import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import { MARHUB_ADMIN } from '../../auth/permissionTypes';
 
@@ -15,12 +16,21 @@ const DashboardItems = [
     buttonText: 'Irap Download',
     pathString: '/irap-download',
     permissions: [MARHUB_ADMIN, ''],
+    showButton: true,
   },
   {
     component: OrganizationList,
     buttonText: 'Organizations',
     pathString: '/organizations',
     permissions: [MARHUB_ADMIN, ''],
+    showButton: true,
+  },
+  {
+    component: OrganizationExportTemplate,
+    buttonText: 'Organization Export Template',
+    pathString: 'organizations/organization-export-template/:organization',
+    permissions: [MARHUB_ADMIN, ''],
+    showButton: false,
   },
 ];
 
@@ -44,7 +54,7 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   createActionItems = () => {
     const { role } = this.props;
     return DashboardItems.map(el => {
-      if (role !== undefined && hasPermission(el, role)) {
+      if (role !== undefined && hasPermission(el, role) && el.showButton) {
         return (
           <ActionItem
             key={el.pathString}

@@ -22,14 +22,14 @@ exports[`renders correctly 1`] = `
 <div>
   <a
     className="c0"
-    href="/dashboard/organizations/irap"
+    href="/dashboard/organizations/organization-export-template/Irap"
     onClick={[Function]}
   >
     Irap
   </a>
   <a
     className="c0"
-    href="/dashboard/organizations/unhcr"
+    href="/dashboard/organizations/organization-export-template/UNHCR"
     onClick={[Function]}
   >
     UNHCR

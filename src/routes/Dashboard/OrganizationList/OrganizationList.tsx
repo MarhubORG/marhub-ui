@@ -3,14 +3,17 @@ import { RouteComponentProps, Router, Link } from '@reach/router';
 import styled from 'styled-components';
 
 const organizations = [
-  { name: 'Irap', path: '/irap' },
-  { name: 'UNHCR', path: '/unhcr' },
+  { name: 'Irap', path: '/Irap' },
+  { name: 'UNHCR', path: '/UNHCR' },
 ];
 export default function OrganizationList(): JSX.Element {
   function createOrganizationList(): JSX.Element[] {
     return organizations.map(el => {
       return (
-        <StyledLink key={el.path} to={`/dashboard/organizations${el.path}`}>
+        <StyledLink
+          key={el.path}
+          to={`/dashboard/organizations/organization-export-template${el.path}`}
+        >
           {el.name}
         </StyledLink>
       );
