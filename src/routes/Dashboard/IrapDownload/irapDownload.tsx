@@ -78,9 +78,7 @@ export class UnconnectedIrapDownload extends Component<
           <Label>End date:</Label>
           <DatePicker value={endDate} onChange={this.handleEndDateChange} />
         </div>
-        <Button onClick={(): object | null => this.handleClick}>
-          Download IRAP Data
-        </Button>
+        <Button onClick={this.handleClick}>Download IRAP Data</Button>
       </Layout>
     );
   }

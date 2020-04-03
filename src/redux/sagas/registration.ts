@@ -38,6 +38,7 @@ function* login(action: LoginAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
+    console.log('token', json.data.user.sessionToken);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
