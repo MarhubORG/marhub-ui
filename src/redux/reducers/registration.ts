@@ -8,6 +8,9 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGIN_REDIRECTING,
+  LOGOUT,
+  LOGOUT_ERROR,
+  LOGOUT_SUCCESS,
 } from '../constants/actionTypes';
 import { RegistrationActionTypes } from '../actions/index';
 
@@ -48,6 +51,21 @@ export function registrationReducer(
       };
     case LOGIN_REDIRECTING:
       return { ...state, loginRedirect: false };
+    case LOGOUT:
+      return { ...state, loading: true };
+    case LOGOUT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+        error: action.payload.message,
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }

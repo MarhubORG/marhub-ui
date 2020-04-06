@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
+import { LogoutAction, logout } from '../../redux/actions/index';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
@@ -57,6 +59,23 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const StyledLogout = styled.button`
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 2.5rem;
+  color: ${({ theme }): string => theme.white};
+  margin-top: 0.1rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  background-color: ${({ theme }): string => theme.black};
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-decoration: none;
+`;
+
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
 export function Login(): JSX.Element {
@@ -68,8 +87,18 @@ export function Login(): JSX.Element {
   );
 }
 
+export function Logout(): JSX.Element {
+  return (
+    <Span>
+      <LoginIcon />
+      Logout
+    </Span>
+  );
+}
+
 interface NavProps {
   isLoggedIn: boolean;
+  logout(): LogoutAction;
 }
 
 export function UnconnectedNav(props: NavProps): JSX.Element {
@@ -81,6 +110,11 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
       {!props.isLoggedIn && (
         <StyledLink to="login">
           <Login />
+        </StyledLink>
+      )}
+      {props.isLoggedIn && (
+        <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
+          <Logout />
         </StyledLink>
       )}
     </StyledNav>
@@ -96,4 +130,14 @@ export function mapStateToProps(state: RootState): MapStateToProps {
   return { isLoggedIn };
 }
 
-export default connect(mapStateToProps)(UnconnectedNav);
+export interface MapDispatchToProps {
+  logout(): LogoutAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    logout: (): LogoutAction => dispatch(logout()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedNav);
