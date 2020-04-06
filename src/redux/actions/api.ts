@@ -4,12 +4,19 @@ import {
   EXPORT_IRAP_DATA_SUCCESS,
 } from '../constants/actionTypes';
 
+export interface ExportingIrapDataPayload {
+  startDate: string;
+  endDate: string;
+}
 export interface ExportingIrapDataAction {
   type: typeof EXPORTING_IRAP_DATA;
+  payload: ExportingIrapDataPayload;
 }
 
-export function exportingIrapData(): ExportingIrapDataAction {
-  return { type: EXPORTING_IRAP_DATA };
+export function exportingIrapData(
+  data: ExportingIrapDataPayload
+): ExportingIrapDataAction {
+  return { type: EXPORTING_IRAP_DATA, payload: data };
 }
 
 export interface ExportIrapDataSuccessAction {
