@@ -11,11 +11,18 @@ import {
 import { getHeaders, createNewExcelFile } from '../../utils/excel';
 
 function* exportIrapData(action: ExportingIrapDataAction): object {
+  const formattedStartDate = formatDate(action.payload.startDate);
+  const formattedEndDate = formatDate(action.payload.endDate);
+
   try {
     const token = cookie.load('token');
     const axiosConfig = {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        formattedStartDate,
+        formattedEndDate,
       },
     };
     const url = 'http://localhost:8080/api/v1/irap_download';
@@ -33,4 +40,24 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
 
 export function* exportingIrapDataWatcher() {
   yield takeLatest(EXPORTING_IRAP_DATA, exportIrapData);
+}
+
+export function formatDate(date: string): string {
+  let monthString = '';
+  let dayString = '';
+  const d = new Date(date);
+  const month = d.getMonth() + 1;
+  if (month < 10) {
+    monthString = `0${month}`;
+  } else {
+    monthString = `${month}`;
+  }
+  const day = d.getDate();
+  if (day < 10) {
+    dayString = `0${day}`;
+  } else {
+    dayString = `${day}`;
+  }
+  const year = d.getFullYear();
+  return `${monthString}/${dayString}/${year}`;
 }

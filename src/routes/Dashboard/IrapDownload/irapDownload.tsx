@@ -10,10 +10,11 @@ import { RootState } from '../../../types/interfaces';
 import {
   ExportingIrapDataAction,
   exportingIrapData,
+  ExportingIrapDataPayload,
 } from '../../../redux/actions/api';
 
 interface IrapDownloadProps extends RouteComponentProps {
-  exportingIrapData(): ExportingIrapDataAction;
+  exportingIrapData(data: object): ExportingIrapDataAction;
 }
 
 interface IrapDownloadState {
@@ -40,8 +41,9 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   handleClick = (): object | null => {
+    const { startDate, endDate } = this.state;
     return this.props.exportingIrapData !== undefined
-      ? this.props.exportingIrapData()
+      ? this.props.exportingIrapData({ startDate, endDate })
       : null;
   };
 
@@ -85,13 +87,14 @@ export class UnconnectedIrapDownload extends Component<
 }
 
 export interface MapDispatchToProps {
-  exportingIrapData(): ExportingIrapDataAction;
+  exportingIrapData(data: object): ExportingIrapDataAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
-    exportingIrapData: (): ExportingIrapDataAction =>
-      dispatch(exportingIrapData()),
+    exportingIrapData: (
+      data: ExportingIrapDataPayload
+    ): ExportingIrapDataAction => dispatch(exportingIrapData(data)),
   };
 }
 
