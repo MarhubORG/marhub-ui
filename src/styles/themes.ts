@@ -8,4 +8,5 @@ export const mainTheme = {
   disabledButtonBackground: '#edf1f7',
   disabledButtonText: '#c5cee0',
   white: '#ffffff',
+  black: '#000000',
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { Dispatch } from 'redux';
-
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import { LogoutAction, logout } from '../../redux/actions/index';
@@ -61,9 +60,20 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledLogout = styled.button`
-  background-color: ${({ theme }): string => theme.primaryColor};
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 2.5rem;
   color: ${({ theme }): string => theme.white};
+  margin-top: 0.1rem;
   margin-left: auto;
+  margin-right: 1rem;
+  background-color: ${({ theme }): string => theme.black};
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-decoration: none;
 `;
 
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
@@ -73,6 +83,15 @@ export function Login(): JSX.Element {
     <Span>
       <LoginIcon />
       Login
+    </Span>
+  );
+}
+
+export function Logout(): JSX.Element {
+  return (
+    <Span>
+      <LoginIcon />
+      Logout
     </Span>
   );
 }
@@ -94,9 +113,9 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
         </StyledLink>
       )}
       {props.isLoggedIn && (
-        <StyledLogout onClick={(): LogoutAction => props.logout()}>
-          Logout
-        </StyledLogout>
+        <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
+          <Logout />
+        </StyledLink>
       )}
     </StyledNav>
   );

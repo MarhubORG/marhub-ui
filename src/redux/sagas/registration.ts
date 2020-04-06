@@ -74,6 +74,7 @@ function* logout(action: LoginAction) {
     const json = yield axios.post(url, {
       sessionToken: token,
     });
+    console.log({ json });
     yield put(logoutSuccess());
   } catch (e) {
     yield put(logoutError('Error on logout.'));
