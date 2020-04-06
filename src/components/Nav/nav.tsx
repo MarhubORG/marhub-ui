@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
 import { Link } from '@reach/router';
+import { Dispatch } from 'redux';
+
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
+import { LogoutAction, logout } from '../../redux/actions/index';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
@@ -57,6 +60,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const StyledLogout = styled.button`
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  margin-left: auto;
+`;
+
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
 export function Login(): JSX.Element {
@@ -70,6 +79,7 @@ export function Login(): JSX.Element {
 
 interface NavProps {
   isLoggedIn: boolean;
+  logout(): LogoutAction;
 }
 
 export function UnconnectedNav(props: NavProps): JSX.Element {
@@ -82,6 +92,11 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
         <StyledLink to="login">
           <Login />
         </StyledLink>
+      )}
+      {props.isLoggedIn && (
+        <StyledLogout onClick={(): LogoutAction => props.logout()}>
+          Logout
+        </StyledLogout>
       )}
     </StyledNav>
   );
@@ -96,4 +111,14 @@ export function mapStateToProps(state: RootState): MapStateToProps {
   return { isLoggedIn };
 }
 
-export default connect(mapStateToProps)(UnconnectedNav);
+export interface MapDispatchToProps {
+  logout(): LogoutAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    logout: (): LogoutAction => dispatch(logout()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedNav);

@@ -7,6 +7,9 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGIN_REDIRECTING,
+  LOGOUT,
+  LOGOUT_ERROR,
+  LOGOUT_SUCCESS,
 } from '../constants/actionTypes';
 
 // #region region signup
@@ -62,6 +65,7 @@ export function signupError(message: string): SignupErrorAction {
 }
 
 // #endregion
+
 // #region login
 export interface LoginPayload {
   email: string;
@@ -112,6 +116,39 @@ export function loginRedirecting(): LoginRedirectingAction {
 }
 
 // #endregion
+
+// #region logout
+export interface LogoutAction {
+  type: typeof LOGOUT;
+}
+
+export function logout(): LogoutAction {
+  return { type: LOGOUT };
+}
+
+interface LogoutErrorPayload {
+  message: string;
+}
+
+export interface LogoutErrorAction {
+  type: typeof LOGOUT_ERROR;
+  payload: LogoutErrorPayload;
+}
+
+export function logoutError(message: string): LogoutErrorAction {
+  return { type: LOGOUT_ERROR, payload: { message } };
+}
+
+export interface LogoutSuccessAction {
+  type: typeof LOGOUT_SUCCESS;
+}
+
+export function logoutSuccess(): LogoutSuccessAction {
+  return { type: LOGOUT_SUCCESS };
+}
+
+// #endregion
+
 export type RegistrationActionTypes =
   | SignupAction
   | SignupRedirectingAction
@@ -120,4 +157,7 @@ export type RegistrationActionTypes =
   | LoginAction
   | LoginErrorAction
   | LoginSuccessAction
-  | LoginRedirectingAction;
+  | LoginRedirectingAction
+  | LogoutAction
+  | LogoutErrorAction
+  | LogoutSuccessAction;

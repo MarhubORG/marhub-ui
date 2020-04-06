@@ -75,6 +75,10 @@ exports[`renders correctly while logged in 1`] = `
   height: 2rem;
 }
 
+.c2 {
+  margin-left: auto;
+}
+
 <nav
   className="c0"
 >
@@ -89,6 +93,12 @@ exports[`renders correctly while logged in 1`] = `
       src="logo.png"
     />
   </a>
+  <button
+    className="c2"
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </nav>
 `;
 

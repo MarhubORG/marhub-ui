@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
-import { SIGNUP, LOGIN } from '../constants/actionTypes';
+import { SIGNUP, LOGIN, LOGOUT } from '../constants/actionTypes';
 import {
   signupSuccess,
   signupError,
@@ -10,6 +10,8 @@ import {
   loginSuccess,
   SignupAction,
   LoginAction,
+  logoutSuccess,
+  logoutError,
 } from '../actions/index';
 
 function* signup(action: SignupAction) {
@@ -38,7 +40,6 @@ function* login(action: LoginAction) {
       email: action.payload.email,
       password: action.payload.password,
     });
-    console.log('token', json.data.user.sessionToken);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
@@ -61,6 +62,24 @@ function* login(action: LoginAction) {
   }
 }
 
-export function* watchLogin() {
+export function* loginWatcher() {
   yield takeLatest(LOGIN, login);
+}
+
+function* logout(action: LoginAction) {
+  try {
+    const token = cookie.load('token');
+    const url = `http://localhost:8080/api/v1/logout?sessionToken=${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.post(url, {
+      sessionToken: token,
+    });
+    yield put(logoutSuccess());
+  } catch (e) {
+    yield put(logoutError('Error on logout.'));
+  }
+}
+
+export function* logoutWatcher() {
+  yield takeLatest(LOGOUT, logout);
 }
