@@ -2,6 +2,7 @@ import {
   EXPORTING_IRAP_DATA,
   EXPORT_IRAP_DATA_FAILURE,
   EXPORT_IRAP_DATA_SUCCESS,
+  LOGOUT,
 } from '../constants/actionTypes';
 
 export interface ExportingIrapDataPayload {
@@ -47,7 +48,16 @@ export function exportingIrapDataFailure(
   };
 }
 
+export interface LogoutAction {
+  type: typeof LOGOUT;
+}
+
+export function logout(): LogoutAction {
+  return { type: LOGOUT };
+}
+
 export type ApiActionTypes =
   | ExportingIrapDataAction
   | ExportIrapDataSuccessAction
-  | ExportIrapDataFailureAction;
+  | ExportIrapDataFailureAction
+  | LogoutAction;

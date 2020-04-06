@@ -52,7 +52,7 @@ export function registrationReducer(
     case LOGIN_REDIRECTING:
       return { ...state, loginRedirect: false };
     case LOGOUT:
-      return { ...state, loading: true };
+      return { ...initialState, loading: true };
     case LOGOUT_ERROR:
       return {
         ...state,

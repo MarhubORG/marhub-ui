@@ -3,6 +3,7 @@ import {
   EXPORTING_IRAP_DATA,
   EXPORT_IRAP_DATA_FAILURE,
   EXPORT_IRAP_DATA_SUCCESS,
+  LOGOUT,
 } from '../constants/actionTypes';
 import { ApiActionTypes } from '../actions/api';
 
@@ -23,6 +24,8 @@ export default function apiReducer(
       return { ...state, loading: false, irapState: action.payload };
     case EXPORT_IRAP_DATA_FAILURE:
       return { ...state, loading: false, error: action.payload };
+    case LOGOUT:
+      return { ...initialState };
     default:
       return state;
   }
