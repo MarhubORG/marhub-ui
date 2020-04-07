@@ -1,8 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OrganizationList from './OrganizationList';
+import { UnconnectedOrganizationList } from './OrganizationList';
+import { fetchOrganizations } from '../../../redux/actions/dashboard';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<OrganizationList />).toJSON();
+  const tree = renderer
+    .create(
+      <UnconnectedOrganizationList fetchOrganizations={fetchOrganizations} />
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

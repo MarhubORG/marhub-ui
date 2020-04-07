@@ -71,10 +71,9 @@ function* logout(action: LoginAction) {
     const token = cookie.load('token');
     const url = `http://localhost:8080/api/v1/logout?sessionToken=${token}`;
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.post(url, {
+    yield axios.post(url, {
       sessionToken: token,
     });
-    console.log({ json });
     yield put(logoutSuccess());
   } catch (e) {
     yield put(logoutError('Error on logout.'));

@@ -1,13 +1,28 @@
-import React from 'react';
-import { RouteComponentProps, Router, Link } from '@reach/router';
+import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import {
+  FetchOrganizationsAction,
+  fetchOrganizations,
+} from '../../../redux/actions/dashboard';
 
 const organizations = [
   { name: 'Irap', path: '/Irap' },
   { name: 'UNHCR', path: '/UNHCR' },
 ];
-export default function OrganizationList(): JSX.Element {
-  function createOrganizationList(): JSX.Element[] {
+
+interface Props {
+  fetchOrganizations(): void;
+}
+
+export class UnconnectedOrganizationList extends Component<Props> {
+  componentDidMount(): void {
+    this.props.fetchOrganizations();
+  }
+
+  createOrganizationList = (): JSX.Element[] => {
     return organizations.map(el => {
       return (
         <StyledLink
@@ -18,8 +33,11 @@ export default function OrganizationList(): JSX.Element {
         </StyledLink>
       );
     });
+  };
+
+  render(): JSX.Element {
+    return <div>{this.createOrganizationList()}</div>;
   }
-  return <div>{createOrganizationList()}</div>;
 }
 
 const StyledLink = styled(Link)`
@@ -35,3 +53,16 @@ const StyledLink = styled(Link)`
   color: ${({ theme }): string => theme.primaryColor};
   font-weight: 600;
 `;
+
+export interface MapDispatchtoProps {
+  fetchOrganizations(): FetchOrganizationsAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
+  return {
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(UnconnectedOrganizationList);

@@ -16,3 +16,7 @@ export interface ApiState {
   loading: boolean;
   error: string;
 }
+
+export interface DashboardState {
+  loading: boolean;
+}
