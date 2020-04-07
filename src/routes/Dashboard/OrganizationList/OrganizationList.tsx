@@ -6,15 +6,13 @@ import { connect } from 'react-redux';
 import {
   FetchOrganizationsAction,
   fetchOrganizations,
+  Organization,
 } from '../../../redux/actions/dashboard';
-
-const organizations = [
-  { name: 'Irap', path: '/Irap' },
-  { name: 'UNHCR', path: '/UNHCR' },
-];
+import { RootState } from '../../../types/interfaces';
 
 interface Props {
   fetchOrganizations(): void;
+  organizations?: Organization[];
 }
 
 export class UnconnectedOrganizationList extends Component<Props> {
@@ -22,17 +20,26 @@ export class UnconnectedOrganizationList extends Component<Props> {
     this.props.fetchOrganizations();
   }
 
-  createOrganizationList = (): JSX.Element[] => {
-    return organizations.map(el => {
-      return (
-        <StyledLink
-          key={el.path}
-          to={`/dashboard/organizations/organization-export-template${el.path}`}
-        >
-          {el.name}
-        </StyledLink>
-      );
-    });
+  componentDidUpdate(): void {
+    console.log('props', this.props);
+  }
+
+  createOrganizationList = (): JSX.Element[] | null => {
+    const { organizations } = this.props;
+    console.log('i', { organizations });
+    if (organizations !== undefined) {
+      return organizations.map(el => {
+        return (
+          <StyledLink
+            key={el.organisation.name}
+            to={`/dashboard/organizations/organization-export-template/${el.organisation.name}`}
+          >
+            {el.organisation.name}
+          </StyledLink>
+        );
+      });
+    }
+    return null;
   };
 
   render(): JSX.Element {
@@ -65,4 +72,16 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
   };
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedOrganizationList);
+export interface MapStateToProps {
+  organizations: Organization[];
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { organizations } = state.dashboardReducer;
+  return { organizations };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedOrganizationList);

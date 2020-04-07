@@ -9,8 +9,7 @@ import { DashboardActionTypes } from '../actions/dashboard';
 
 export const initialState = {
   loading: false,
-  irapState: {},
-  error: '',
+  organizations: [],
 };
 
 export default function dashboardReducer(
@@ -21,7 +20,9 @@ export default function dashboardReducer(
     case FETCH_ORGANIZATIONS:
       return { ...state, loading: true };
     case FETCH_ORGANIZATIONS_SUCCESS:
-      return { ...state, loading: false };
+      console.log('1');
+      console.log([...action.payload]);
+      return { ...state, loading: false, organizations: [...action.payload] };
     case FETCH_ORGANIZATIONS_FAILURE:
       return { ...state, loading: false };
     case LOGOUT:

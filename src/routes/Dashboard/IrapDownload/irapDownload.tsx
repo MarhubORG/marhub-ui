@@ -6,7 +6,6 @@ import { Dispatch } from 'redux';
 import DatePicker, {
   DatePickerType,
 } from '../../../components/Forms/DatePicker/DatePicker';
-import { RootState } from '../../../types/interfaces';
 import {
   ExportingIrapDataAction,
   exportingIrapData,

@@ -13,12 +13,24 @@ export function fetchOrganizations(): FetchOrganizationsAction {
   return { type: FETCH_ORGANIZATIONS };
 }
 
-export interface FetchOrganizationsSuccessAction {
-  type: typeof FETCH_ORGANIZATIONS_SUCCESS;
+export interface OrganizationFields {
+  name: string;
+  visible_fields: string[];
 }
 
-export function fetchOrganizationsSuccess(): FetchOrganizationsSuccessAction {
-  return { type: FETCH_ORGANIZATIONS_SUCCESS };
+export interface Organization {
+  organisation: OrganizationFields;
+}
+
+export interface FetchOrganizationsSuccessAction {
+  type: typeof FETCH_ORGANIZATIONS_SUCCESS;
+  payload: Organization[];
+}
+
+export function fetchOrganizationsSuccess(
+  organizations: Organization[]
+): FetchOrganizationsSuccessAction {
+  return { type: FETCH_ORGANIZATIONS_SUCCESS, payload: organizations };
 }
 
 export interface FetchOrganizationsFailureAction {
