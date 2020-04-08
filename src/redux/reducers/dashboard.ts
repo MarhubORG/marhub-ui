@@ -20,8 +20,6 @@ export default function dashboardReducer(
     case FETCH_ORGANIZATIONS:
       return { ...state, loading: true };
     case FETCH_ORGANIZATIONS_SUCCESS:
-      console.log('1');
-      console.log([...action.payload]);
       return { ...state, loading: false, organizations: [...action.payload] };
     case FETCH_ORGANIZATIONS_FAILURE:
       return { ...state, loading: false };

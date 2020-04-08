@@ -20,13 +20,8 @@ export class UnconnectedOrganizationList extends Component<Props> {
     this.props.fetchOrganizations();
   }
 
-  componentDidUpdate(): void {
-    console.log('props', this.props);
-  }
-
   createOrganizationList = (): JSX.Element[] | null => {
     const { organizations } = this.props;
-    console.log('i', { organizations });
     if (organizations !== undefined) {
       return organizations.map(el => {
         return (

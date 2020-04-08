@@ -20,7 +20,6 @@ function* fetchOrgs(action: FetchOrganizationsAction): object {
     const url = 'http://localhost:8080/api/v1/organisations';
 
     const json = yield axios.get(url, axiosConfig);
-    console.log(json.data[0]);
     yield put(fetchOrganizationsSuccess(json.data[0]));
   } catch (error) {
     // const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
