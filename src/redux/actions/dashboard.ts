@@ -3,6 +3,9 @@ import {
   FETCH_ORGANIZATIONS_FAILURE,
   FETCH_ORGANIZATIONS_SUCCESS,
   LOGOUT,
+  UPDATE_ORGANIZATION,
+  UPDATE_ORGANIZATION_FAILURE,
+  UPDATE_ORGANIZATION_SUCCESS,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -20,6 +23,7 @@ export interface OrganizationFields {
 
 export interface Organization {
   organisation: OrganizationFields;
+  id: number;
 }
 
 export interface FetchOrganizationsSuccessAction {
@@ -49,8 +53,63 @@ export function logout(): LogoutAction {
   return { type: LOGOUT };
 }
 
+export interface UpdateOrganizationPayload {
+  id: number;
+  organization: Organization;
+}
+
+export interface UpdateOrganizationAction {
+  type: typeof UPDATE_ORGANIZATION;
+  payload: UpdateOrganizationPayload;
+}
+
+export function updateOrganization(
+  organization: UpdateOrganizationPayload
+): UpdateOrganizationAction {
+  return {
+    type: UPDATE_ORGANIZATION,
+    payload: organization,
+  };
+}
+
+export interface UpdateOrganizationSuccessPayload {
+  id: number;
+  organization: Organization;
+}
+
+export interface UpdateOrganizationSuccessAction {
+  type: typeof UPDATE_ORGANIZATION_SUCCESS;
+  payload: UpdateOrganizationSuccessPayload;
+}
+
+export function updateOrganizationSuccess(
+  organization: UpdateOrganizationSuccessPayload
+): UpdateOrganizationSuccessAction {
+  return {
+    type: UPDATE_ORGANIZATION_SUCCESS,
+    payload: organization,
+  };
+}
+
+export interface UpdateOrganizationFailureAction {
+  type: typeof UPDATE_ORGANIZATION_FAILURE;
+  payload: string;
+}
+
+export function updateOrganizationFailure(
+  message: string
+): UpdateOrganizationFailureAction {
+  return {
+    type: UPDATE_ORGANIZATION_FAILURE,
+    payload: message,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
   | FetchOrganizationsSuccessAction
-  | FetchOrganizationsFailureAction;
+  | FetchOrganizationsFailureAction
+  | UpdateOrganizationAction
+  | UpdateOrganizationSuccessAction
+  | UpdateOrganizationFailureAction;

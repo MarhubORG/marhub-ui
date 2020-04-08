@@ -24,4 +24,5 @@ export interface ApiState {
 export interface DashboardState {
   loading: boolean;
   organizations: Organization[];
+  errorMessage: string;
 }

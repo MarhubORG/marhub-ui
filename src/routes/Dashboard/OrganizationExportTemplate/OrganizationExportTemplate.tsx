@@ -2,13 +2,22 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { databaseFields } from '../../../utils/database';
 import { RootState } from '../../../types/interfaces';
-import { Organization } from '../../../redux/actions/dashboard';
+import {
+  Organization,
+  updateOrganization,
+  UpdateOrganizationAction,
+  UpdateOrganizationPayload,
+} from '../../../redux/actions/dashboard';
 
 interface OrganizationExportTemplateProps extends RouteComponentProps {
   organization?: string;
   organizations: Organization[];
+  updateOrganization(
+    action: UpdateOrganizationPayload
+  ): UpdateOrganizationAction;
 }
 
 interface OrganizationExportTemplateState {
@@ -38,6 +47,17 @@ OrganizationExportTemplateState
       }
     });
   }
+
+  getOrganizationId = () => {
+    const { organizations } = this.props;
+    let id;
+    organizations.map(el => {
+      if (el.organisation.name === this.props.organization) {
+        id = el.id;
+      }
+    });
+    return id;
+  };
 
   createCheckboxes = () => {
     return databaseFields.map(el => {
@@ -71,6 +91,18 @@ OrganizationExportTemplateState
         checkedFields.push(el);
       }
     });
+    // const id = this.getOrganizationId();
+    const id = 2;
+    if (id !== undefined) {
+      this.props.updateOrganization({
+        id,
+        // @ts-ignore
+        organization: {
+          // @ts-ignore
+          visible_fields: checkedFields,
+        },
+      });
+    }
   };
 
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
@@ -130,4 +162,21 @@ export function mapStateToProps(state: RootState): MapStateToProps {
   return { organizations };
 }
 
-export default connect(mapStateToProps)(UnconnectedOrganizationExportTemplate);
+export interface MapDispatchToProps {
+  updateOrganization(
+    action: UpdateOrganizationPayload
+  ): UpdateOrganizationAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    updateOrganization: (
+      action: UpdateOrganizationPayload
+    ): UpdateOrganizationAction => dispatch(updateOrganization(action)),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedOrganizationExportTemplate);

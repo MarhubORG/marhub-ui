@@ -3,6 +3,9 @@ import {
   FETCH_ORGANIZATIONS,
   FETCH_ORGANIZATIONS_FAILURE,
   FETCH_ORGANIZATIONS_SUCCESS,
+  UPDATE_ORGANIZATION,
+  UPDATE_ORGANIZATION_FAILURE,
+  UPDATE_ORGANIZATION_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 import { DashboardActionTypes } from '../actions/dashboard';
@@ -10,6 +13,7 @@ import { DashboardActionTypes } from '../actions/dashboard';
 export const initialState = {
   loading: false,
   organizations: [],
+  errorMessage: '',
 };
 
 export default function dashboardReducer(
@@ -22,6 +26,12 @@ export default function dashboardReducer(
     case FETCH_ORGANIZATIONS_SUCCESS:
       return { ...state, loading: false, organizations: [...action.payload] };
     case FETCH_ORGANIZATIONS_FAILURE:
+      return { ...state, loading: false };
+    case UPDATE_ORGANIZATION:
+      return { ...state, loading: true };
+    case UPDATE_ORGANIZATION_FAILURE:
+      return { ...state, loading: false, errorMessage: action.payload };
+    case UPDATE_ORGANIZATION_SUCCESS:
       return { ...state, loading: false };
     case LOGOUT:
       return { ...initialState };
