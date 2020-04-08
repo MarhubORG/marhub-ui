@@ -27,16 +27,12 @@ OrganizationExportTemplateState
   }
 
   componentDidMount() {
-    console.log('cwm props', this.props);
     this.props.organizations.map(el => {
       if (el.organisation.name === this.props.organization) {
-        console.log('fff', el.organisation);
         // @ts-ignore
         el.organisation.visibleFields.map(field => {
-          // @ts-ignore
-          const checked = this.state.checked[field];
           this.setState({
-            [field]: !checked,
+            [field]: true,
           });
         });
       }
@@ -65,41 +61,64 @@ OrganizationExportTemplateState
     });
   };
 
+  submitFields = () => {
+    const myFields = this.state;
+    const keys = Object.keys(myFields);
+    const checkedFields: string[] = [];
+    keys.map(el => {
+      // @ts-ignore
+      if (myFields[el] === true) {
+        checkedFields.push(el);
+      }
+    });
+  };
+
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
     const target = e.target as HTMLInputElement;
     const { name } = target;
     // @ts-ignore
-    const checked = this.state.checked[name];
+    const checked = this.state[name];
     this.setState({
       [name]: !checked,
     });
-    console.log('stateee', this.state);
   };
 
   render(): JSX.Element {
     return (
-      <div>
+      <Layout>
         <StyledHeader>{this.props.organization} Template</StyledHeader>
+        <StyledButton type="button" onClick={this.submitFields}>
+          Submit
+        </StyledButton>
         <form>
           <CheckboxesLayout>{this.createCheckboxes()}</CheckboxesLayout>
           <br />
         </form>
-      </div>
+      </Layout>
     );
   }
 }
 
 const CheckboxesLayout = styled.div`
   max-height: 50vh;
-  padding-left: 2rem;
 `;
 
-const StyledHeader = styled.h1`
-  padding-left: 2rem;
-`;
+const StyledHeader = styled.h1``;
 
 const StyledCheckboxDiv = styled.div`
   padding: 0.1rem 0;
+`;
+
+const Layout = styled.div`
+  padding-left: 2rem;
+`;
+
+const StyledButton = styled.button`
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  height: 2rem;
+  width: 5rem;
+  margin-bottom: 0.5rem;
 `;
 
 export interface MapStateToProps {
