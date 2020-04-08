@@ -1,8 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OrganizationExportTemplate from './OrganizationExportTemplate';
+import { UnconnectedOrganizationExportTemplate } from './OrganizationExportTemplate';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<OrganizationExportTemplate />).toJSON();
+  const tree = renderer
+    .create(<UnconnectedOrganizationExportTemplate organizations={[]} />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

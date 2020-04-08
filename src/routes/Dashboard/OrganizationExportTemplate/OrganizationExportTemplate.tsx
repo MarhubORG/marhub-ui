@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { databaseFields } from '../../../utils/database';
+import { RootState } from '../../../types/interfaces';
+import { Organization } from '../../../redux/actions/dashboard';
 
 interface OrganizationExportTemplateProps extends RouteComponentProps {
   organization?: string;
+  organizations: Organization[];
 }
 
 interface OrganizationExportTemplateState {
-  checked: object;
+  checked?: object;
 }
 
-export default class OrganizationExportTemplate extends Component<
+export class UnconnectedOrganizationExportTemplate extends Component<
 OrganizationExportTemplateProps,
 OrganizationExportTemplateState
 > {
@@ -22,10 +26,27 @@ OrganizationExportTemplateState
     };
   }
 
+  componentDidMount() {
+    console.log('cwm props', this.props);
+    this.props.organizations.map(el => {
+      if (el.organisation.name === this.props.organization) {
+        console.log('fff', el.organisation);
+        // @ts-ignore
+        el.organisation.visibleFields.map(field => {
+          // @ts-ignore
+          const checked = this.state.checked[field];
+          this.setState({
+            [field]: !checked,
+          });
+        });
+      }
+    });
+  }
+
   createCheckboxes = () => {
     return databaseFields.map(el => {
       // @ts-ignore
-      const checked = this.state.checked[el];
+      const checked = this.state[el];
       return (
         <StyledCheckboxDiv key={el}>
           <label htmlFor={el}>
@@ -50,8 +71,9 @@ OrganizationExportTemplateState
     // @ts-ignore
     const checked = this.state.checked[name];
     this.setState({
-      checked: { ...this.state.checked, [name]: !checked },
+      [name]: !checked,
     });
+    console.log('stateee', this.state);
   };
 
   render(): JSX.Element {
@@ -79,3 +101,14 @@ const StyledHeader = styled.h1`
 const StyledCheckboxDiv = styled.div`
   padding: 0.1rem 0;
 `;
+
+export interface MapStateToProps {
+  organizations: Organization[];
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { organizations } = state.dashboardReducer;
+  return { organizations };
+}
+
+export default connect(mapStateToProps)(UnconnectedOrganizationExportTemplate);

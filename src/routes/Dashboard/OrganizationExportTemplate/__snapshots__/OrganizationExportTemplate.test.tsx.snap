@@ -33,6 +33,7 @@ exports[`renders correctly 1`] = `
           <input
             id="age"
             name="age"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -48,6 +49,7 @@ exports[`renders correctly 1`] = `
           <input
             id="arcurrentcountry"
             name="arcurrentcountry"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -63,6 +65,7 @@ exports[`renders correctly 1`] = `
           <input
             id="arfullrsc"
             name="arfullrsc"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -78,6 +81,7 @@ exports[`renders correctly 1`] = `
           <input
             id="arnationality1"
             name="arnationality1"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -93,6 +97,7 @@ exports[`renders correctly 1`] = `
           <input
             id="arrsc"
             name="arrsc"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -108,6 +113,7 @@ exports[`renders correctly 1`] = `
           <input
             id="blocked"
             name="blocked"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -123,6 +129,7 @@ exports[`renders correctly 1`] = `
           <input
             id="canadian_private_sponsorhip"
             name="canadian_private_sponsorhip"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -138,6 +145,7 @@ exports[`renders correctly 1`] = `
           <input
             id="canadian_sponsorship_info_rating"
             name="canadian_sponsorship_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -153,6 +161,7 @@ exports[`renders correctly 1`] = `
           <input
             id="canadian_sponsorship_info_response"
             name="canadian_sponsorship_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -168,6 +177,7 @@ exports[`renders correctly 1`] = `
           <input
             id="child_illness"
             name="child_illness"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -183,6 +193,7 @@ exports[`renders correctly 1`] = `
           <input
             id="createdAt"
             name="createdAt"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -198,6 +209,7 @@ exports[`renders correctly 1`] = `
           <input
             id="created_on"
             name="created_on"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -213,6 +225,7 @@ exports[`renders correctly 1`] = `
           <input
             id="current_country"
             name="current_country"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -228,6 +241,7 @@ exports[`renders correctly 1`] = `
           <input
             id="dapev_info_rating"
             name="dapev_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -243,6 +257,7 @@ exports[`renders correctly 1`] = `
           <input
             id="dapev_info_response"
             name="dapev_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -258,6 +273,7 @@ exports[`renders correctly 1`] = `
           <input
             id="dapi130_info_rating"
             name="dapi130_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -273,6 +289,7 @@ exports[`renders correctly 1`] = `
           <input
             id="dapi130_info_response"
             name="dapi130_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -288,6 +305,7 @@ exports[`renders correctly 1`] = `
           <input
             id="daprelsiv_info_rating"
             name="daprelsiv_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -303,6 +321,7 @@ exports[`renders correctly 1`] = `
           <input
             id="daprelsiv_response"
             name="daprelsiv_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -318,6 +337,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_follow_up_conversation"
             name="end_feedback_follow_up_conversation"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -333,6 +353,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_helpfulness_open_ended"
             name="end_feedback_helpfulness_open_ended"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -348,6 +369,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_helpfulness_rating"
             name="end_feedback_helpfulness_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -363,6 +385,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_other_information_needs"
             name="end_feedback_other_information_needs"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -378,6 +401,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_recommend_open_ended"
             name="end_feedback_recommend_open_ended"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -393,6 +417,7 @@ exports[`renders correctly 1`] = `
           <input
             id="end_feedback_recommend_rating"
             name="end_feedback_recommend_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -408,6 +433,7 @@ exports[`renders correctly 1`] = `
           <input
             id="firstname"
             name="firstname"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -423,6 +449,7 @@ exports[`renders correctly 1`] = `
           <input
             id="fullrsc"
             name="fullrsc"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -438,6 +465,7 @@ exports[`renders correctly 1`] = `
           <input
             id="gender"
             name="gender"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -453,6 +481,7 @@ exports[`renders correctly 1`] = `
           <input
             id="german_reunification_info_rating"
             name="german_reunification_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -468,6 +497,7 @@ exports[`renders correctly 1`] = `
           <input
             id="german_reunification_info_response"
             name="german_reunification_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -483,6 +513,7 @@ exports[`renders correctly 1`] = `
           <input
             id="groups"
             name="groups"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -498,6 +529,7 @@ exports[`renders correctly 1`] = `
           <input
             id="handoff_timestamp"
             name="handoff_timestamp"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -513,6 +545,7 @@ exports[`renders correctly 1`] = `
           <input
             id="has_unhcr_file"
             name="has_unhcr_file"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -528,6 +561,7 @@ exports[`renders correctly 1`] = `
           <input
             id="hired_lawyer"
             name="hired_lawyer"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -543,6 +577,7 @@ exports[`renders correctly 1`] = `
           <input
             id="i130_info_rating"
             name="i130_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -558,6 +593,7 @@ exports[`renders correctly 1`] = `
           <input
             id="i130_info_response"
             name="i130_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -573,6 +609,7 @@ exports[`renders correctly 1`] = `
           <input
             id="i730_info_rating"
             name="i730_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -588,6 +625,7 @@ exports[`renders correctly 1`] = `
           <input
             id="i730_info_response"
             name="i730_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -603,6 +641,7 @@ exports[`renders correctly 1`] = `
           <input
             id="icorn_info_rating"
             name="icorn_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -618,6 +657,7 @@ exports[`renders correctly 1`] = `
           <input
             id="icorn_info_response"
             name="icorn_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -633,6 +673,7 @@ exports[`renders correctly 1`] = `
           <input
             id="id"
             name="id"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -648,6 +689,7 @@ exports[`renders correctly 1`] = `
           <input
             id="lack_of_durable_solutions"
             name="lack_of_durable_solutions"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -663,6 +705,7 @@ exports[`renders correctly 1`] = `
           <input
             id="language"
             name="language"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -678,6 +721,7 @@ exports[`renders correctly 1`] = `
           <input
             id="lgtb"
             name="lgtb"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -693,6 +737,7 @@ exports[`renders correctly 1`] = `
           <input
             id="lppn_score"
             name="lppn_score"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -708,6 +753,7 @@ exports[`renders correctly 1`] = `
           <input
             id="marital_status"
             name="marital_status"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -723,6 +769,7 @@ exports[`renders correctly 1`] = `
           <input
             id="medical_needs_score"
             name="medical_needs_score"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -738,6 +785,7 @@ exports[`renders correctly 1`] = `
           <input
             id="minor_or_adult"
             name="minor_or_adult"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -753,6 +801,7 @@ exports[`renders correctly 1`] = `
           <input
             id="modified_on"
             name="modified_on"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -768,6 +817,7 @@ exports[`renders correctly 1`] = `
           <input
             id="name"
             name="name"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -783,6 +833,7 @@ exports[`renders correctly 1`] = `
           <input
             id="nationality1"
             name="nationality1"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -798,6 +849,7 @@ exports[`renders correctly 1`] = `
           <input
             id="nationality2"
             name="nationality2"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -813,6 +865,7 @@ exports[`renders correctly 1`] = `
           <input
             id="nationality3"
             name="nationality3"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -828,6 +881,7 @@ exports[`renders correctly 1`] = `
           <input
             id="ongoing_usrap"
             name="ongoing_usrap"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -843,6 +897,7 @@ exports[`renders correctly 1`] = `
           <input
             id="p3_info_rating"
             name="p3_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -858,6 +913,7 @@ exports[`renders correctly 1`] = `
           <input
             id="p3_info_response"
             name="p3_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -873,6 +929,7 @@ exports[`renders correctly 1`] = `
           <input
             id="pause_handoffs"
             name="pause_handoffs"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -888,6 +945,7 @@ exports[`renders correctly 1`] = `
           <input
             id="prescreening_complete"
             name="prescreening_complete"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -903,6 +961,7 @@ exports[`renders correctly 1`] = `
           <input
             id="previous_us_resettlement"
             name="previous_us_resettlement"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -918,6 +977,7 @@ exports[`renders correctly 1`] = `
           <input
             id="referral_complete"
             name="referral_complete"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -933,6 +993,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_location"
             name="relative_abroad_location"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -948,6 +1009,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_location1"
             name="relative_abroad_location1"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -963,6 +1025,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_location3"
             name="relative_abroad_location3"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -978,6 +1041,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_location4"
             name="relative_abroad_location4"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -993,6 +1057,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_location5"
             name="relative_abroad_location5"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1008,6 +1073,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_name"
             name="relative_abroad_name"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1023,6 +1089,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_name1"
             name="relative_abroad_name1"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1038,6 +1105,7 @@ exports[`renders correctly 1`] = `
           <input
             id="relative_abroad_name2"
             name="relative_abroad_name2"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1053,6 +1121,7 @@ exports[`renders correctly 1`] = `
           <input
             id="resettlement_relatives"
             name="resettlement_relatives"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1068,6 +1137,7 @@ exports[`renders correctly 1`] = `
           <input
             id="rsc"
             name="rsc"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1083,6 +1153,7 @@ exports[`renders correctly 1`] = `
           <input
             id="rsc_case_status_portal"
             name="rsc_case_status_portal"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1098,6 +1169,7 @@ exports[`renders correctly 1`] = `
           <input
             id="rsc_contact_email"
             name="rsc_contact_email"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1113,6 +1185,7 @@ exports[`renders correctly 1`] = `
           <input
             id="stopped"
             name="stopped"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1128,6 +1201,7 @@ exports[`renders correctly 1`] = `
           <input
             id="svt"
             name="svt"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1143,6 +1217,7 @@ exports[`renders correctly 1`] = `
           <input
             id="textitContactName"
             name="textitContactName"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1158,6 +1233,7 @@ exports[`renders correctly 1`] = `
           <input
             id="textitContactUuid"
             name="textitContactUuid"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1173,6 +1249,7 @@ exports[`renders correctly 1`] = `
           <input
             id="textitSessionId"
             name="textitSessionId"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1188,6 +1265,7 @@ exports[`renders correctly 1`] = `
           <input
             id="unaccompanied_minor"
             name="unaccompanied_minor"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1203,6 +1281,7 @@ exports[`renders correctly 1`] = `
           <input
             id="unique_session_id"
             name="unique_session_id"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1218,6 +1297,7 @@ exports[`renders correctly 1`] = `
           <input
             id="updatedAt"
             name="updatedAt"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1233,6 +1313,7 @@ exports[`renders correctly 1`] = `
           <input
             id="urns"
             name="urns"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1248,6 +1329,7 @@ exports[`renders correctly 1`] = `
           <input
             id="us_relative_relationship"
             name="us_relative_relationship"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1263,6 +1345,7 @@ exports[`renders correctly 1`] = `
           <input
             id="us_relative_relationship1"
             name="us_relative_relationship1"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1278,6 +1361,7 @@ exports[`renders correctly 1`] = `
           <input
             id="usrap_info_rating"
             name="usrap_info_rating"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1293,6 +1377,7 @@ exports[`renders correctly 1`] = `
           <input
             id="usrap_info_response"
             name="usrap_info_response"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1308,6 +1393,7 @@ exports[`renders correctly 1`] = `
           <input
             id="uuid"
             name="uuid"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1323,6 +1409,7 @@ exports[`renders correctly 1`] = `
           <input
             id="vulnerability_assessed"
             name="vulnerability_assessed"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1338,6 +1425,7 @@ exports[`renders correctly 1`] = `
           <input
             id="western_left"
             name="western_left"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1353,6 +1441,7 @@ exports[`renders correctly 1`] = `
           <input
             id="western_right"
             name="western_right"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
@@ -1368,6 +1457,7 @@ exports[`renders correctly 1`] = `
           <input
             id="women_and_girls_at_risk"
             name="women_and_girls_at_risk"
+            onChange={[Function]}
             type="checkbox"
             value=""
           />
