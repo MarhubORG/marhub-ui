@@ -59,23 +59,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const StyledLogout = styled.button`
-  text-align: center;
-  min-width: 8rem;
-  border-radius: 5px;
-  height: 2.5rem;
-  color: ${({ theme }): string => theme.white};
-  margin-top: 0.1rem;
-  margin-left: auto;
-  margin-right: 1rem;
-  background-color: ${({ theme }): string => theme.black};
-  padding-top: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  text-decoration: none;
-`;
-
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
 export function Login(): JSX.Element {
