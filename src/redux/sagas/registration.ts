@@ -14,7 +14,7 @@ import {
   logoutError,
 } from '../actions/index';
 
-function* signup(action: SignupAction) {
+function* signup(action: SignupAction): object {
   try {
     const url = 'http://localhost:8080/api/v1/register';
     yield axios.post(url, {
@@ -29,11 +29,11 @@ function* signup(action: SignupAction) {
   }
 }
 
-export function* actionWatcher() {
+export function* actionWatcher(): object {
   yield takeLatest(SIGNUP, signup);
 }
 
-function* login(action: LoginAction) {
+function* login(action: LoginAction): object {
   try {
     const url = 'http://localhost:8080/api/v1/login';
     const json = yield axios.post(url, {
@@ -66,11 +66,11 @@ function* login(action: LoginAction) {
   }
 }
 
-export function* loginWatcher() {
+export function* loginWatcher(): object {
   yield takeLatest(LOGIN, login);
 }
 
-function* logout(action: LoginAction) {
+function* logout(action: LoginAction): object {
   try {
     const token = cookie.load('token');
     const url = `http://localhost:8080/api/v1/logout?sessionToken=${token}`;
@@ -84,6 +84,6 @@ function* logout(action: LoginAction) {
   }
 }
 
-export function* logoutWatcher() {
+export function* logoutWatcher(): object {
   yield takeLatest(LOGOUT, logout);
 }

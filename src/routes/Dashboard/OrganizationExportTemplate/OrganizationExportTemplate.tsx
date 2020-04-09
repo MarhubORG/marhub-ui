@@ -27,8 +27,8 @@ interface OrganizationExportTemplateState {
 }
 
 export class UnconnectedOrganizationExportTemplate extends Component<
-OrganizationExportTemplateProps,
-OrganizationExportTemplateState
+  OrganizationExportTemplateProps,
+  OrganizationExportTemplateState
 > {
   constructor(props: OrganizationExportTemplateProps) {
     super(props);
@@ -62,6 +62,7 @@ OrganizationExportTemplateState
 
   createCheckboxes = () => {
     return databaseFields.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const checked = this.state[el];
       return (
@@ -87,6 +88,7 @@ OrganizationExportTemplateState
     const keys = Object.keys(myFields);
     const checkedFields: string[] = [];
     keys.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       if (myFields[el] === true) {
         checkedFields.push(el);
@@ -106,6 +108,7 @@ OrganizationExportTemplateState
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
     const target = e.target as HTMLInputElement;
     const { name } = target;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const checked = this.state[name];
     this.setState({
