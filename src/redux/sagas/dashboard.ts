@@ -11,6 +11,8 @@ import {
   fetchOrganizationsFailure,
   FetchOrganizationsAction,
   UpdateOrganizationAction,
+  updateOrganizationSuccess,
+  updateOrganizationFailure,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -44,9 +46,13 @@ function* updateOrganization(action: UpdateOrganizationAction) {
       id: action.payload.id,
       organization: action.payload.organization,
     });
-    // yield put(fetchOrganizationsSuccess(json.data[0]));
+    yield put(updateOrganizationSuccess(json.data));
   } catch (error) {
-    yield put(fetchOrganizationsFailure());
+    yield put(
+      updateOrganizationFailure(
+        'Update organization failed. Please try again or contact your administrator.'
+      )
+    );
   }
 }
 

@@ -72,18 +72,13 @@ export function updateOrganization(
   };
 }
 
-export interface UpdateOrganizationSuccessPayload {
-  id: number;
-  organization: Organization;
-}
-
 export interface UpdateOrganizationSuccessAction {
   type: typeof UPDATE_ORGANIZATION_SUCCESS;
-  payload: UpdateOrganizationSuccessPayload;
+  payload: Organization;
 }
 
 export function updateOrganizationSuccess(
-  organization: UpdateOrganizationSuccessPayload
+  organization: Organization
 ): UpdateOrganizationSuccessAction {
   return {
     type: UPDATE_ORGANIZATION_SUCCESS,

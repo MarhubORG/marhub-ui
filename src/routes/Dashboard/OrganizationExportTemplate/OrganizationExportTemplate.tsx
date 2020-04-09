@@ -144,7 +144,7 @@ const CheckboxesLayout = styled.div`
 `;
 
 const StyledErrorMessage = styled.div`
-  margin-left: -9rem;
+  /* margin-left: -9rem; */
 `;
 
 const StyledHeader = styled.h1``;

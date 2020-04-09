@@ -8,7 +8,7 @@ import {
   UPDATE_ORGANIZATION_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
-import { DashboardActionTypes } from '../actions/dashboard';
+import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
 export const standardFetchOrganizationErrorMessage =
   'Could not fetch organizations. Please try again later or contact the administrator.';
@@ -43,10 +43,25 @@ export default function dashboardReducer(
     case UPDATE_ORGANIZATION_FAILURE:
       return { ...state, loading: false, errorMessage: action.payload };
     case UPDATE_ORGANIZATION_SUCCESS:
-      return { ...state, loading: false, errorMessage: '' };
+      return {
+        ...state,
+        loading: false,
+        errorMessage: '',
+        organizations: replaceWithUpdatedOrg(action.payload, state),
+      };
     case LOGOUT:
       return { ...initialState };
     default:
       return state;
   }
+}
+
+function replaceWithUpdatedOrg(
+  organization: Organization,
+  state: DashboardState
+): Organization[] {
+  return state.organizations.map(el => {
+    if (el.id === organization.id) return organization;
+    return el;
+  });
 }
