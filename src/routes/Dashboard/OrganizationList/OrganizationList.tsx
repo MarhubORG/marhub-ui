@@ -9,10 +9,12 @@ import {
   Organization,
 } from '../../../redux/actions/dashboard';
 import { RootState } from '../../../types/interfaces';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
 interface Props {
   fetchOrganizations(): void;
   organizations?: Organization[];
+  errorMessage: string;
 }
 
 export class UnconnectedOrganizationList extends Component<Props> {
@@ -38,9 +40,23 @@ export class UnconnectedOrganizationList extends Component<Props> {
   };
 
   render(): JSX.Element {
-    return <div>{this.createOrganizationList()}</div>;
+    const { errorMessage } = this.props;
+    return (
+      <div>
+        {errorMessage && (
+          <StyledErrorMessage>
+            <ErrorMessage message={errorMessage} />
+          </StyledErrorMessage>
+        )}
+        {this.createOrganizationList()}
+      </div>
+    );
   }
 }
+
+const StyledErrorMessage = styled.div`
+  margin-left: -8rem;
+`;
 
 const StyledLink = styled(Link)`
   background-color: ${({ theme }): string => theme.white};
@@ -69,11 +85,12 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
 
 export interface MapStateToProps {
   organizations: Organization[];
+  errorMessage: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { organizations } = state.dashboardReducer;
-  return { organizations };
+  const { organizations, errorMessage } = state.dashboardReducer;
+  return { organizations, errorMessage };
 }
 
 export default connect(

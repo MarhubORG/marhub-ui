@@ -7,6 +7,9 @@ import { fetchOrganizations } from '../../../redux/actions/dashboard';
 
 storiesOf('OrganizationList', module).add('OrganizationList Component', () => (
   <ThemeProvider theme={mainTheme}>
-    <UnconnectedOrganizationList fetchOrganizations={fetchOrganizations} />
+    <UnconnectedOrganizationList
+      fetchOrganizations={fetchOrganizations}
+      errorMessage=""
+    />
   </ThemeProvider>
 ));

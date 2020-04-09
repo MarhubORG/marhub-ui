@@ -10,6 +10,8 @@ import {
 } from '../constants/actionTypes';
 import { DashboardActionTypes } from '../actions/dashboard';
 
+export const standardFetchOrganizationErrorMessage =
+  'Could not fetch organizations. Please try again later or contact the administrator.';
 export const initialState = {
   loading: false,
   organizations: [],
@@ -26,7 +28,11 @@ export default function dashboardReducer(
     case FETCH_ORGANIZATIONS_SUCCESS:
       return { ...state, loading: false, organizations: [...action.payload] };
     case FETCH_ORGANIZATIONS_FAILURE:
-      return { ...state, loading: false };
+      return {
+        ...state,
+        loading: false,
+        errorMessage: standardFetchOrganizationErrorMessage,
+      };
     case UPDATE_ORGANIZATION:
       return { ...state, loading: true };
     case UPDATE_ORGANIZATION_FAILURE:

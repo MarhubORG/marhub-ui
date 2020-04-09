@@ -1,4 +1,7 @@
-import dashboardReducer, { initialState } from './dashboard';
+import dashboardReducer, {
+  initialState,
+  standardFetchOrganizationErrorMessage,
+} from './dashboard';
 
 import {
   FETCH_ORGANIZATIONS,
@@ -93,7 +96,11 @@ describe('dashboardReducer', () => {
     const state = dashboardReducer(initialState, {
       type: FETCH_ORGANIZATIONS_FAILURE,
     });
-    const expected = { loading: false, organizations: [], errorMessage: '' };
+    const expected = {
+      loading: false,
+      organizations: [],
+      errorMessage: standardFetchOrganizationErrorMessage,
+    };
     expect(state).toEqual(expected);
   });
 
