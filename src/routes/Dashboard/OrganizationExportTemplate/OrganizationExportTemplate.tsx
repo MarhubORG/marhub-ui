@@ -37,10 +37,9 @@ OrganizationExportTemplateState
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.organizations.map(el => {
       if (el.organisation.name === this.props.organization) {
-        // @ts-ignore
         el.organisation.visibleFields.map(field => {
           this.setState({
             [field]: true,
@@ -50,7 +49,7 @@ OrganizationExportTemplateState
     });
   }
 
-  getOrganizationId = () => {
+  getOrganizationId = (): number | undefined => {
     const { organizations } = this.props;
     let id;
     organizations.map(el => {
@@ -83,7 +82,7 @@ OrganizationExportTemplateState
     });
   };
 
-  submitFields = () => {
+  submitFields = (): void => {
     const myFields = this.state;
     const keys = Object.keys(myFields);
     const checkedFields: string[] = [];
@@ -93,14 +92,11 @@ OrganizationExportTemplateState
         checkedFields.push(el);
       }
     });
-    // const id = this.getOrganizationId();
-    const id = 2;
+    const id = this.getOrganizationId();
     if (id !== undefined) {
       this.props.updateOrganization({
         id,
-        // @ts-ignore
         organization: {
-          // @ts-ignore
           visible_fields: checkedFields,
         },
       });

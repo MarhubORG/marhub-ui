@@ -50,7 +50,11 @@ function* login(action: LoginAction) {
     try {
       role = json.data.user.profile.role;
     } catch (error) {
-      console.log("Role doesn't exist.");
+      yield put(
+        loginError(
+          'There was a problem with your log in. Please contact the administrator.'
+        )
+      );
     }
     yield put(loginSuccess(role));
   } catch (error) {

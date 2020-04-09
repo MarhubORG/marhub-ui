@@ -18,7 +18,7 @@ export function fetchOrganizations(): FetchOrganizationsAction {
 
 export interface OrganizationFields {
   name: string;
-  visible_fields: string[];
+  visibleFields: string[];
 }
 
 export interface Organization {
@@ -55,7 +55,9 @@ export function logout(): LogoutAction {
 
 export interface UpdateOrganizationPayload {
   id: number;
-  organization: Organization;
+  organization: {
+    visible_fields: string[];
+  };
 }
 
 export interface UpdateOrganizationAction {
