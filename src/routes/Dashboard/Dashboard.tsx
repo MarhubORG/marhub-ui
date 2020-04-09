@@ -80,9 +80,9 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   };
 
   render(): JSX.Element {
-    // if (this.props.isLoggedIn !== true) {
-    //   return <Unauthorized />;
-    // }
+    if (this.props.isLoggedIn !== true) {
+      return <Unauthorized />;
+    }
     return (
       <Container>
         <OptionsPanel>{this.createActionItems()}</OptionsPanel>
