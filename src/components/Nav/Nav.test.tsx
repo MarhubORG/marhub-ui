@@ -1,6 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { UnconnectedNav, Login, mapStateToProps } from './nav';
+import {
+  UnconnectedNav,
+  Login,
+  mapStateToProps,
+  mapDispatchToProps,
+  MapDispatchToProps,
+} from './nav';
 import { initialState } from '../../redux/reducers/registration';
 import { logout } from '../../redux/actions/index';
 
@@ -26,5 +32,16 @@ it('has a secondary element Login which renders correctly', () => {
 describe('mapStateToProps', () => {
   it('contains registration state', () => {
     expect(mapStateToProps({ registration: initialState })).toBeDefined();
+  });
+});
+
+describe('mapDispatchToProps', () => {
+  it('contains a function called logout', () => {
+    const dispatch = jest.fn();
+    const dispatches: MapDispatchToProps = mapDispatchToProps(dispatch);
+    expect(Object.keys(dispatches).includes('logout')).toBeTruthy();
+    expect(typeof dispatches.logout).toEqual('function');
+    expect(dispatches.logout.name).toEqual('logout');
+    expect(dispatches.logout()).toBeUndefined();
   });
 });

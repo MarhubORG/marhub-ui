@@ -7,6 +7,9 @@ import {
   loginError,
   loginSuccess,
   loginRedirecting,
+  logout,
+  logoutError,
+  logoutSuccess,
 } from './index';
 import {
   SIGNUP,
@@ -17,8 +20,39 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGIN_REDIRECTING,
+  LOGOUT,
+  LOGOUT_ERROR,
+  LOGOUT_SUCCESS,
 } from '../constants/actionTypes';
 
+describe('logoutSuccess', () => {
+  it('should return a properly formatted action', () => {
+    const expected = {
+      type: LOGOUT_SUCCESS,
+    };
+    expect(logoutSuccess()).toEqual(expected);
+  });
+});
+
+describe('logoutError', () => {
+  it('should return a properly formatted action', () => {
+    const message = 'error message';
+    const expected = {
+      type: LOGOUT_ERROR,
+      payload: { message }, // TODO: Is this the format we want?
+    };
+    expect(logoutError(message)).toEqual(expected);
+  });
+});
+
+describe('logout', () => {
+  it('should return a properly formatted action', () => {
+    const expected = {
+      type: LOGOUT,
+    };
+    expect(logout()).toEqual(expected);
+  });
+});
 describe('signup', () => {
   it('should return a properly formatted action', () => {
     const name = 'name';

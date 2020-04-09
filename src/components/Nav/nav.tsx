@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link, navigate } from '@reach/router';
+import { Link } from '@reach/router';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
@@ -52,23 +52,6 @@ const StyledLink = styled(Link)`
   margin-left: auto;
   margin-right: 1rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  padding-top: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  text-decoration: none;
-`;
-
-const StyledLogout = styled.button`
-  text-align: center;
-  min-width: 8rem;
-  border-radius: 5px;
-  height: 2.5rem;
-  color: ${({ theme }): string => theme.white};
-  margin-top: 0.1rem;
-  margin-left: auto;
-  margin-right: 1rem;
-  background-color: ${({ theme }): string => theme.black};
   padding-top: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;

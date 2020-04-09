@@ -1,26 +1,62 @@
-import React from 'react';
-import { RouteComponentProps, Router, Link } from '@reach/router';
+import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import {
+  FetchOrganizationsAction,
+  fetchOrganizations,
+  Organization,
+} from '../../../redux/actions/dashboard';
+import { RootState } from '../../../types/interfaces';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
-const organizations = [
-  { name: 'Irap', path: '/Irap' },
-  { name: 'UNHCR', path: '/UNHCR' },
-];
-export default function OrganizationList(): JSX.Element {
-  function createOrganizationList(): JSX.Element[] {
-    return organizations.map(el => {
-      return (
-        <StyledLink
-          key={el.path}
-          to={`/dashboard/organizations/organization-export-template${el.path}`}
-        >
-          {el.name}
-        </StyledLink>
-      );
-    });
-  }
-  return <div>{createOrganizationList()}</div>;
+interface Props {
+  fetchOrganizations(): void;
+  organizations?: Organization[];
+  errorMessage: string;
 }
+
+export class UnconnectedOrganizationList extends Component<Props> {
+  componentDidMount(): void {
+    this.props.fetchOrganizations();
+  }
+
+  createOrganizationList = (): JSX.Element[] | null => {
+    const { organizations } = this.props;
+    if (organizations !== undefined) {
+      return organizations.map(el => {
+        return (
+          <StyledLink
+            key={el.organisation.name}
+            to={`/dashboard/organizations/organization-export-template/${el.organisation.name}`}
+          >
+            {el.organisation.name}
+          </StyledLink>
+        );
+      });
+    }
+    return null;
+  };
+
+  render(): JSX.Element {
+    const { errorMessage } = this.props;
+    return (
+      <div>
+        {errorMessage && (
+          <StyledErrorMessage>
+            <ErrorMessage message={errorMessage} />
+          </StyledErrorMessage>
+        )}
+        {this.createOrganizationList()}
+      </div>
+    );
+  }
+}
+
+const StyledErrorMessage = styled.div`
+  margin-left: -8rem;
+`;
 
 const StyledLink = styled(Link)`
   background-color: ${({ theme }): string => theme.white};
@@ -35,3 +71,29 @@ const StyledLink = styled(Link)`
   color: ${({ theme }): string => theme.primaryColor};
   font-weight: 600;
 `;
+
+export interface MapDispatchtoProps {
+  fetchOrganizations(): FetchOrganizationsAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
+  return {
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
+  };
+}
+
+export interface MapStateToProps {
+  organizations: Organization[];
+  errorMessage: string;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { organizations, errorMessage } = state.dashboardReducer;
+  return { organizations, errorMessage };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedOrganizationList);

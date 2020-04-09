@@ -20,7 +20,7 @@ const DashboardItems = [
   },
   {
     component: OrganizationList,
-    buttonText: 'Organizations',
+    buttonText: 'Templates By Organization',
     pathString: '/organizations',
     permissions: [MARHUB_ADMIN, ''],
     showButton: true,
