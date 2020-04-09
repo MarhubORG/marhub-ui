@@ -11,6 +11,7 @@ import {
   UpdateOrganizationAction,
   UpdateOrganizationPayload,
 } from '../../../redux/actions/dashboard';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
 interface OrganizationExportTemplateProps extends RouteComponentProps {
   organization?: string;
@@ -18,6 +19,7 @@ interface OrganizationExportTemplateProps extends RouteComponentProps {
   updateOrganization(
     action: UpdateOrganizationPayload
   ): UpdateOrganizationAction;
+  errorMessage: string;
 }
 
 interface OrganizationExportTemplateState {
@@ -116,8 +118,14 @@ OrganizationExportTemplateState
   };
 
   render(): JSX.Element {
+    const { errorMessage } = this.props;
     return (
       <Layout>
+        {errorMessage && (
+          <StyledErrorMessage>
+            <ErrorMessage message={errorMessage} />
+          </StyledErrorMessage>
+        )}
         <StyledHeader>{this.props.organization} Template</StyledHeader>
         <StyledButton type="button" onClick={this.submitFields}>
           Submit
@@ -133,6 +141,10 @@ OrganizationExportTemplateState
 
 const CheckboxesLayout = styled.div`
   max-height: 50vh;
+`;
+
+const StyledErrorMessage = styled.div`
+  margin-left: -9rem;
 `;
 
 const StyledHeader = styled.h1``;
@@ -155,11 +167,12 @@ const StyledButton = styled.button`
 
 export interface MapStateToProps {
   organizations: Organization[];
+  errorMessage: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { organizations } = state.dashboardReducer;
-  return { organizations };
+  const { organizations, errorMessage } = state.dashboardReducer;
+  return { organizations, errorMessage };
 }
 
 export interface MapDispatchToProps {

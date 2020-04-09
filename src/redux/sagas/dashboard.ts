@@ -40,17 +40,13 @@ function* updateOrganization(action: UpdateOrganizationAction) {
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/exportation_fields';
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    console.log({ action });
     const json = yield axios.post(url, {
       id: action.payload.id,
       organization: action.payload.organization,
     });
     // yield put(fetchOrganizationsSuccess(json.data[0]));
-    console.log({ json });
   } catch (error) {
-    console.log('error', error);
-    // const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
-    // yield put(fetchOrganizationsFailure());
+    yield put(fetchOrganizationsFailure());
   }
 }
 

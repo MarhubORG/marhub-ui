@@ -12,6 +12,7 @@ storiesOf('OrganizationExportTemplate', module).add(
       <UnconnectedOrganizationExportTemplate
         organizations={[]}
         updateOrganization={updateOrganization}
+        errorMessage=""
       />
     </ThemeProvider>
   )
