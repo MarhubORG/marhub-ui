@@ -24,9 +24,14 @@ export default function dashboardReducer(
 ): DashboardState {
   switch (action.type) {
     case FETCH_ORGANIZATIONS:
-      return { ...state, loading: true };
+      return { ...state, loading: true, errorMessage: '' };
     case FETCH_ORGANIZATIONS_SUCCESS:
-      return { ...state, loading: false, organizations: [...action.payload] };
+      return {
+        ...state,
+        loading: false,
+        organizations: [...action.payload],
+        errorMessage: '',
+      };
     case FETCH_ORGANIZATIONS_FAILURE:
       return {
         ...state,
@@ -34,11 +39,11 @@ export default function dashboardReducer(
         errorMessage: standardFetchOrganizationErrorMessage,
       };
     case UPDATE_ORGANIZATION:
-      return { ...state, loading: true };
+      return { ...state, loading: true, errorMessage: '' };
     case UPDATE_ORGANIZATION_FAILURE:
       return { ...state, loading: false, errorMessage: action.payload };
     case UPDATE_ORGANIZATION_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, loading: false, errorMessage: '' };
     case LOGOUT:
       return { ...initialState };
     default:
