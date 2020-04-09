@@ -8,9 +8,34 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGIN_REDIRECTING,
+  LOGOUT,
+  LOGOUT_ERROR,
+  LOGOUT_SUCCESS,
 } from '../constants/actionTypes';
 
 describe('registrationReducer', () => {
+  it('handles the LOGOUT_SUCCESS action type', () => {
+    const state = registrationReducer(initialState, {
+      type: LOGOUT_SUCCESS,
+    });
+    expect(state).toEqual(initialState);
+  });
+  it('handles the LOGOUT_ERROR action type', () => {
+    const message = 'message';
+    const state = registrationReducer(initialState, {
+      type: LOGOUT_ERROR,
+      payload: { message },
+    });
+    const expected = { ...initialState, error: message };
+    expect(state).toEqual(expected);
+  });
+  it('handles the LOGOUT action type', () => {
+    const state = registrationReducer(initialState, {
+      type: LOGOUT,
+    });
+    const expected = { ...initialState, loading: true };
+    expect(state).toEqual(expected);
+  });
   it('handles the SIGNUP action type', () => {
     const name = 'name';
     const organization = 'org';
