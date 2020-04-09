@@ -7,6 +7,6 @@ import DatePicker from './DatePicker';
 const date = new Date();
 storiesOf('DatePicker', module).add('DatePicker Component', () => (
   <ThemeProvider theme={mainTheme}>
-    <DatePicker value={date} onChange={() => {}} />
+    <DatePicker value={date} onChange={(): void => {}} />
   </ThemeProvider>
 ));

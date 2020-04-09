@@ -33,11 +33,11 @@ function* fetchOrgs(action: FetchOrganizationsAction): object {
   }
 }
 
-export function* fetchOrganizationsWatcher() {
+export function* fetchOrganizationsWatcher(): object {
   yield takeLatest(FETCH_ORGANIZATIONS, fetchOrgs);
 }
 
-function* updateOrganization(action: UpdateOrganizationAction) {
+function* updateOrganization(action: UpdateOrganizationAction): object {
   try {
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/exportation_fields';
@@ -56,6 +56,6 @@ function* updateOrganization(action: UpdateOrganizationAction) {
   }
 }
 
-export function* updateOrganizationWatcher() {
+export function* updateOrganizationWatcher(): object {
   yield takeLatest(UPDATE_ORGANIZATION, updateOrganization);
 }

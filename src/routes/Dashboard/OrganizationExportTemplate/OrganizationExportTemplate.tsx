@@ -27,8 +27,8 @@ interface OrganizationExportTemplateState {
 }
 
 export class UnconnectedOrganizationExportTemplate extends Component<
-OrganizationExportTemplateProps,
-OrganizationExportTemplateState
+  OrganizationExportTemplateProps,
+  OrganizationExportTemplateState
 > {
   constructor(props: OrganizationExportTemplateProps) {
     super(props);
@@ -37,10 +37,9 @@ OrganizationExportTemplateState
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.organizations.map(el => {
       if (el.organisation.name === this.props.organization) {
-        // @ts-ignore
         el.organisation.visibleFields.map(field => {
           this.setState({
             [field]: true,
@@ -50,7 +49,7 @@ OrganizationExportTemplateState
     });
   }
 
-  getOrganizationId = () => {
+  getOrganizationId = (): number | undefined => {
     const { organizations } = this.props;
     let id;
     organizations.map(el => {
@@ -63,6 +62,7 @@ OrganizationExportTemplateState
 
   createCheckboxes = () => {
     return databaseFields.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const checked = this.state[el];
       return (
@@ -83,24 +83,22 @@ OrganizationExportTemplateState
     });
   };
 
-  submitFields = () => {
+  submitFields = (): void => {
     const myFields = this.state;
     const keys = Object.keys(myFields);
     const checkedFields: string[] = [];
     keys.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       if (myFields[el] === true) {
         checkedFields.push(el);
       }
     });
-    // const id = this.getOrganizationId();
-    const id = 2;
+    const id = this.getOrganizationId();
     if (id !== undefined) {
       this.props.updateOrganization({
         id,
-        // @ts-ignore
         organization: {
-          // @ts-ignore
           visible_fields: checkedFields,
         },
       });
@@ -110,6 +108,7 @@ OrganizationExportTemplateState
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
     const target = e.target as HTMLInputElement;
     const { name } = target;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const checked = this.state[name];
     this.setState({

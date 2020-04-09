@@ -38,7 +38,7 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
   }
 }
 
-export function* exportingIrapDataWatcher() {
+export function* exportingIrapDataWatcher(): object {
   yield takeLatest(EXPORTING_IRAP_DATA, exportIrapData);
 }
 

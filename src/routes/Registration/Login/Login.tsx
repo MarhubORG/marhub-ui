@@ -33,7 +33,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (
       this.props.registration.isLoggedIn &&
       this.props.navigate !== undefined
