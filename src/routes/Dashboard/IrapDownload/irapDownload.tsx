@@ -12,10 +12,24 @@ import {
   ExportingIrapDataPayload,
 } from '../../../redux/actions/api';
 import { ApiState, RootState } from '../../../types/interfaces';
+import { getHeaders } from '../../../utils/excel';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface MyProps {
+  arr: string[];
+}
+function Row(props: React.PropsWithChildren<MyProps>): JSX.Element {
+  function stringsToTds(arr: string[]): JSX.Element[] {
+    return arr.map(el => {
+      return <td key={el}>{el}</td>;
+    });
+  }
+  return <tr>{stringsToTds(props.arr)}</tr>;
+}
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
-  apiReducer?: ApiState;
+  apiReducer: ApiState;
 }
 
 interface IrapDownloadState {
@@ -68,9 +82,33 @@ export class UnconnectedIrapDownload extends Component<
     }
   };
 
-  render(): JSX.Element {
+  getColumns = () => {
     const { apiReducer } = this.props;
-    console.log({ apiReducer });
+    return getHeaders(apiReducer.irapState).map(el => {
+      return <th key={el.key}>{el.header}</th>;
+    });
+  };
+
+  getRows = () => {
+    const { apiReducer } = this.props;
+    const rows = apiReducer.irapState;
+    const headers = getHeaders(apiReducer.irapState);
+    const arr = [];
+    for (let x = 0; x < rows.length; x++) {
+      const rowArray = [];
+      for (let y = 0; y < 90; y++) {
+        const { header } = headers[y];
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        const value = rows[x][header] ? rows[x][header] : '';
+        rowArray.push(JSON.stringify(value));
+      }
+      arr.push(<Row key={x} arr={rowArray} />);
+    }
+    return arr;
+  };
+
+  render(): JSX.Element {
     const { startDate, endDate } = this.state;
     this.updateEndDate();
     return (
@@ -88,29 +126,9 @@ export class UnconnectedIrapDownload extends Component<
           <h1>Table</h1>
           <StyledTable>
             <thead>
-              <tr>
-                <th>one</th>
-                <th>two</th>
-                <th>three</th>
-              </tr>
+              <tr>{this.getColumns()}</tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
+            <tbody>{this.getRows()}</tbody>
           </StyledTable>
         </div>
       </Layout>

@@ -16,7 +16,7 @@ export interface RootState {
 }
 
 export interface ApiState {
-  irapState: object;
+  irapState: object[];
   loading: boolean;
   error: string;
 }

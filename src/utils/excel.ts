@@ -21,7 +21,11 @@ export function formatDate(date: string): string {
   return `${monthString}/${dayString}/${year}`;
 }
 
-export function getHeaders(arr: object[]): object[] {
+interface Header {
+  key: string;
+  header: string;
+}
+export function getHeaders(arr: object[]): Header[] {
   let headerAccumulator: string[] = [];
   arr.forEach(el => {
     const rowHeaders = Object.keys(el);
