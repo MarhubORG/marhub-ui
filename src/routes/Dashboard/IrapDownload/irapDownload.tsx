@@ -84,6 +84,35 @@ export class UnconnectedIrapDownload extends Component<
           <DatePicker value={endDate} onChange={this.handleEndDateChange} />
         </div>
         <Button onClick={this.handleClick}>Download IRAP Data</Button>
+        <div>
+          <h1>Table</h1>
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>one</th>
+                <th>two</th>
+                <th>three</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </StyledTable>
+        </div>
       </Layout>
     );
   }
@@ -112,6 +141,13 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
+const StyledTable = styled.table`
+  border: 1px solid black;
+  th,
+  td {
+    border: 1px solid black;
+  }
+`;
 const Layout = styled.div`
   margin-top: 2rem;
 `;
