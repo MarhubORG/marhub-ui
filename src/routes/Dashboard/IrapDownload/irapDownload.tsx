@@ -11,9 +11,11 @@ import {
   exportingIrapData,
   ExportingIrapDataPayload,
 } from '../../../redux/actions/api';
+import { ApiState, RootState } from '../../../types/interfaces';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  apiReducer?: ApiState;
 }
 
 interface IrapDownloadState {
@@ -67,6 +69,8 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   render(): JSX.Element {
+    const { apiReducer } = this.props;
+    console.log({ apiReducer });
     const { startDate, endDate } = this.state;
     this.updateEndDate();
     return (
@@ -83,6 +87,17 @@ export class UnconnectedIrapDownload extends Component<
       </Layout>
     );
   }
+}
+
+export interface MapStateToProps {
+  apiReducer: ApiState;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { apiReducer } = state;
+  return {
+    apiReducer,
+  };
 }
 
 export interface MapDispatchToProps {
@@ -118,4 +133,7 @@ const Label = styled.label`
   margin-left: 4.7rem;
 `;
 
-export default connect(null, mapDispatchToProps)(UnconnectedIrapDownload);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedIrapDownload);

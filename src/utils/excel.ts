@@ -1,6 +1,26 @@
 import FileDownload from 'js-file-download';
 import * as Excel from 'exceljs';
 
+export function formatDate(date: string): string {
+  let monthString = '';
+  let dayString = '';
+  const d = new Date(date);
+  const month = d.getMonth() + 1;
+  if (month < 10) {
+    monthString = `0${month}`;
+  } else {
+    monthString = `${month}`;
+  }
+  const day = d.getDate();
+  if (day < 10) {
+    dayString = `0${day}`;
+  } else {
+    dayString = `${day}`;
+  }
+  const year = d.getFullYear();
+  return `${monthString}/${dayString}/${year}`;
+}
+
 export function getHeaders(arr: object[]): object[] {
   let headerAccumulator: string[] = [];
   arr.forEach(el => {

@@ -8,7 +8,7 @@ import {
   exportingIrapDataFailure,
   ExportingIrapDataAction,
 } from '../actions/api';
-import { getHeaders, createNewExcelFile } from '../../utils/excel';
+import { getHeaders, createNewExcelFile, formatDate } from '../../utils/excel';
 
 function* exportIrapData(action: ExportingIrapDataAction): object {
   const formattedStartDate = formatDate(action.payload.startDate);
@@ -28,10 +28,10 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
     const url = 'http://localhost:8080/api/v1/irap_download';
 
     const json = yield axios.get(url, axiosConfig);
-    const headers = getHeaders(json.data[0]);
-    createNewExcelFile(json.data[0], headers);
-
-    yield put(exportingIrapDataSuccess(json.data));
+    // const headers = getHeaders(json.data[0]);
+    // createNewExcelFile(json.data[0], headers);
+    console.log('j', json.data[0]);
+    yield put(exportingIrapDataSuccess(json.data[0]));
   } catch (error) {
     const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
     yield put(exportingIrapDataFailure(errorMessage));
@@ -40,24 +40,4 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
 
 export function* exportingIrapDataWatcher(): object {
   yield takeLatest(EXPORTING_IRAP_DATA, exportIrapData);
-}
-
-export function formatDate(date: string): string {
-  let monthString = '';
-  let dayString = '';
-  const d = new Date(date);
-  const month = d.getMonth() + 1;
-  if (month < 10) {
-    monthString = `0${month}`;
-  } else {
-    monthString = `${month}`;
-  }
-  const day = d.getDate();
-  if (day < 10) {
-    dayString = `0${day}`;
-  } else {
-    dayString = `${day}`;
-  }
-  const year = d.getFullYear();
-  return `${monthString}/${dayString}/${year}`;
 }
