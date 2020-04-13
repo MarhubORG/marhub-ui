@@ -18,20 +18,20 @@ function TableRow(props: React.PropsWithChildren<MyProps>): JSX.Element {
 }
 
 interface IrapTableProps {
-  data: ApiState;
+  data: object[];
 }
 export default class Table extends PureComponent<IrapTableProps> {
   getColumns = (): JSX.Element[] => {
     const { data } = this.props;
-    return getHeaders(data.irapState).map(el => {
+    return getHeaders(data).map(el => {
       return <th key={el.key}>{el.header}</th>;
     });
   };
 
   getRows = (): JSX.Element[] => {
     const { data } = this.props;
-    const rows = data.irapState;
-    const headers = getHeaders(data.irapState);
+    const rows = data;
+    const headers = getHeaders(data);
     const arr = [];
     for (let x = 0; x < rows.length; x++) {
       const rowArray = [];

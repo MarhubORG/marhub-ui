@@ -96,7 +96,7 @@ export class UnconnectedIrapDownload extends Component<
           />
           <button type="button">Search Email</button>
         </div>
-        <Table data={this.props.apiReducer} />
+        <Table data={this.props.apiReducer.irapState} />
       </Layout>
     );
   }
