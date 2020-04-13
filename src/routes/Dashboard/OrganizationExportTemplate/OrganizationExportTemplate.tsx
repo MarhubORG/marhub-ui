@@ -25,11 +25,13 @@ interface OrganizationExportTemplateProps extends RouteComponentProps {
 interface OrganizationExportTemplateState {
   checked?: object;
 }
-
+/* eslint-disable @typescript-eslint/indent */
 export class UnconnectedOrganizationExportTemplate extends Component<
   OrganizationExportTemplateProps,
   OrganizationExportTemplateState
 > {
+  /* eslint-enable @typescript-eslint/indent */
+
   constructor(props: OrganizationExportTemplateProps) {
     super(props);
     this.state = {

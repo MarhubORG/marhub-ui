@@ -23,7 +23,7 @@ describe('apiReducer', () => {
     });
     const expected = {
       loading: true,
-      irapState: {},
+      irapState: [],
       error: '',
     };
     expect(state).toEqual(expected);
@@ -42,13 +42,13 @@ describe('apiReducer', () => {
     });
     const expected = {
       loading: false,
-      irapState: {},
+      irapState: [],
       error: message,
     };
     expect(state).toEqual(expected);
   });
   it('handles EXPORT_IRAP_DATA_SUCCESS action type', () => {
-    const data = { some: 'data' };
+    const data = [{ some: 'data' }];
     const state = apiReducer(initialState, {
       type: EXPORT_IRAP_DATA_SUCCESS,
       payload: data,

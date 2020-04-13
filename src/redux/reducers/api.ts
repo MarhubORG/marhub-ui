@@ -9,7 +9,7 @@ import { ApiActionTypes } from '../actions/api';
 
 export const initialState = {
   loading: false,
-  irapState: {},
+  irapState: [],
   error: '',
 };
 

@@ -22,11 +22,11 @@ export function exportingIrapData(
 
 export interface ExportIrapDataSuccessAction {
   type: typeof EXPORT_IRAP_DATA_SUCCESS;
-  payload: object;
+  payload: object[];
 }
 
 export function exportingIrapDataSuccess(
-  data: object
+  data: object[]
 ): ExportIrapDataSuccessAction {
   return {
     type: EXPORT_IRAP_DATA_SUCCESS,

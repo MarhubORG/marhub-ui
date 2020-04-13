@@ -11,14 +11,21 @@ import {
   exportingIrapData,
   ExportingIrapDataPayload,
 } from '../../../redux/actions/api';
+import { ApiState, RootState } from '../../../types/interfaces';
+import Table from './Table';
+import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  apiReducer: ApiState;
 }
 
 interface IrapDownloadState {
   startDate: DatePickerType;
   endDate: DatePickerType;
+  irapUuidSearchText: string;
+  data: object[];
+  emailText: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -32,7 +39,24 @@ export class UnconnectedIrapDownload extends Component<
     this.state = {
       startDate: this.oneWeekAgo(),
       endDate: new Date(),
+      irapUuidSearchText: '',
+      data: [],
+      emailText: '',
     };
+  }
+
+  componentDidMount(): void {
+    this.setState({ data: this.props.apiReducer.irapState });
+  }
+
+  componentDidUpdate(
+    prevProps: IrapDownloadProps,
+    prevState: IrapDownloadState
+  ) {
+    if (prevProps.apiReducer.irapState !== this.props.apiReducer.irapState) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ data: this.props.apiReducer.irapState });
+    }
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
@@ -66,23 +90,93 @@ export class UnconnectedIrapDownload extends Component<
     }
   };
 
+  handleUniqueSearchTextChange = (irapUuidSearchText: string): void => {
+    this.setState({ irapUuidSearchText });
+  };
+
+  handleEmailTextChange = (emailText: string): void => {
+    this.setState({ emailText });
+  };
+
+  handleSessionClick = (): void => {
+    const { data, irapUuidSearchText } = this.state;
+    const updatedData = data.filter(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return el.textitSessionId.includes(irapUuidSearchText);
+    });
+    this.setState({ data: updatedData });
+  };
+
+  handleEmailClick = (): void => {
+    const { data, emailText } = this.state;
+    const updatedData = data.filter(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return el.email_address1 && el.email_address1.includes(emailText);
+    });
+    this.setState({ data: updatedData });
+  };
+
+  handleExcelClick = () => {
+    const headers = getHeaders(this.props.apiReducer.irapState);
+    const { data } = this.state;
+    createNewExcelFile(data, headers);
+  };
+
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
     this.updateEndDate();
+    const dataExists = this.state.data.length > 0;
     return (
       <Layout>
-        <div>
-          <Label>Start date:</Label>
-          <DatePicker value={startDate} onChange={this.handleStartDateChange} />
-        </div>
-        <div>
-          <Label>End date:</Label>
-          <DatePicker value={endDate} onChange={this.handleEndDateChange} />
-        </div>
+        <Label>From:</Label>
+        <DatePicker value={startDate} onChange={this.handleStartDateChange} />
+        <PullLeft>
+          <Label>To:</Label>
+        </PullLeft>
+        <DatePicker value={endDate} onChange={this.handleEndDateChange} />
         <Button onClick={this.handleClick}>Download IRAP Data</Button>
+        {dataExists && (
+          <Button onClick={this.handleExcelClick}>Excel Download</Button>
+        )}
+        {dataExists && (
+          <SearchLayout>
+            <SearchInput
+              type="text"
+              onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
+              value={this.state.irapUuidSearchText}
+              placeholder="Search Unique Id"
+            />
+            <SearchButton type="button" onClick={this.handleSessionClick}>
+              Search Unique ID
+            </SearchButton>
+            <SearchInput
+              type="text"
+              value={this.state.emailText}
+              onChange={e => this.handleEmailTextChange(e.target.value)}
+              placeholder="Search Email"
+            />
+            <SearchButton type="button" onClick={this.handleEmailClick}>
+              Search Email
+            </SearchButton>
+          </SearchLayout>
+        )}
+        <Table data={this.state.data} />
       </Layout>
     );
   }
+}
+
+export interface MapStateToProps {
+  apiReducer: ApiState;
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { apiReducer } = state;
+  return {
+    apiReducer,
+  };
 }
 
 export interface MapDispatchToProps {
@@ -97,8 +191,20 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-const Layout = styled.div`
-  margin-top: 2rem;
+const SearchLayout = styled.div`
+  padding: 1rem;
+`;
+
+const SearchInput = styled.input`
+  height: 1.5rem;
+  font-size: 0.8rem;
+`;
+
+const SearchButton = styled.button`
+  height: 1.5rem;
+  margin-right: 2rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
 `;
 
 const Button = styled.button`
@@ -114,8 +220,19 @@ const Button = styled.button`
 `;
 
 const Label = styled.label`
-  display: block;
-  margin-left: 4.7rem;
+  margin-left: 1rem;
+  font-weight: 700;
 `;
 
-export default connect(null, mapDispatchToProps)(UnconnectedIrapDownload);
+const Layout = styled.div`
+  margin-top: 2rem;
+`;
+
+const PullLeft = styled.span`
+  margin-left: -1rem;
+`;
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedIrapDownload);

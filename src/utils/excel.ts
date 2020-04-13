@@ -1,7 +1,31 @@
 import FileDownload from 'js-file-download';
 import * as Excel from 'exceljs';
 
-export function getHeaders(arr: object[]): object[] {
+export function formatDate(date: string): string {
+  let monthString = '';
+  let dayString = '';
+  const d = new Date(date);
+  const month = d.getMonth() + 1;
+  if (month < 10) {
+    monthString = `0${month}`;
+  } else {
+    monthString = `${month}`;
+  }
+  const day = d.getDate();
+  if (day < 10) {
+    dayString = `0${day}`;
+  } else {
+    dayString = `${day}`;
+  }
+  const year = d.getFullYear();
+  return `${monthString}/${dayString}/${year}`;
+}
+
+interface Header {
+  key: string;
+  header: string;
+}
+export function getHeaders(arr: object[]): Header[] {
   let headerAccumulator: string[] = [];
   arr.forEach(el => {
     const rowHeaders = Object.keys(el);

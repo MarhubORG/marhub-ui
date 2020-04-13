@@ -6,10 +6,16 @@ import {
   MapDispatchToProps,
 } from './irapDownload';
 import { exportingIrapData } from '../../../redux/actions/api';
+import { initialState } from '../../../redux/reducers/api';
 
 it('renders correctly when logged in', () => {
   const tree = renderer
-    .create(<UnconnectedIrapDownload exportingIrapData={exportingIrapData} />)
+    .create(
+      <UnconnectedIrapDownload
+        exportingIrapData={exportingIrapData}
+        apiReducer={initialState}
+      />
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
