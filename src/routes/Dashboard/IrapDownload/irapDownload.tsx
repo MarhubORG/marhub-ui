@@ -119,7 +119,6 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   handleExcelClick = () => {
-    console.log('handleExcelClick');
     const headers = getHeaders(this.props.apiReducer.irapState);
     const { data } = this.state;
     createNewExcelFile(data, headers);
@@ -141,29 +140,28 @@ export class UnconnectedIrapDownload extends Component<
         {dataExists && (
           <Button onClick={this.handleExcelClick}>Excel Download</Button>
         )}
-        <div>
-          <h1>Search</h1>
-          <div>
-            <input
+        {dataExists && (
+          <SearchLayout>
+            <SearchInput
               type="text"
               onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
               value={this.state.irapUuidSearchText}
+              placeholder="Search Unique Id"
             />
-            <button type="button" onClick={this.handleSessionClick}>
+            <SearchButton type="button" onClick={this.handleSessionClick}>
               Search Unique ID
-            </button>
-          </div>
-          <div>
-            <input
+            </SearchButton>
+            <SearchInput
               type="text"
               value={this.state.emailText}
               onChange={e => this.handleEmailTextChange(e.target.value)}
+              placeholder="Search Email"
             />
-            <button type="button" onClick={this.handleEmailClick}>
+            <SearchButton type="button" onClick={this.handleEmailClick}>
               Search Email
-            </button>
-          </div>
-        </div>
+            </SearchButton>
+          </SearchLayout>
+        )}
         <Table data={this.state.data} />
       </Layout>
     );
@@ -192,6 +190,22 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     ): ExportingIrapDataAction => dispatch(exportingIrapData(data)),
   };
 }
+
+const SearchLayout = styled.div`
+  padding: 1rem;
+`;
+
+const SearchInput = styled.input`
+  height: 1.5rem;
+  font-size: 0.8rem;
+`;
+
+const SearchButton = styled.button`
+  height: 1.5rem;
+  margin-right: 2rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+`;
 
 const Button = styled.button`
   margin: 1rem;

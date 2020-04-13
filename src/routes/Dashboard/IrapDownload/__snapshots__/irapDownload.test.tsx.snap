@@ -399,22 +399,6 @@ exports[`renders correctly when logged in 1`] = `
     Download IRAP Data
   </button>
   <div>
-    <h1>
-      Search
-    </h1>
-    <input
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <button
-      onClick={[Function]}
-      type="button"
-    >
-      Search Unique ID
-    </button>
-  </div>
-  <div>
     <table
       className="c5"
     >
