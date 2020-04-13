@@ -58,6 +58,22 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const LoginLink = styled(Link)`
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 1.75rem;
+  color: ${({ theme }): string => theme.white};
+  margin-left: auto;
+  margin-right: 1rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-decoration: none;
+`;
+
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
 
 const DashboardLink = styled(Link)`
@@ -106,9 +122,9 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
         <Logo src={LOGO_SOURCE} alt="logo" />
       </Link>
       {!props.isLoggedIn && (
-        <StyledLink to="login">
+        <LoginLink to="login">
           <Login />
-        </StyledLink>
+        </LoginLink>
       )}
       {props.isLoggedIn && (
         <>
