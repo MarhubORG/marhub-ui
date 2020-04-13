@@ -48,7 +48,7 @@ describe('apiReducer', () => {
     expect(state).toEqual(expected);
   });
   it('handles EXPORT_IRAP_DATA_SUCCESS action type', () => {
-    const data = { some: 'data' };
+    const data = [{ some: 'data' }];
     const state = apiReducer(initialState, {
       type: EXPORT_IRAP_DATA_SUCCESS,
       payload: data,

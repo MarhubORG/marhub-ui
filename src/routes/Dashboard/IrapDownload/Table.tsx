@@ -35,7 +35,7 @@ export default class Table extends PureComponent<IrapTableProps> {
     const arr = [];
     for (let x = 0; x < rows.length; x++) {
       const rowArray = [];
-      for (let y = 0; y < 90; y++) {
+      for (let y = 0; y < headers.length; y++) {
         const { header } = headers[y];
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
