@@ -48,8 +48,7 @@ const StyledLink = styled(Link)`
   border-radius: 5px;
   height: 1.75rem;
   color: ${({ theme }): string => theme.white};
-  margin-top: 0.1rem;
-  margin-left: auto;
+  margin-left: 1rem;
   margin-right: 1rem;
   background-color: ${({ theme }): string => theme.primaryColor};
   padding-top: 0.8rem;
@@ -60,6 +59,22 @@ const StyledLink = styled(Link)`
 `;
 
 const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
+
+const DashboardLink = styled(Link)`
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  min-width: 8rem;
+  text-decoration: none;
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  height: 1.75rem;
+`;
 
 export function Login(): JSX.Element {
   return (
@@ -96,9 +111,12 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
         </StyledLink>
       )}
       {props.isLoggedIn && (
-        <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
-          <Logout />
-        </StyledLink>
+        <>
+          <DashboardLink to="/dashboard">Dashboard</DashboardLink>
+          <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
+            <Logout />
+          </StyledLink>
+        </>
       )}
     </StyledNav>
   );
