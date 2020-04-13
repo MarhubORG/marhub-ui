@@ -46,6 +46,21 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ data: this.props.apiReducer.irapState });
   }
 
+  static getDerivedStateFromProps(
+    props: IrapDownloadProps,
+    state: IrapDownloadState
+  ) {
+    // Any time the current user changes,
+    // Reset any parts of state that are tied to that user.
+    // In this simple example, that's just the email.
+    if (props.apiReducer.irapState !== state.data) {
+      return {
+        data: props.apiReducer.irapState,
+      };
+    }
+    return null;
+  }
+
   handleEndDateChange = (endDate: DatePickerType): void => {
     this.setState({ endDate });
   };
