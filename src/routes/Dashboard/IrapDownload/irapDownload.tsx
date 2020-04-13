@@ -22,7 +22,8 @@ interface IrapDownloadProps extends RouteComponentProps {
 interface IrapDownloadState {
   startDate: DatePickerType;
   endDate: DatePickerType;
-  emailSearchText: string;
+  irapUuidSearchText: string;
+  data: object[];
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -36,8 +37,13 @@ export class UnconnectedIrapDownload extends Component<
     this.state = {
       startDate: this.oneWeekAgo(),
       endDate: new Date(),
-      emailSearchText: '',
+      irapUuidSearchText: '',
+      data: [],
     };
+  }
+
+  componentDidMount(): void {
+    this.setState({ data: this.props.apiReducer.irapState });
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
@@ -71,8 +77,18 @@ export class UnconnectedIrapDownload extends Component<
     }
   };
 
-  handleEmailSearchTextChange = (emailSearchText: string): void => {
-    this.setState({ emailSearchText });
+  handleUniqueSearchTextChange = (irapUuidSearchText: string): void => {
+    this.setState({ irapUuidSearchText });
+  };
+
+  handleSessionClick = (): void => {
+    const { data, irapUuidSearchText } = this.state;
+    const updatedData = data.filter(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return el.textitSessionId.includes(irapUuidSearchText);
+    });
+    this.setState({ data: updatedData });
   };
 
   render(): JSX.Element {
@@ -91,12 +107,14 @@ export class UnconnectedIrapDownload extends Component<
           <h1>Search</h1>
           <input
             type="text"
-            onChange={e => this.handleEmailSearchTextChange(e.target.value)}
-            value={this.state.emailSearchText}
+            onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
+            value={this.state.irapUuidSearchText}
           />
-          <button type="button">Search Email</button>
+          <button type="button" onClick={this.handleSessionClick}>
+            Search Unique ID
+          </button>
         </div>
-        <Table data={this.props.apiReducer.irapState} />
+        <Table data={this.state.data} />
       </Layout>
     );
   }

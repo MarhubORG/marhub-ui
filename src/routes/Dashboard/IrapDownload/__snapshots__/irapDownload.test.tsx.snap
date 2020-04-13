@@ -408,9 +408,10 @@ exports[`renders correctly when logged in 1`] = `
       value=""
     />
     <button
+      onClick={[Function]}
       type="button"
     >
-      Search Email
+      Search Unique ID
     </button>
   </div>
   <div>
