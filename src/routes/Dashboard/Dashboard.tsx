@@ -8,6 +8,7 @@ import IrapDownload from './IrapDownload/irapDownload';
 import OrganizationList from './OrganizationList/OrganizationList';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
+import TableauDashboard from './TableauDashboard/TableauDashboard';
 import { MARHUB_ADMIN } from '../../auth/permissionTypes';
 
 const DashboardItems = [
@@ -31,6 +32,13 @@ const DashboardItems = [
     pathString: 'organizations/organization-export-template/:organization',
     permissions: [MARHUB_ADMIN, ''],
     showButton: false,
+  },
+  {
+    component: TableauDashboard,
+    buttonText: 'Tableau Dashboard',
+    pathString: '/tableau',
+    permissions: [MARHUB_ADMIN, ''],
+    showButton: true,
   },
 ];
 
