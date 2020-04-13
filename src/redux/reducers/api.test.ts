@@ -23,7 +23,7 @@ describe('apiReducer', () => {
     });
     const expected = {
       loading: true,
-      irapState: {},
+      irapState: [],
       error: '',
     };
     expect(state).toEqual(expected);
@@ -42,7 +42,7 @@ describe('apiReducer', () => {
     });
     const expected = {
       loading: false,
-      irapState: {},
+      irapState: [],
       error: message,
     };
     expect(state).toEqual(expected);
