@@ -13,6 +13,7 @@ import {
 } from '../../../redux/actions/api';
 import { ApiState, RootState } from '../../../types/interfaces';
 import Table from './Table';
+import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
@@ -48,28 +49,14 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ data: this.props.apiReducer.irapState });
   }
 
-  // static getDerivedStateFromProps(
-  //   props: IrapDownloadProps,
-  //   state: IrapDownloadState
-  // ) {
-  //   if (props.apiReducer.irapState !== state.data) {
-  //     return {
-  //       data: props.apiReducer.irapState,
-  //     };
-  //   }
-  //   return null;
-  // }
-
   componentDidUpdate(
     prevProps: IrapDownloadProps,
     prevState: IrapDownloadState
   ) {
     if (prevProps.apiReducer.irapState !== this.props.apiReducer.irapState) {
-      console.log('here');
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ data: this.props.apiReducer.irapState });
     }
-    console.log('here2');
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
@@ -126,25 +113,22 @@ export class UnconnectedIrapDownload extends Component<
     const updatedData = data.filter(el => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      console.log(el.email_address1);
-      console.log(emailText);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       return el.email_address1 && el.email_address1.includes(emailText);
     });
-    console.log({ updatedData });
     this.setState({ data: updatedData });
   };
 
-  calculateData = () => {
-    console.log(this.props.apiReducer.irapState);
-    console.log(this.state.data);
+  handleExcelClick = () => {
+    console.log('handleExcelClick');
+    const headers = getHeaders(this.props.apiReducer.irapState);
+    const { data } = this.state;
+    createNewExcelFile(data, headers);
   };
 
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
     this.updateEndDate();
-    this.calculateData();
+    const dataExists = this.state.data.length > 0;
     return (
       <Layout>
         <Label>From:</Label>
@@ -154,6 +138,9 @@ export class UnconnectedIrapDownload extends Component<
         </PullLeft>
         <DatePicker value={endDate} onChange={this.handleEndDateChange} />
         <Button onClick={this.handleClick}>Download IRAP Data</Button>
+        {dataExists && (
+          <Button onClick={this.handleExcelClick}>Excel Download</Button>
+        )}
         <div>
           <h1>Search</h1>
           <div>

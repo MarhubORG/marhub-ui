@@ -28,9 +28,6 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
     const url = 'http://localhost:8080/api/v1/irap_download';
 
     const json = yield axios.get(url, axiosConfig);
-    // const headers = getHeaders(json.data[0]);
-    // createNewExcelFile(json.data[0], headers);
-    console.log('j', json.data[0]);
     yield put(exportingIrapDataSuccess(json.data[0]));
   } catch (error) {
     const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
