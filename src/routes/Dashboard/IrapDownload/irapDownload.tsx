@@ -24,6 +24,7 @@ interface IrapDownloadState {
   endDate: DatePickerType;
   irapUuidSearchText: string;
   data: object[];
+  emailText: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -39,6 +40,7 @@ export class UnconnectedIrapDownload extends Component<
       endDate: new Date(),
       irapUuidSearchText: '',
       data: [],
+      emailText: '',
     };
   }
 
@@ -46,19 +48,28 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ data: this.props.apiReducer.irapState });
   }
 
-  static getDerivedStateFromProps(
-    props: IrapDownloadProps,
-    state: IrapDownloadState
+  // static getDerivedStateFromProps(
+  //   props: IrapDownloadProps,
+  //   state: IrapDownloadState
+  // ) {
+  //   if (props.apiReducer.irapState !== state.data) {
+  //     return {
+  //       data: props.apiReducer.irapState,
+  //     };
+  //   }
+  //   return null;
+  // }
+
+  componentDidUpdate(
+    prevProps: IrapDownloadProps,
+    prevState: IrapDownloadState
   ) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
-    if (props.apiReducer.irapState !== state.data) {
-      return {
-        data: props.apiReducer.irapState,
-      };
+    if (prevProps.apiReducer.irapState !== this.props.apiReducer.irapState) {
+      console.log('here');
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ data: this.props.apiReducer.irapState });
     }
-    return null;
+    console.log('here2');
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
@@ -96,6 +107,10 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ irapUuidSearchText });
   };
 
+  handleEmailTextChange = (emailText: string): void => {
+    this.setState({ emailText });
+  };
+
   handleSessionClick = (): void => {
     const { data, irapUuidSearchText } = this.state;
     const updatedData = data.filter(el => {
@@ -106,9 +121,30 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ data: updatedData });
   };
 
+  handleEmailClick = (): void => {
+    const { data, emailText } = this.state;
+    const updatedData = data.filter(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      console.log(el.email_address1);
+      console.log(emailText);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return el.email_address1 && el.email_address1.includes(emailText);
+    });
+    console.log({ updatedData });
+    this.setState({ data: updatedData });
+  };
+
+  calculateData = () => {
+    console.log(this.props.apiReducer.irapState);
+    console.log(this.state.data);
+  };
+
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
     this.updateEndDate();
+    this.calculateData();
     return (
       <Layout>
         <Label>From:</Label>
@@ -120,14 +156,26 @@ export class UnconnectedIrapDownload extends Component<
         <Button onClick={this.handleClick}>Download IRAP Data</Button>
         <div>
           <h1>Search</h1>
-          <input
-            type="text"
-            onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
-            value={this.state.irapUuidSearchText}
-          />
-          <button type="button" onClick={this.handleSessionClick}>
-            Search Unique ID
-          </button>
+          <div>
+            <input
+              type="text"
+              onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
+              value={this.state.irapUuidSearchText}
+            />
+            <button type="button" onClick={this.handleSessionClick}>
+              Search Unique ID
+            </button>
+          </div>
+          <div>
+            <input
+              type="text"
+              value={this.state.emailText}
+              onChange={e => this.handleEmailTextChange(e.target.value)}
+            />
+            <button type="button" onClick={this.handleEmailClick}>
+              Search Email
+            </button>
+          </div>
         </div>
         <Table data={this.state.data} />
       </Layout>
