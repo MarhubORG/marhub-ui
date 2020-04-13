@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 
+const REFRESHES = 'REFRESHES';
+
 export default class TableauDashboard extends Component {
   componentDidMount(): void {
-    const refreshes = localStorage.getItem('refreshes');
+    const refreshes = localStorage.getItem(REFRESHES);
     if (!refreshes) {
       window.location.reload();
-      localStorage.setItem('refreshes', 'true');
+      localStorage.setItem(REFRESHES, 'true');
     }
   }
 
   componentWillUnmount(): void {
-    localStorage.setItem('refreshes', '');
+    localStorage.setItem(REFRESHES, '');
   }
 
   render(): JSX.Element {
-    return (
-      <div>
-        <h1>Tableau1</h1>
-        {DashboardObject()}
-      </div>
-    );
+    return <div>{DashboardObject()}</div>;
   }
 }
 
