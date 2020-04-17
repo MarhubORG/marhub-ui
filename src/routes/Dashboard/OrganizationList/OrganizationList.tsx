@@ -48,6 +48,9 @@ export class UnconnectedOrganizationList extends Component<Props> {
             <ErrorMessage message={errorMessage} />
           </StyledErrorMessage>
         )}
+        <StyledLinkInverted to="/dashboard/organizations/new">
+          Create New Organization
+        </StyledLinkInverted>
         {this.createOrganizationList()}
       </div>
     );
@@ -60,7 +63,6 @@ const StyledErrorMessage = styled.div`
 
 const StyledLink = styled(Link)`
   background-color: ${({ theme }): string => theme.white};
-
   height: 4rem;
   display: flex;
   align-items: center;
@@ -69,6 +71,19 @@ const StyledLink = styled(Link)`
   border-radius: 0.5rem;
   text-decoration: none;
   color: ${({ theme }): string => theme.primaryColor};
+  font-weight: 600;
+`;
+
+const StyledLinkInverted = styled(Link)`
+  background-color: ${({ theme }): string => theme.primaryColor};
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: ${({ theme }): string => theme.white};
   font-weight: 600;
 `;
 
