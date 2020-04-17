@@ -17,6 +17,7 @@ export const initialState = {
   organizations: [],
   errorMessage: '',
 };
+export const successMessage = 'Successfully updated organization permissions.';
 
 export default function dashboardReducer(
   state = initialState,
@@ -46,7 +47,7 @@ export default function dashboardReducer(
       return {
         ...state,
         loading: false,
-        errorMessage: '',
+        errorMessage: successMessage,
         organizations: replaceWithUpdatedOrg(action.payload, state),
       };
     case LOGOUT:
