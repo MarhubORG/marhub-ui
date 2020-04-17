@@ -8,7 +8,7 @@ import {
   exportingIrapDataFailure,
   ExportingIrapDataAction,
 } from '../actions/api';
-import { getHeaders, createNewExcelFile, formatDate } from '../../utils/excel';
+import { formatDate } from '../../utils/excel';
 
 function* exportIrapData(action: ExportingIrapDataAction): object {
   const formattedStartDate = formatDate(action.payload.startDate);

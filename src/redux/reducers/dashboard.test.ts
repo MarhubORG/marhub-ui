@@ -1,6 +1,7 @@
 import dashboardReducer, {
   initialState,
   standardFetchOrganizationErrorMessage,
+  successMessage,
 } from './dashboard';
 
 import {
@@ -41,7 +42,7 @@ describe('dashboardReducer', () => {
     const expected = {
       loading: false,
       organizations: [],
-      errorMessage: '',
+      errorMessage: successMessage,
     };
 
     const state = dashboardReducer(initialState, {

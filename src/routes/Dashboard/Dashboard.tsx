@@ -21,7 +21,7 @@ const DashboardItems = [
   },
   {
     component: OrganizationList,
-    buttonText: 'Templates By Organization',
+    buttonText: 'Permissions By Organization',
     pathString: '/organizations',
     permissions: [MARHUB_ADMIN, ''],
     showButton: true,
