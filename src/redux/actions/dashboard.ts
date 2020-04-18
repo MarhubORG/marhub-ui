@@ -6,6 +6,9 @@ import {
   UPDATE_ORGANIZATION,
   UPDATE_ORGANIZATION_FAILURE,
   UPDATE_ORGANIZATION_SUCCESS,
+  CREATE_ORGANIZATION,
+  CREATE_ORGANIZATION_FAILURE,
+  CREATE_ORGANIZATION_SUCCESS,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -102,6 +105,42 @@ export function updateOrganizationFailure(
   };
 }
 
+export interface CreateOrganizationAction {
+  type: typeof CREATE_ORGANIZATION;
+  payload: string;
+}
+
+export function createOrganization(payload: string): CreateOrganizationAction {
+  return {
+    type: CREATE_ORGANIZATION,
+    payload,
+  };
+}
+
+export interface CreateOrganizationFailureAction {
+  type: typeof CREATE_ORGANIZATION_FAILURE;
+}
+
+export function createOrganizationFailure(): CreateOrganizationFailureAction {
+  return {
+    type: CREATE_ORGANIZATION_FAILURE,
+  };
+}
+
+export interface CreateOrganizationSuccessAction {
+  type: typeof CREATE_ORGANIZATION_SUCCESS;
+  payload: Organization;
+}
+
+export function createOrganizationSuccess(
+  payload: Organization
+): CreateOrganizationSuccessAction {
+  return {
+    type: CREATE_ORGANIZATION_SUCCESS,
+    payload,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -109,4 +148,7 @@ export type DashboardActionTypes =
   | FetchOrganizationsFailureAction
   | UpdateOrganizationAction
   | UpdateOrganizationSuccessAction
-  | UpdateOrganizationFailureAction;
+  | UpdateOrganizationFailureAction
+  | CreateOrganizationAction
+  | CreateOrganizationFailureAction
+  | CreateOrganizationSuccessAction;
