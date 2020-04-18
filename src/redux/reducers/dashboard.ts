@@ -10,6 +10,7 @@ import {
   CREATE_ORGANIZATION,
   CREATE_ORGANIZATION_FAILURE,
   CREATE_ORGANIZATION_SUCCESS,
+  CREATE_ORGANIZATION_REDIRECT,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
@@ -19,6 +20,7 @@ export const initialState = {
   loading: false,
   organizations: [],
   errorMessage: '',
+  redirectToVisibleFields: '',
 };
 export const successMessage = 'Successfully updated organization permissions.';
 export const createOrgFailureMessage =
@@ -76,6 +78,12 @@ export default function dashboardReducer(
         organizations: [...state.organizations, action.payload],
         loading: false,
         errorMessage: createOrgSuccessMessage,
+        redirectToVisibleFields: action.payload.organisation.name,
+      };
+    case CREATE_ORGANIZATION_REDIRECT:
+      return {
+        ...state,
+        redirectToVisibleFields: '',
       };
     default:
       return state;

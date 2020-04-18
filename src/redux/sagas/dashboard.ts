@@ -72,10 +72,9 @@ function* createOrganization(action: CreateOrganizationAction): object {
     const json = yield axios.post(url, {
       name: action.payload,
     });
-    console.log({ json });
-    yield createOrganizationSuccess(json.data);
+    yield put(createOrganizationSuccess(json.data));
   } catch (error) {
-    yield createOrganizationFailure();
+    yield put(createOrganizationFailure());
   }
 }
 

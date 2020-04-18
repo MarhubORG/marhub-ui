@@ -9,6 +9,7 @@ import {
   CREATE_ORGANIZATION,
   CREATE_ORGANIZATION_FAILURE,
   CREATE_ORGANIZATION_SUCCESS,
+  CREATE_ORGANIZATION_REDIRECT,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -141,6 +142,16 @@ export function createOrganizationSuccess(
   };
 }
 
+export interface CreateOrganizationRedirectAction {
+  type: typeof CREATE_ORGANIZATION_REDIRECT;
+}
+
+export function createOrganizationRedirect(): CreateOrganizationRedirectAction {
+  return {
+    type: CREATE_ORGANIZATION_REDIRECT,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -151,4 +162,5 @@ export type DashboardActionTypes =
   | UpdateOrganizationFailureAction
   | CreateOrganizationAction
   | CreateOrganizationFailureAction
-  | CreateOrganizationSuccessAction;
+  | CreateOrganizationSuccessAction
+  | CreateOrganizationRedirectAction;
