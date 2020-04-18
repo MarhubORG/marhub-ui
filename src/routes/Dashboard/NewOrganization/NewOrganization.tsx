@@ -23,10 +23,13 @@ interface NewOrganizationState {
   name: string;
 }
 
+/* eslint-disable @typescript-eslint/indent */
 class UnconnectedNewOrganization extends Component<
   NewOrganizationProps,
   NewOrganizationState
 > {
+  /* eslint-enable @typescript-eslint/indent */
+
   constructor(props: NewOrganizationProps) {
     super(props);
     this.state = {

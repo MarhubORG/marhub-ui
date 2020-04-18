@@ -43,6 +43,7 @@ describe('dashboardReducer', () => {
       loading: false,
       organizations: [],
       errorMessage: successMessage,
+      redirectToVisibleFields: '',
     };
 
     const state = dashboardReducer(initialState, {
@@ -62,6 +63,7 @@ describe('dashboardReducer', () => {
       loading: false,
       organizations: [],
       errorMessage: message,
+      redirectToVisibleFields: '',
     };
 
     expect(state).toEqual(expected);
@@ -83,14 +85,24 @@ describe('dashboardReducer', () => {
       payload: organization,
     });
 
-    const expected = { loading: true, organizations: [], errorMessage: '' };
+    const expected = {
+      loading: true,
+      organizations: [],
+      errorMessage: '',
+      redirectToVisibleFields: '',
+    };
     expect(state).toEqual(expected);
   });
   it('handles FETCH_ORGANIZATIONS action type', () => {
     const state = dashboardReducer(initialState, {
       type: FETCH_ORGANIZATIONS,
     });
-    const expected = { loading: true, organizations: [], errorMessage: '' };
+    const expected = {
+      loading: true,
+      organizations: [],
+      errorMessage: '',
+      redirectToVisibleFields: '',
+    };
     expect(state).toEqual(expected);
   });
   it('handles FETCH_ORGANIZATIONS_FAILURE', () => {
@@ -101,6 +113,7 @@ describe('dashboardReducer', () => {
       loading: false,
       organizations: [],
       errorMessage: standardFetchOrganizationErrorMessage,
+      redirectToVisibleFields: '',
     };
     expect(state).toEqual(expected);
   });
@@ -119,7 +132,12 @@ describe('dashboardReducer', () => {
       type: FETCH_ORGANIZATIONS_SUCCESS,
       payload: organizations,
     });
-    const expected = { loading: false, organizations, errorMessage: '' };
+    const expected = {
+      loading: false,
+      organizations,
+      errorMessage: '',
+      redirectToVisibleFields: '',
+    };
     expect(state).toEqual(expected);
   });
 });
