@@ -9,6 +9,7 @@ import OrganizationList from './OrganizationList/OrganizationList';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
+import NewOrganization from './NewOrganization/NewOrganization';
 import { MARHUB_ADMIN } from '../../auth/permissionTypes';
 
 const DashboardItems = [
@@ -21,7 +22,7 @@ const DashboardItems = [
   },
   {
     component: OrganizationList,
-    buttonText: 'Permissions By Organization',
+    buttonText: 'Organizations',
     pathString: '/organizations',
     permissions: [MARHUB_ADMIN, ''],
     showButton: true,
@@ -35,10 +36,17 @@ const DashboardItems = [
   },
   {
     component: TableauDashboard,
-    buttonText: 'Tableau Dashboard',
+    buttonText: 'Tableau',
     pathString: '/tableau',
     permissions: [MARHUB_ADMIN, ''],
     showButton: true,
+  },
+  {
+    component: NewOrganization,
+    buttonText: '',
+    pathString: '/organizations/new',
+    permissions: [MARHUB_ADMIN],
+    showButton: false,
   },
 ];
 

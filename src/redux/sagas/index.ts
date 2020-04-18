@@ -4,6 +4,7 @@ import { exportingIrapDataWatcher } from './api';
 import {
   fetchOrganizationsWatcher,
   updateOrganizationWatcher,
+  createOrganizationWatcher,
 } from './dashboard';
 
 export default function* rootSaga() {
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     logoutWatcher(),
     fetchOrganizationsWatcher(),
     updateOrganizationWatcher(),
+    createOrganizationWatcher(),
   ]);
 }

@@ -25,4 +25,5 @@ export interface DashboardState {
   loading: boolean;
   organizations: Organization[];
   errorMessage: string;
+  redirectToVisibleFields: string;
 }

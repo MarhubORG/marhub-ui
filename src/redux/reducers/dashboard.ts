@@ -7,6 +7,10 @@ import {
   UPDATE_ORGANIZATION_FAILURE,
   UPDATE_ORGANIZATION_SUCCESS,
   LOGOUT,
+  CREATE_ORGANIZATION,
+  CREATE_ORGANIZATION_FAILURE,
+  CREATE_ORGANIZATION_SUCCESS,
+  CREATE_ORGANIZATION_REDIRECT,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
@@ -16,9 +20,13 @@ export const initialState = {
   loading: false,
   organizations: [],
   errorMessage: '',
+  redirectToVisibleFields: '',
 };
 export const successMessage = 'Successfully updated organization permissions.';
-
+export const createOrgFailureMessage =
+  'Creating a new organization failed. Please contact your administrator.';
+export const createOrgSuccessMessage =
+  'Successfully updated organization permissions.';
 export default function dashboardReducer(
   state = initialState,
   action: DashboardActionTypes
@@ -52,6 +60,31 @@ export default function dashboardReducer(
       };
     case LOGOUT:
       return { ...initialState };
+    case CREATE_ORGANIZATION:
+      return {
+        ...state,
+        loading: true,
+        errorMessage: '',
+      };
+    case CREATE_ORGANIZATION_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        errorMessage: createOrgFailureMessage,
+      };
+    case CREATE_ORGANIZATION_SUCCESS:
+      return {
+        ...state,
+        organizations: [...state.organizations, action.payload],
+        loading: false,
+        errorMessage: createOrgSuccessMessage,
+        redirectToVisibleFields: action.payload.organisation.name,
+      };
+    case CREATE_ORGANIZATION_REDIRECT:
+      return {
+        ...state,
+        redirectToVisibleFields: '',
+      };
     default:
       return state;
   }

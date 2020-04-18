@@ -5,6 +5,7 @@ import cookie from 'react-cookies';
 import {
   FETCH_ORGANIZATIONS,
   UPDATE_ORGANIZATION,
+  CREATE_ORGANIZATION,
 } from '../constants/actionTypes';
 import {
   fetchOrganizationsSuccess,
@@ -13,6 +14,9 @@ import {
   UpdateOrganizationAction,
   updateOrganizationSuccess,
   updateOrganizationFailure,
+  CreateOrganizationAction,
+  createOrganizationFailure,
+  createOrganizationSuccess,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -58,4 +62,22 @@ function* updateOrganization(action: UpdateOrganizationAction): object {
 
 export function* updateOrganizationWatcher(): object {
   yield takeLatest(UPDATE_ORGANIZATION, updateOrganization);
+}
+
+function* createOrganization(action: CreateOrganizationAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/organisations';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.post(url, {
+      name: action.payload,
+    });
+    yield put(createOrganizationSuccess(json.data));
+  } catch (error) {
+    yield put(createOrganizationFailure());
+  }
+}
+
+export function* createOrganizationWatcher(): object {
+  yield takeLatest(CREATE_ORGANIZATION, createOrganization);
 }
