@@ -66,10 +66,16 @@ export function* updateOrganizationWatcher(): object {
 
 function* createOrganization(action: CreateOrganizationAction): object {
   try {
-    console.log('create org');
-    yield 1;
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/organisations';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.post(url, {
+      name: action.payload,
+    });
+    console.log({ json });
+    yield createOrganizationSuccess(json.data);
   } catch (error) {
-    console.log('create org error', error);
+    yield createOrganizationFailure();
   }
 }
 
