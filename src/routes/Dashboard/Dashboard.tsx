@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
 import OrganizationList from './OrganizationList/OrganizationList';
+import UserList from './UserList/UserList';
+
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
@@ -47,6 +49,13 @@ const DashboardItems = [
     pathString: '/organizations/new',
     permissions: [MARHUB_ADMIN],
     showButton: false,
+  },
+  {
+    component: UserList,
+    buttonText: 'Users',
+    pathString: '/users',
+    permissions: [MARHUB_ADMIN],
+    showButton: true,
   },
 ];
 
