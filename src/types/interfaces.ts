@@ -1,4 +1,5 @@
 import { Organization } from '../redux/actions/dashboard';
+import { User } from '../redux/actions/users';
 
 export interface RegistrationState {
   loading: boolean;
@@ -31,6 +32,6 @@ export interface DashboardState {
 
 export interface UserState {
   loading: boolean;
-  users: object[];
+  users: User[];
   message: string;
 }

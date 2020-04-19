@@ -1,13 +1,25 @@
 import {
   FETCH_USERS,
   FETCH_USERS_FAILURE,
-  FETCH_ORGANIZATIONS_SUCCESS,
   FETCH_USERS_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 
 export interface FetchUsersAction {
   type: typeof FETCH_USERS;
+}
+
+export interface UserProfileFields {
+  name: string;
+  organisation: string;
+  role?: string;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  isDisabled: boolean;
+  profile: UserProfileFields;
 }
 
 export function fetchUsers(): FetchUsersAction {
@@ -28,10 +40,10 @@ export function fetchUsersFailure(): FetchUsersFailureAction {
 
 export interface FetchUsersSuccessAction {
   type: typeof FETCH_USERS_SUCCESS;
-  payload: object[];
+  payload: User[];
 }
 
-export function fetchUsersSuccess(payload: object[]): FetchUsersSuccessAction {
+export function fetchUsersSuccess(payload: User[]): FetchUsersSuccessAction {
   return {
     type: FETCH_USERS_SUCCESS,
     payload,
