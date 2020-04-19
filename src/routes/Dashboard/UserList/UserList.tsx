@@ -26,10 +26,7 @@ class UnconnectedUserList extends Component<UserListProps> {
     if (users !== undefined) {
       return users.map(el => {
         return (
-          <StyledLink
-            key={el.id}
-            to={`/dashboard/organizations/users/${el.id}`}
-          >
+          <StyledLink key={el.id} to={`/dashboard/users/${el.id}`}>
             {el.email}
           </StyledLink>
         );
