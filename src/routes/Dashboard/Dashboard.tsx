@@ -8,6 +8,7 @@ import IrapDownload from './IrapDownload/irapDownload';
 import OrganizationList from './OrganizationList/OrganizationList';
 import UserList from './UserList/UserList';
 import UserEdit from './UserEdit/UserEdit';
+import UserNew from './UserNew/UserNew';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
@@ -60,7 +61,14 @@ const DashboardItems = [
   {
     component: UserEdit,
     buttonText: '',
-    pathString: 'users/:id',
+    pathString: '/users/:id',
+    permissions: [MARHUB_ADMIN],
+    showButton: false,
+  },
+  {
+    component: UserNew,
+    buttonText: '',
+    pathString: '/users/new',
     permissions: [MARHUB_ADMIN],
     showButton: false,
   },
