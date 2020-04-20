@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { RootState } from '../../../types/interfaces';
 import { Organization } from '../../../redux/actions/dashboard';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
+import Select from '../../../components/Forms/Select/Select';
 
 interface UserEditProps {
   organizations: Organization[];
@@ -33,15 +34,15 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
 
   createOrganizationOptions = () => {
     return this.props.organizations.map(el => {
-      return (
-        <option key={el.id} id={`${el.id}`} selected={el.id === 4}>
-          {el.organisation.name}
-        </option>
-      );
+      return {
+        value: `${el.id}`,
+        name: el.organisation.name,
+      };
     });
   };
 
   render(): JSX.Element {
+    console.log(this.createOrganizationOptions());
     return (
       <Layout>
         <h1>New User</h1>
@@ -61,7 +62,11 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
           value={this.state.email}
           onChange={this.handleEmailChange}
         />
-        <select>{this.createOrganizationOptions()}</select>
+        <Select
+          options={this.createOrganizationOptions()}
+          labelName="Organizations"
+          selected=""
+        />
       </Layout>
     );
   }
