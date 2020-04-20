@@ -83,9 +83,20 @@ function* editUser(action: EditUserAction): object {
       organisation: selectedOrganization,
       id,
     });
-    console.log('edit user json', json);
+    yield put(
+      editUserSuccess({
+        id,
+        isDisabled: false,
+        email,
+        profile: {
+          name,
+          organisation: selectedOrganization,
+          role,
+        },
+      })
+    );
   } catch (error) {
-    console.log('error', error);
+    yield put(editUserFailure());
   }
 }
 

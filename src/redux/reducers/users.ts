@@ -1,5 +1,5 @@
 import { UserState } from '../../types/interfaces';
-import { UserActionTypes } from '../actions/users';
+import { UserActionTypes, User } from '../actions/users';
 import {
   FETCH_USERS,
   FETCH_USERS_FAILURE,
@@ -19,6 +19,9 @@ const createUserFailureMessage =
   'Creating user failed. Please contact your administrator.';
 const editUserFailureMessage =
   'Editing user failed. Please contact your administrator.';
+const editUserSuccessMessage =
+  'Edit user success! All changes have been saved to the database.';
+
 const initialState = {
   users: [],
   message: '',
@@ -62,12 +65,19 @@ export default function userReducer(
       return {
         ...state,
         loading: false,
-        message: '',
-        users: [action.payload, ...state.users],
+        message: editUserSuccessMessage,
+        users: replaceWithUpdatedUser(action.payload, state),
       };
     case LOGOUT:
       return initialState;
     default:
       return state;
   }
+}
+
+function replaceWithUpdatedUser(user: User, state: UserState): User[] {
+  return state.users.map(el => {
+    if (el.id === user.id) return user;
+    return el;
+  });
 }

@@ -16,6 +16,7 @@ import {
 } from '../../../redux/actions/users';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import {
   MARHUB_ADMIN,
   MARHUB_USER,
@@ -31,6 +32,7 @@ interface UserEditProps {
   users: User[];
   id?: string;
   editUser(data: EditUserPayload): EditUserAction;
+  message: string;
 }
 
 interface UserEditState {
@@ -162,6 +164,7 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
     return (
       <Layout>
         <h1>Edit {this.state.email}</h1>
+        <ErrorMessage message={this.props.message} />
         <TextInput
           htmlFor="name"
           labelText="Name:"
@@ -233,12 +236,13 @@ const Label = styled.label`
 export interface MapStateToProps {
   users: User[];
   organizations: Organization[];
+  message: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { users } = state.userReducer;
+  const { users, message } = state.userReducer;
   const { organizations } = state.dashboardReducer;
-  return { users, organizations };
+  return { users, organizations, message };
 }
 
 export interface MapDispatchtoProps {
