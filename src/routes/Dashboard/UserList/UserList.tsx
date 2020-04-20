@@ -9,7 +9,6 @@ import {
   User,
 } from '../../../redux/actions/users';
 import { RootState } from '../../../types/interfaces';
-import Table from '../IrapDownload/Table';
 
 interface UserListProps {
   fetchUsers(): void;
@@ -36,7 +35,6 @@ class UnconnectedUserList extends Component<UserListProps> {
   };
 
   render(): JSX.Element {
-    console.log('props', this.props);
     return (
       <Layout>
         <h1>Users</h1>

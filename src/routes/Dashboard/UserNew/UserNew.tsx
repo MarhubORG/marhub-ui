@@ -12,7 +12,7 @@ import {
   USER,
 } from '../../../auth/permissionTypes';
 
-const roles = [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER];
+const roles = [USER, ADMIN, MARHUB_USER, MARHUB_ADMIN];
 
 interface UserEditProps {
   organizations: Organization[];
@@ -21,6 +21,9 @@ interface UserEditProps {
 interface UserEditState {
   email: string;
   name: string;
+  selectedOrganization: string;
+  role: string;
+  isDisabled: boolean;
 }
 
 class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
@@ -29,6 +32,9 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
     this.state = {
       email: '',
       name: '',
+      selectedOrganization: '',
+      role: '',
+      isDisabled: true,
     };
   }
 
@@ -58,6 +64,19 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
     });
   };
 
+  orgOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.setState({ selectedOrganization: event.target.value });
+  };
+
+  roleOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.setState({ role: event.target.value });
+  };
+
+  isDisabledChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { isDisabled } = this.state;
+    this.setState({ isDisabled: !isDisabled });
+  };
+
   render(): JSX.Element {
     return (
       <Layout>
@@ -81,16 +100,24 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
         <Select
           options={this.createOrganizationOptions()}
           labelName="Select Organization:"
-          selected=""
+          defaultValue={this.state.selectedOrganization}
+          onChange={this.orgOnChange}
         />
         <Select
           options={this.createRolesOptions()}
           labelName="Select Role:"
-          selected=""
+          defaultValue={this.state.role}
+          onChange={this.orgOnChange}
         />
         <Label htmlFor="isDisabled">
           Account is Disabled:
-          <input type="checkbox" id="isDisabled" name="isDisabled" />
+          <input
+            type="checkbox"
+            id="isDisabled"
+            name="isDisabled"
+            onChange={this.isDisabledChange}
+            checked={this.state.isDisabled}
+          />
         </Label>
       </Layout>
     );

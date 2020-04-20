@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 export interface Option {
@@ -9,17 +9,14 @@ export interface Option {
 interface SelectProps {
   options: Option[];
   labelName: string;
-  selected: string;
+  defaultValue: string;
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 export default class Select extends Component<SelectProps> {
   createOptions = (): JSX.Element[] => {
     return this.props.options.map(el => {
       return (
-        <StyledOption
-          key={el.value}
-          value={`${el.value}`}
-          selected={el.value === this.props.selected}
-        >
+        <StyledOption key={el.value} value={`${el.value}`}>
           {el.name}
         </StyledOption>
       );
@@ -30,7 +27,13 @@ export default class Select extends Component<SelectProps> {
     return (
       <div>
         <Label htmlFor={this.props.labelName}>{this.props.labelName}</Label>
-        <StyledSelect id={this.props.labelName}>
+
+        <StyledSelect
+          id={this.props.labelName}
+          onChange={this.props.onChange}
+          defaultValue={this.props.defaultValue}
+        >
+          <StyledOption>Please Select:</StyledOption>
           {this.createOptions()}
         </StyledSelect>
       </div>
