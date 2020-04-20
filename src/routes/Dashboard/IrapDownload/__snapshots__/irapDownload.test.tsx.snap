@@ -91,7 +91,7 @@ exports[`renders correctly when logged in 1`] = `
             }
           }
           type="date"
-          value="2020-04-12"
+          value="2020-04-13"
         />
         
         <input
@@ -130,7 +130,7 @@ exports[`renders correctly when logged in 1`] = `
           placeholder="--"
           required={null}
           type="number"
-          value={12}
+          value={13}
         />
         <span
           className="react-date-picker__inputGroup__divider"
@@ -259,7 +259,7 @@ exports[`renders correctly when logged in 1`] = `
             }
           }
           type="date"
-          value="2020-04-19"
+          value="2020-04-20"
         />
         
         <input
@@ -298,7 +298,7 @@ exports[`renders correctly when logged in 1`] = `
           placeholder="--"
           required={null}
           type="number"
-          value={19}
+          value={20}
         />
         <span
           className="react-date-picker__inputGroup__divider"
