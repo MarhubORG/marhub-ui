@@ -104,7 +104,14 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
   };
 
   handleCreateUser = () => {
-    const { email, name, selectedOrganization, role, password } = this.state;
+    const {
+      email,
+      name,
+      selectedOrganization,
+      role,
+      password,
+      isDisabled,
+    } = this.state;
     if (this.requiredFields()) {
       this.props.createUser({
         email,
@@ -112,6 +119,7 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
         selectedOrganization,
         role,
         password,
+        isDisabled,
       });
     }
   };

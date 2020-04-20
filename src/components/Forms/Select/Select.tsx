@@ -28,16 +28,11 @@ export default class Select extends Component<SelectProps> {
   };
 
   render(): JSX.Element {
-    console.log('dx', this.props.defaultValue);
     return (
       <div>
         <Label htmlFor={this.props.labelName}>{this.props.labelName}</Label>
 
-        <StyledSelect
-          id={this.props.labelName}
-          onChange={this.props.onChange}
-          defaultValue={this.props.defaultValue}
-        >
+        <StyledSelect id={this.props.labelName} onChange={this.props.onChange}>
           <StyledOption>Please Select:</StyledOption>
           {this.createOptions()}
         </StyledSelect>

@@ -8,7 +8,12 @@ import {
   fetchOrganizations,
   Organization,
 } from '../../../redux/actions/dashboard';
-import { User } from '../../../redux/actions/users';
+import {
+  User,
+  editUser,
+  EditUserAction,
+  EditUserPayload,
+} from '../../../redux/actions/users';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
 import {
@@ -25,6 +30,7 @@ interface UserEditProps {
   fetchOrganizations(): void;
   users: User[];
   id?: string;
+  editUser(data: EditUserPayload): EditUserAction;
 }
 
 interface UserEditState {
@@ -34,6 +40,7 @@ interface UserEditState {
   selectedOrganization: string;
   role: string;
   isDisabled: boolean;
+  id: number;
 }
 
 class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
@@ -46,6 +53,7 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
       selectedOrganization: '',
       role: '',
       isDisabled: true,
+      id: 0,
     };
   }
 
@@ -59,6 +67,7 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
           name: user.profile.name,
           isDisabled: user.isDisabled,
           selectedOrganization: user.profile.organisation,
+          id: user.id,
         });
       } else {
         this.setState({
@@ -67,6 +76,7 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
           role: user.profile.role,
           isDisabled: user.isDisabled,
           selectedOrganization: user.profile.organisation,
+          id: user.id,
         });
       }
     }
@@ -127,6 +137,27 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
     this.setState({ isDisabled: !isDisabled });
   };
 
+  onButtonClick = () => {
+    const {
+      email,
+      name,
+      selectedOrganization,
+      role,
+      password,
+      isDisabled,
+      id,
+    } = this.state;
+    this.props.editUser({
+      email,
+      name,
+      selectedOrganization,
+      role,
+      password,
+      isDisabled,
+      id,
+    });
+  };
+
   render(): JSX.Element {
     return (
       <Layout>
@@ -177,6 +208,9 @@ class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
             checked={this.state.isDisabled}
           />
         </Label>
+        <button type="button" onClick={this.onButtonClick}>
+          Edit User
+        </button>
       </Layout>
     );
   }
@@ -209,12 +243,15 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 
 export interface MapDispatchtoProps {
   fetchOrganizations(): FetchOrganizationsAction;
+  editUser(data: EditUserPayload): EditUserAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
   return {
     fetchOrganizations: (): FetchOrganizationsAction =>
       dispatch(fetchOrganizations()),
+    editUser: (data: EditUserPayload): EditUserAction =>
+      dispatch(editUser(data)),
   };
 }
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
-import { FETCH_USERS, CREATE_USER } from '../constants/actionTypes';
+import { FETCH_USERS, CREATE_USER, EDIT_USER } from '../constants/actionTypes';
 
 import {
   fetchUsersFailure,
@@ -10,6 +10,9 @@ import {
   createUserSuccess,
   createUserFailure,
   CreateUserAction,
+  EditUserAction,
+  editUserFailure,
+  editUserSuccess,
 } from '../actions/users';
 
 function* fetchUsers(): object {
@@ -30,7 +33,6 @@ export function* fetchUsersWatcher(): object {
 
 function* createUser(action: CreateUserAction): object {
   try {
-    console.log({ action });
     const {
       name,
       email,
@@ -57,4 +59,36 @@ function* createUser(action: CreateUserAction): object {
 
 export function* createUserWatcher(): object {
   yield takeLatest(CREATE_USER, createUser);
+}
+
+function* editUser(action: EditUserAction): object {
+  try {
+    const {
+      name,
+      email,
+      password,
+      role,
+      selectedOrganization,
+      id,
+    } = action.payload;
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/users/update';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    const json = yield axios.post(url, {
+      name,
+      email,
+      password,
+      role,
+      organisation: selectedOrganization,
+      id,
+    });
+    console.log('edit user json', json);
+  } catch (error) {
+    console.log('error', error);
+  }
+}
+
+export function* editUserWatcher(): object {
+  yield takeLatest(EDIT_USER, editUser);
 }
