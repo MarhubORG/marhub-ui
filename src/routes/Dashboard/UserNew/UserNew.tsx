@@ -8,8 +8,15 @@ import {
   fetchOrganizations,
   Organization,
 } from '../../../redux/actions/dashboard';
+import {
+  createUser,
+  CreateUserAction,
+  CreateUserPayload,
+} from '../../../redux/actions/users';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+
 import {
   MARHUB_ADMIN,
   MARHUB_USER,
@@ -22,6 +29,7 @@ const roles = [USER, ADMIN, MARHUB_USER, MARHUB_ADMIN];
 interface UserNewProps {
   organizations: Organization[];
   fetchOrganizations(): void;
+  createUser(action: CreateUserPayload): CreateUserAction;
 }
 
 interface UserNewState {
@@ -30,6 +38,8 @@ interface UserNewState {
   selectedOrganization: string;
   role: string;
   isDisabled: boolean;
+  message: string;
+  password: string;
 }
 
 class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
@@ -41,6 +51,8 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
       selectedOrganization: '',
       role: '',
       isDisabled: true,
+      message: '',
+      password: '',
     };
   }
 
@@ -50,6 +62,10 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
 
   handleEmailChange = (email: string): void => {
     this.setState({ email });
+  };
+
+  handlePasswordChange = (password: string): void => {
+    this.setState({ password });
   };
 
   handleNameChange = (name: string): void => {
@@ -87,13 +103,53 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
     this.setState({ isDisabled: !isDisabled });
   };
 
+  handleCreateUser = () => {
+    const { email, name, selectedOrganization, role, password } = this.state;
+    if (this.requiredFields()) {
+      this.props.createUser({
+        email,
+        name,
+        selectedOrganization,
+        role,
+        password,
+      });
+    }
+  };
+
+  requiredFields = (): boolean => {
+    const { email, name, selectedOrganization, role, password } = this.state;
+    const arr = [];
+    if (email === '') {
+      arr.push('email');
+    }
+    if (name === '') {
+      arr.push('name');
+    }
+    if (selectedOrganization === '') {
+      arr.push('organization');
+    }
+    if (role === '') {
+      arr.push('role');
+    }
+    if (password === '') {
+      arr.push('password');
+    }
+    if (arr.length > 0) {
+      const message = `Please fill out the following fields: ${arr.join(', ')}`;
+      this.setState({ message });
+      return false;
+    }
+    return true;
+  };
+
   render(): JSX.Element {
     return (
       <Layout>
         <h1>New User</h1>
+        <ErrorMessage message={this.state.message} />
         <TextInput
           htmlFor="name"
-          labelText="Name:"
+          labelText="Name: *"
           placeholder="Name"
           name="name"
           value={this.state.name}
@@ -101,23 +157,31 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
         />
         <TextInput
           htmlFor="email"
-          labelText="Email:"
+          labelText="Email: *"
           placeholder="Email"
           name="email"
           value={this.state.email}
           onChange={this.handleEmailChange}
         />
+        <TextInput
+          htmlFor="password"
+          labelText="Password: *"
+          placeholder="Password"
+          name="password"
+          value={this.state.password}
+          onChange={this.handlePasswordChange}
+        />
         <Select
           options={this.createOrganizationOptions()}
-          labelName="Select Organization:"
+          labelName="Select Organization: *"
           defaultValue={this.state.selectedOrganization}
           onChange={this.orgOnChange}
         />
         <Select
           options={this.createRolesOptions()}
-          labelName="Select Role:"
+          labelName="Select Role: *"
           defaultValue={this.state.role}
-          onChange={this.orgOnChange}
+          onChange={this.roleOnChange}
         />
         <Label htmlFor="isDisabled">
           Account is Disabled:
@@ -129,6 +193,9 @@ class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
             checked={this.state.isDisabled}
           />
         </Label>
+        <button type="button" onClick={this.handleCreateUser}>
+          Create New User
+        </button>
       </Layout>
     );
   }
@@ -159,12 +226,15 @@ const Label = styled.label`
 
 export interface MapDispatchtoProps {
   fetchOrganizations(): FetchOrganizationsAction;
+  createUser(data: CreateUserPayload): CreateUserAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
   return {
     fetchOrganizations: (): FetchOrganizationsAction =>
       dispatch(fetchOrganizations()),
+    createUser: (data: CreateUserPayload): CreateUserAction =>
+      dispatch(createUser(data)),
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedUserNew);

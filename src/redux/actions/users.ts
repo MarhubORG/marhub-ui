@@ -2,6 +2,9 @@ import {
   FETCH_USERS,
   FETCH_USERS_FAILURE,
   FETCH_USERS_SUCCESS,
+  CREATE_USER,
+  CREATE_USER_FAILURE,
+  CREATE_USER_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 
@@ -50,6 +53,54 @@ export function fetchUsersSuccess(payload: User[]): FetchUsersSuccessAction {
   };
 }
 
+export interface CreateUserPayload {
+  email: string;
+  name: string;
+  selectedOrganization: string;
+  role: string;
+  password: string;
+}
+
+export interface CreateUserAction {
+  type: typeof CREATE_USER;
+  payload: CreateUserPayload;
+}
+
+export function createUser(data: CreateUserPayload): CreateUserAction {
+  return {
+    type: CREATE_USER,
+    payload: {
+      email: data.email,
+      name: data.name,
+      selectedOrganization: data.selectedOrganization,
+      role: data.role,
+      password: data.password,
+    },
+  };
+}
+
+export interface CreateUserFailureAction {
+  type: typeof CREATE_USER_FAILURE;
+}
+
+export function createUserFailure(): CreateUserFailureAction {
+  return {
+    type: CREATE_USER_FAILURE,
+  };
+}
+
+export interface CreateUserSuccessAction {
+  type: typeof CREATE_USER_SUCCESS;
+  payload: User;
+}
+
+export function createUserSuccess(payload: User): CreateUserSuccessAction {
+  return {
+    type: CREATE_USER_SUCCESS,
+    payload,
+  };
+}
+
 export interface LogoutAction {
   type: typeof LOGOUT;
 }
@@ -58,4 +109,7 @@ export type UserActionTypes =
   | FetchUsersAction
   | FetchUsersFailureAction
   | FetchUsersSuccessAction
+  | CreateUserAction
+  | CreateUserFailureAction
+  | CreateUserSuccessAction
   | LogoutAction;

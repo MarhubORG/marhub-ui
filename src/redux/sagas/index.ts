@@ -7,7 +7,7 @@ import {
   createOrganizationWatcher,
 } from './dashboard';
 
-import { fetchUsersWatcher } from './user';
+import { fetchUsersWatcher, createUserWatcher } from './user';
 
 export default function* rootSaga() {
   yield all([
@@ -19,5 +19,6 @@ export default function* rootSaga() {
     updateOrganizationWatcher(),
     createOrganizationWatcher(),
     fetchUsersWatcher(),
+    createUserWatcher(),
   ]);
 }
