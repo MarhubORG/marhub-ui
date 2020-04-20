@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
-import { Organization } from '../../../redux/actions/dashboard';
+import {
+  FetchOrganizationsAction,
+  fetchOrganizations,
+  Organization,
+} from '../../../redux/actions/dashboard';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
 import {
@@ -14,11 +19,12 @@ import {
 
 const roles = [USER, ADMIN, MARHUB_USER, MARHUB_ADMIN];
 
-interface UserEditProps {
+interface UserNewProps {
   organizations: Organization[];
+  fetchOrganizations(): void;
 }
 
-interface UserEditState {
+interface UserNewState {
   email: string;
   name: string;
   selectedOrganization: string;
@@ -26,8 +32,8 @@ interface UserEditState {
   isDisabled: boolean;
 }
 
-class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
-  constructor(props: UserEditProps) {
+class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
+  constructor(props: UserNewProps) {
     super(props);
     this.state = {
       email: '',
@@ -36,6 +42,10 @@ class UnconnectedUserNew extends Component<UserEditProps, UserEditState> {
       role: '',
       isDisabled: true,
     };
+  }
+
+  componentDidMount(): void {
+    this.props.fetchOrganizations();
   }
 
   handleEmailChange = (email: string): void => {
@@ -147,4 +157,14 @@ const Label = styled.label`
   margin: 0.5rem 0rem;
 `;
 
-export default connect(mapStateToProps)(UnconnectedUserNew);
+export interface MapDispatchtoProps {
+  fetchOrganizations(): FetchOrganizationsAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
+  return {
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedUserNew);
