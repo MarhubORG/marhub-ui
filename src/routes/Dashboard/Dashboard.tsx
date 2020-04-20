@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import IrapDownload from './IrapDownload/irapDownload';
 import OrganizationList from './OrganizationList/OrganizationList';
+import UserList from './UserList/UserList';
+import UserEdit from './UserEdit/UserEdit';
+import UserNew from './UserNew/UserNew';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
@@ -14,16 +17,23 @@ import { MARHUB_ADMIN } from '../../auth/permissionTypes';
 
 const DashboardItems = [
   {
-    component: IrapDownload,
-    buttonText: 'Irap Download',
-    pathString: '/irap-download',
-    permissions: [MARHUB_ADMIN, ''],
+    component: UserList,
+    buttonText: 'Users',
+    pathString: '/users',
+    permissions: [MARHUB_ADMIN],
     showButton: true,
   },
   {
     component: OrganizationList,
     buttonText: 'Organizations',
     pathString: '/organizations',
+    permissions: [MARHUB_ADMIN, ''],
+    showButton: true,
+  },
+  {
+    component: IrapDownload,
+    buttonText: 'Search and Download',
+    pathString: '/search',
     permissions: [MARHUB_ADMIN, ''],
     showButton: true,
   },
@@ -45,6 +55,20 @@ const DashboardItems = [
     component: NewOrganization,
     buttonText: '',
     pathString: '/organizations/new',
+    permissions: [MARHUB_ADMIN],
+    showButton: false,
+  },
+  {
+    component: UserEdit,
+    buttonText: '',
+    pathString: '/users/:id',
+    permissions: [MARHUB_ADMIN],
+    showButton: false,
+  },
+  {
+    component: UserNew,
+    buttonText: '',
+    pathString: '/users/new',
     permissions: [MARHUB_ADMIN],
     showButton: false,
   },

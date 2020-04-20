@@ -1,4 +1,5 @@
 import { Organization } from '../redux/actions/dashboard';
+import { User } from '../redux/actions/users';
 
 export interface RegistrationState {
   loading: boolean;
@@ -13,6 +14,7 @@ export interface RootState {
   registration: RegistrationState;
   apiReducer: ApiState;
   dashboardReducer: DashboardState;
+  userReducer: UserState;
 }
 
 export interface ApiState {
@@ -26,4 +28,10 @@ export interface DashboardState {
   organizations: Organization[];
   errorMessage: string;
   redirectToVisibleFields: string;
+}
+
+export interface UserState {
+  loading: boolean;
+  users: User[];
+  message: string;
 }
