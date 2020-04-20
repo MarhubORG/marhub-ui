@@ -16,7 +16,11 @@ export default class Select extends Component<SelectProps> {
   createOptions = (): JSX.Element[] => {
     return this.props.options.map(el => {
       return (
-        <StyledOption key={el.value} value={`${el.value}`}>
+        <StyledOption
+          key={el.value}
+          value={`${el.value}`}
+          selected={el.value === this.props.defaultValue}
+        >
           {el.name}
         </StyledOption>
       );
@@ -24,6 +28,7 @@ export default class Select extends Component<SelectProps> {
   };
 
   render(): JSX.Element {
+    console.log('dx', this.props.defaultValue);
     return (
       <div>
         <Label htmlFor={this.props.labelName}>{this.props.labelName}</Label>
