@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-interface Option {
+export interface Option {
   value: string;
   name: string;
 }
