@@ -13,7 +13,12 @@ import OrganizationExportTemplate from './OrganizationExportTemplate/Organizatio
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
 import NewOrganization from './NewOrganization/NewOrganization';
-import { MARHUB_ADMIN } from '../../auth/permissionTypes';
+import {
+  MARHUB_ADMIN,
+  MARHUB_USER,
+  ADMIN,
+  USER,
+} from '../../auth/permissionTypes';
 
 const DashboardItems = [
   {
@@ -34,21 +39,21 @@ const DashboardItems = [
     component: IrapDownload,
     buttonText: 'Search and Download',
     pathString: '/search',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
     component: OrganizationExportTemplate,
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: false,
   },
   {
     component: TableauDashboard,
     buttonText: 'Tableau',
     pathString: '/tableau',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
