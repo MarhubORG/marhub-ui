@@ -49,7 +49,6 @@ function* login(action: LoginAction): object {
     let role = '';
     let organization = '';
     try {
-      console.log({ json });
       role = json.data.user.profile.role;
       organization = json.data.user.profile.organisation;
     } catch (error) {

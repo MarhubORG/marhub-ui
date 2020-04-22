@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
-import { Organization } from '../../../redux/actions/dashboard';
+import {
+  Organization,
+  fetchOrganizations,
+  FetchOrganizationsAction,
+} from '../../../redux/actions/dashboard';
 
 interface TemplateListProps {
   myOrganization: string;
   organizations: Organization[];
+  fetchOrganizations(): FetchOrganizationsAction;
 }
 
 class UnconnectedTemplateList extends Component<TemplateListProps> {
-  getMyOrganization = () => {
+  componentDidMount(): void {
+    this.props.fetchOrganizations();
+  }
+
+  getMyOrganization = (): Organization | null => {
     const { myOrganization, organizations } = this.props;
     for (let x = 0; x < organizations.length; x++) {
       if (`${organizations[x].id}` === myOrganization) {
@@ -19,7 +29,7 @@ class UnconnectedTemplateList extends Component<TemplateListProps> {
     return null;
   };
 
-  render() {
+  render(): JSX.Element {
     return <div>TemplateList</div>;
   }
 }
@@ -35,4 +45,18 @@ export function mapStateToProps(state: RootState): MapStateToProps {
   return { myOrganization, organizations };
 }
 
-export default connect(mapStateToProps)(UnconnectedTemplateList);
+export interface MapDispatchToProps {
+  fetchOrganizations(): FetchOrganizationsAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedTemplateList);
