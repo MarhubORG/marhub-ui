@@ -10,6 +10,7 @@ import UserList from './UserList/UserList';
 import UserEdit from './UserEdit/UserEdit';
 import UserNew from './UserNew/UserNew';
 import TemplateList from './TemplateList/TemplateList';
+import TemplateNew from './TemplateNew/TemplateNew';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
@@ -84,6 +85,13 @@ const DashboardItems = [
     pathString: '/templates',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
+  },
+  {
+    component: TemplateNew,
+    buttonText: '',
+    pathString: '/templates/new',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    showButton: false,
   },
 ];
 

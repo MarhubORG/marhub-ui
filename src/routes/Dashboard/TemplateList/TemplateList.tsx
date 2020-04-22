@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { Dispatch } from 'redux';
+import { Link } from '@reach/router';
 import { RootState } from '../../../types/interfaces';
 import {
   Organization,
@@ -30,9 +32,33 @@ class UnconnectedTemplateList extends Component<TemplateListProps> {
   };
 
   render(): JSX.Element {
-    return <div>TemplateList</div>;
+    return (
+      <Layout>
+        <h1>Templates</h1>
+        <StyledLinkInverted to="/dashboard/templates/new">
+          Create New Template
+        </StyledLinkInverted>
+      </Layout>
+    );
   }
 }
+
+const Layout = styled.div`
+  margin-left: 1rem;
+`;
+
+const StyledLinkInverted = styled(Link)`
+  background-color: ${({ theme }): string => theme.primaryColor};
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+  margin: 1rem 1rem 1rem 0;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: ${({ theme }): string => theme.white};
+  font-weight: 600;
+`;
 
 export interface MapStateToProps {
   myOrganization: string;
