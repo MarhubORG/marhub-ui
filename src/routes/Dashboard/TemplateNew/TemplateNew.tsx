@@ -10,10 +10,13 @@ import {
   CreateTemplateAction,
   createTemplate,
   Template,
+  Organization,
 } from '../../../redux/actions/dashboard';
 
 interface NewTemplateProps {
   createTemplate(payload: Template): CreateTemplateAction;
+  myOrganization: string;
+  organizations: Organization[];
 }
 interface NewOrganizationState {
   name: string;
@@ -35,27 +38,41 @@ class UnconnectedNewOrganization extends Component<
     };
   }
 
+  getMyOrganization = (): Organization | null => {
+    const { myOrganization, organizations } = this.props;
+    for (let x = 0; x < organizations.length; x++) {
+      if (`${organizations[x].id}` === myOrganization) {
+        return organizations[x];
+      }
+    }
+    return null;
+  };
+
   createCheckboxes = () => {
-    return databaseFields.map(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const checked = this.state[el];
-      return (
-        <StyledCheckboxDiv key={el}>
-          <label htmlFor={el}>
-            <input
-              type="checkbox"
-              id={el}
-              name={el}
-              value=""
-              checked={checked}
-              onChange={(e): void => this.toggleCheckbox(e)}
-            />
-            {el}
-          </label>
-        </StyledCheckboxDiv>
-      );
-    });
+    const myOrg = this.getMyOrganization();
+    if (myOrg !== null) {
+      return myOrg.organisation.visibleFields.map(el => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        const checked = this.state[el];
+        return (
+          <StyledCheckboxDiv key={el}>
+            <label htmlFor={el}>
+              <input
+                type="checkbox"
+                id={el}
+                name={el}
+                value=""
+                checked={checked}
+                onChange={(e): void => this.toggleCheckbox(e)}
+              />
+              {el}
+            </label>
+          </StyledCheckboxDiv>
+        );
+      });
+    }
+    return null;
   };
 
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
@@ -143,6 +160,17 @@ const StyledCheckboxDiv = styled.div`
   padding: 0.1rem 0;
 `;
 
+export interface MapStateToProps {
+  myOrganization: string;
+  organizations: Organization[];
+}
+
+export function mapStateToProps(state: RootState): MapStateToProps {
+  const { myOrganization } = state.registration;
+  const { organizations } = state.dashboardReducer;
+  return { myOrganization, organizations };
+}
+
 export interface MapDispatchToProps {
   createTemplate(params: Template): CreateTemplateAction;
 }
@@ -154,4 +182,7 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedNewOrganization);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedNewOrganization);
