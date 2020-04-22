@@ -3,28 +3,24 @@ import styled from 'styled-components';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import { RootState } from '../../../types/interfaces';
 import { databaseFields } from '../../../utils/database';
 
-interface NewOrganizationProps {
-  message?: string;
-}
-
 interface NewOrganizationState {
   name: string;
+  message: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
-class UnconnectedNewOrganization extends Component<
-  NewOrganizationProps,
-  NewOrganizationState
-> {
+class UnconnectedNewOrganization extends Component<null, NewOrganizationState> {
   /* eslint-enable @typescript-eslint/indent */
 
-  constructor(props: NewOrganizationProps) {
+  constructor(props: null) {
     super(props);
     this.state = {
       name: '',
+      message: '',
     };
   }
 
@@ -54,8 +50,6 @@ class UnconnectedNewOrganization extends Component<
   toggleCheckbox = (e: React.FormEvent<EventTarget>): void => {
     const target = e.target as HTMLInputElement;
     const { name } = target;
-    console.log('state', this.state);
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const checked = this.state[name];
@@ -72,19 +66,18 @@ class UnconnectedNewOrganization extends Component<
 
   handleClick = () => {
     console.log('handleClick');
+    if (this.state.name.length === 0) {
+      this.setState({ message: 'Please add a name.' });
+    }
   };
 
   render(): JSX.Element {
     return (
       <Layout>
-        <div>{this.props.message}</div>
         <h1>New Template</h1>
+        <ErrorMessage message={this.state.message} />
         <form>
-          <StyledButton
-            type="button"
-            disabled={this.state.name.length <= 0}
-            onClick={this.handleClick}
-          >
+          <StyledButton type="button" onClick={this.handleClick}>
             Submit
           </StyledButton>
           <TextInput
