@@ -52,6 +52,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: '',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -68,6 +69,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: errorMessage,
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -82,6 +84,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: '',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -96,6 +99,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: '',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -110,6 +114,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: '',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -128,6 +133,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: '',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });
@@ -145,6 +151,7 @@ describe('registrationReducer', () => {
       loginRedirect: false,
       error: 'message',
       role: '',
+      myOrganization: '',
     };
     expect(state).toEqual(expected);
   });

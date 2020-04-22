@@ -8,6 +8,7 @@ export interface RegistrationState {
   redirect: boolean;
   loginRedirect: boolean;
   role: string;
+  myOrganization: string;
 }
 
 export interface RootState {
