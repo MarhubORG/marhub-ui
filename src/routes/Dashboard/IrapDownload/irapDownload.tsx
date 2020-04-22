@@ -14,10 +14,14 @@ import {
 import { ApiState, RootState } from '../../../types/interfaces';
 import Table from './Table';
 import { getHeaders, createNewExcelFile } from '../../../utils/excel';
+import Select from '../../../components/Forms/Select/Select';
+import { Organization } from '../../../redux/actions/dashboard';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
   apiReducer: ApiState;
+  myOrganization: string;
+  organizations: Organization[];
 }
 
 interface IrapDownloadState {
@@ -26,6 +30,7 @@ interface IrapDownloadState {
   irapUuidSearchText: string;
   data: object[];
   emailText: string;
+  selectedTemplate: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -42,6 +47,7 @@ export class UnconnectedIrapDownload extends Component<
       irapUuidSearchText: '',
       data: [],
       emailText: '',
+      selectedTemplate: '',
     };
   }
 
@@ -52,7 +58,7 @@ export class UnconnectedIrapDownload extends Component<
   componentDidUpdate(
     prevProps: IrapDownloadProps,
     prevState: IrapDownloadState
-  ) {
+  ): void {
     if (prevProps.apiReducer.irapState !== this.props.apiReducer.irapState) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ data: this.props.apiReducer.irapState });
@@ -68,6 +74,29 @@ export class UnconnectedIrapDownload extends Component<
     return this.props.exportingIrapData !== undefined
       ? this.props.exportingIrapData({ startDate, endDate })
       : null;
+  };
+
+  getMyOrganization = (): Organization | null => {
+    const { myOrganization, organizations } = this.props;
+    for (let x = 0; x < organizations.length; x++) {
+      if (`${organizations[x].id}` === myOrganization) {
+        return organizations[x];
+      }
+    }
+    return null;
+  };
+
+  getTemplateOptions = () => {
+    const myOrg = this.getMyOrganization();
+    if (myOrg !== null && myOrg.organisation.templates !== undefined) {
+      return Object.keys(myOrg.organisation.templates).map(el => {
+        return {
+          value: el,
+          name: el,
+        };
+      });
+    }
+    return [];
   };
 
   oneWeekAgo = (): Date => {
@@ -124,12 +153,25 @@ export class UnconnectedIrapDownload extends Component<
     createNewExcelFile(data, headers);
   };
 
+  templateOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.setState({ selectedTemplate: event.target.value });
+  };
+
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
     this.updateEndDate();
     const dataExists = this.state.data.length > 0;
+    const templateOptions = this.getTemplateOptions();
     return (
       <Layout>
+        <PushRight>
+          <Select
+            options={templateOptions}
+            labelName="Select Template: *"
+            defaultValue={this.state.selectedTemplate}
+            onChange={this.templateOnChange}
+          />
+        </PushRight>
         <Label>From:</Label>
         <DatePicker value={startDate} onChange={this.handleStartDateChange} />
         <PullLeft>
@@ -170,12 +212,18 @@ export class UnconnectedIrapDownload extends Component<
 
 export interface MapStateToProps {
   apiReducer: ApiState;
+  myOrganization: string;
+  organizations: Organization[];
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { apiReducer } = state;
+  const { myOrganization } = state.registration;
+  const { organizations } = state.dashboardReducer;
   return {
     apiReducer,
+    myOrganization,
+    organizations,
   };
 }
 
@@ -193,6 +241,10 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
 
 const SearchLayout = styled.div`
   padding: 1rem;
+`;
+
+const PushRight = styled.div`
+  margin-left: 1rem;
 `;
 
 const SearchInput = styled.input`
