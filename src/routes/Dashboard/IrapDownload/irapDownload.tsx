@@ -16,6 +16,7 @@ import Table from './Table';
 import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 import Select from '../../../components/Forms/Select/Select';
 import { Organization } from '../../../redux/actions/dashboard';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
@@ -31,6 +32,7 @@ interface IrapDownloadState {
   data: object[];
   emailText: string;
   selectedTemplate: string;
+  message: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
@@ -48,6 +50,7 @@ export class UnconnectedIrapDownload extends Component<
       data: [],
       emailText: '',
       selectedTemplate: '',
+      message: '',
     };
   }
 
@@ -70,9 +73,14 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   handleClick = (): object | null => {
-    const { startDate, endDate } = this.state;
+    const { startDate, endDate, selectedTemplate } = this.state;
+    if (selectedTemplate.length === 0) {
+      this.setState({ message: 'Please choose a template.' });
+      return null;
+    }
+    this.setState({ message: '' });
     return this.props.exportingIrapData !== undefined
-      ? this.props.exportingIrapData({ startDate, endDate })
+      ? this.props.exportingIrapData({ startDate, endDate, selectedTemplate })
       : null;
   };
 
@@ -89,12 +97,14 @@ export class UnconnectedIrapDownload extends Component<
   getTemplateOptions = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null && myOrg.organisation.templates !== undefined) {
-      return Object.keys(myOrg.organisation.templates).map(el => {
-        return {
+      const arr = [{ name: 'Full Template', value: 'Full Template' }];
+      Object.keys(myOrg.organisation.templates).map(el => {
+        arr.push({
           value: el,
           name: el,
-        };
+        });
       });
+      return arr;
     }
     return [];
   };
@@ -164,6 +174,7 @@ export class UnconnectedIrapDownload extends Component<
     const templateOptions = this.getTemplateOptions();
     return (
       <Layout>
+        <ErrorMessage message={this.state.message} />
         <PushRight>
           <Select
             options={templateOptions}

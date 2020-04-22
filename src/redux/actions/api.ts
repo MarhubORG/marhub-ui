@@ -8,6 +8,7 @@ import {
 export interface ExportingIrapDataPayload {
   startDate: string;
   endDate: string;
+  selectedTemplate: string;
 }
 export interface ExportingIrapDataAction {
   type: typeof EXPORTING_IRAP_DATA;
