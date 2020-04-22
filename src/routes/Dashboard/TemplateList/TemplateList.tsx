@@ -31,6 +31,22 @@ class UnconnectedTemplateList extends Component<TemplateListProps> {
     return null;
   };
 
+  createTemplateList = (): JSX.Element[] | null => {
+    const myOrg = this.getMyOrganization();
+    const templates = myOrg?.organisation.templates;
+    if (templates !== undefined) {
+      const arr = Object.keys(templates);
+      return arr.map(el => {
+        return (
+          <StyledLink key={el} to="#">
+            {el}
+          </StyledLink>
+        );
+      });
+    }
+    return null;
+  };
+
   render(): JSX.Element {
     return (
       <Layout>
@@ -38,6 +54,7 @@ class UnconnectedTemplateList extends Component<TemplateListProps> {
         <StyledLinkInverted to="/dashboard/templates/new">
           Create New Template
         </StyledLinkInverted>
+        {this.createTemplateList()}
       </Layout>
     );
   }
@@ -45,6 +62,19 @@ class UnconnectedTemplateList extends Component<TemplateListProps> {
 
 const Layout = styled.div`
   margin-left: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  background-color: ${({ theme }): string => theme.white};
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: ${({ theme }): string => theme.primaryColor};
+  font-weight: 600;
 `;
 
 const StyledLinkInverted = styled(Link)`

@@ -6,6 +6,7 @@ import {
   FETCH_ORGANIZATIONS,
   UPDATE_ORGANIZATION,
   CREATE_ORGANIZATION,
+  CREATE_TEMPLATE,
 } from '../constants/actionTypes';
 import {
   fetchOrganizationsSuccess,
@@ -17,6 +18,9 @@ import {
   CreateOrganizationAction,
   createOrganizationFailure,
   createOrganizationSuccess,
+  CreateTemplateAction,
+  createTemplateFailure,
+  createTemplateSuccess,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -80,4 +84,25 @@ function* createOrganization(action: CreateOrganizationAction): object {
 
 export function* createOrganizationWatcher(): object {
   yield takeLatest(CREATE_ORGANIZATION, createOrganization);
+}
+
+function* createTemplate(action: CreateTemplateAction): object {
+  console.log('saga create Template');
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/templates';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    console.log({ action });
+    const json = yield axios.post(url, {
+      name: action.payload.name,
+      fields: action.payload.fields,
+    });
+    yield put(createTemplateSuccess(json.data));
+  } catch (error) {
+    yield put(createTemplateFailure());
+  }
+}
+
+export function* createTemplateWatcher(): object {
+  yield takeLatest(CREATE_TEMPLATE, createTemplate);
 }

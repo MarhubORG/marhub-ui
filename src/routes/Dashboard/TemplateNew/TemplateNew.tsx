@@ -6,17 +6,28 @@ import TextInput from '../../../components/Forms/TextInput/TextInput';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import { RootState } from '../../../types/interfaces';
 import { databaseFields } from '../../../utils/database';
+import {
+  CreateTemplateAction,
+  createTemplate,
+  Template,
+} from '../../../redux/actions/dashboard';
 
+interface NewTemplateProps {
+  createTemplate(payload: Template): CreateTemplateAction;
+}
 interface NewOrganizationState {
   name: string;
   message: string;
 }
 
 /* eslint-disable @typescript-eslint/indent */
-class UnconnectedNewOrganization extends Component<null, NewOrganizationState> {
+class UnconnectedNewOrganization extends Component<
+  NewTemplateProps,
+  NewOrganizationState
+> {
   /* eslint-enable @typescript-eslint/indent */
 
-  constructor(props: null) {
+  constructor(props: NewTemplateProps) {
     super(props);
     this.state = {
       name: '',
@@ -65,9 +76,14 @@ class UnconnectedNewOrganization extends Component<null, NewOrganizationState> {
   };
 
   handleClick = () => {
-    console.log('handleClick');
     if (this.state.name.length === 0) {
       this.setState({ message: 'Please add a name.' });
+    } else {
+      console.log('send query');
+      this.props.createTemplate({
+        name: this.state.name,
+        fields: Object.keys(this.state).filter(e => e !== 'name'),
+      });
     }
   };
 
@@ -127,4 +143,15 @@ const StyledCheckboxDiv = styled.div`
   padding: 0.1rem 0;
 `;
 
-export default connect(null, null)(UnconnectedNewOrganization);
+export interface MapDispatchToProps {
+  createTemplate(params: Template): CreateTemplateAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
+  return {
+    createTemplate: (payload: Template): CreateTemplateAction =>
+      dispatch(createTemplate(payload)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(UnconnectedNewOrganization);
