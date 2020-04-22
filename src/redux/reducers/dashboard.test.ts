@@ -44,6 +44,7 @@ describe('dashboardReducer', () => {
       organizations: [],
       errorMessage: successMessage,
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
 
     const state = dashboardReducer(initialState, {
@@ -64,6 +65,7 @@ describe('dashboardReducer', () => {
       organizations: [],
       errorMessage: message,
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
 
     expect(state).toEqual(expected);
@@ -90,6 +92,7 @@ describe('dashboardReducer', () => {
       organizations: [],
       errorMessage: '',
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
     expect(state).toEqual(expected);
   });
@@ -102,6 +105,7 @@ describe('dashboardReducer', () => {
       organizations: [],
       errorMessage: '',
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
     expect(state).toEqual(expected);
   });
@@ -114,6 +118,7 @@ describe('dashboardReducer', () => {
       organizations: [],
       errorMessage: standardFetchOrganizationErrorMessage,
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
     expect(state).toEqual(expected);
   });
@@ -137,6 +142,7 @@ describe('dashboardReducer', () => {
       organizations,
       errorMessage: '',
       redirectToVisibleFields: '',
+      templateMessage: '',
     };
     expect(state).toEqual(expected);
   });

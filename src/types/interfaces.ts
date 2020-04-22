@@ -29,6 +29,7 @@ export interface DashboardState {
   organizations: Organization[];
   errorMessage: string;
   redirectToVisibleFields: string;
+  templateMessage: string;
 }
 
 export interface UserState {
