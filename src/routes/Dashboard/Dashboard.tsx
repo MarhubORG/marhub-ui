@@ -9,6 +9,7 @@ import OrganizationList from './OrganizationList/OrganizationList';
 import UserList from './UserList/UserList';
 import UserEdit from './UserEdit/UserEdit';
 import UserNew from './UserNew/UserNew';
+import TemplateList from './TemplateList/TemplateList';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
@@ -39,14 +40,14 @@ const DashboardItems = [
     component: IrapDownload,
     buttonText: 'Search and Download',
     pathString: '/search',
-    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
     component: OrganizationExportTemplate,
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
-    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: false,
   },
   {
@@ -76,6 +77,13 @@ const DashboardItems = [
     pathString: '/users/new',
     permissions: [MARHUB_ADMIN],
     showButton: false,
+  },
+  {
+    component: TemplateList,
+    buttonText: 'Templates',
+    pathString: '/templates',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    showButton: true,
   },
 ];
 
