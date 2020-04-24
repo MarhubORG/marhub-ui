@@ -96,7 +96,6 @@ class UnconnectedNewOrganization extends Component<
     if (this.state.name.length === 0) {
       this.setState({ message: 'Please add a name.' });
     } else {
-      console.log('send query');
       this.props.createTemplate({
         name: this.state.name,
         fields: Object.keys(this.state).filter(e => e !== 'name'),
