@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c3 {
+  height: 2rem;
+  min-width: 18rem;
+  max-width: 18rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+}
+
+.c2 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c4 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c5 {
+  max-height: 50vh;
+}
+
+.c1 {
+  height: 2rem;
+  width: 8rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+.c0 {
+  padding: 1rem 2rem;
+}
+
+<div
+  className="c0"
+>
+  <h1>
+    New Template
+  </h1>
+  <form>
+    <button
+      className="c1"
+      onClick={[Function]}
+      type="button"
+    >
+      Submit
+    </button>
+    <div>
+      <label
+        className="c2"
+        htmlFor="name"
+      >
+        Name:
+      </label>
+      <input
+        className="c3"
+        name="name"
+        onChange={[Function]}
+        placeholder="Name"
+        type="text"
+        value=""
+      />
+    </div>
+    <span
+      className="c4"
+    >
+      Fields:
+    </span>
+    <div
+      className="c5"
+    />
+  </form>
+</div>
+`;

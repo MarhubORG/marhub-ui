@@ -15,7 +15,7 @@ interface UserListProps {
   users: User[];
 }
 
-class UnconnectedUserList extends Component<UserListProps> {
+export class UnconnectedUserList extends Component<UserListProps> {
   componentDidMount(): void {
     this.props.fetchUsers();
   }

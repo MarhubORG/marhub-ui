@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c2 {
+  height: 2rem;
+  min-width: 18rem;
+  max-width: 18rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+}
+
+.c1 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c3 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c4 {
+  height: 2rem;
+  min-width: 20.2rem;
+  max-width: 20.2rem;
+  border-radius: 0.2rem;
+  font-size: 0.85rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+}
+
+.c5 {
+  margin-left: 2rem;
+}
+
+.c0 {
+  margin: 1rem;
+}
+
+.c6 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+<div
+  className="c0"
+>
+  <h1>
+    New User
+  </h1>
+  <div>
+    <label
+      className="c1"
+      htmlFor="name"
+    >
+      Name: *
+    </label>
+    <input
+      className="c2"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      className="c1"
+      htmlFor="email"
+    >
+      Email: *
+    </label>
+    <input
+      className="c2"
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      className="c1"
+      htmlFor="password"
+    >
+      Password: *
+    </label>
+    <input
+      className="c2"
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      className="c3"
+      htmlFor="Select Organization: *"
+    >
+      Select Organization: *
+    </label>
+    <select
+      className="c4"
+      id="Select Organization: *"
+      onChange={[Function]}
+    >
+      <option
+        className="c5"
+      >
+        Please Select:
+      </option>
+    </select>
+  </div>
+  <div>
+    <label
+      className="c3"
+      htmlFor="Select Role: *"
+    >
+      Select Role: *
+    </label>
+    <select
+      className="c4"
+      id="Select Role: *"
+      onChange={[Function]}
+    >
+      <option
+        className="c5"
+      >
+        Please Select:
+      </option>
+      <option
+        className="c5"
+        selected={false}
+        value="user"
+      >
+        user
+      </option>
+      <option
+        className="c5"
+        selected={false}
+        value="admin"
+      >
+        admin
+      </option>
+      <option
+        className="c5"
+        selected={false}
+        value="marhub_user"
+      >
+        marhub_user
+      </option>
+      <option
+        className="c5"
+        selected={false}
+        value="marhub_admin"
+      >
+        marhub_admin
+      </option>
+    </select>
+  </div>
+  <label
+    className="c6"
+    htmlFor="isDisabled"
+  >
+    Account is Disabled:
+    <input
+      checked={true}
+      id="isDisabled"
+      name="isDisabled"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </label>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Create New User
+  </button>
+</div>
+`;

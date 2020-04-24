@@ -45,7 +45,10 @@ interface UserEditState {
   id: number;
 }
 
-class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
+export class UnconnectedUserEdit extends Component<
+  UserEditProps,
+  UserEditState
+> {
   constructor(props: UserEditProps) {
     super(props);
     this.state = {

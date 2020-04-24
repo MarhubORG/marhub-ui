@@ -42,7 +42,7 @@ interface UserNewState {
   password: string;
 }
 
-class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
+export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
   constructor(props: UserNewProps) {
     super(props);
     this.state = {

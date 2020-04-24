@@ -24,7 +24,7 @@ interface NewOrganizationState {
 }
 
 /* eslint-disable @typescript-eslint/indent */
-class UnconnectedNewOrganization extends Component<
+export class UnconnectedNewTemplate extends Component<
   NewTemplateProps,
   NewOrganizationState
 > {
@@ -184,4 +184,4 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UnconnectedNewOrganization);
+)(UnconnectedNewTemplate);
