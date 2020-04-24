@@ -20,6 +20,7 @@ exports[`renders correctly 1`] = `
 }
 
 <div>
+  
   <a
     className="c0"
     href="/dashboard/organizations/new"

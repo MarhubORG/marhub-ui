@@ -24,7 +24,7 @@ interface NewOrganizationState {
 }
 
 /* eslint-disable @typescript-eslint/indent */
-class UnconnectedNewOrganization extends Component<
+export class UnconnectedNewOrganization extends Component<
   NewOrganizationProps,
   NewOrganizationState
 > {

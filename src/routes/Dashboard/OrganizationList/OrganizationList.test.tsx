@@ -6,7 +6,10 @@ import { fetchOrganizations } from '../../../redux/actions/dashboard';
 it('renders correctly', () => {
   const tree = renderer
     .create(
-      <UnconnectedOrganizationList fetchOrganizations={fetchOrganizations} />
+      <UnconnectedOrganizationList
+        fetchOrganizations={fetchOrganizations}
+        errorMessage=""
+      />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

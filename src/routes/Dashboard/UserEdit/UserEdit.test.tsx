@@ -13,17 +13,7 @@ it('renders correctly', () => {
         organizations={[]}
         id="1"
         message=""
-        editUser={() =>
-          editUser({
-            email: 'email',
-            name: 'name',
-            selectedOrganization: '1',
-            role: 'role',
-            password: 'password',
-            isDisabled: true,
-            id: 1,
-          })
-        }
+        editUser={editUser}
       />
     )
     .toJSON();
