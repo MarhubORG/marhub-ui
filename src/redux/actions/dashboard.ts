@@ -10,6 +10,9 @@ import {
   CREATE_ORGANIZATION_FAILURE,
   CREATE_ORGANIZATION_SUCCESS,
   CREATE_ORGANIZATION_REDIRECT,
+  CREATE_TEMPLATE,
+  CREATE_TEMPLATE_FAILURE,
+  CREATE_TEMPLATE_SUCCESS,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -23,6 +26,8 @@ export function fetchOrganizations(): FetchOrganizationsAction {
 export interface OrganizationFields {
   name: string;
   visibleFields: string[];
+  templates?: Template[];
+  // TODO update for templates
 }
 
 export interface Organization {
@@ -152,6 +157,48 @@ export function createOrganizationRedirect(): CreateOrganizationRedirectAction {
   };
 }
 
+export interface Template {
+  name: string;
+  fields: string[];
+}
+
+export interface CreateTemplateAction {
+  type: typeof CREATE_TEMPLATE;
+  payload: Template;
+}
+
+export function createTemplate(payload: Template): CreateTemplateAction {
+  console.log('creating template');
+  return {
+    type: CREATE_TEMPLATE,
+    payload,
+  };
+}
+
+export interface CreateTemplateFailureAction {
+  type: typeof CREATE_TEMPLATE_FAILURE;
+}
+
+export function createTemplateFailure(): CreateTemplateFailureAction {
+  return {
+    type: CREATE_TEMPLATE_FAILURE,
+  };
+}
+
+export interface CreateTemplateSuccessAction {
+  type: typeof CREATE_TEMPLATE_SUCCESS;
+  payload: Organization;
+}
+
+export function createTemplateSuccess(
+  payload: Organization
+): CreateTemplateSuccessAction {
+  return {
+    type: CREATE_TEMPLATE_SUCCESS,
+    payload,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -163,4 +210,7 @@ export type DashboardActionTypes =
   | CreateOrganizationAction
   | CreateOrganizationFailureAction
   | CreateOrganizationSuccessAction
-  | CreateOrganizationRedirectAction;
+  | CreateOrganizationRedirectAction
+  | CreateTemplateAction
+  | CreateTemplateFailureAction
+  | CreateTemplateSuccessAction;

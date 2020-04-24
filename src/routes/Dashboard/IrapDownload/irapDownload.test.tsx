@@ -7,13 +7,23 @@ import {
 } from './irapDownload';
 import { exportingIrapData } from '../../../redux/actions/api';
 import { initialState } from '../../../redux/reducers/api';
+import { Organization } from '../../../redux/actions/dashboard';
 
+const myOrganization: Organization = {
+  id: 1,
+  organisation: {
+    name: 'My Org',
+    visibleFields: ['visible', 'fields'],
+  },
+};
 it('renders correctly when logged in', () => {
   const tree = renderer
     .create(
       <UnconnectedIrapDownload
         exportingIrapData={exportingIrapData}
         apiReducer={initialState}
+        myOrganization="1"
+        organizations={[myOrganization]}
       />
     )
     .toJSON();

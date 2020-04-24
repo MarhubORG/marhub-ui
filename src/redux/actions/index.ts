@@ -96,6 +96,7 @@ export function loginError(message: string): LoginErrorAction {
 
 export interface LoginSuccessPayload {
   role: string;
+  organization: string;
 }
 
 export interface LoginSuccessAction {
@@ -103,8 +104,11 @@ export interface LoginSuccessAction {
   payload: LoginSuccessPayload;
 }
 
-export function loginSuccess(role: string): LoginSuccessAction {
-  return { type: LOGIN_SUCCESS, payload: { role } };
+export function loginSuccess(
+  role: string,
+  organization: string
+): LoginSuccessAction {
+  return { type: LOGIN_SUCCESS, payload: { role, organization } };
 }
 
 export interface LoginRedirectingAction {

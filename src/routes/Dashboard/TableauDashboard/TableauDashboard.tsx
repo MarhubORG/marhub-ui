@@ -15,6 +15,10 @@ export default class TableauDashboard extends Component {
     localStorage.setItem(REFRESHES, '');
   }
 
+  testHypothesis = () => {
+    console.log('th');
+  };
+
   render(): JSX.Element {
     return <div>{DashboardObject()}</div>;
   }

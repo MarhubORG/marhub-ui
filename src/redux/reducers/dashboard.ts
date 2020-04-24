@@ -11,16 +11,24 @@ import {
   CREATE_ORGANIZATION_FAILURE,
   CREATE_ORGANIZATION_SUCCESS,
   CREATE_ORGANIZATION_REDIRECT,
+  CREATE_TEMPLATE,
+  CREATE_TEMPLATE_FAILURE,
+  CREATE_TEMPLATE_SUCCESS,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
 export const standardFetchOrganizationErrorMessage =
   'Could not fetch organizations. Please try again later or contact the administrator.';
+const templateFailureMessage =
+  'Creating template failed. Please contact your administrator.';
+const templateSuccessMessage = 'Successfully created new template';
+
 export const initialState = {
   loading: false,
   organizations: [],
   errorMessage: '',
   redirectToVisibleFields: '',
+  templateMessage: '',
 };
 export const successMessage = 'Successfully updated organization permissions.';
 export const createOrgFailureMessage =
@@ -84,6 +92,25 @@ export default function dashboardReducer(
       return {
         ...state,
         redirectToVisibleFields: '',
+      };
+    case CREATE_TEMPLATE_FAILURE:
+      return {
+        ...state,
+        templateMessage: templateFailureMessage,
+        loading: false,
+      };
+    case CREATE_TEMPLATE:
+      return {
+        ...state,
+        loading: true,
+        templateMessage: '',
+      };
+    case CREATE_TEMPLATE_SUCCESS:
+      return {
+        ...state,
+        loading: true,
+        templateMessage: templateSuccessMessage,
+        organizations: replaceWithUpdatedOrg(action.payload, state),
       };
     default:
       return state;

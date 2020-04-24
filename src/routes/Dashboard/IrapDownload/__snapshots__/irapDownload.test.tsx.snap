@@ -1,40 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly when logged in 1`] = `
-.c2 {
+.c6 {
   margin: 1rem;
   border-radius: 2rem;
   border: 0px red;
   padding: 0.5rem 1rem;
 }
 
-.c2 .react-date-picker__wrapper {
+.c6 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c2 .react-date-picker__wrapper {
+.c6 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c2 .react-date-picker__wrapper {
+.c6 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c2 .react-date-picker__wrapper {
+.c6 .react-date-picker__wrapper {
   border: 0px;
 }
 
-.c5 {
+.c9 {
   border-collapse: collapse;
 }
 
-.c5 th,
-.c5 td {
+.c9 th,
+.c9 td {
   border: 1px solid black;
   white-space: nowrap;
 }
 
+.c2 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c3 {
+  height: 2rem;
+  min-width: 20.2rem;
+  max-width: 20.2rem;
+  border-radius: 0.2rem;
+  font-size: 0.85rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+}
+
 .c4 {
+  margin-left: 2rem;
+}
+
+.c1 {
+  margin-left: 1rem;
+}
+
+.c8 {
   margin: 1rem;
   width: 12rem;
   height: 3rem;
@@ -44,7 +72,7 @@ exports[`renders correctly when logged in 1`] = `
   font-size: 0.8rem;
 }
 
-.c1 {
+.c5 {
   margin-left: 1rem;
   font-weight: 700;
 }
@@ -53,20 +81,43 @@ exports[`renders correctly when logged in 1`] = `
   margin-top: 2rem;
 }
 
-.c3 {
+.c7 {
   margin-left: -1rem;
 }
 
 <div
   className="c0"
 >
-  <label
+  <div
     className="c1"
+  >
+    <div>
+      <label
+        className="c2"
+        htmlFor="Select Template: *"
+      >
+        Select Template: *
+      </label>
+      <select
+        className="c3"
+        id="Select Template: *"
+        onChange={[Function]}
+      >
+        <option
+          className="c4"
+        >
+          Please Select:
+        </option>
+      </select>
+    </div>
+  </div>
+  <label
+    className="c5"
   >
     From:
   </label>
   <div
-    className="react-date-picker react-date-picker--closed react-date-picker--enabled c2"
+    className="react-date-picker react-date-picker--closed react-date-picker--enabled c6"
     onFocus={[Function]}
   >
     <div
@@ -91,7 +142,7 @@ exports[`renders correctly when logged in 1`] = `
             }
           }
           type="date"
-          value="2020-04-13"
+          value="2020-04-17"
         />
         
         <input
@@ -130,7 +181,7 @@ exports[`renders correctly when logged in 1`] = `
           placeholder="--"
           required={null}
           type="number"
-          value={13}
+          value={17}
         />
         <span
           className="react-date-picker__inputGroup__divider"
@@ -225,16 +276,16 @@ exports[`renders correctly when logged in 1`] = `
     </div>
   </div>
   <span
-    className="c3"
+    className="c7"
   >
     <label
-      className="c1"
+      className="c5"
     >
       To:
     </label>
   </span>
   <div
-    className="react-date-picker react-date-picker--closed react-date-picker--enabled c2"
+    className="react-date-picker react-date-picker--closed react-date-picker--enabled c6"
     onFocus={[Function]}
   >
     <div
@@ -259,7 +310,7 @@ exports[`renders correctly when logged in 1`] = `
             }
           }
           type="date"
-          value="2020-04-20"
+          value="2020-04-24"
         />
         
         <input
@@ -298,7 +349,7 @@ exports[`renders correctly when logged in 1`] = `
           placeholder="--"
           required={null}
           type="number"
-          value={20}
+          value={24}
         />
         <span
           className="react-date-picker__inputGroup__divider"
@@ -393,14 +444,14 @@ exports[`renders correctly when logged in 1`] = `
     </div>
   </div>
   <button
-    className="c4"
+    className="c8"
     onClick={[Function]}
   >
     Download IRAP Data
   </button>
   <div>
     <table
-      className="c5"
+      className="c9"
     >
       <thead>
         <tr />

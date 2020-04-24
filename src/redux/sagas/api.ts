@@ -13,6 +13,7 @@ import { formatDate } from '../../utils/excel';
 function* exportIrapData(action: ExportingIrapDataAction): object {
   const formattedStartDate = formatDate(action.payload.startDate);
   const formattedEndDate = formatDate(action.payload.endDate);
+  const { selectedTemplate } = action.payload;
 
   try {
     const token = cookie.load('token');
@@ -23,6 +24,7 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
       params: {
         formattedStartDate,
         formattedEndDate,
+        selectedTemplate,
       },
     };
     const url = 'http://localhost:8080/api/v1/irap_download';

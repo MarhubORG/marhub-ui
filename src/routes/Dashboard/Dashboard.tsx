@@ -9,11 +9,18 @@ import OrganizationList from './OrganizationList/OrganizationList';
 import UserList from './UserList/UserList';
 import UserEdit from './UserEdit/UserEdit';
 import UserNew from './UserNew/UserNew';
+import TemplateList from './TemplateList/TemplateList';
+import TemplateNew from './TemplateNew/TemplateNew';
 import OrganizationExportTemplate from './OrganizationExportTemplate/OrganizationExportTemplate';
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
 import NewOrganization from './NewOrganization/NewOrganization';
-import { MARHUB_ADMIN } from '../../auth/permissionTypes';
+import {
+  MARHUB_ADMIN,
+  MARHUB_USER,
+  ADMIN,
+  USER,
+} from '../../auth/permissionTypes';
 
 const DashboardItems = [
   {
@@ -34,21 +41,21 @@ const DashboardItems = [
     component: IrapDownload,
     buttonText: 'Search and Download',
     pathString: '/search',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
     component: OrganizationExportTemplate,
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: false,
   },
   {
     component: TableauDashboard,
     buttonText: 'Tableau',
     pathString: '/tableau',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
@@ -70,6 +77,20 @@ const DashboardItems = [
     buttonText: '',
     pathString: '/users/new',
     permissions: [MARHUB_ADMIN],
+    showButton: false,
+  },
+  {
+    component: TemplateList,
+    buttonText: 'Templates',
+    pathString: '/templates',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    showButton: true,
+  },
+  {
+    component: TemplateNew,
+    buttonText: '',
+    pathString: '/templates/new',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: false,
   },
 ];

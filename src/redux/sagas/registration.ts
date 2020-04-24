@@ -47,8 +47,10 @@ function* login(action: LoginAction): object {
       // httpOnly: true,
     });
     let role = '';
+    let organization = '';
     try {
       role = json.data.user.profile.role;
+      organization = json.data.user.profile.organisation;
     } catch (error) {
       yield put(
         loginError(
@@ -56,7 +58,7 @@ function* login(action: LoginAction): object {
         )
       );
     }
-    yield put(loginSuccess(role));
+    yield put(loginSuccess(role, organization));
   } catch (error) {
     try {
       yield put(loginError(error.response.data.message));

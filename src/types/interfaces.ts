@@ -8,6 +8,7 @@ export interface RegistrationState {
   redirect: boolean;
   loginRedirect: boolean;
   role: string;
+  myOrganization: string;
 }
 
 export interface RootState {
@@ -28,6 +29,7 @@ export interface DashboardState {
   organizations: Organization[];
   errorMessage: string;
   redirectToVisibleFields: string;
+  templateMessage: string;
 }
 
 export interface UserState {

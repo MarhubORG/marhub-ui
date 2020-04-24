@@ -48,6 +48,7 @@ export function registrationReducer(
         loginRedirect: true,
         isLoggedIn: true,
         role: action.payload.role,
+        myOrganization: action.payload.organization,
       };
     case LOGIN_REDIRECTING:
       return { ...state, loginRedirect: false };
@@ -80,4 +81,5 @@ export const initialState: RegistrationState = {
   loginRedirect: false,
   error: '',
   role: '',
+  myOrganization: '',
 };
