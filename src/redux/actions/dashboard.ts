@@ -168,7 +168,6 @@ export interface CreateTemplateAction {
 }
 
 export function createTemplate(payload: Template): CreateTemplateAction {
-  console.log('creating template');
   return {
     type: CREATE_TEMPLATE,
     payload,
