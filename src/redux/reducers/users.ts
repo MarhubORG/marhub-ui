@@ -13,16 +13,16 @@ import {
   LOGOUT,
 } from '../constants/actionTypes';
 
-const failureMessage =
+export const failureMessage =
   'Loading Users failed. Please contact your administrator.';
-const createUserFailureMessage =
+export const createUserFailureMessage =
   'Creating user failed. Please contact your administrator.';
-const editUserFailureMessage =
+export const editUserFailureMessage =
   'Editing user failed. Please contact your administrator.';
-const editUserSuccessMessage =
+export const editUserSuccessMessage =
   'Edit user success! All changes have been saved to the database.';
 
-const initialState = {
+export const initialState = {
   users: [],
   message: '',
   loading: false,
@@ -75,7 +75,7 @@ export default function userReducer(
   }
 }
 
-function replaceWithUpdatedUser(user: User, state: UserState): User[] {
+export function replaceWithUpdatedUser(user: User, state: UserState): User[] {
   return state.users.map(el => {
     if (el.id === user.id) return user;
     return el;

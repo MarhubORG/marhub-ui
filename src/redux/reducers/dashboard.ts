@@ -19,9 +19,9 @@ import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
 export const standardFetchOrganizationErrorMessage =
   'Could not fetch organizations. Please try again later or contact the administrator.';
-const templateFailureMessage =
+export const templateFailureMessage =
   'Creating template failed. Please contact your administrator.';
-const templateSuccessMessage = 'Successfully created new template';
+export const templateSuccessMessage = 'Successfully created new template';
 
 export const initialState = {
   loading: false,
@@ -108,7 +108,7 @@ export default function dashboardReducer(
     case CREATE_TEMPLATE_SUCCESS:
       return {
         ...state,
-        loading: true,
+        loading: false,
         templateMessage: templateSuccessMessage,
         organizations: replaceWithUpdatedOrg(action.payload, state),
       };
@@ -117,7 +117,7 @@ export default function dashboardReducer(
   }
 }
 
-function replaceWithUpdatedOrg(
+export function replaceWithUpdatedOrg(
   organization: Organization,
   state: DashboardState
 ): Organization[] {

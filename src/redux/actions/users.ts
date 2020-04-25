@@ -154,6 +154,12 @@ export interface LogoutAction {
   type: typeof LOGOUT;
 }
 
+export function logout(): LogoutAction {
+  return {
+    type: LOGOUT,
+  };
+}
+
 export type UserActionTypes =
   | FetchUsersAction
   | FetchUsersFailureAction

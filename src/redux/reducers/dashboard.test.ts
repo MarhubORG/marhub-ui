@@ -1,7 +1,13 @@
+import { create } from 'domain';
 import dashboardReducer, {
   initialState,
   standardFetchOrganizationErrorMessage,
   successMessage,
+  templateFailureMessage,
+  templateSuccessMessage,
+  createOrgFailureMessage,
+  createOrgSuccessMessage,
+  replaceWithUpdatedOrg,
 } from './dashboard';
 
 import {
@@ -11,6 +17,13 @@ import {
   UPDATE_ORGANIZATION,
   UPDATE_ORGANIZATION_FAILURE,
   UPDATE_ORGANIZATION_SUCCESS,
+  CREATE_ORGANIZATION,
+  CREATE_ORGANIZATION_FAILURE,
+  CREATE_ORGANIZATION_REDIRECT,
+  CREATE_ORGANIZATION_SUCCESS,
+  CREATE_TEMPLATE,
+  CREATE_TEMPLATE_FAILURE,
+  CREATE_TEMPLATE_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 
@@ -30,12 +43,9 @@ describe('dashboardReducer', () => {
   it('handles UPDATE_ORGANIZATION_SUCCESS action type', () => {
     const organization = {
       id: 1,
-      organization: {
-        id: 1,
-        organisation: {
-          visible_fields: ['age', 'current_country'],
-          name: 'Org name',
-        },
+      organisation: {
+        visibleFields: ['age', 'current_country'],
+        name: 'Org name',
       },
     };
 
@@ -74,11 +84,7 @@ describe('dashboardReducer', () => {
     const organization = {
       id: 1,
       organization: {
-        id: 1,
-        organisation: {
-          visible_fields: ['age', 'current_country'],
-          name: 'Org name',
-        },
+        visible_fields: ['age', 'current_country'],
       },
     };
 
@@ -128,7 +134,7 @@ describe('dashboardReducer', () => {
       {
         organisation: {
           name: 'test name',
-          visible_fields: ['id, age'],
+          visibleFields: ['id, age'],
         },
         id: 1,
       },
@@ -143,6 +149,118 @@ describe('dashboardReducer', () => {
       errorMessage: '',
       redirectToVisibleFields: '',
       templateMessage: '',
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_ORGANIZATION', () => {
+    const payload = 'payload';
+    const state = dashboardReducer(initialState, {
+      type: CREATE_ORGANIZATION,
+      payload,
+    });
+
+    const expected = {
+      ...initialState,
+      loading: true,
+      errorMessage: '',
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_ORGANIZATION_FAILURE', () => {
+    const state = dashboardReducer(initialState, {
+      type: CREATE_ORGANIZATION_FAILURE,
+    });
+    const expected = {
+      ...initialState,
+      loading: false,
+      errorMessage: createOrgFailureMessage,
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_ORGANIZATION_SUCCESS', () => {
+    const payload = {
+      id: 1,
+      organisation: {
+        visibleFields: ['age', 'current_country'],
+        name: 'Org name',
+      },
+    };
+    const state = dashboardReducer(initialState, {
+      type: CREATE_ORGANIZATION_SUCCESS,
+      payload,
+    });
+
+    const expected = {
+      ...initialState,
+      organizations: [...initialState.organizations, payload],
+      loading: false,
+      errorMessage: createOrgSuccessMessage,
+      redirectToVisibleFields: payload.organisation.name,
+    };
+
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_ORGANIZATION_REDIRECT', () => {
+    const state = dashboardReducer(initialState, {
+      type: CREATE_ORGANIZATION_REDIRECT,
+    });
+    const expected = {
+      ...initialState,
+      redirectToVisibleFields: '',
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_TEMPLATE', () => {
+    const payload = {
+      name: 'name',
+      fields: ['fields'],
+    };
+    const state = dashboardReducer(initialState, {
+      type: CREATE_TEMPLATE,
+      payload,
+    });
+    const expected = {
+      ...initialState,
+      loading: true,
+      templateMessage: '',
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_TEMPLATE_SUCCESS', () => {
+    const payload = {
+      id: 1,
+      organisation: {
+        visibleFields: ['age', 'current_country'],
+        name: 'Org name',
+      },
+    };
+    const state = dashboardReducer(initialState, {
+      type: CREATE_TEMPLATE_SUCCESS,
+      payload,
+    });
+    const expected = {
+      ...initialState,
+      loading: false,
+      templateMessage: templateSuccessMessage,
+      organizations: replaceWithUpdatedOrg(payload, initialState), // TODO TEST BY HAND
+    };
+    expect(state).toEqual(expected);
+  });
+
+  it('handles CREATE_TEMPLATE_FAILURE', () => {
+    const state = dashboardReducer(initialState, {
+      type: CREATE_TEMPLATE_FAILURE,
+    });
+    const expected = {
+      ...initialState,
+      templateMessage: templateFailureMessage,
+      loading: false,
     };
     expect(state).toEqual(expected);
   });

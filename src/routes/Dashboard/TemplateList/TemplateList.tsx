@@ -16,7 +16,7 @@ interface TemplateListProps {
   fetchOrganizations(): FetchOrganizationsAction;
 }
 
-class UnconnectedTemplateList extends Component<TemplateListProps> {
+export class UnconnectedTemplateList extends Component<TemplateListProps> {
   componentDidMount(): void {
     this.props.fetchOrganizations();
   }

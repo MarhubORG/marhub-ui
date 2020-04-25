@@ -1,14 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { UnconnectedOrganizationList } from './OrganizationList';
+import { UnconnectedUserEdit } from './UserEdit';
 import { fetchOrganizations } from '../../../redux/actions/dashboard';
+import { editUser } from '../../../redux/actions/users';
 
 it('renders correctly', () => {
   const tree = renderer
     .create(
-      <UnconnectedOrganizationList
+      <UnconnectedUserEdit
         fetchOrganizations={fetchOrganizations}
-        errorMessage=""
+        users={[]}
+        organizations={[]}
+        id="1"
+        message=""
+        editUser={editUser}
       />
     )
     .toJSON();

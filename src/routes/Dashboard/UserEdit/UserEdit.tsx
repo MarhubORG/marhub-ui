@@ -45,7 +45,12 @@ interface UserEditState {
   id: number;
 }
 
-class UnconnectedUserEdit extends Component<UserEditProps, UserEditState> {
+/* eslint-disable @typescript-eslint/indent */
+export class UnconnectedUserEdit extends Component<
+  UserEditProps,
+  UserEditState
+> {
+  /* eslint-enable @typescript-eslint/indent */
   constructor(props: UserEditProps) {
     super(props);
     this.state = {
