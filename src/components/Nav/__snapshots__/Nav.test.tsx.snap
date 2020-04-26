@@ -75,7 +75,7 @@ exports[`renders correctly while logged in 1`] = `
   height: 2rem;
 }
 
-.c4 {
+.c5 {
   text-align: center;
   min-width: 8rem;
   border-radius: 5px;
@@ -90,14 +90,14 @@ exports[`renders correctly while logged in 1`] = `
   text-decoration: none;
 }
 
-.c5 {
+.c6 {
   height: 1.2rem;
   width: 1.2rem;
   margin-bottom: -0.35rem;
   margin-right: 0.5rem;
 }
 
-.c3 {
+.c4 {
   text-align: center;
   min-width: 8rem;
   border-radius: 5px;
@@ -112,7 +112,7 @@ exports[`renders correctly while logged in 1`] = `
   text-decoration: none;
 }
 
-.c2 {
+.c3 {
   min-width: 8rem;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -129,8 +129,16 @@ exports[`renders correctly while logged in 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin-left: auto;
+  margin-left: 1rem;
   height: 1.75rem;
+}
+
+.c2 {
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 <nav
@@ -147,24 +155,56 @@ exports[`renders correctly while logged in 1`] = `
       src="logo.png"
     />
   </a>
-  <a
+  <div
     className="c2"
-    href="/dashboard"
-    onClick={[Function]}
   >
-    Dashboard
-  </a>
+    <a
+      className="c3"
+      href="/dashboard/users"
+      onClick={[Function]}
+    >
+      Users
+    </a>
+    <a
+      className="c3"
+      href="/dashboard/organizations"
+      onClick={[Function]}
+    >
+      Organizations
+    </a>
+    <a
+      className="c3"
+      href="/dashboard/tableau"
+      onClick={[Function]}
+    >
+      Tableau
+    </a>
+    <a
+      className="c3"
+      href="/dashboard/search"
+      onClick={[Function]}
+    >
+      Search
+    </a>
+    <a
+      className="c3"
+      href="/dashboard/templates"
+      onClick={[Function]}
+    >
+      Templates
+    </a>
+  </div>
   <a
     aria-current="page"
-    className="c3"
+    className="c4"
     href="/"
     onClick={[Function]}
   >
     <span
-      className="c4"
+      className="c5"
     >
       <svg
-        className="c5"
+        className="c6"
         fill="none"
         height="1em"
         stroke="currentColor"

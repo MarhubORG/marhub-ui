@@ -9,15 +9,6 @@ exports[`renders correctly when logged in 1`] = `
 }
 
 .c1 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  height: 72.37vh;
-  border: 1px solid;
-  padding: 0.5rem;
-}
-
-.c2 {
   -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3;
@@ -28,9 +19,6 @@ exports[`renders correctly when logged in 1`] = `
 >
   <div
     className="c1"
-  />
-  <div
-    className="c2"
   />
 </div>
 `;

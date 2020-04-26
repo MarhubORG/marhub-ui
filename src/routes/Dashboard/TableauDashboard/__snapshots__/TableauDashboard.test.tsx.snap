@@ -1,21 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  height: 75vh;
+  width: 100vw;
+}
+
 <div>
   <div
     className="tableauPlaceholder"
     style={
       Object {
         "border": "1px solid black",
-        "height": 850,
-        "width": 1366,
       }
     }
   >
     <object
-      className="tableauViz"
-      height="850"
-      width="1366"
+      className="c0 tableauViz"
     >
       <param
         name="host_url"

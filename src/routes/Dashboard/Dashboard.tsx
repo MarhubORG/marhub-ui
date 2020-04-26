@@ -22,7 +22,7 @@ import {
   USER,
 } from '../../auth/permissionTypes';
 
-const DashboardItems = [
+export const DashboardItems = [
   {
     component: UserList,
     buttonText: 'Users',
@@ -38,13 +38,6 @@ const DashboardItems = [
     showButton: true,
   },
   {
-    component: IrapDownload,
-    buttonText: 'Search and Download',
-    pathString: '/search',
-    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
-    showButton: true,
-  },
-  {
     component: OrganizationExportTemplate,
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
@@ -56,6 +49,13 @@ const DashboardItems = [
     buttonText: 'Tableau',
     pathString: '/tableau',
     permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    showButton: true,
+  },
+  {
+    component: IrapDownload,
+    buttonText: 'Search',
+    pathString: '/search',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },
   {
@@ -146,7 +146,7 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
     }
     return (
       <Container>
-        <OptionsPanel>{this.createActionItems()}</OptionsPanel>
+        {/* <OptionsPanel>{this.createActionItems()}</OptionsPanel> */}
         <ActionPanel>
           <Router>{this.createRouterItems()}</Router>
         </ActionPanel>
