@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 const REFRESHES = 'REFRESHES';
 
+const StyledObject = styled.object`
+  height: 75vh;
+  width: 100vw;
+`;
 export default class TableauDashboard extends Component {
   componentDidMount(): void {
     const refreshes = localStorage.getItem(REFRESHES);
@@ -22,11 +27,8 @@ export default class TableauDashboard extends Component {
 
 export function DashboardObject(): JSX.Element {
   return (
-    <div
-      className="tableauPlaceholder"
-      style={{ width: 1366, height: 850, border: '1px solid black' }}
-    >
-      <object className="tableauViz" width="1366" height="850">
+    <div className="tableauPlaceholder" style={{ border: '1px solid black' }}>
+      <StyledObject className="tableauViz">
         <param
           name="host_url"
           value="https%3A%2F%2Feu-west-1a.online.tableau.com%2F"
@@ -40,7 +42,7 @@ export function DashboardObject(): JSX.Element {
         <param name="tabs" value="yes" />
         <param name="toolbar" value="yes" />
         <param name="showAppBanner" value="false" />
-      </object>
+      </StyledObject>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import { LogoutAction, logout } from '../../redux/actions/index';
+import { DashboardItems } from '../../routes/Dashboard/Dashboard';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
@@ -88,8 +89,13 @@ const DashboardLink = styled(Link)`
   border-radius: 5px;
   display: flex;
   justify-content: center;
-  margin-left: auto;
+  margin-left: 1rem;
   height: 1.75rem;
+`;
+
+const DashboardLinks = styled.div`
+  margin-left: auto;
+  display: flex;
 `;
 
 export function Login(): JSX.Element {
@@ -115,6 +121,18 @@ interface NavProps {
   logout(): LogoutAction;
 }
 
+export function createDashboardLinks() {
+  // eslint-disable-next-line consistent-return
+  return DashboardItems.map(el => {
+    if (el.showButton) {
+      return (
+        <DashboardLink key={el.pathString} to={`/dashboard${el.pathString}`}>
+          {el.buttonText}
+        </DashboardLink>
+      );
+    }
+  });
+}
 export function UnconnectedNav(props: NavProps): JSX.Element {
   return (
     <StyledNav>
@@ -128,7 +146,7 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
       )}
       {props.isLoggedIn && (
         <>
-          <DashboardLink to="/dashboard">Dashboard</DashboardLink>
+          <DashboardLinks>{createDashboardLinks()}</DashboardLinks>
           <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
             <Logout />
           </StyledLink>
