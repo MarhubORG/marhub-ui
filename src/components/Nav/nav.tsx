@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link } from '@reach/router';
+import { Link, useLocation } from '@reach/router';
+
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
@@ -93,6 +94,23 @@ const DashboardLink = styled(Link)`
   height: 1.75rem;
 `;
 
+const InvertedDashboardLink = styled(Link)`
+  background-color: ${({ theme }): string => theme.white};
+  color: ${({ theme }): string => theme.primaryColor};
+  min-width: 8rem;
+  text-decoration: none;
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin-left: 1rem;
+  height: 1.75rem;
+  border: 1px solid ${({ theme }): string => theme.primaryColor};
+`;
+
 const DashboardLinks = styled.div`
   margin-left: auto;
   display: flex;
@@ -117,23 +135,47 @@ export function Logout(): JSX.Element {
 }
 
 interface NavProps {
+  pathname: string;
   isLoggedIn: boolean;
   logout(): LogoutAction;
 }
 
-export function createDashboardLinks() {
+interface Params {
+  setCurrentButton: (str: string) => void;
+  currentButton: string;
+  pathname: string;
+}
+export function createDashboardLinks(params: Params) {
   // eslint-disable-next-line consistent-return
-  return DashboardItems.map(el => {
+  const items = DashboardItems.map(el => {
+    const url = `/dashboard${el.pathString}`;
+    const currentString =
+      params.currentButton === '' ? params.pathname : params.currentButton;
     if (el.showButton) {
+      if (url === currentString) {
+        return (
+          <InvertedDashboardLink key={el.pathString} to={url}>
+            {el.buttonText}
+          </InvertedDashboardLink>
+        );
+      }
       return (
-        <DashboardLink key={el.pathString} to={`/dashboard${el.pathString}`}>
+        <DashboardLink
+          key={el.pathString}
+          to={url}
+          onClick={() => params.setCurrentButton(url)}
+        >
           {el.buttonText}
         </DashboardLink>
       );
     }
   });
+  // setSelectedButton('a');
+  return items;
 }
 export function UnconnectedNav(props: NavProps): JSX.Element {
+  const [currentButton, setCurrentButton] = useState('');
+  const { pathname } = props;
   return (
     <StyledNav>
       <Link to="/">
@@ -146,7 +188,13 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
       )}
       {props.isLoggedIn && (
         <>
-          <DashboardLinks>{createDashboardLinks()}</DashboardLinks>
+          <DashboardLinks>
+            {createDashboardLinks({
+              setCurrentButton,
+              currentButton,
+              pathname,
+            })}
+          </DashboardLinks>
           <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
             <Logout />
           </StyledLink>

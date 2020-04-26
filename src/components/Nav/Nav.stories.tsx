@@ -7,12 +7,20 @@ import { logout } from '../../redux/actions/index';
 
 storiesOf('Nav', module).add('Not logged in', () => (
   <ThemeProvider theme={mainTheme}>
-    <UnconnectedNav isLoggedIn={false} logout={logout} />
+    <UnconnectedNav
+      isLoggedIn={false}
+      logout={logout}
+      pathname="/dashboard/organizations"
+    />
   </ThemeProvider>
 ));
 
 storiesOf('Nav', module).add('Logged in', () => (
   <ThemeProvider theme={mainTheme}>
-    <UnconnectedNav isLoggedIn={true} logout={logout} />
+    <UnconnectedNav
+      isLoggedIn={true}
+      logout={logout}
+      pathname="/dashboard/organizations"
+    />
   </ThemeProvider>
 ));

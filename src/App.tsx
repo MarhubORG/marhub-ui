@@ -28,7 +28,7 @@ function App(): JSX.Element {
     <ThemeProvider theme={mainTheme}>
       <StyledLayout>
         <GlobalStyles />
-        <Nav />
+        <Nav pathname={window.location.pathname} />
         <MainContent>
           <Router>
             <Home path="/" />
