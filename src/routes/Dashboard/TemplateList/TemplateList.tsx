@@ -54,7 +54,7 @@ export class UnconnectedTemplateList extends Component<TemplateListProps> {
         <StyledLinkInverted to="/dashboard/templates/new">
           Create New Template
         </StyledLinkInverted>
-        {this.createTemplateList()}
+        <TemplateListLayout>{this.createTemplateList()}</TemplateListLayout>
       </Layout>
     );
   }
@@ -62,6 +62,10 @@ export class UnconnectedTemplateList extends Component<TemplateListProps> {
 
 const Layout = styled.div`
   margin-left: 1rem;
+`;
+
+const TemplateListLayout = styled.div`
+  margin-left: -1rem;
 `;
 
 const StyledLink = styled(Link)`

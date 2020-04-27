@@ -15,14 +15,19 @@ import { ApiState, RootState } from '../../../types/interfaces';
 import Table from './Table';
 import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 import Select from '../../../components/Forms/Select/Select';
-import { Organization } from '../../../redux/actions/dashboard';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+import {
+  Organization,
+  fetchOrganizations,
+  FetchOrganizationsAction,
+} from '../../../redux/actions/dashboard';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
   apiReducer: ApiState;
   myOrganization: string;
   organizations: Organization[];
+  fetchOrganizations(): FetchOrganizationsAction;
 }
 
 interface IrapDownloadState {
@@ -56,6 +61,7 @@ export class UnconnectedIrapDownload extends Component<
 
   componentDidMount(): void {
     this.setState({ data: this.props.apiReducer.irapState });
+    this.props.fetchOrganizations();
   }
 
   componentDidUpdate(
@@ -240,6 +246,7 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 
 export interface MapDispatchToProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  fetchOrganizations(): FetchOrganizationsAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
@@ -247,6 +254,8 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     exportingIrapData: (
       data: ExportingIrapDataPayload
     ): ExportingIrapDataAction => dispatch(exportingIrapData(data)),
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
   };
 }
 
