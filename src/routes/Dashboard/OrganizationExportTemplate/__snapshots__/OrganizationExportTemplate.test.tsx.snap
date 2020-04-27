@@ -1,11 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-.c2 {
+.c3 {
   max-height: 50vh;
 }
 
-.c3 {
+.c2 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+.c4 {
   padding: 0.1rem 0;
 }
 
@@ -36,11 +45,41 @@ exports[`renders correctly 1`] = `
     Submit
   </button>
   <form>
-    <div
+    <span
       className="c2"
     >
+      Non-null fields
+    </span>
+    <div
+      className="c3"
+    >
       <div
-        className="c3"
+        className="c4"
+      >
+        <label
+          htmlFor="handoff_timestamp"
+        >
+          <input
+            id="handoff_timestamp"
+            name="handoff_timestamp"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          handoff_timestamp
+        </label>
+      </div>
+    </div>
+    <span
+      className="c2"
+    >
+      Permitted fields
+    </span>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
       >
         <label
           htmlFor="age"
@@ -56,7 +95,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="arcurrentcountry"
@@ -72,7 +111,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="arfullrsc"
@@ -88,7 +127,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="arnationality1"
@@ -104,7 +143,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="arrsc"
@@ -120,7 +159,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="blocked"
@@ -136,7 +175,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="canadian_private_sponsorhip"
@@ -152,7 +191,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="canadian_sponsorship_info_rating"
@@ -168,7 +207,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="canadian_sponsorship_info_response"
@@ -184,7 +223,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="child_illness"
@@ -200,7 +239,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="createdAt"
@@ -216,7 +255,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="created_on"
@@ -232,7 +271,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="current_country"
@@ -248,7 +287,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="dapev_info_rating"
@@ -264,7 +303,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="dapev_info_response"
@@ -280,7 +319,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="dapi130_info_rating"
@@ -296,7 +335,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="dapi130_info_response"
@@ -312,7 +351,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="daprelsiv_info_rating"
@@ -328,7 +367,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="daprelsiv_response"
@@ -344,7 +383,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_follow_up_conversation"
@@ -360,7 +399,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_helpfulness_open_ended"
@@ -376,7 +415,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_helpfulness_rating"
@@ -392,7 +431,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_other_information_needs"
@@ -408,7 +447,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_recommend_open_ended"
@@ -424,7 +463,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="end_feedback_recommend_rating"
@@ -440,7 +479,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="firstname"
@@ -456,7 +495,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="fullrsc"
@@ -472,7 +511,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="gender"
@@ -488,7 +527,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="german_reunification_info_rating"
@@ -504,7 +543,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="german_reunification_info_response"
@@ -520,7 +559,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="groups"
@@ -536,7 +575,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="handoff_timestamp"
@@ -552,7 +591,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="has_unhcr_file"
@@ -568,7 +607,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="hired_lawyer"
@@ -584,7 +623,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="i130_info_rating"
@@ -600,7 +639,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="i130_info_response"
@@ -616,7 +655,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="i730_info_rating"
@@ -632,7 +671,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="i730_info_response"
@@ -648,7 +687,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="icorn_info_rating"
@@ -664,7 +703,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="icorn_info_response"
@@ -680,7 +719,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="id"
@@ -696,7 +735,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="lack_of_durable_solutions"
@@ -712,7 +751,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="language"
@@ -728,7 +767,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="lgtb"
@@ -744,7 +783,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="lppn_score"
@@ -760,7 +799,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="marital_status"
@@ -776,7 +815,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="medical_needs_score"
@@ -792,7 +831,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="minor_or_adult"
@@ -808,7 +847,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="modified_on"
@@ -824,7 +863,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="name"
@@ -840,7 +879,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="nationality1"
@@ -856,7 +895,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="nationality2"
@@ -872,7 +911,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="nationality3"
@@ -888,7 +927,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="ongoing_usrap"
@@ -904,7 +943,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="p3_info_rating"
@@ -920,7 +959,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="p3_info_response"
@@ -936,7 +975,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="pause_handoffs"
@@ -952,7 +991,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="prescreening_complete"
@@ -968,7 +1007,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="previous_us_resettlement"
@@ -984,7 +1023,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="referral_complete"
@@ -1000,7 +1039,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_location"
@@ -1016,7 +1055,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_location1"
@@ -1032,7 +1071,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_location3"
@@ -1048,7 +1087,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_location4"
@@ -1064,7 +1103,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_location5"
@@ -1080,7 +1119,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_name"
@@ -1096,7 +1135,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_name1"
@@ -1112,7 +1151,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="relative_abroad_name2"
@@ -1128,7 +1167,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="resettlement_relatives"
@@ -1144,7 +1183,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="rsc"
@@ -1160,7 +1199,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="rsc_case_status_portal"
@@ -1176,7 +1215,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="rsc_contact_email"
@@ -1192,7 +1231,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="stopped"
@@ -1208,7 +1247,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="svt"
@@ -1224,7 +1263,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="textitContactName"
@@ -1240,7 +1279,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="textitContactUuid"
@@ -1256,7 +1295,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="textitSessionId"
@@ -1272,7 +1311,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="unaccompanied_minor"
@@ -1288,7 +1327,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="unique_session_id"
@@ -1304,7 +1343,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="updatedAt"
@@ -1320,7 +1359,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="urns"
@@ -1336,7 +1375,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="us_relative_relationship"
@@ -1352,7 +1391,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="us_relative_relationship1"
@@ -1368,7 +1407,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="usrap_info_rating"
@@ -1384,7 +1423,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="usrap_info_response"
@@ -1400,7 +1439,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="uuid"
@@ -1416,7 +1455,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="vulnerability_assessed"
@@ -1432,7 +1471,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="western_left"
@@ -1448,7 +1487,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="western_right"
@@ -1464,7 +1503,7 @@ exports[`renders correctly 1`] = `
         </label>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <label
           htmlFor="women_and_girls_at_risk"

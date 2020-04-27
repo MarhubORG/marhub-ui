@@ -3,7 +3,7 @@ import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { databaseFields } from '../../../utils/database';
+import { databaseFields, notNullFields } from '../../../utils/database';
 import { RootState } from '../../../types/interfaces';
 import {
   Organization,
@@ -62,6 +62,29 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     return id;
   };
 
+  createNotNullCheckboxes = () => {
+    return notNullFields.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      const checked = this.state.checked[el];
+      return (
+        <StyledCheckboxDiv key={el}>
+          <label htmlFor={el}>
+            <input
+              type="checkbox"
+              id={el}
+              name={el}
+              value=""
+              checked={checked}
+              onChange={(e): void => this.toggleNonNullCheckbox(e)}
+            />
+            {el}
+          </label>
+        </StyledCheckboxDiv>
+      );
+    });
+  };
+
   createCheckboxes = () => {
     return databaseFields.map(el => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -86,9 +109,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
   };
 
   submitFields = (): void => {
+    let { checked } = this.state;
+    if (checked === undefined) checked = {};
     const myFields = this.state;
     const keys = Object.keys(myFields);
+    const nonNullKeys = Object.keys(checked);
     const checkedFields: string[] = [];
+    const checkedNonNullFields: string[] = [];
     keys.map(el => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
@@ -96,12 +123,22 @@ export class UnconnectedOrganizationExportTemplate extends Component<
         checkedFields.push(el);
       }
     });
+
+    nonNullKeys.map(el => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      if (checked[el] === true) {
+        checkedNonNullFields.push(el);
+      }
+    });
     const id = this.getOrganizationId();
+    console.log({ checkedNonNullFields });
     if (id !== undefined) {
       this.props.updateOrganization({
         id,
         organization: {
           visible_fields: checkedFields,
+          non_null_fields: checkedNonNullFields,
         },
       });
     }
@@ -115,6 +152,19 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     const checked = this.state[name];
     this.setState({
       [name]: !checked,
+    });
+  };
+
+  toggleNonNullCheckbox = (e: React.FormEvent<EventTarget>): void => {
+    const target = e.target as HTMLInputElement;
+    const { name } = target;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    const checked = this.state.checked[name];
+    this.setState({
+      checked: {
+        [name]: !checked,
+      },
     });
   };
 
@@ -132,6 +182,9 @@ export class UnconnectedOrganizationExportTemplate extends Component<
           Submit
         </StyledButton>
         <form>
+          <Label>Non-null fields</Label>
+          <CheckboxesLayout>{this.createNotNullCheckboxes()}</CheckboxesLayout>
+          <Label>Permitted fields</Label>
           <CheckboxesLayout>{this.createCheckboxes()}</CheckboxesLayout>
           <br />
         </form>
@@ -142,6 +195,16 @@ export class UnconnectedOrganizationExportTemplate extends Component<
 
 const CheckboxesLayout = styled.div`
   max-height: 50vh;
+`;
+
+const Label = styled.span`
+  display: block;
+  color: ${({ theme }): string => theme.grayText};
+  font-family: Open Sans, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
 `;
 
 const StyledErrorMessage = styled.div`

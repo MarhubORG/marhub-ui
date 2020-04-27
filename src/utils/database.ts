@@ -1,3 +1,4 @@
+export const notNullFields = ['handoff_timestamp'];
 export const databaseFields = [
   'age',
   'arcurrentcountry',

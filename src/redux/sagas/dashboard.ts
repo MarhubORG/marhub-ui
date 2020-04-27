@@ -87,12 +87,10 @@ export function* createOrganizationWatcher(): object {
 }
 
 function* createTemplate(action: CreateTemplateAction): object {
-  console.log('saga create Template');
   try {
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/templates';
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    console.log({ action });
     const json = yield axios.post(url, {
       name: action.payload.name,
       fields: action.payload.fields,
