@@ -195,7 +195,7 @@ export class UnconnectedIrapDownload extends Component<
           <Label>To:</Label>
         </PullLeft>
         <DatePicker value={endDate} onChange={this.handleEndDateChange} />
-        <Button onClick={this.handleClick}>Download IRAP Data</Button>
+        <Button onClick={this.handleClick}>Search</Button>
         {dataExists && (
           <Button onClick={this.handleExcelClick}>Excel Download</Button>
         )}
