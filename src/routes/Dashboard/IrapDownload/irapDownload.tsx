@@ -79,16 +79,27 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ endDate });
   };
 
-  handleClick = (): object | null => {
-    const { startDate, endDate, selectedTemplate } = this.state;
+  handleClick = () => {
+    const {
+      startDate,
+      endDate,
+      selectedTemplate,
+      emailText,
+      irapUuidSearchText,
+    } = this.state;
+
     if (selectedTemplate.length === 0) {
       this.setState({ message: 'Please choose a template.' });
       return null;
     }
     this.setState({ message: '' });
-    return this.props.exportingIrapData !== undefined
-      ? this.props.exportingIrapData({ startDate, endDate, selectedTemplate })
-      : null;
+    return this.props.exportingIrapData({
+      startDate,
+      endDate,
+      selectedTemplate,
+      emailText,
+      irapUuidSearchText,
+    });
   };
 
   getMyOrganization = (): Organization | null => {
