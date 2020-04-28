@@ -16,6 +16,7 @@ import Table from './Table';
 import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 import Select from '../../../components/Forms/Select/Select';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+import SearchAccordion from '../../../components/Forms/SearchAccordion/SearchAccordion';
 import {
   Organization,
   fetchOrganizations,
@@ -189,18 +190,20 @@ export class UnconnectedIrapDownload extends Component<
             onChange={this.templateOnChange}
           />
         </PushRight>
-        <Label>From:</Label>
-        <DatePicker value={startDate} onChange={this.handleStartDateChange} />
-        <PullLeft>
-          <Label>To:</Label>
-        </PullLeft>
-        <DatePicker value={endDate} onChange={this.handleEndDateChange} />
-        <Button onClick={this.handleClick}>Search</Button>
-        {dataExists && (
-          <Button onClick={this.handleExcelClick}>Excel Download</Button>
-        )}
-        {dataExists && (
-          <SearchLayout>
+        <SearchAccordion accordionText="Click to select dates:">
+          <div>
+            <Label>From:</Label>
+            <DatePicker
+              value={startDate}
+              onChange={this.handleStartDateChange}
+            />
+            <br />
+            <Label>To:</Label>
+            <DatePicker value={endDate} onChange={this.handleEndDateChange} />
+          </div>
+        </SearchAccordion>
+        <SearchAccordion accordionText="Click to search by unique id:">
+          <div>
             <SearchInput
               type="text"
               onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
@@ -210,6 +213,10 @@ export class UnconnectedIrapDownload extends Component<
             <SearchButton type="button" onClick={this.handleSessionClick}>
               Search Unique ID
             </SearchButton>
+          </div>
+        </SearchAccordion>
+        <SearchAccordion accordionText="Click to search by email:">
+          <div>
             <SearchInput
               type="text"
               value={this.state.emailText}
@@ -219,7 +226,15 @@ export class UnconnectedIrapDownload extends Component<
             <SearchButton type="button" onClick={this.handleEmailClick}>
               Search Email
             </SearchButton>
-          </SearchLayout>
+          </div>
+        </SearchAccordion>
+        <Button onClick={this.handleClick}>Search</Button>
+        {dataExists && (
+          <div>
+            <InvertedButton onClick={this.handleExcelClick}>
+              Download table to excel
+            </InvertedButton>
+          </div>
         )}
         <Table data={this.state.data} />
       </Layout>
@@ -259,10 +274,6 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   };
 }
 
-const SearchLayout = styled.div`
-  padding: 1rem;
-`;
-
 const PushRight = styled.div`
   margin-left: 1rem;
 `;
@@ -291,6 +302,18 @@ const Button = styled.button`
   font-size: 0.8rem;
 `;
 
+const InvertedButton = styled.button`
+  margin: 1rem;
+  width: 12rem;
+  height: 3rem;
+  background-color: ${({ theme }): string => theme.white};
+  color: ${({ theme }): string => theme.primaryColor};
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+`;
+
 const Label = styled.label`
   margin-left: 1rem;
   font-weight: 700;
@@ -298,10 +321,6 @@ const Label = styled.label`
 
 const Layout = styled.div`
   margin-top: 2rem;
-`;
-
-const PullLeft = styled.span`
-  margin-left: -1rem;
 `;
 
 export default connect(
