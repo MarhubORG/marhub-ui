@@ -15,14 +15,20 @@ import { ApiState, RootState } from '../../../types/interfaces';
 import Table from './Table';
 import { getHeaders, createNewExcelFile } from '../../../utils/excel';
 import Select from '../../../components/Forms/Select/Select';
-import { Organization } from '../../../redux/actions/dashboard';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
+import SearchAccordion from '../../../components/Forms/SearchAccordion/SearchAccordion';
+import {
+  Organization,
+  fetchOrganizations,
+  FetchOrganizationsAction,
+} from '../../../redux/actions/dashboard';
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
   apiReducer: ApiState;
   myOrganization: string;
   organizations: Organization[];
+  fetchOrganizations(): FetchOrganizationsAction;
 }
 
 interface IrapDownloadState {
@@ -44,7 +50,7 @@ export class UnconnectedIrapDownload extends Component<
   constructor(props: IrapDownloadProps) {
     super(props);
     this.state = {
-      startDate: this.oneWeekAgo(),
+      startDate: new Date(),
       endDate: new Date(),
       irapUuidSearchText: '',
       data: [],
@@ -56,6 +62,7 @@ export class UnconnectedIrapDownload extends Component<
 
   componentDidMount(): void {
     this.setState({ data: this.props.apiReducer.irapState });
+    this.props.fetchOrganizations();
   }
 
   componentDidUpdate(
@@ -109,15 +116,8 @@ export class UnconnectedIrapDownload extends Component<
     return [];
   };
 
-  oneWeekAgo = (): Date => {
-    const newDate = new Date();
-    const date = newDate.getDate();
-    newDate.setDate(date - 7);
-    return newDate;
-  };
-
   handleStartDateChange = (startDate: DatePickerType): void => {
-    this.setState({ startDate });
+    this.setState({ startDate }, () => this.updateEndDate());
   };
 
   updateEndDate = (): void => {
@@ -125,6 +125,9 @@ export class UnconnectedIrapDownload extends Component<
     if (startDate > endDate) {
       const startDateToLocaleString = startDate.toLocaleString();
       const someDate = new Date(startDateToLocaleString);
+      const date = someDate.getDate();
+      someDate.setDate(date + 1);
+
       this.setState({ endDate: someDate });
     }
   };
@@ -169,53 +172,85 @@ export class UnconnectedIrapDownload extends Component<
 
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
-    this.updateEndDate();
     const dataExists = this.state.data.length > 0;
     const templateOptions = this.getTemplateOptions();
     return (
       <Layout>
         <ErrorMessage message={this.state.message} />
-        <PushRight>
-          <Select
-            options={templateOptions}
-            labelName="Select Template: *"
-            defaultValue={this.state.selectedTemplate}
-            onChange={this.templateOnChange}
-          />
-        </PushRight>
-        <Label>From:</Label>
-        <DatePicker value={startDate} onChange={this.handleStartDateChange} />
-        <PullLeft>
-          <Label>To:</Label>
-        </PullLeft>
-        <DatePicker value={endDate} onChange={this.handleEndDateChange} />
-        <Button onClick={this.handleClick}>Download IRAP Data</Button>
-        {dataExists && (
-          <Button onClick={this.handleExcelClick}>Excel Download</Button>
-        )}
-        {dataExists && (
+        <FlexLayout>
           <SearchLayout>
-            <SearchInput
-              type="text"
-              onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
-              value={this.state.irapUuidSearchText}
-              placeholder="Search Unique Id"
-            />
-            <SearchButton type="button" onClick={this.handleSessionClick}>
+            <PushRight>
+              <StyledSelect>
+                <Select
+                  options={templateOptions}
+                  labelName="Select Template: *"
+                  defaultValue={this.state.selectedTemplate}
+                  onChange={this.templateOnChange}
+                  smallSelect={true}
+                />
+              </StyledSelect>
+            </PushRight>
+            <SearchAccordion accordionText="Click to select dates:">
+              <div>
+                <PullLeft>
+                  <Label>From:</Label>
+                  <DatePicker
+                    value={startDate}
+                    onChange={this.handleStartDateChange}
+                  />
+                </PullLeft>
+                <br />
+                <PullLeft>
+                  <Label>To:</Label>
+                  <DatePicker
+                    value={endDate}
+                    onChange={this.handleEndDateChange}
+                  />
+                </PullLeft>
+              </div>
+            </SearchAccordion>
+            <SearchAccordion accordionText="Click to search by unique id:">
+              <div>
+                <SearchInput
+                  type="text"
+                  onChange={
+                    e => this.handleUniqueSearchTextChange(e.target.value)
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
+                  value={this.state.irapUuidSearchText}
+                  placeholder="Search Unique Id"
+                />
+                {/* <SearchButton type="button" onClick={this.handleSessionClick}>
               Search Unique ID
-            </SearchButton>
-            <SearchInput
-              type="text"
-              value={this.state.emailText}
-              onChange={e => this.handleEmailTextChange(e.target.value)}
-              placeholder="Search Email"
-            />
-            <SearchButton type="button" onClick={this.handleEmailClick}>
+            </SearchButton> */}
+              </div>
+            </SearchAccordion>
+            <SearchAccordion accordionText="Click to search by email:">
+              <div>
+                <SearchInput
+                  type="text"
+                  value={this.state.emailText}
+                  onChange={e => this.handleEmailTextChange(e.target.value)}
+                  placeholder="Search Email"
+                />
+                {/* <SearchButton type="button" onClick={this.handleEmailClick}>
               Search Email
-            </SearchButton>
+            </SearchButton> */}
+              </div>
+            </SearchAccordion>
+            <Button onClick={this.handleClick}>Search</Button>
           </SearchLayout>
-        )}
-        <Table data={this.state.data} />
+          <TableLayout>
+            {dataExists && (
+              <div>
+                <InvertedButton onClick={this.handleExcelClick}>
+                  Download to excel
+                </InvertedButton>
+              </div>
+            )}
+            <Table data={this.state.data} />
+          </TableLayout>
+        </FlexLayout>
       </Layout>
     );
   }
@@ -240,6 +275,7 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 
 export interface MapDispatchToProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  fetchOrganizations(): FetchOrganizationsAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
@@ -247,20 +283,41 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     exportingIrapData: (
       data: ExportingIrapDataPayload
     ): ExportingIrapDataAction => dispatch(exportingIrapData(data)),
+    fetchOrganizations: (): FetchOrganizationsAction =>
+      dispatch(fetchOrganizations()),
   };
 }
 
+const TableLayout = styled.div`
+  margin-left: 1rem;
+`;
+
 const SearchLayout = styled.div`
-  padding: 1rem;
+  border-right: 1px solid black;
+  min-height: 64vh;
+`;
+
+const FlexLayout = styled.div`
+  display: flex;
 `;
 
 const PushRight = styled.div`
   margin-left: 1rem;
 `;
 
+const PullLeft = styled.div`
+  margin-left: -1rem;
+`;
+
 const SearchInput = styled.input`
   height: 1.5rem;
   font-size: 0.8rem;
+  width: 10.25rem;
+`;
+
+const StyledSelect = styled.div`
+  max-width: 10rem !important;
+  min-width: 10rem !important;
 `;
 
 const SearchButton = styled.button`
@@ -272,8 +329,8 @@ const SearchButton = styled.button`
 
 const Button = styled.button`
   margin: 1rem;
-  width: 12rem;
-  height: 3rem;
+  width: 10.6rem;
+  height: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
@@ -282,17 +339,31 @@ const Button = styled.button`
   font-size: 0.8rem;
 `;
 
-const Label = styled.label`
-  margin-left: 1rem;
+const InvertedButton = styled.button`
+  margin: 1rem 0;
+  width: 10.6rem;
+  height: 2rem;
+  background-color: ${({ theme }): string => theme.white};
+  color: ${({ theme }): string => theme.primaryColor};
+  font-family: Open Sans, sans-serif;
   font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+  margin-top: -1rem;
+`;
+
+const Label = styled.label`
+  display: block;
+  color: ${({ theme }): string => theme.grayText};
+  font-family: Open Sans, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin-left: 1rem;
 `;
 
 const Layout = styled.div`
   margin-top: 2rem;
-`;
-
-const PullLeft = styled.span`
-  margin-left: -1rem;
 `;
 
 export default connect(

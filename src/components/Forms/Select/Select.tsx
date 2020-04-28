@@ -11,6 +11,7 @@ interface SelectProps {
   labelName: string;
   defaultValue: string;
   onChange(event: React.ChangeEvent<HTMLSelectElement>): void;
+  smallSelect?: boolean;
 }
 export default class Select extends Component<SelectProps> {
   createOptions = (): JSX.Element[] => {
@@ -28,14 +29,18 @@ export default class Select extends Component<SelectProps> {
   };
 
   render(): JSX.Element {
+    const SelectComponent = this.props.smallSelect ? SmallSelect : StyledSelect;
     return (
       <div>
         <Label htmlFor={this.props.labelName}>{this.props.labelName}</Label>
 
-        <StyledSelect id={this.props.labelName} onChange={this.props.onChange}>
+        <SelectComponent
+          id={this.props.labelName}
+          onChange={this.props.onChange}
+        >
           <StyledOption>Please Select:</StyledOption>
           {this.createOptions()}
-        </StyledSelect>
+        </SelectComponent>
       </div>
     );
   }
@@ -55,6 +60,17 @@ const StyledSelect = styled.select`
   height: 2rem;
   min-width: 20.2rem;
   max-width: 20.2rem;
+  border-radius: 0.2rem;
+  font-size: 0.85rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #edf1f7;
+`;
+
+const SmallSelect = styled.select`
+  height: 2rem;
+  min-width: 10.75rem;
+  max-width: 10.75rem;
   border-radius: 0.2rem;
   font-size: 0.85rem;
   padding-left: 1rem;

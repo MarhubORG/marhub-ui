@@ -66,6 +66,7 @@ export interface UpdateOrganizationPayload {
   id: number;
   organization: {
     visible_fields: string[];
+    non_null_fields: string[];
   };
 }
 

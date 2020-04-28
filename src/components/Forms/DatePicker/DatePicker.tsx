@@ -11,29 +11,37 @@ interface DatePickerProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MarhubDatePicker extends Component<DatePickerProps> {
+  componentDidMount(): void {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    this.props.onChange(null);
+  }
+
   render(): JSX.Element {
     return (
       <StyledDatePicker
         value={this.props.value}
         onChange={this.props.onChange}
+        showLeadingZeros={true}
       />
     );
   }
 }
 
 const StyledDatePicker = styled(DatePicker)`
-  margin: 1rem;
+  margin-left: 1rem;
+  margin-top: 0.3rem;
   border-radius: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  border: 0px red;
   color: ${({ theme }): string => theme.white};
+  padding: 0.2rem 0.5rem;
+
   input {
     color: ${({ theme }): string => theme.white};
   }
   input::placeholder {
     color: ${({ theme }): string => theme.white};
   }
-  padding: 0.5rem 1rem;
   .react-date-picker__wrapper {
     border: 0px;
   }

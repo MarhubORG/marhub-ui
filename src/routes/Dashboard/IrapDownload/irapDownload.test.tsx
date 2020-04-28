@@ -7,7 +7,10 @@ import {
 } from './irapDownload';
 import { exportingIrapData } from '../../../redux/actions/api';
 import { initialState } from '../../../redux/reducers/api';
-import { Organization } from '../../../redux/actions/dashboard';
+import {
+  Organization,
+  fetchOrganizations,
+} from '../../../redux/actions/dashboard';
 
 const myOrganization: Organization = {
   id: 1,
@@ -24,6 +27,7 @@ it('renders correctly when logged in', () => {
         apiReducer={initialState}
         myOrganization="1"
         organizations={[myOrganization]}
+        fetchOrganizations={fetchOrganizations}
       />
     )
     .toJSON();
