@@ -50,7 +50,7 @@ export class UnconnectedIrapDownload extends Component<
   constructor(props: IrapDownloadProps) {
     super(props);
     this.state = {
-      startDate: this.oneWeekAgo(),
+      startDate: new Date(),
       endDate: new Date(),
       irapUuidSearchText: '',
       data: [],
@@ -76,7 +76,6 @@ export class UnconnectedIrapDownload extends Component<
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
-    console.log({ endDate });
     this.setState({ endDate });
   };
 
@@ -117,15 +116,8 @@ export class UnconnectedIrapDownload extends Component<
     return [];
   };
 
-  oneWeekAgo = (): Date => {
-    const newDate = new Date();
-    const date = newDate.getDate();
-    newDate.setDate(date - 7);
-    return newDate;
-  };
-
   handleStartDateChange = (startDate: DatePickerType): void => {
-    this.setState({ startDate });
+    this.setState({ startDate }, () => this.updateEndDate());
   };
 
   updateEndDate = (): void => {
@@ -133,6 +125,9 @@ export class UnconnectedIrapDownload extends Component<
     if (startDate > endDate) {
       const startDateToLocaleString = startDate.toLocaleString();
       const someDate = new Date(startDateToLocaleString);
+      const date = someDate.getDate();
+      someDate.setDate(date + 1);
+
       this.setState({ endDate: someDate });
     }
   };
@@ -177,7 +172,6 @@ export class UnconnectedIrapDownload extends Component<
 
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
-    this.updateEndDate();
     const dataExists = this.state.data.length > 0;
     const templateOptions = this.getTemplateOptions();
     return (

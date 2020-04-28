@@ -11,13 +11,18 @@ interface DatePickerProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MarhubDatePicker extends Component<DatePickerProps> {
+  componentDidMount() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    this.props.onChange(null);
+  }
+
   render(): JSX.Element {
     return (
       <StyledDatePicker
         value={this.props.value}
         onChange={this.props.onChange}
         showLeadingZeros={true}
-        clearIcon={null}
       />
     );
   }
