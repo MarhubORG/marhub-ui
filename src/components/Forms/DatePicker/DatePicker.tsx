@@ -16,6 +16,8 @@ export default class MarhubDatePicker extends Component<DatePickerProps> {
       <StyledDatePicker
         value={this.props.value}
         onChange={this.props.onChange}
+        showLeadingZeros={true}
+        clearIcon={null}
       />
     );
   }
@@ -25,7 +27,6 @@ const StyledDatePicker = styled(DatePicker)`
   margin: 1rem;
   border-radius: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
-  border: 0px red;
   color: ${({ theme }): string => theme.white};
   input {
     color: ${({ theme }): string => theme.white};

@@ -76,6 +76,7 @@ export class UnconnectedIrapDownload extends Component<
   }
 
   handleEndDateChange = (endDate: DatePickerType): void => {
+    console.log({ endDate });
     this.setState({ endDate });
   };
 
@@ -183,23 +184,30 @@ export class UnconnectedIrapDownload extends Component<
       <Layout>
         <ErrorMessage message={this.state.message} />
         <PushRight>
-          <Select
-            options={templateOptions}
-            labelName="Select Template: *"
-            defaultValue={this.state.selectedTemplate}
-            onChange={this.templateOnChange}
-          />
+          <StyledSelect>
+            <Select
+              options={templateOptions}
+              labelName="Select Template: *"
+              defaultValue={this.state.selectedTemplate}
+              onChange={this.templateOnChange}
+              smallSelect={true}
+            />
+          </StyledSelect>
         </PushRight>
         <SearchAccordion accordionText="Click to select dates:">
           <div>
-            <Label>From:</Label>
-            <DatePicker
-              value={startDate}
-              onChange={this.handleStartDateChange}
-            />
+            <PullLeft>
+              <Label>From:</Label>
+              <DatePicker
+                value={startDate}
+                onChange={this.handleStartDateChange}
+              />
+            </PullLeft>
             <br />
-            <Label>To:</Label>
-            <DatePicker value={endDate} onChange={this.handleEndDateChange} />
+            <PullLeft>
+              <Label>To:</Label>
+              <DatePicker value={endDate} onChange={this.handleEndDateChange} />
+            </PullLeft>
           </div>
         </SearchAccordion>
         <SearchAccordion accordionText="Click to search by unique id:">
@@ -210,9 +218,9 @@ export class UnconnectedIrapDownload extends Component<
               value={this.state.irapUuidSearchText}
               placeholder="Search Unique Id"
             />
-            <SearchButton type="button" onClick={this.handleSessionClick}>
+            {/* <SearchButton type="button" onClick={this.handleSessionClick}>
               Search Unique ID
-            </SearchButton>
+            </SearchButton> */}
           </div>
         </SearchAccordion>
         <SearchAccordion accordionText="Click to search by email:">
@@ -223,9 +231,9 @@ export class UnconnectedIrapDownload extends Component<
               onChange={e => this.handleEmailTextChange(e.target.value)}
               placeholder="Search Email"
             />
-            <SearchButton type="button" onClick={this.handleEmailClick}>
+            {/* <SearchButton type="button" onClick={this.handleEmailClick}>
               Search Email
-            </SearchButton>
+            </SearchButton> */}
           </div>
         </SearchAccordion>
         <Button onClick={this.handleClick}>Search</Button>
@@ -278,9 +286,18 @@ const PushRight = styled.div`
   margin-left: 1rem;
 `;
 
+const PullLeft = styled.div`
+  margin-left: -1rem;
+`;
+
 const SearchInput = styled.input`
   height: 1.5rem;
   font-size: 0.8rem;
+`;
+
+const StyledSelect = styled.div`
+  max-width: 10rem !important;
+  min-width: 10rem !important;
 `;
 
 const SearchButton = styled.button`

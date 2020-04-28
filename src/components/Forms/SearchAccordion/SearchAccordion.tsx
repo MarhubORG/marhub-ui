@@ -8,7 +8,7 @@ interface SearchAccordionProps {
 export default function SearchAccordion(
   props: SearchAccordionProps
 ): JSX.Element {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   return (
     <Layout>
       <Label
