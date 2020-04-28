@@ -65,7 +65,13 @@ const StyledTable = styled.table`
   border-collapse: collapse;
   th,
   td {
-    border: 1px solid black;
-    white-space: nowrap;
+    border: 1px solid ${({ theme }): string => theme.grayText};
+    white-space: wrap;
+    max-width: 18rem;
+    padding: 0.5rem 1rem;
+  }
+
+  th {
+    font-weight: 600;
   }
 `;
