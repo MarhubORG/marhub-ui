@@ -69,8 +69,8 @@ const StyledSelect = styled.select`
 
 const SmallSelect = styled.select`
   height: 2rem;
-  min-width: 10.2rem;
-  max-width: 10.2rem;
+  min-width: 10.75rem;
+  max-width: 10.75rem;
   border-radius: 0.2rem;
   font-size: 0.85rem;
   padding-left: 1rem;

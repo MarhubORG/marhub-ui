@@ -234,7 +234,7 @@ export class UnconnectedIrapDownload extends Component<
         {dataExists && (
           <div>
             <InvertedButton onClick={this.handleExcelClick}>
-              Download table to excel
+              Download to excel
             </InvertedButton>
           </div>
         )}
@@ -287,6 +287,7 @@ const PullLeft = styled.div`
 const SearchInput = styled.input`
   height: 1.5rem;
   font-size: 0.8rem;
+  width: 10.25rem;
 `;
 
 const StyledSelect = styled.div`
@@ -303,8 +304,8 @@ const SearchButton = styled.button`
 
 const Button = styled.button`
   margin: 1rem;
-  width: 12rem;
-  height: 3rem;
+  width: 10.6rem;
+  height: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
@@ -315,19 +316,25 @@ const Button = styled.button`
 
 const InvertedButton = styled.button`
   margin: 1rem;
-  width: 12rem;
-  height: 3rem;
+  width: 10.6rem;
+  height: 2rem;
   background-color: ${({ theme }): string => theme.white};
   color: ${({ theme }): string => theme.primaryColor};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;
   font-size: 0.8rem;
+  margin-top: -1rem;
 `;
 
 const Label = styled.label`
-  margin-left: 1rem;
+  display: block;
+  color: ${({ theme }): string => theme.grayText};
+  font-family: Open Sans, sans-serif;
+  font-size: 0.75rem;
   font-weight: 700;
+  line-height: 1rem;
+  margin-left: 1rem;
 `;
 
 const Layout = styled.div`

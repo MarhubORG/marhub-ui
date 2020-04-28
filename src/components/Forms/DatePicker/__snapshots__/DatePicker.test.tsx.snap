@@ -2,10 +2,10 @@
 
 exports[`renders correctly 1`] = `
 .c0 {
-  margin: 1rem;
+  margin-left: 1rem;
+  margin-top: 0.3rem;
   border-radius: 2rem;
-  border: 0px red;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .c0 .react-date-picker__wrapper {
@@ -53,9 +53,14 @@ exports[`renders correctly 1`] = `
         value="2020-04-01"
       />
       
+      <span
+        className="react-date-picker__inputGroup__leadingZero"
+      >
+        0
+      </span>
       <input
         autoComplete="off"
-        className="react-date-picker__inputGroup__input react-date-picker__inputGroup__month"
+        className="react-date-picker__inputGroup__input react-date-picker__inputGroup__month react-date-picker__inputGroup__input--hasLeadingZero"
         max={12}
         min={1}
         name="month"
@@ -74,10 +79,15 @@ exports[`renders correctly 1`] = `
       >
         /
       </span>
+      <span
+        className="react-date-picker__inputGroup__leadingZero"
+      >
+        0
+      </span>
       <input
         autoComplete="off"
         autoFocus={false}
-        className="react-date-picker__inputGroup__input react-date-picker__inputGroup__day"
+        className="react-date-picker__inputGroup__input react-date-picker__inputGroup__day react-date-picker__inputGroup__input--hasLeadingZero"
         max={30}
         min={1}
         name="day"

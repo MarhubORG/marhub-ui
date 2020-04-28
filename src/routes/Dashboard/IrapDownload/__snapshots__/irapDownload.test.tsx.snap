@@ -1,17 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly when logged in 1`] = `
-.c8 {
+.c10 {
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+  border-radius: 2rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.c10 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c10 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c10 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c10 .react-date-picker__wrapper {
+  border: 0px;
+}
+
+.c13 {
   border-collapse: collapse;
 }
 
-.c8 th,
-.c8 td {
+.c13 th,
+.c13 td {
   border: 1px solid black;
   white-space: nowrap;
 }
 
-.c2 {
+.c3 {
   display: block;
   font-family: Open Sans,sans-serif;
   font-size: 0.75rem;
@@ -20,10 +43,10 @@ exports[`renders correctly when logged in 1`] = `
   margin: 0.5rem 0rem;
 }
 
-.c3 {
+.c4 {
   height: 2rem;
-  min-width: 20.2rem;
-  max-width: 20.2rem;
+  min-width: 10.75rem;
+  max-width: 10.75rem;
   border-radius: 0.2rem;
   font-size: 0.85rem;
   padding-left: 1rem;
@@ -31,15 +54,15 @@ exports[`renders correctly when logged in 1`] = `
   border: 1px solid #edf1f7;
 }
 
-.c4 {
+.c5 {
   margin-left: 2rem;
 }
 
-.c5 {
+.c6 {
   margin-left: 1rem;
 }
 
-.c6 {
+.c7 {
   display: block;
   font-family: Open Sans,sans-serif;
   font-size: 0.75rem;
@@ -52,14 +75,38 @@ exports[`renders correctly when logged in 1`] = `
   margin-left: 1rem;
 }
 
-.c7 {
+.c8 {
+  margin-left: -1rem;
+}
+
+.c11 {
+  height: 1.5rem;
+  font-size: 0.8rem;
+  width: 10.25rem;
+}
+
+.c2 {
+  max-width: 10rem !important;
+  min-width: 10rem !important;
+}
+
+.c12 {
   margin: 1rem;
-  width: 12rem;
-  height: 3rem;
+  width: 10.6rem;
+  height: 2rem;
   font-family: Open Sans,sans-serif;
   font-weight: 700;
   border-radius: 0.2rem;
   font-size: 0.8rem;
+}
+
+.c9 {
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin-left: 1rem;
 }
 
 .c0 {
@@ -72,71 +119,435 @@ exports[`renders correctly when logged in 1`] = `
   <div
     className="c1"
   >
-    <div>
-      <label
-        className="c2"
-        htmlFor="Select Template: *"
-      >
-        Select Template: *
-      </label>
-      <select
-        className="c3"
-        id="Select Template: *"
-        onChange={[Function]}
-      >
-        <option
-          className="c4"
+    <div
+      className="c2"
+    >
+      <div>
+        <label
+          className="c3"
+          htmlFor="Select Template: *"
         >
-          Please Select:
-        </option>
-      </select>
+          Select Template: *
+        </label>
+        <select
+          className="c4"
+          id="Select Template: *"
+          onChange={[Function]}
+        >
+          <option
+            className="c5"
+          >
+            Please Select:
+          </option>
+        </select>
+      </div>
     </div>
   </div>
   <div
-    className="c5"
+    className="c6"
   >
     <span
-      className="c6"
+      className="c7"
       onClick={[Function]}
       onKeyDown={[Function]}
     >
       Click to select dates:
     </span>
-    <div />
+    <div>
+      <div>
+        <div
+          className="c8"
+        >
+          <label
+            className="c9"
+          >
+            From:
+          </label>
+          <div
+            className="react-date-picker react-date-picker--closed react-date-picker--enabled c10"
+            onFocus={[Function]}
+          >
+            <div
+              className="react-date-picker__wrapper"
+            >
+              <div
+                className="react-date-picker__inputGroup"
+                onClick={[Function]}
+              >
+                <input
+                  max="5760-09-12"
+                  min="1821-04-19"
+                  name="date"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  style={
+                    Object {
+                      "left": "-9999px",
+                      "position": "absolute",
+                      "top": "-9999px",
+                      "visibility": "hidden",
+                    }
+                  }
+                  type="date"
+                  value=""
+                />
+                
+                <input
+                  autoComplete="off"
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__month"
+                  max={12}
+                  min={1}
+                  name="month"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="--"
+                  required={null}
+                  type="number"
+                  value=""
+                />
+                <span
+                  className="react-date-picker__inputGroup__divider"
+                >
+                  /
+                </span>
+                <input
+                  autoComplete="off"
+                  autoFocus={false}
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__day"
+                  max={31}
+                  min={1}
+                  name="day"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="--"
+                  required={null}
+                  type="number"
+                  value=""
+                />
+                <span
+                  className="react-date-picker__inputGroup__divider"
+                >
+                  /
+                </span>
+                <input
+                  autoComplete="off"
+                  autoFocus={false}
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__year"
+                  max={275760}
+                  min={1000}
+                  name="year"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="----"
+                  required={null}
+                  step={1}
+                  type="number"
+                  value=""
+                />
+                
+              </div>
+              <button
+                className="react-date-picker__clear-button react-date-picker__button"
+                onClick={[Function]}
+                onFocus={[Function]}
+                type="button"
+              >
+                <svg
+                  className="react-date-picker__clear-button__icon react-date-picker__button__icon"
+                  height={19}
+                  stroke="black"
+                  strokeWidth={2}
+                  viewBox="0 0 19 19"
+                  width={19}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    x1="4"
+                    x2="15"
+                    y1="4"
+                    y2="15"
+                  />
+                  <line
+                    x1="15"
+                    x2="4"
+                    y1="4"
+                    y2="15"
+                  />
+                </svg>
+              </button>
+              <button
+                className="react-date-picker__calendar-button react-date-picker__button"
+                onClick={[Function]}
+                onFocus={[Function]}
+                type="button"
+              >
+                <svg
+                  className="react-date-picker__calendar-button__icon react-date-picker__button__icon"
+                  height={19}
+                  stroke="black"
+                  strokeWidth={2}
+                  viewBox="0 0 19 19"
+                  width={19}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    fill="none"
+                    height="15"
+                    width="15"
+                    x="2"
+                    y="2"
+                  />
+                  <line
+                    x1="6"
+                    x2="6"
+                    y1="0"
+                    y2="4"
+                  />
+                  <line
+                    x1="13"
+                    x2="13"
+                    y1="0"
+                    y2="4"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div
+          className="c8"
+        >
+          <label
+            className="c9"
+          >
+            To:
+          </label>
+          <div
+            className="react-date-picker react-date-picker--closed react-date-picker--enabled c10"
+            onFocus={[Function]}
+          >
+            <div
+              className="react-date-picker__wrapper"
+            >
+              <div
+                className="react-date-picker__inputGroup"
+                onClick={[Function]}
+              >
+                <input
+                  max="5760-09-12"
+                  min="1821-04-19"
+                  name="date"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  style={
+                    Object {
+                      "left": "-9999px",
+                      "position": "absolute",
+                      "top": "-9999px",
+                      "visibility": "hidden",
+                    }
+                  }
+                  type="date"
+                  value=""
+                />
+                
+                <input
+                  autoComplete="off"
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__month"
+                  max={12}
+                  min={1}
+                  name="month"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="--"
+                  required={null}
+                  type="number"
+                  value=""
+                />
+                <span
+                  className="react-date-picker__inputGroup__divider"
+                >
+                  /
+                </span>
+                <input
+                  autoComplete="off"
+                  autoFocus={false}
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__day"
+                  max={31}
+                  min={1}
+                  name="day"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="--"
+                  required={null}
+                  type="number"
+                  value=""
+                />
+                <span
+                  className="react-date-picker__inputGroup__divider"
+                >
+                  /
+                </span>
+                <input
+                  autoComplete="off"
+                  autoFocus={false}
+                  className="react-date-picker__inputGroup__input react-date-picker__inputGroup__year"
+                  max={275760}
+                  min={1000}
+                  name="year"
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  placeholder="----"
+                  required={null}
+                  step={1}
+                  type="number"
+                  value=""
+                />
+                
+              </div>
+              <button
+                className="react-date-picker__clear-button react-date-picker__button"
+                onClick={[Function]}
+                onFocus={[Function]}
+                type="button"
+              >
+                <svg
+                  className="react-date-picker__clear-button__icon react-date-picker__button__icon"
+                  height={19}
+                  stroke="black"
+                  strokeWidth={2}
+                  viewBox="0 0 19 19"
+                  width={19}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    x1="4"
+                    x2="15"
+                    y1="4"
+                    y2="15"
+                  />
+                  <line
+                    x1="15"
+                    x2="4"
+                    y1="4"
+                    y2="15"
+                  />
+                </svg>
+              </button>
+              <button
+                className="react-date-picker__calendar-button react-date-picker__button"
+                onClick={[Function]}
+                onFocus={[Function]}
+                type="button"
+              >
+                <svg
+                  className="react-date-picker__calendar-button__icon react-date-picker__button__icon"
+                  height={19}
+                  stroke="black"
+                  strokeWidth={2}
+                  viewBox="0 0 19 19"
+                  width={19}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    fill="none"
+                    height="15"
+                    width="15"
+                    x="2"
+                    y="2"
+                  />
+                  <line
+                    x1="6"
+                    x2="6"
+                    y1="0"
+                    y2="4"
+                  />
+                  <line
+                    x1="13"
+                    x2="13"
+                    y1="0"
+                    y2="4"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
-    className="c5"
+    className="c6"
   >
     <span
-      className="c6"
+      className="c7"
       onClick={[Function]}
       onKeyDown={[Function]}
     >
       Click to search by unique id:
     </span>
-    <div />
+    <div>
+      <div>
+        <input
+          className="c11"
+          onChange={[Function]}
+          placeholder="Search Unique Id"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
   </div>
   <div
-    className="c5"
+    className="c6"
   >
     <span
-      className="c6"
+      className="c7"
       onClick={[Function]}
       onKeyDown={[Function]}
     >
       Click to search by email:
     </span>
-    <div />
+    <div>
+      <div>
+        <input
+          className="c11"
+          onChange={[Function]}
+          placeholder="Search Email"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
   </div>
   <button
-    className="c7"
+    className="c12"
     onClick={[Function]}
   >
     Search
   </button>
   <div>
     <table
-      className="c8"
+      className="c13"
     >
       <thead>
         <tr />
