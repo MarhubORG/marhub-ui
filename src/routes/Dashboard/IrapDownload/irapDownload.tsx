@@ -177,68 +177,80 @@ export class UnconnectedIrapDownload extends Component<
     return (
       <Layout>
         <ErrorMessage message={this.state.message} />
-        <PushRight>
-          <StyledSelect>
-            <Select
-              options={templateOptions}
-              labelName="Select Template: *"
-              defaultValue={this.state.selectedTemplate}
-              onChange={this.templateOnChange}
-              smallSelect={true}
-            />
-          </StyledSelect>
-        </PushRight>
-        <SearchAccordion accordionText="Click to select dates:">
-          <div>
-            <PullLeft>
-              <Label>From:</Label>
-              <DatePicker
-                value={startDate}
-                onChange={this.handleStartDateChange}
-              />
-            </PullLeft>
-            <br />
-            <PullLeft>
-              <Label>To:</Label>
-              <DatePicker value={endDate} onChange={this.handleEndDateChange} />
-            </PullLeft>
-          </div>
-        </SearchAccordion>
-        <SearchAccordion accordionText="Click to search by unique id:">
-          <div>
-            <SearchInput
-              type="text"
-              onChange={e => this.handleUniqueSearchTextChange(e.target.value)}
-              value={this.state.irapUuidSearchText}
-              placeholder="Search Unique Id"
-            />
-            {/* <SearchButton type="button" onClick={this.handleSessionClick}>
+        <FlexLayout>
+          <SearchLayout>
+            <PushRight>
+              <StyledSelect>
+                <Select
+                  options={templateOptions}
+                  labelName="Select Template: *"
+                  defaultValue={this.state.selectedTemplate}
+                  onChange={this.templateOnChange}
+                  smallSelect={true}
+                />
+              </StyledSelect>
+            </PushRight>
+            <SearchAccordion accordionText="Click to select dates:">
+              <div>
+                <PullLeft>
+                  <Label>From:</Label>
+                  <DatePicker
+                    value={startDate}
+                    onChange={this.handleStartDateChange}
+                  />
+                </PullLeft>
+                <br />
+                <PullLeft>
+                  <Label>To:</Label>
+                  <DatePicker
+                    value={endDate}
+                    onChange={this.handleEndDateChange}
+                  />
+                </PullLeft>
+              </div>
+            </SearchAccordion>
+            <SearchAccordion accordionText="Click to search by unique id:">
+              <div>
+                <SearchInput
+                  type="text"
+                  onChange={
+                    e => this.handleUniqueSearchTextChange(e.target.value)
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
+                  value={this.state.irapUuidSearchText}
+                  placeholder="Search Unique Id"
+                />
+                {/* <SearchButton type="button" onClick={this.handleSessionClick}>
               Search Unique ID
             </SearchButton> */}
-          </div>
-        </SearchAccordion>
-        <SearchAccordion accordionText="Click to search by email:">
-          <div>
-            <SearchInput
-              type="text"
-              value={this.state.emailText}
-              onChange={e => this.handleEmailTextChange(e.target.value)}
-              placeholder="Search Email"
-            />
-            {/* <SearchButton type="button" onClick={this.handleEmailClick}>
+              </div>
+            </SearchAccordion>
+            <SearchAccordion accordionText="Click to search by email:">
+              <div>
+                <SearchInput
+                  type="text"
+                  value={this.state.emailText}
+                  onChange={e => this.handleEmailTextChange(e.target.value)}
+                  placeholder="Search Email"
+                />
+                {/* <SearchButton type="button" onClick={this.handleEmailClick}>
               Search Email
             </SearchButton> */}
-          </div>
-        </SearchAccordion>
-        <Button onClick={this.handleClick}>Search</Button>
-        {dataExists && (
-          <div>
-            <InvertedButton onClick={this.handleExcelClick}>
-              Download to excel
-            </InvertedButton>
-          </div>
-        )}
-        <Table data={this.state.data} />
+              </div>
+            </SearchAccordion>
+            <Button onClick={this.handleClick}>Search</Button>
+          </SearchLayout>
+          <TableLayout>
+            {dataExists && (
+              <div>
+                <InvertedButton onClick={this.handleExcelClick}>
+                  Download to excel
+                </InvertedButton>
+              </div>
+            )}
+            <Table data={this.state.data} />
+          </TableLayout>
+        </FlexLayout>
       </Layout>
     );
   }
@@ -275,6 +287,19 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
       dispatch(fetchOrganizations()),
   };
 }
+
+const TableLayout = styled.div`
+  margin-left: 1rem;
+`;
+
+const SearchLayout = styled.div`
+  border-right: 1px solid black;
+  min-height: 64vh;
+`;
+
+const FlexLayout = styled.div`
+  display: flex;
+`;
 
 const PushRight = styled.div`
   margin-left: 1rem;
@@ -315,7 +340,7 @@ const Button = styled.button`
 `;
 
 const InvertedButton = styled.button`
-  margin: 1rem;
+  margin: 1rem 0;
   width: 10.6rem;
   height: 2rem;
   background-color: ${({ theme }): string => theme.white};
