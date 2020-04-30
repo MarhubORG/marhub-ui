@@ -231,9 +231,6 @@ export class UnconnectedIrapDownload extends Component<
                   value={this.state.irapUuidSearchText}
                   placeholder="Search Unique Id"
                 />
-                {/* <SearchButton type="button" onClick={this.handleSessionClick}>
-              Search Unique ID
-            </SearchButton> */}
               </div>
             </SearchAccordion>
             <SearchAccordion accordionText="Click to search by email:">
@@ -244,9 +241,6 @@ export class UnconnectedIrapDownload extends Component<
                   onChange={e => this.handleEmailTextChange(e.target.value)}
                   placeholder="Search Email"
                 />
-                {/* <SearchButton type="button" onClick={this.handleEmailClick}>
-              Search Email
-            </SearchButton> */}
               </div>
             </SearchAccordion>
             <Button onClick={this.handleClick}>Search</Button>
