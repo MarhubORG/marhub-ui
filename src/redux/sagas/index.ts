@@ -18,7 +18,6 @@ export default function* rootSaga() {
     logoutWatcher(),
     fetchOrganizationsWatcher(),
     updateOrganizationWatcher(),
-    createOrganizationWatcher(),
     fetchUsersWatcher(),
     createUserWatcher(),
     editUserWatcher(),

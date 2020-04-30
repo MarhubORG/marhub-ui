@@ -139,7 +139,6 @@ export class UnconnectedOrganizationExportTemplate extends Component<
       }
     });
     const id = this.getOrganizationId();
-    console.log({ checkedNonNullFields });
     if (id !== undefined) {
       this.props.updateOrganization({
         id,
