@@ -147,7 +147,7 @@ export class UnconnectedTemplateEdit extends Component<
         <h1>Template: {this.props.name}</h1>
         <ErrorMessage message={this.props.templateMessage} />
         <Button onClick={this.handleClick}>Update</Button>
-        <Button onClick={this.handleDeleteClick}>Delete</Button>
+        <DeleteButton onClick={this.handleDeleteClick}>Delete</DeleteButton>
         <CheckboxesLayout>{this.createCheckboxes()}</CheckboxesLayout>
       </Layout>
     );
@@ -155,10 +155,20 @@ export class UnconnectedTemplateEdit extends Component<
 }
 
 const Button = styled.button`
-  margin: 1rem;
-  width: 10.6rem;
+  width: 8rem;
   height: 2rem;
   background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+`;
+
+const DeleteButton = styled.button`
+  width: 8rem;
+  height: 2rem;
+  background-color: #ff471a;
   color: ${({ theme }): string => theme.white};
   font-family: Open Sans, sans-serif;
   font-weight: 700;
