@@ -27,6 +27,7 @@ export interface OrganizationFields {
   name: string;
   visibleFields: string[];
   templates?: Template[];
+  nonNullFields?: string[];
   // TODO update for templates
 }
 

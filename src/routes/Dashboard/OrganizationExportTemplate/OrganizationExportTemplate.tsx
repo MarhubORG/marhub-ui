@@ -47,6 +47,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
             [field]: true,
           });
         });
+        if (el.organisation.nonNullFields !== undefined) {
+          el.organisation.nonNullFields.map(field => {
+            this.setState({
+              [field]: true,
+            });
+          });
+        }
       }
     });
   }
@@ -62,11 +69,11 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     return id;
   };
 
-  createNotNullCheckboxes = () => {
+  createNotNullCheckboxes = (): JSX.Element[] => {
     return notNullFields.map(el => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      const checked = this.state.checked[el];
+      const checked = this.state[el];
       return (
         <StyledCheckboxDiv key={el}>
           <label htmlFor={el}>
@@ -85,7 +92,7 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     });
   };
 
-  createCheckboxes = () => {
+  createCheckboxes = (): JSX.Element[] => {
     return databaseFields.map(el => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
@@ -132,7 +139,6 @@ export class UnconnectedOrganizationExportTemplate extends Component<
       }
     });
     const id = this.getOrganizationId();
-    console.log({ checkedNonNullFields });
     if (id !== undefined) {
       this.props.updateOrganization({
         id,

@@ -19,6 +19,7 @@ export const databaseFields = [
   'dapi130_info_response',
   'daprelsiv_info_rating',
   'daprelsiv_response',
+  'email_address1',
   'end_feedback_follow_up_conversation',
   'end_feedback_helpfulness_open_ended',
   'end_feedback_helpfulness_rating',

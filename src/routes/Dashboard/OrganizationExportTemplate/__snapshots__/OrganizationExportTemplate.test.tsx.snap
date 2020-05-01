@@ -386,6 +386,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="email_address1"
+        >
+          <input
+            id="email_address1"
+            name="email_address1"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          email_address1
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="end_feedback_follow_up_conversation"
         >
           <input

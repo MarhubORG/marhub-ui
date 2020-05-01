@@ -9,6 +9,8 @@ export interface ExportingIrapDataPayload {
   startDate: string;
   endDate: string;
   selectedTemplate: string;
+  emailText: string;
+  irapUuidSearchText: string;
 }
 export interface ExportingIrapDataAction {
   type: typeof EXPORTING_IRAP_DATA;
