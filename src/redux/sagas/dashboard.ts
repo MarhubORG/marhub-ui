@@ -118,12 +118,10 @@ function* updateTemplate(action: UpdateTemplateAction): object {
       name: action.payload.name,
       fields: action.payload.fields,
     });
-    console.log({ json }, 'jjjjj');
     yield put(updateTemplateSuccess(json.data));
   } catch (error) {
     const errorMessage =
       'Update template failed. Please contact the administrator.';
-    console.log({ errorMessage });
     yield put(updateTemplateFailure(errorMessage));
   }
 }

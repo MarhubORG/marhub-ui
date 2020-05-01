@@ -119,7 +119,6 @@ export class UnconnectedTemplateEdit extends Component<
   };
 
   render() {
-    console.log('props', this.props);
     return (
       <Layout>
         <h1>Template: {this.props.name}</h1>

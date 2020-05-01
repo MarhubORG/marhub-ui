@@ -167,7 +167,6 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const checked = this.state.checked[name];
-    console.log('toggleNonNullCheckbox', this.state.checked);
     this.setState({
       checked: {
         [name]: !checked,
