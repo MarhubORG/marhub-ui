@@ -16,6 +16,10 @@ import {
   UPDATE_TEMPLATE,
   UPDATE_TEMPLATE_FAILURE,
   UPDATE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE,
+  DELETE_TEMPLATE_FAILURE,
+  DELETE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE_REDIRECT,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -243,6 +247,56 @@ export function updateTemplateFailure(
   };
 }
 
+export interface DeleteTemplateAction {
+  type: typeof DELETE_TEMPLATE;
+  payload: string;
+}
+
+export function deleteTemplate(payload: string): DeleteTemplateAction {
+  return {
+    type: DELETE_TEMPLATE,
+    payload,
+  };
+}
+
+export interface DeleteTemplateFailureAction {
+  type: typeof DELETE_TEMPLATE_FAILURE;
+  payload: string;
+}
+
+export function deleteTemplateFailure(
+  payload: string
+): DeleteTemplateFailureAction {
+  return {
+    type: DELETE_TEMPLATE_FAILURE,
+    payload,
+  };
+}
+
+export interface DeleteTemplateSuccessAction {
+  type: typeof DELETE_TEMPLATE_SUCCESS;
+  payload: Organization;
+}
+
+export function deleteTemplateSuccess(
+  payload: Organization
+): DeleteTemplateSuccessAction {
+  return {
+    type: DELETE_TEMPLATE_SUCCESS,
+    payload,
+  };
+}
+
+export interface DeleteTemplateRedirectAction {
+  type: typeof DELETE_TEMPLATE_REDIRECT;
+}
+
+export function deleteTemplateRedirect(): DeleteTemplateRedirectAction {
+  return {
+    type: DELETE_TEMPLATE_REDIRECT,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -260,4 +314,8 @@ export type DashboardActionTypes =
   | CreateTemplateSuccessAction
   | UpdateTemplateAction
   | UpdateTemplateSuccessAction
-  | UpdateTemplateFailureAction;
+  | UpdateTemplateFailureAction
+  | DeleteTemplateAction
+  | DeleteTemplateFailureAction
+  | DeleteTemplateSuccessAction
+  | DeleteTemplateRedirectAction;

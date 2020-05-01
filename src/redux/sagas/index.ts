@@ -7,6 +7,7 @@ import {
   createOrganizationWatcher,
   createTemplateWatcher,
   updateTemplateWatcher,
+  deleteTemplateWatcher,
 } from './dashboard';
 
 import { fetchUsersWatcher, createUserWatcher, editUserWatcher } from './user';
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     createOrganizationWatcher(),
     createTemplateWatcher(),
     updateTemplateWatcher(),
+    deleteTemplateWatcher(),
   ]);
 }

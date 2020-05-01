@@ -17,6 +17,10 @@ import {
   UPDATE_TEMPLATE,
   UPDATE_TEMPLATE_FAILURE,
   UPDATE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE,
+  DELETE_TEMPLATE_FAILURE,
+  DELETE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE_REDIRECT,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
@@ -133,6 +137,31 @@ export default function dashboardReducer(
         loading: false,
         templateMessage: 'Updated template successfully',
         organizations: replaceWithUpdatedOrg(action.payload, state),
+      };
+    case DELETE_TEMPLATE:
+      return {
+        ...state,
+        loading: true,
+        templateMessage: '',
+      };
+    case DELETE_TEMPLATE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        templateMessage: action.payload,
+      };
+    case DELETE_TEMPLATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        templateMessage: 'Template Deleted.',
+        organizations: replaceWithUpdatedOrg(action.payload, state),
+      };
+    case DELETE_TEMPLATE_REDIRECT:
+      return {
+        ...state,
+        loading: false,
+        templateMessage: '',
       };
     default:
       return state;

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { navigate } from '@reach/router';
 import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
+import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import {
   Organization,
   updateTemplate,
   Template,
   UpdateTemplateAction,
+  deleteTemplate,
+  DeleteTemplateAction,
+  deleteTemplateRedirect,
+  DeleteTemplateRedirectAction,
 } from '../../../redux/actions/dashboard';
 
 interface TemplateEditProps {
@@ -15,6 +21,9 @@ interface TemplateEditProps {
   myOrganization: string;
   organizations: Organization[];
   updateTemplate(payload: Template): UpdateTemplateAction;
+  deleteTemplate(payload: string): DeleteTemplateAction;
+  templateMessage: string;
+  deleteTemplateRedirect(): DeleteTemplateRedirectAction;
 }
 
 interface TemplateEditState {
@@ -44,6 +53,13 @@ export class UnconnectedTemplateEdit extends Component<
         obj[el] = true;
         this.setState(obj);
       });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.templateMessage !== '') {
+      this.props.deleteTemplateRedirect();
+      navigate('/dashboard/templates/');
     }
   }
 
@@ -118,11 +134,20 @@ export class UnconnectedTemplateEdit extends Component<
     }
   };
 
+  handleDeleteClick = () => {
+    const { name } = this.props;
+    if (name) {
+      this.props.deleteTemplate(name);
+    }
+  };
+
   render() {
     return (
       <Layout>
         <h1>Template: {this.props.name}</h1>
+        <ErrorMessage message={this.props.templateMessage} />
         <Button onClick={this.handleClick}>Update</Button>
+        <Button onClick={this.handleDeleteClick}>Delete</Button>
         <CheckboxesLayout>{this.createCheckboxes()}</CheckboxesLayout>
       </Layout>
     );
@@ -156,25 +181,33 @@ const StyledCheckboxDiv = styled.div`
 export interface MapStateToProps {
   myOrganization: string;
   organizations: Organization[];
+  templateMessage: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { myOrganization } = state.registration;
-  const { organizations } = state.dashboardReducer;
+  const { organizations, templateMessage } = state.dashboardReducer;
   return {
     myOrganization,
     organizations,
+    templateMessage,
   };
 }
 
 export interface MapDispatchtoProps {
   updateTemplate(payload: Template): UpdateTemplateAction;
+  deleteTemplate(payload: string): DeleteTemplateAction;
+  deleteTemplateRedirect(): DeleteTemplateRedirectAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
   return {
     updateTemplate: (payload: Template): UpdateTemplateAction =>
       dispatch(updateTemplate(payload)),
+    deleteTemplate: (payload: string): DeleteTemplateAction =>
+      dispatch(deleteTemplate(payload)),
+    deleteTemplateRedirect: (): DeleteTemplateRedirectAction =>
+      dispatch(deleteTemplateRedirect()),
   };
 }
 
