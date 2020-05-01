@@ -14,6 +14,9 @@ import {
   CREATE_TEMPLATE,
   CREATE_TEMPLATE_FAILURE,
   CREATE_TEMPLATE_SUCCESS,
+  UPDATE_TEMPLATE,
+  UPDATE_TEMPLATE_FAILURE,
+  UPDATE_TEMPLATE_SUCCESS,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
@@ -110,6 +113,25 @@ export default function dashboardReducer(
         ...state,
         loading: false,
         templateMessage: templateSuccessMessage,
+        organizations: replaceWithUpdatedOrg(action.payload, state),
+      };
+    case UPDATE_TEMPLATE:
+      return {
+        ...state,
+        loading: true,
+        templateMessage: '',
+      };
+    case UPDATE_TEMPLATE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        templateMessage: action.payload,
+      };
+    case UPDATE_TEMPLATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        templateMessage: 'Updated template successfully',
         organizations: replaceWithUpdatedOrg(action.payload, state),
       };
     default:

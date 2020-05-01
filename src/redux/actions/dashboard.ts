@@ -13,6 +13,9 @@ import {
   CREATE_TEMPLATE,
   CREATE_TEMPLATE_FAILURE,
   CREATE_TEMPLATE_SUCCESS,
+  UPDATE_TEMPLATE,
+  UPDATE_TEMPLATE_FAILURE,
+  UPDATE_TEMPLATE_SUCCESS,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -200,6 +203,46 @@ export function createTemplateSuccess(
   };
 }
 
+export interface UpdateTemplateAction {
+  type: typeof UPDATE_TEMPLATE;
+  payload: Template;
+}
+
+export function updateTemplate(payload: Template): UpdateTemplateAction {
+  return {
+    type: UPDATE_TEMPLATE,
+    payload,
+  };
+}
+
+export interface UpdateTemplateSuccessAction {
+  type: typeof UPDATE_TEMPLATE_SUCCESS;
+  payload: Organization;
+}
+
+export function updateTemplateSuccess(
+  payload: Organization
+): UpdateTemplateSuccessAction {
+  return {
+    type: UPDATE_TEMPLATE_SUCCESS,
+    payload,
+  };
+}
+
+export interface UpdateTemplateFailureAction {
+  type: typeof UPDATE_TEMPLATE_FAILURE;
+  payload: string;
+}
+
+export function updateTemplateFailure(
+  payload: string
+): UpdateTemplateFailureAction {
+  return {
+    type: UPDATE_TEMPLATE_FAILURE,
+    payload,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -214,4 +257,7 @@ export type DashboardActionTypes =
   | CreateOrganizationRedirectAction
   | CreateTemplateAction
   | CreateTemplateFailureAction
-  | CreateTemplateSuccessAction;
+  | CreateTemplateSuccessAction
+  | UpdateTemplateAction
+  | UpdateTemplateSuccessAction
+  | UpdateTemplateFailureAction;

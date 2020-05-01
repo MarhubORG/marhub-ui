@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
-import { Organization } from '../../../redux/actions/dashboard';
+import {
+  Organization,
+  updateTemplate,
+  Template,
+  UpdateTemplateAction,
+} from '../../../redux/actions/dashboard';
 
 interface TemplateEditProps {
   name?: string;
   myOrganization: string;
   organizations: Organization[];
+  updateTemplate(payload: Template): UpdateTemplateAction;
 }
 
 interface TemplateEditState {
@@ -101,15 +108,39 @@ export class UnconnectedTemplateEdit extends Component<
     });
   };
 
+  handleClick = () => {
+    const { name } = this.props;
+    if (name) {
+      const fields = Object.keys(this.state).filter(el => {
+        return el !== 'message';
+      });
+      this.props.updateTemplate({ name, fields });
+    }
+  };
+
   render() {
+    console.log('props', this.props);
     return (
       <Layout>
         <h1>Template: {this.props.name}</h1>
+        <Button onClick={this.handleClick}>Update</Button>
         <CheckboxesLayout>{this.createCheckboxes()}</CheckboxesLayout>
       </Layout>
     );
   }
 }
+
+const Button = styled.button`
+  margin: 1rem;
+  width: 10.6rem;
+  height: 2rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  font-size: 0.8rem;
+`;
 
 const Layout = styled.div`
   padding: 0.5rem 1rem;
@@ -137,4 +168,18 @@ export function mapStateToProps(state: RootState): MapStateToProps {
   };
 }
 
-export default connect(mapStateToProps)(UnconnectedTemplateEdit);
+export interface MapDispatchtoProps {
+  updateTemplate(payload: Template): UpdateTemplateAction;
+}
+
+export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
+  return {
+    updateTemplate: (payload: Template): UpdateTemplateAction =>
+      dispatch(updateTemplate(payload)),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedTemplateEdit);

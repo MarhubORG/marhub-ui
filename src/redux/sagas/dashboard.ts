@@ -7,6 +7,7 @@ import {
   UPDATE_ORGANIZATION,
   CREATE_ORGANIZATION,
   CREATE_TEMPLATE,
+  UPDATE_TEMPLATE,
 } from '../constants/actionTypes';
 import {
   fetchOrganizationsSuccess,
@@ -21,6 +22,9 @@ import {
   CreateTemplateAction,
   createTemplateFailure,
   createTemplateSuccess,
+  UpdateTemplateAction,
+  updateTemplateSuccess,
+  updateTemplateFailure,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -103,4 +107,27 @@ function* createTemplate(action: CreateTemplateAction): object {
 
 export function* createTemplateWatcher(): object {
   yield takeLatest(CREATE_TEMPLATE, createTemplate);
+}
+
+function* updateTemplate(action: UpdateTemplateAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/templates';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.post(url, {
+      name: action.payload.name,
+      fields: action.payload.fields,
+    });
+    console.log({ json }, 'jjjjj');
+    yield put(updateTemplateSuccess(json.data));
+  } catch (error) {
+    const errorMessage =
+      'Update template failed. Please contact the administrator.';
+    console.log({ errorMessage });
+    yield put(updateTemplateFailure(errorMessage));
+  }
+}
+
+export function* updateTemplateWatcher(): object {
+  yield takeLatest(UPDATE_TEMPLATE, updateTemplate);
 }
