@@ -14,10 +14,12 @@ interface TemplateEditState {
   message: string;
 }
 
+/* eslint-disable @typescript-eslint/indent */
 export class UnconnectedTemplateEdit extends Component<
   TemplateEditProps,
   TemplateEditState
 > {
+  /* eslint-enable @typescript-eslint/indent */
   constructor(props: TemplateEditProps) {
     super(props);
     this.state = {
