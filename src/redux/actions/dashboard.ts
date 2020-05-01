@@ -13,6 +13,13 @@ import {
   CREATE_TEMPLATE,
   CREATE_TEMPLATE_FAILURE,
   CREATE_TEMPLATE_SUCCESS,
+  UPDATE_TEMPLATE,
+  UPDATE_TEMPLATE_FAILURE,
+  UPDATE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE,
+  DELETE_TEMPLATE_FAILURE,
+  DELETE_TEMPLATE_SUCCESS,
+  DELETE_TEMPLATE_REDIRECT,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -200,6 +207,96 @@ export function createTemplateSuccess(
   };
 }
 
+export interface UpdateTemplateAction {
+  type: typeof UPDATE_TEMPLATE;
+  payload: Template;
+}
+
+export function updateTemplate(payload: Template): UpdateTemplateAction {
+  return {
+    type: UPDATE_TEMPLATE,
+    payload,
+  };
+}
+
+export interface UpdateTemplateSuccessAction {
+  type: typeof UPDATE_TEMPLATE_SUCCESS;
+  payload: Organization;
+}
+
+export function updateTemplateSuccess(
+  payload: Organization
+): UpdateTemplateSuccessAction {
+  return {
+    type: UPDATE_TEMPLATE_SUCCESS,
+    payload,
+  };
+}
+
+export interface UpdateTemplateFailureAction {
+  type: typeof UPDATE_TEMPLATE_FAILURE;
+  payload: string;
+}
+
+export function updateTemplateFailure(
+  payload: string
+): UpdateTemplateFailureAction {
+  return {
+    type: UPDATE_TEMPLATE_FAILURE,
+    payload,
+  };
+}
+
+export interface DeleteTemplateAction {
+  type: typeof DELETE_TEMPLATE;
+  payload: string;
+}
+
+export function deleteTemplate(payload: string): DeleteTemplateAction {
+  return {
+    type: DELETE_TEMPLATE,
+    payload,
+  };
+}
+
+export interface DeleteTemplateFailureAction {
+  type: typeof DELETE_TEMPLATE_FAILURE;
+  payload: string;
+}
+
+export function deleteTemplateFailure(
+  payload: string
+): DeleteTemplateFailureAction {
+  return {
+    type: DELETE_TEMPLATE_FAILURE,
+    payload,
+  };
+}
+
+export interface DeleteTemplateSuccessAction {
+  type: typeof DELETE_TEMPLATE_SUCCESS;
+  payload: Organization;
+}
+
+export function deleteTemplateSuccess(
+  payload: Organization
+): DeleteTemplateSuccessAction {
+  return {
+    type: DELETE_TEMPLATE_SUCCESS,
+    payload,
+  };
+}
+
+export interface DeleteTemplateRedirectAction {
+  type: typeof DELETE_TEMPLATE_REDIRECT;
+}
+
+export function deleteTemplateRedirect(): DeleteTemplateRedirectAction {
+  return {
+    type: DELETE_TEMPLATE_REDIRECT,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -214,4 +311,11 @@ export type DashboardActionTypes =
   | CreateOrganizationRedirectAction
   | CreateTemplateAction
   | CreateTemplateFailureAction
-  | CreateTemplateSuccessAction;
+  | CreateTemplateSuccessAction
+  | UpdateTemplateAction
+  | UpdateTemplateSuccessAction
+  | UpdateTemplateFailureAction
+  | DeleteTemplateAction
+  | DeleteTemplateFailureAction
+  | DeleteTemplateSuccessAction
+  | DeleteTemplateRedirectAction;

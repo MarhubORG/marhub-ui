@@ -38,7 +38,7 @@ export class UnconnectedTemplateList extends Component<TemplateListProps> {
       const arr = Object.keys(templates);
       return arr.map(el => {
         return (
-          <StyledLink key={el} to="#">
+          <StyledLink key={el} to={el}>
             {el}
           </StyledLink>
         );

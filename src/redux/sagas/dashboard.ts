@@ -7,6 +7,8 @@ import {
   UPDATE_ORGANIZATION,
   CREATE_ORGANIZATION,
   CREATE_TEMPLATE,
+  UPDATE_TEMPLATE,
+  DELETE_TEMPLATE,
 } from '../constants/actionTypes';
 import {
   fetchOrganizationsSuccess,
@@ -21,6 +23,12 @@ import {
   CreateTemplateAction,
   createTemplateFailure,
   createTemplateSuccess,
+  UpdateTemplateAction,
+  updateTemplateSuccess,
+  updateTemplateFailure,
+  DeleteTemplateAction,
+  deleteTemplateSuccess,
+  deleteTemplateFailure,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -103,4 +111,50 @@ function* createTemplate(action: CreateTemplateAction): object {
 
 export function* createTemplateWatcher(): object {
   yield takeLatest(CREATE_TEMPLATE, createTemplate);
+}
+
+function* updateTemplate(action: UpdateTemplateAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/templates';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.post(url, {
+      name: action.payload.name,
+      fields: action.payload.fields,
+    });
+    yield put(updateTemplateSuccess(json.data));
+  } catch (error) {
+    const errorMessage =
+      'Update template failed. Please contact the administrator.';
+    yield put(updateTemplateFailure(errorMessage));
+  }
+}
+
+export function* updateTemplateWatcher(): object {
+  yield takeLatest(UPDATE_TEMPLATE, updateTemplate);
+}
+
+function* deleteTemplate(action: DeleteTemplateAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/templates';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.delete(url, {
+      data: {
+        name: action.payload,
+      },
+    });
+    console.log('12', { json });
+    yield put(deleteTemplateSuccess(json.data));
+  } catch (error) {
+    yield put(
+      deleteTemplateFailure(
+        'Delete template failed. Please contact the administrator.'
+      )
+    );
+  }
+}
+
+export function* deleteTemplateWatcher(): object {
+  yield takeLatest(DELETE_TEMPLATE, deleteTemplate);
 }

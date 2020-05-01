@@ -15,6 +15,8 @@ import OrganizationExportTemplate from './OrganizationExportTemplate/Organizatio
 import Unauthorized from '../../errorPages/Unauthorized/Unauthorized';
 import TableauDashboard from './TableauDashboard/TableauDashboard';
 import NewOrganization from './NewOrganization/NewOrganization';
+import TemplateEdit from './TemplateEdit/TemplateEdit';
+
 import {
   MARHUB_ADMIN,
   MARHUB_USER,
@@ -90,6 +92,13 @@ export const DashboardItems = [
     component: TemplateNew,
     buttonText: '',
     pathString: '/templates/new',
+    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    showButton: false,
+  },
+  {
+    component: TemplateEdit,
+    buttonText: '',
+    pathString: '/templates/:name',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: false,
   },
