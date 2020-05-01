@@ -17,6 +17,7 @@ interface NewTemplateProps {
   createTemplate(payload: Template): CreateTemplateAction;
   myOrganization: string;
   organizations: Organization[];
+  templateMessage?: string;
 }
 interface NewOrganizationState {
   name: string;
@@ -108,6 +109,7 @@ export class UnconnectedNewTemplate extends Component<
       <Layout>
         <h1>New Template</h1>
         <ErrorMessage message={this.state.message} />
+        <ErrorMessage message={this.props.templateMessage} />
         <form>
           <StyledButton type="button" onClick={this.handleClick}>
             Submit
@@ -162,12 +164,13 @@ const StyledCheckboxDiv = styled.div`
 export interface MapStateToProps {
   myOrganization: string;
   organizations: Organization[];
+  templateMessage: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { myOrganization } = state.registration;
-  const { organizations } = state.dashboardReducer;
-  return { myOrganization, organizations };
+  const { organizations, templateMessage } = state.dashboardReducer;
+  return { myOrganization, organizations, templateMessage };
 }
 
 export interface MapDispatchToProps {
