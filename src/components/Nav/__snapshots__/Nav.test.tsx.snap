@@ -174,10 +174,10 @@ exports[`renders correctly while logged in 1`] = `
     </a>
     <a
       className="c3"
-      href="/dashboard/tableau"
+      href="/dashboard/"
       onClick={[Function]}
     >
-      Tableau
+      Dashboard
     </a>
     <a
       className="c3"
