@@ -48,8 +48,8 @@ export const DashboardItems = [
   },
   {
     component: TableauDashboard,
-    buttonText: 'Tableau',
-    pathString: '/tableau',
+    buttonText: 'Dashboard',
+    pathString: '/',
     permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
     showButton: true,
   },

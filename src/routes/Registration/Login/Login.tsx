@@ -48,7 +48,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
       this.props.navigate !== undefined
     ) {
       this.props.loginRedirecting();
-      this.props.navigate('/dashboard/tableau');
+      this.props.navigate('/dashboard');
     }
   }
 
