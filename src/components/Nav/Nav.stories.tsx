@@ -10,6 +10,7 @@ storiesOf('Nav', module).add('Not logged in', () => (
     <UnconnectedNav
       isLoggedIn={false}
       logout={logout}
+      role="admin"
       pathname="/dashboard/organizations"
     />
   </ThemeProvider>
@@ -19,6 +20,7 @@ storiesOf('Nav', module).add('Logged in', () => (
   <ThemeProvider theme={mainTheme}>
     <UnconnectedNav
       isLoggedIn={true}
+      role="admin"
       logout={logout}
       pathname="/dashboard/organizations"
     />

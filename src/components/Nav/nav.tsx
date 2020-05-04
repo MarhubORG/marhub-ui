@@ -138,16 +138,22 @@ interface NavProps {
   pathname: string;
   isLoggedIn: boolean;
   logout(): LogoutAction;
+  role: string;
 }
 
 interface Params {
   setCurrentButton: (str: string) => void;
   currentButton: string;
   pathname: string;
+  role: string;
 }
 export function createDashboardLinks(params: Params) {
+  const { role } = params;
   // eslint-disable-next-line consistent-return
   const items = DashboardItems.map(el => {
+    if (!el.permissions.includes(role)) {
+      return null;
+    }
     const url = `/dashboard${el.pathString}`;
     const currentString =
       params.currentButton === '' ? params.pathname : params.currentButton;
@@ -171,11 +177,15 @@ export function createDashboardLinks(params: Params) {
     }
   });
   // setSelectedButton('a');
-  return items;
+  const nonNullItems = items.filter(el => {
+    return el !== null;
+  });
+
+  return nonNullItems;
 }
 export function UnconnectedNav(props: NavProps): JSX.Element {
   const [currentButton, setCurrentButton] = useState('');
-  const { pathname } = props;
+  const { pathname, role } = props;
   return (
     <StyledNav>
       <Link to="/">
@@ -193,6 +203,7 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
               setCurrentButton,
               currentButton,
               pathname,
+              role,
             })}
           </DashboardLinks>
           <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
@@ -206,11 +217,12 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
 
 export interface MapStateToProps {
   isLoggedIn: boolean;
+  role: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { isLoggedIn } = state.registration;
-  return { isLoggedIn };
+  const { isLoggedIn, role } = state.registration;
+  return { isLoggedIn, role };
 }
 
 export interface MapDispatchToProps {
