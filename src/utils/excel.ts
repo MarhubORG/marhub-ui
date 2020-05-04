@@ -40,20 +40,31 @@ export function getHeaders(arr: object[]): Header[] {
   });
 }
 
-export function createNewExcelFile(data: object[], headers: object[]): void {
+export function createNewExcelFile(
+  data: object[],
+  headers: object[],
+  orgName: string
+): void {
   // A new Excel Work Book
+  const date = new Date();
   const workbook = new Excel.Workbook();
   workbook.creator = 'Marhub Dashboard';
   workbook.lastModifiedBy = '';
-  workbook.created = new Date();
-  workbook.modified = new Date();
-  workbook.lastPrinted = new Date();
+  workbook.created = date;
+  workbook.modified = date;
+  workbook.lastPrinted = date;
+
+  const nameDate = new Date();
+  const day = nameDate.getDate();
+  const month = nameDate.getMonth() + 1;
+  const year = nameDate.getFullYear();
+  const formattedDate = formatDate(`${day}/${month}/${year}`);
 
   const sheet = workbook.addWorksheet('Data');
   sheet.columns = headers;
   sheet.addRows(data);
   const buffer = workbook.xlsx.writeBuffer();
   buffer.then(res => {
-    FileDownload(res, 'data.xlsx');
+    FileDownload(res, `Marhub_${orgName}_${formattedDate}.xlsx`);
   });
 }

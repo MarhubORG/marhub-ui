@@ -92,13 +92,15 @@ export class UnconnectedIrapDownload extends Component<
       this.setState({ message: 'Please choose a template.' });
       return null;
     }
+    const trimmedEmail = emailText.trim();
+    const trimmedUuid = irapUuidSearchText.trim();
     this.setState({ message: '' });
     return this.props.exportingIrapData({
       startDate,
       endDate,
       selectedTemplate,
-      emailText,
-      irapUuidSearchText,
+      emailText: trimmedEmail,
+      irapUuidSearchText: trimmedUuid,
     });
   };
 
@@ -172,9 +174,13 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   handleExcelClick = () => {
-    const headers = getHeaders(this.props.apiReducer.irapState);
-    const { data } = this.state;
-    createNewExcelFile(data, headers);
+    const myOrg = this.getMyOrganization();
+    if (myOrg !== null) {
+      const headers = getHeaders(this.props.apiReducer.irapState);
+      const { name } = myOrg.organisation;
+      const { data } = this.state;
+      createNewExcelFile(data, headers, name);
+    }
   };
 
   templateOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
