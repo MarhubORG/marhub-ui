@@ -52,7 +52,7 @@ export class UnconnectedNewTemplate extends Component<
   createCheckboxes = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null) {
-      return myOrg.organisation.visibleFields.map(el => {
+      return myOrg.organisation.visibleFields.sort().map(el => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         const checked = this.state[el];
@@ -147,10 +147,10 @@ const CheckboxesLayout = styled.div`
 const StyledButton = styled.button`
   height: 2rem;
   width: 8rem;
-  margin-top: 1rem;
   border-radius: 5px;
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
 `;
 
 const Layout = styled.div`

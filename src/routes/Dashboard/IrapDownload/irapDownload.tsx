@@ -187,7 +187,9 @@ export class UnconnectedIrapDownload extends Component<
     const templateOptions = this.getTemplateOptions();
     return (
       <Layout>
-        <ErrorMessage message={this.state.message} />
+        <PullMessageLeft>
+          <ErrorMessage message={this.state.message} />
+        </PullMessageLeft>
         <FlexLayout>
           <SearchLayout>
             <PushRight>
@@ -295,6 +297,10 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
 
 const TableLayout = styled.div`
   margin-left: 1rem;
+`;
+
+const PullMessageLeft = styled.div`
+  margin-left: -3.5rem;
 `;
 
 const SearchLayout = styled.div`
