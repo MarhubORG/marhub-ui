@@ -67,8 +67,11 @@ const StyledTable = styled.table`
   td {
     border: 1px solid ${({ theme }): string => theme.grayText};
     white-space: wrap;
+    word-wrap: break-word;
     max-width: 18rem;
     padding: 0.5rem 1rem;
+    text-align: center;
+    min-width: 7rem;
   }
 
   th {

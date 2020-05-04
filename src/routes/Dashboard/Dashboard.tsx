@@ -36,14 +36,14 @@ export const DashboardItems = [
     component: OrganizationList,
     buttonText: 'Organizations',
     pathString: '/organizations',
-    permissions: [MARHUB_ADMIN, ''],
+    permissions: [MARHUB_ADMIN],
     showButton: true,
   },
   {
     component: OrganizationExportTemplate,
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
-    permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    permissions: [MARHUB_ADMIN],
     showButton: false,
   },
   {
@@ -139,25 +139,30 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
 
   createRouterItems = () => {
     const { role } = this.props;
-
-    return DashboardItems.map(el => {
+    const items = DashboardItems.map(el => {
       if (role !== undefined && hasPermission(el, role)) {
         const DashboardComponent = el.component;
         return <DashboardComponent key={el.pathString} path={el.pathString} />;
       }
       return null;
     });
+
+    const nonNullItems = items.filter(el => {
+      return el !== null;
+    });
+
+    return nonNullItems;
   };
 
   render(): JSX.Element {
     if (this.props.isLoggedIn !== true) {
       return <Unauthorized />;
     }
+    const routerItems = this.createRouterItems();
     return (
       <Container>
-        {/* <OptionsPanel>{this.createActionItems()}</OptionsPanel> */}
         <ActionPanel>
-          <Router>{this.createRouterItems()}</Router>
+          <Router>{routerItems}</Router>
         </ActionPanel>
       </Container>
     );
