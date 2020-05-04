@@ -1,4 +1,39 @@
 export const notNullFields = ['handoff_timestamp'];
+
+export function titleize(fieldName: string) {
+  const word = fieldName.replace(/_/g, ' ');
+  const wordsArray = word.split(' ');
+  const capitalizedArray = wordsArray.map(e => {
+    return e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
+  });
+  return capitalizedArray.join(' ');
+}
+
+export const databaseFieldsNameMap = {
+  fam_num: 'Spouse Name',
+  unhcr_case_file_family_adultminor_2: 'Kimlik Number',
+  unhcr_case_file_family_adultminor_6: 'External Services Info Received',
+  ar_full_name: 'AR Full Name',
+  en_full_name: 'EN Full Name',
+  email_address1: 'Email Address 1',
+  unhcr_number: 'UNCHR Number',
+  usrap_case_number: 'USRAP Case Number',
+  lgbt: 'LGBT',
+  icorn_cpj: 'ICORN CPJ',
+  siv: 'SIV',
+  siv_1059: 'SIV 1059',
+  siv_101a: 'SIV 101a',
+  siv_follow_to_join: 'SIV Follow to Join',
+  us_prior_admission: 'US Prior Admission',
+  usrap_access: 'USRAP Access',
+  dap_via_i_130: 'DAP via I 130',
+  dap_via_ev: 'DAP via EV',
+  dap_as_relative_of_siv: 'DAP as Relative of SIV',
+  rfr_submission: 'RFR Submission',
+  eo_waiver: 'EO Waiver',
+  createdAt: 'Created At',
+};
+
 export const databaseFields = [
   'age',
   'arcurrentcountry',

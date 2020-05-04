@@ -92,13 +92,15 @@ export class UnconnectedIrapDownload extends Component<
       this.setState({ message: 'Please choose a template.' });
       return null;
     }
+    const trimmedEmail = emailText.trim();
+    const trimmedUuid = irapUuidSearchText.trim();
     this.setState({ message: '' });
     return this.props.exportingIrapData({
       startDate,
       endDate,
       selectedTemplate,
-      emailText,
-      irapUuidSearchText,
+      emailText: trimmedEmail,
+      irapUuidSearchText: trimmedUuid,
     });
   };
 
@@ -172,9 +174,13 @@ export class UnconnectedIrapDownload extends Component<
   };
 
   handleExcelClick = () => {
-    const headers = getHeaders(this.props.apiReducer.irapState);
-    const { data } = this.state;
-    createNewExcelFile(data, headers);
+    const myOrg = this.getMyOrganization();
+    if (myOrg !== null) {
+      const headers = getHeaders(this.props.apiReducer.irapState);
+      const { name } = myOrg.organisation;
+      const { data } = this.state;
+      createNewExcelFile(data, headers, name);
+    }
   };
 
   templateOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -187,7 +193,9 @@ export class UnconnectedIrapDownload extends Component<
     const templateOptions = this.getTemplateOptions();
     return (
       <Layout>
-        <ErrorMessage message={this.state.message} />
+        <PullMessageLeft>
+          <ErrorMessage message={this.state.message} />
+        </PullMessageLeft>
         <FlexLayout>
           <SearchLayout>
             <PushRight>
@@ -295,6 +303,10 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
 
 const TableLayout = styled.div`
   margin-left: 1rem;
+`;
+
+const PullMessageLeft = styled.div`
+  margin-left: -3.5rem;
 `;
 
 const SearchLayout = styled.div`

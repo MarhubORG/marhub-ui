@@ -162,6 +162,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="ar_full_name"
+        >
+          <input
+            id="ar_full_name"
+            name="ar_full_name"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          ar_full_name
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="blocked"
         >
           <input
@@ -386,6 +402,54 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="dap_via_i_130"
+        >
+          <input
+            id="dap_via_i_130"
+            name="dap_via_i_130"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          dap_via_i_130
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="dap_via_ev"
+        >
+          <input
+            id="dap_via_ev"
+            name="dap_via_ev"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          dap_via_ev
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="dap_as_relative_of_siv"
+        >
+          <input
+            id="dap_as_relative_of_siv"
+            name="dap_as_relative_of_siv"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          dap_as_relative_of_siv
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="email_address1"
         >
           <input
@@ -498,6 +562,54 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="en_full_name"
+        >
+          <input
+            id="en_full_name"
+            name="en_full_name"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          en_full_name
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="eo_waiver"
+        >
+          <input
+            id="eo_waiver"
+            name="eo_waiver"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          eo_waiver
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="fam_num"
+        >
+          <input
+            id="fam_num"
+            name="fam_num"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          fam_num
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="firstname"
         >
           <input
@@ -540,6 +652,22 @@ exports[`renders correctly 1`] = `
             value=""
           />
           gender
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="germany_family_reunification"
+        >
+          <input
+            id="germany_family_reunification"
+            name="germany_family_reunification"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          germany_family_reunification
         </label>
       </div>
       <div
@@ -642,6 +770,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="i_130_f"
+        >
+          <input
+            id="i_130_f"
+            name="i_130_f"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          i_130_f
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="i130_info_rating"
         >
           <input
@@ -674,6 +818,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="i_130_ir"
+        >
+          <input
+            id="i_130_ir"
+            name="i_130_ir"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          i_130_ir
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="i730_info_rating"
         >
           <input
@@ -700,6 +860,38 @@ exports[`renders correctly 1`] = `
             value=""
           />
           i730_info_response
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="i_730_pathway"
+        >
+          <input
+            id="i_730_pathway"
+            name="i_730_pathway"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          i_730_pathway
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="icorn_cpj"
+        >
+          <input
+            id="icorn_cpj"
+            name="icorn_cpj"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          icorn_cpj
         </label>
       </div>
       <div
@@ -786,16 +978,16 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
-          htmlFor="lgtb"
+          htmlFor="lgbt"
         >
           <input
-            id="lgtb"
-            name="lgtb"
+            id="lgbt"
+            name="lgbt"
             onChange={[Function]}
             type="checkbox"
             value=""
           />
-          lgtb
+          lgbt
         </label>
       </div>
       <div
@@ -962,6 +1154,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="p_3"
+        >
+          <input
+            id="p_3"
+            name="p_3"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          p_3
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="p3_info_rating"
         >
           <input
@@ -1010,6 +1218,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="phone_number"
+        >
+          <input
+            id="phone_number"
+            name="phone_number"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          phone_number
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="prescreening_complete"
         >
           <input
@@ -1036,6 +1260,22 @@ exports[`renders correctly 1`] = `
             value=""
           />
           previous_us_resettlement
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="pro_se_guidance_received"
+        >
+          <input
+            id="pro_se_guidance_received"
+            name="pro_se_guidance_received"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          pro_se_guidance_received
         </label>
       </div>
       <div
@@ -1202,6 +1442,22 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="rfr_submission"
+        >
+          <input
+            id="rfr_submission"
+            name="rfr_submission"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          rfr_submission
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="rsc"
         >
           <input
@@ -1244,6 +1500,70 @@ exports[`renders correctly 1`] = `
             value=""
           />
           rsc_contact_email
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="siv"
+        >
+          <input
+            id="siv"
+            name="siv"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          siv
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="siv_follow_to_join"
+        >
+          <input
+            id="siv_follow_to_join"
+            name="siv_follow_to_join"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          siv_follow_to_join
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="siv_101a"
+        >
+          <input
+            id="siv_101a"
+            name="siv_101a"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          siv_101a
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="siv_1059"
+        >
+          <input
+            id="siv_1059"
+            name="siv_1059"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          siv_1059
         </label>
       </div>
       <div
@@ -1346,6 +1666,54 @@ exports[`renders correctly 1`] = `
         className="c4"
       >
         <label
+          htmlFor="unhcr_case_file_family_adultminor_2"
+        >
+          <input
+            id="unhcr_case_file_family_adultminor_2"
+            name="unhcr_case_file_family_adultminor_2"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          unhcr_case_file_family_adultminor_2
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="unhcr_case_file_family_adultminor_6"
+        >
+          <input
+            id="unhcr_case_file_family_adultminor_6"
+            name="unhcr_case_file_family_adultminor_6"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          unhcr_case_file_family_adultminor_6
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="unhcr_number"
+        >
+          <input
+            id="unhcr_number"
+            name="unhcr_number"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          unhcr_number
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
           htmlFor="unique_session_id"
         >
           <input
@@ -1420,6 +1788,54 @@ exports[`renders correctly 1`] = `
             value=""
           />
           us_relative_relationship1
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="us_prior_admission"
+        >
+          <input
+            id="us_prior_admission"
+            name="us_prior_admission"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          us_prior_admission
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="usrap_access"
+        >
+          <input
+            id="usrap_access"
+            name="usrap_access"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          usrap_access
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <label
+          htmlFor="usrap_case_number"
+        >
+          <input
+            id="usrap_case_number"
+            name="usrap_case_number"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          usrap_case_number
         </label>
       </div>
       <div

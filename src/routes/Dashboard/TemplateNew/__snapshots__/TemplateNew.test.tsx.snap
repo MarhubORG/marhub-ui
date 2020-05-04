@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-.c3 {
+.c4 {
   height: 2rem;
   min-width: 18rem;
   max-width: 18rem;
@@ -12,16 +12,7 @@ exports[`renders correctly 1`] = `
   border: 1px solid #edf1f7;
 }
 
-.c2 {
-  display: block;
-  font-family: Open Sans,sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1rem;
-  margin: 0.5rem 0rem;
-}
-
-.c4 {
+.c3 {
   display: block;
   font-family: Open Sans,sans-serif;
   font-size: 0.75rem;
@@ -31,14 +22,42 @@ exports[`renders correctly 1`] = `
 }
 
 .c5 {
-  max-height: 50vh;
+  display: block;
+  font-family: Open Sans,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  margin: 0.5rem 0rem;
 }
 
 .c1 {
+  margin-left: -2.8rem;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-height: 50vh;
+}
+
+.c6 .thirds {
+  width: 32%;
+}
+
+.c2 {
   height: 2rem;
   width: 8rem;
-  margin-top: 1rem;
   border-radius: 5px;
+  font-size: 0.9rem;
 }
 
 .c0 {
@@ -51,9 +70,12 @@ exports[`renders correctly 1`] = `
   <h1>
     New Template
   </h1>
+  <div
+    className="c1"
+  />
   <form>
     <button
-      className="c1"
+      className="c2"
       onClick={[Function]}
       type="button"
     >
@@ -61,13 +83,13 @@ exports[`renders correctly 1`] = `
     </button>
     <div>
       <label
-        className="c2"
+        className="c3"
         htmlFor="name"
       >
         Name:
       </label>
       <input
-        className="c3"
+        className="c4"
         name="name"
         onChange={[Function]}
         placeholder="Name"
@@ -76,12 +98,12 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <span
-      className="c4"
+      className="c5"
     >
       Fields:
     </span>
     <div
-      className="c5"
+      className="c6"
     />
   </form>
 </div>

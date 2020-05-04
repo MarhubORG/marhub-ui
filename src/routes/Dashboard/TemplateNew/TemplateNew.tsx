@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { navigate } from '@reach/router';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 import { RootState } from '../../../types/interfaces';
-import { databaseFields } from '../../../utils/database';
+import { titleize, databaseFieldsNameMap } from '../../../utils/database';
 import {
   CreateTemplateAction,
   createTemplate,
   Template,
   Organization,
+  DeleteTemplateRedirectAction,
+  deleteTemplateRedirect,
 } from '../../../redux/actions/dashboard';
 
 interface NewTemplateProps {
@@ -18,6 +21,7 @@ interface NewTemplateProps {
   myOrganization: string;
   organizations: Organization[];
   templateMessage?: string;
+  deleteTemplateRedirect(): DeleteTemplateRedirectAction;
 }
 interface NewOrganizationState {
   name: string;
@@ -39,6 +43,14 @@ export class UnconnectedNewTemplate extends Component<
     };
   }
 
+  componentDidUpdate(): void {
+    const message = 'Successfully created new template';
+    if (this.props.templateMessage === message) {
+      this.props.deleteTemplateRedirect();
+      navigate('/dashboard/templates/');
+    }
+  }
+
   getMyOrganization = (): Organization | null => {
     const { myOrganization, organizations } = this.props;
     for (let x = 0; x < organizations.length; x++) {
@@ -52,12 +64,19 @@ export class UnconnectedNewTemplate extends Component<
   createCheckboxes = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null) {
-      return myOrg.organisation.visibleFields.map(el => {
+      return myOrg.organisation.visibleFields.sort().map(el => {
+        let displayName = titleize(el);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        const c = databaseFieldsNameMap[el];
+        if (c !== undefined) {
+          displayName = c;
+        }
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         const checked = this.state[el];
         return (
-          <StyledCheckboxDiv key={el}>
+          <StyledCheckboxDiv key={el} className="thirds">
             <label htmlFor={el}>
               <input
                 type="checkbox"
@@ -67,7 +86,7 @@ export class UnconnectedNewTemplate extends Component<
                 checked={checked}
                 onChange={(e): void => this.toggleCheckbox(e)}
               />
-              {el}
+              {displayName}
             </label>
           </StyledCheckboxDiv>
         );
@@ -108,8 +127,10 @@ export class UnconnectedNewTemplate extends Component<
     return (
       <Layout>
         <h1>New Template</h1>
-        <ErrorMessage message={this.state.message} />
-        <ErrorMessage message={this.props.templateMessage} />
+        <PullLeft>
+          <ErrorMessage message={this.state.message} />
+          <ErrorMessage message={this.props.templateMessage} />
+        </PullLeft>
         <form>
           <StyledButton type="button" onClick={this.handleClick}>
             Submit
@@ -140,17 +161,27 @@ const Span = styled.span`
   margin: 0.5rem 0rem;
 `;
 
+const PullLeft = styled.div`
+  margin-left: -2.8rem;
+`;
+
 const CheckboxesLayout = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-height: 50vh;
+  .thirds {
+    width: 32%;
+  }
 `;
 
 const StyledButton = styled.button`
   height: 2rem;
   width: 8rem;
-  margin-top: 1rem;
   border-radius: 5px;
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
 `;
 
 const Layout = styled.div`
@@ -175,12 +206,15 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 
 export interface MapDispatchToProps {
   createTemplate(params: Template): CreateTemplateAction;
+  deleteTemplateRedirect(): DeleteTemplateRedirectAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
   return {
     createTemplate: (payload: Template): CreateTemplateAction =>
       dispatch(createTemplate(payload)),
+    deleteTemplateRedirect: (): DeleteTemplateRedirectAction =>
+      dispatch(deleteTemplateRedirect()),
   };
 }
 

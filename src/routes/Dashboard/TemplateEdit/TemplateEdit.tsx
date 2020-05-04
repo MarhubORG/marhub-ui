@@ -15,6 +15,7 @@ import {
   deleteTemplateRedirect,
   DeleteTemplateRedirectAction,
 } from '../../../redux/actions/dashboard';
+import { titleize, databaseFieldsNameMap } from '../../../utils/database';
 
 interface TemplateEditProps {
   name?: string;
@@ -87,12 +88,19 @@ export class UnconnectedTemplateEdit extends Component<
   createCheckboxes = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null) {
-      return myOrg.organisation.visibleFields.map(el => {
+      return myOrg.organisation.visibleFields.sort().map(el => {
+        let displayName = titleize(el);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        const c = databaseFieldsNameMap[el];
+        if (c !== undefined) {
+          displayName = c;
+        }
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         const checked = this.state[el];
         return (
-          <StyledCheckboxDiv key={el}>
+          <StyledCheckboxDiv key={el} className="thirds">
             <label htmlFor={el}>
               <input
                 type="checkbox"
@@ -102,7 +110,7 @@ export class UnconnectedTemplateEdit extends Component<
                 checked={checked}
                 onChange={(e): void => this.toggleCheckbox(e)}
               />
-              {el}
+              {displayName}
             </label>
           </StyledCheckboxDiv>
         );
@@ -181,7 +189,13 @@ const Layout = styled.div`
 `;
 
 const CheckboxesLayout = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-height: 50vh;
+  .thirds {
+    width: 32%;
+  }
 `;
 
 const StyledCheckboxDiv = styled.div`
