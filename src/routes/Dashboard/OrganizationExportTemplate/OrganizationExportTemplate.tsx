@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, navigate } from '@reach/router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -66,6 +66,12 @@ export class UnconnectedOrganizationExportTemplate extends Component<
         }
       }
     });
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.errorMessage === 'DELETE_ORGANIZATION_SUCCESS') {
+      navigate('/dashboard/templates/');
+    }
   }
 
   getOrganizationId = (): number | undefined => {

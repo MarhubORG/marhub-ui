@@ -176,14 +176,14 @@ export default function dashboardReducer(
       return {
         ...state,
         loading: false,
-        templateMessage:
+        errorMessage:
           'Delete organization failed. Please contact the administrator',
       };
     case DELETE_ORGANIZATION_SUCCESS:
       return {
         ...state,
         loading: true,
-        templateMessage: 'DELETE_ORGANIZATION_SUCCESS',
+        errorMessage: 'DELETE_ORGANIZATION_SUCCESS',
       };
     default:
       return state;
