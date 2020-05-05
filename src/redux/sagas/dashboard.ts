@@ -9,6 +9,7 @@ import {
   CREATE_TEMPLATE,
   UPDATE_TEMPLATE,
   DELETE_TEMPLATE,
+  DELETE_ORGANIZATION,
 } from '../constants/actionTypes';
 import {
   fetchOrganizationsSuccess,
@@ -29,6 +30,9 @@ import {
   DeleteTemplateAction,
   deleteTemplateSuccess,
   deleteTemplateFailure,
+  DeleteOrganizationAction,
+  deleteOrganizationFailure,
+  deleteOrganizationSuccess,
 } from '../actions/dashboard';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
@@ -156,4 +160,24 @@ function* deleteTemplate(action: DeleteTemplateAction): object {
 
 export function* deleteTemplateWatcher(): object {
   yield takeLatest(DELETE_TEMPLATE, deleteTemplate);
+}
+
+function* deleteOrganization(action: DeleteOrganizationAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/organisations';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    yield axios.delete(url, {
+      data: {
+        id: action.payload,
+      },
+    });
+    yield put(deleteOrganizationSuccess());
+  } catch (error) {
+    yield put(deleteOrganizationFailure());
+  }
+}
+
+export function* deleteOrganizationWatcher(): object {
+  yield takeLatest(DELETE_ORGANIZATION, deleteOrganization);
 }

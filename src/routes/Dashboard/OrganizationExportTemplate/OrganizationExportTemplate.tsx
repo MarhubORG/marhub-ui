@@ -15,6 +15,8 @@ import {
   updateOrganization,
   UpdateOrganizationAction,
   UpdateOrganizationPayload,
+  deleteOrganization,
+  DeleteOrganizationAction,
 } from '../../../redux/actions/dashboard';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
@@ -24,6 +26,7 @@ interface OrganizationExportTemplateProps extends RouteComponentProps {
   updateOrganization(
     action: UpdateOrganizationPayload
   ): UpdateOrganizationAction;
+  deleteOrganization(id: number): DeleteOrganizationAction;
   errorMessage: string;
 }
 
@@ -189,6 +192,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     });
   };
 
+  handleDeleteClick = (): void => {
+    const id = this.getOrganizationId();
+    if (id !== undefined) {
+      this.props.deleteOrganization(id);
+    }
+  };
+
   render(): JSX.Element {
     const { errorMessage } = this.props;
     return (
@@ -198,10 +208,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
             <ErrorMessage message={errorMessage} />
           </StyledErrorMessage>
         )}
-        <StyledHeader>{this.props.organization} Template</StyledHeader>
+        <StyledHeader>{this.props.organization} Permitted Fields</StyledHeader>
         <StyledButton type="button" onClick={this.submitFields}>
           Submit
         </StyledButton>
+        <DeleteButton type="button" onClick={this.handleDeleteClick}>
+          Delete
+        </DeleteButton>
         <form>
           <Label>Non-null fields</Label>
           <CheckboxesLayout>{this.createNotNullCheckboxes()}</CheckboxesLayout>
@@ -252,6 +265,16 @@ const StyledButton = styled.button`
   color: ${({ theme }): string => theme.white};
   height: 2rem;
   width: 5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+`;
+
+const DeleteButton = styled.button`
+  font-size: 0.8rem;
+  background-color: #ff471a;
+  color: ${({ theme }): string => theme.white};
+  height: 2rem;
+  width: 5rem;
   margin-bottom: 0.5rem;
 `;
 
@@ -269,6 +292,7 @@ export interface MapDispatchToProps {
   updateOrganization(
     action: UpdateOrganizationPayload
   ): UpdateOrganizationAction;
+  deleteOrganization(id: number): DeleteOrganizationAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
@@ -276,6 +300,8 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     updateOrganization: (
       action: UpdateOrganizationPayload
     ): UpdateOrganizationAction => dispatch(updateOrganization(action)),
+    deleteOrganization: (id: number): DeleteOrganizationAction =>
+      dispatch(deleteOrganization(id)),
   };
 }
 
