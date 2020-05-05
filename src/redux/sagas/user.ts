@@ -39,6 +39,7 @@ function* createUser(action: CreateUserAction): object {
       password,
       role,
       selectedOrganization,
+      isDisabled,
     } = action.payload;
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/users';
@@ -50,6 +51,7 @@ function* createUser(action: CreateUserAction): object {
       password,
       role,
       organisation: selectedOrganization,
+      isDisabled,
     });
     yield put(createUserSuccess(json.data.user));
   } catch (error) {
