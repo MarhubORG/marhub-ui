@@ -164,26 +164,6 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ emailText });
   };
 
-  handleSessionClick = (): void => {
-    const { data, irapUuidSearchText } = this.state;
-    const updatedData = data.filter(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return el.textitSessionId.includes(irapUuidSearchText);
-    });
-    this.setState({ data: updatedData });
-  };
-
-  handleEmailClick = (): void => {
-    const { data, emailText } = this.state;
-    const updatedData = data.filter(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return el.email_address1 && el.email_address1.includes(emailText);
-    });
-    this.setState({ data: updatedData });
-  };
-
   handleExcelClick = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null) {
