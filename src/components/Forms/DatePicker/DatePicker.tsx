@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-date-picker';
 
-export type DatePickerType = Date | Date[];
+export type DatePickerType = Date | Date[] | undefined;
 
 interface DatePickerProps {
   onChange(date: DatePickerType): void;
@@ -12,9 +12,7 @@ interface DatePickerProps {
 // eslint-disable-next-line react/prefer-stateless-function
 export default class MarhubDatePicker extends Component<DatePickerProps> {
   componentDidMount(): void {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    this.props.onChange(null);
+    this.props.onChange(undefined);
   }
 
   render(): JSX.Element {

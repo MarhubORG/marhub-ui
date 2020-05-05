@@ -135,12 +135,23 @@ export class UnconnectedIrapDownload extends Component<
 
   updateEndDate = (): void => {
     const { startDate, endDate } = this.state;
-    if (startDate > endDate) {
+    if (
+      startDate !== undefined &&
+      endDate !== undefined &&
+      startDate > endDate
+    ) {
       const startDateToLocaleString = startDate.toLocaleString();
       const someDate = new Date(startDateToLocaleString);
       const date = someDate.getDate();
       someDate.setDate(date + 1);
+      this.setState({ endDate: someDate });
+    }
 
+    if (endDate === undefined && startDate !== undefined) {
+      const startDateToLocaleString = startDate.toLocaleString();
+      const someDate = new Date(startDateToLocaleString);
+      const date = someDate.getDate();
+      someDate.setDate(date + 1);
       this.setState({ endDate: someDate });
     }
   };
