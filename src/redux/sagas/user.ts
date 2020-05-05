@@ -72,6 +72,7 @@ function* editUser(action: EditUserAction): object {
       role,
       selectedOrganization,
       id,
+      isDisabled,
     } = action.payload;
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/users/update';
@@ -84,6 +85,7 @@ function* editUser(action: EditUserAction): object {
       role,
       organisation: selectedOrganization,
       id,
+      isDisabled,
     });
     yield put(
       editUserSuccess({
