@@ -216,13 +216,22 @@ export class UnconnectedUserEdit extends Component<
             checked={this.state.isDisabled}
           />
         </Label>
-        <button type="button" onClick={this.onButtonClick}>
-          Edit User
-        </button>
+        <StyledButton type="button" onClick={this.onButtonClick}>
+          Submit
+        </StyledButton>
       </Layout>
     );
   }
 }
+
+const StyledButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
+`;
 
 const Layout = styled.div`
   margin: 1rem;

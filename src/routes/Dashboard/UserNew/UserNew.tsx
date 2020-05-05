@@ -201,9 +201,9 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
             checked={this.state.isDisabled}
           />
         </Label>
-        <button type="button" onClick={this.handleCreateUser}>
-          Create New User
-        </button>
+        <StyledButton type="button" onClick={this.handleCreateUser}>
+          Submit
+        </StyledButton>
       </Layout>
     );
   }
@@ -230,6 +230,15 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 1rem;
   margin: 0.5rem 0rem;
+`;
+
+const StyledButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
 `;
 
 export interface MapDispatchtoProps {

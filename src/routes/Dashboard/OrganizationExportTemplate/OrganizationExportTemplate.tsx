@@ -3,7 +3,12 @@ import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { databaseFields, notNullFields } from '../../../utils/database';
+import {
+  databaseFields,
+  notNullFields,
+  titleize,
+  databaseFieldsNameMap,
+} from '../../../utils/database';
 import { RootState } from '../../../types/interfaces';
 import {
   Organization,
@@ -96,12 +101,19 @@ export class UnconnectedOrganizationExportTemplate extends Component<
   };
 
   createCheckboxes = (): JSX.Element[] => {
-    return databaseFields.map(el => {
+    return databaseFields.sort().map(el => {
+      let displayName = titleize(el);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      const c = databaseFieldsNameMap[el];
+      if (c !== undefined) {
+        displayName = c;
+      }
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const checked = this.state[el];
       return (
-        <StyledCheckboxDiv key={el}>
+        <StyledCheckboxDiv key={el} className="thirds">
           <label htmlFor={el}>
             <input
               type="checkbox"
@@ -111,7 +123,7 @@ export class UnconnectedOrganizationExportTemplate extends Component<
               checked={checked}
               onChange={(e): void => this.toggleCheckbox(e)}
             />
-            {el}
+            {displayName}
           </label>
         </StyledCheckboxDiv>
       );
@@ -203,9 +215,14 @@ export class UnconnectedOrganizationExportTemplate extends Component<
 }
 
 const CheckboxesLayout = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-height: 50vh;
+  .thirds {
+    width: 32%;
+  }
 `;
-
 const Label = styled.span`
   display: block;
   color: ${({ theme }): string => theme.grayText};
