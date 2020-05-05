@@ -30,8 +30,12 @@ interface OrganizationExportTemplateProps extends RouteComponentProps {
   errorMessage: string;
 }
 
+interface RowObject {
+  [key: string]: boolean;
+}
+
 interface OrganizationExportTemplateState {
-  checked?: object;
+  checked?: RowObject;
 }
 /* eslint-disable @typescript-eslint/indent */
 export class UnconnectedOrganizationExportTemplate extends Component<
@@ -87,9 +91,10 @@ export class UnconnectedOrganizationExportTemplate extends Component<
 
   createNotNullCheckboxes = (): JSX.Element[] => {
     return notNullFields.map(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const checked = this.state.checked[el];
+      let checked = false;
+      if (this.state.checked !== undefined) {
+        checked = this.state.checked[el];
+      }
 
       return (
         <StyledCheckboxDiv key={el}>
