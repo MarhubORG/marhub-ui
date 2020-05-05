@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link, useLocation } from '@reach/router';
+import { Link } from '@reach/router';
 
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -169,7 +169,7 @@ export function createDashboardLinks(params: Params) {
         <DashboardLink
           key={el.pathString}
           to={url}
-          onClick={() => params.setCurrentButton(url)}
+          onClick={(): void => params.setCurrentButton(url)}
         >
           {el.buttonText}
         </DashboardLink>

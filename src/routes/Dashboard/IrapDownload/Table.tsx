@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import { ApiState } from '../../../types/interfaces';
 import { getHeaders } from '../../../utils/excel';
 
 interface MyProps {

@@ -86,7 +86,7 @@ function* editUser(action: EditUserAction): object {
     const url = 'http://localhost:8080/api/v1/users/update';
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-    const json = yield axios.post(url, {
+    yield axios.post(url, {
       name,
       email,
       password,
@@ -121,7 +121,7 @@ function* deleteUser(action: DeleteUserAction): object {
     const token = cookie.load('token');
     const url = 'http://localhost:8080/api/v1/users';
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.delete(url, {
+    yield axios.delete(url, {
       data: {
         id: action.payload,
       },

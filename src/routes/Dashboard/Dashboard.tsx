@@ -185,14 +185,6 @@ const Container = styled.div`
   display: flex;
 `;
 
-const OptionsPanel = styled.div`
-  flex: 1;
-  background-color: ${({ theme }): string => theme.white};
-  height: 72.37vh;
-  border: 1px solid ${({ theme }): string => theme.grayText};
-  padding: 0.5rem;
-`;
-
 const ActionPanel = styled.div`
   flex: 3;
 `;
