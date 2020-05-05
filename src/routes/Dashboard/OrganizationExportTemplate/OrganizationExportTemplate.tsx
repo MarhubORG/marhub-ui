@@ -70,7 +70,7 @@ export class UnconnectedOrganizationExportTemplate extends Component<
 
   componentDidUpdate(): void {
     if (this.props.errorMessage === 'DELETE_ORGANIZATION_SUCCESS') {
-      navigate('/dashboard/templates/');
+      navigate('/dashboard/organizations/');
     }
   }
 
