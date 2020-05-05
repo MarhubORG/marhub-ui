@@ -46,7 +46,7 @@ export default function userReducer(
       return {
         ...state,
         loading: false,
-        message: '',
+        message: 'CREATE_USER_SUCCESS',
         users: [...state.users, action.payload],
       };
     case EDIT_USER:

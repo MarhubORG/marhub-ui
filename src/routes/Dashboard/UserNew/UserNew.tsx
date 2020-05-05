@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { navigate } from '@reach/router';
 import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
 import {
@@ -30,6 +31,7 @@ interface UserNewProps {
   organizations: Organization[];
   fetchOrganizations(): void;
   createUser(action: CreateUserPayload): CreateUserAction;
+  message: string;
 }
 
 interface UserNewState {
@@ -50,7 +52,7 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
       name: '',
       selectedOrganization: '',
       role: '',
-      isDisabled: true,
+      isDisabled: false,
       message: '',
       password: '',
     };
@@ -58,6 +60,12 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
 
   componentDidMount(): void {
     this.props.fetchOrganizations();
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.message === 'CREATE_USER_SUCCESS') {
+      navigate('/dashboard/users/');
+    }
   }
 
   handleEmailChange = (email: string): void => {
@@ -154,7 +162,9 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
     return (
       <Layout>
         <h1>New User</h1>
-        <ErrorMessage message={this.state.message} />
+        <PullLeft>
+          <ErrorMessage message={this.state.message} />
+        </PullLeft>
         <TextInput
           htmlFor="name"
           labelText="Name: *"
@@ -215,11 +225,13 @@ const Layout = styled.div`
 
 export interface MapStateToProps {
   organizations: Organization[];
+  message: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { organizations } = state.dashboardReducer;
-  return { organizations };
+  const { message } = state.userReducer;
+  return { organizations, message };
 }
 
 const Label = styled.label`
@@ -239,6 +251,10 @@ const StyledButton = styled.button`
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
   font-size: 0.9rem;
+`;
+
+const PullLeft = styled.div`
+  margin-left: -1rem;
 `;
 
 export interface MapDispatchtoProps {

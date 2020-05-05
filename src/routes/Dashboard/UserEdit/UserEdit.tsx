@@ -169,7 +169,9 @@ export class UnconnectedUserEdit extends Component<
     return (
       <Layout>
         <h1>Edit {this.state.email}</h1>
-        <ErrorMessage message={this.props.message} />
+        <PullLeft>
+          <ErrorMessage message={this.props.message} />
+        </PullLeft>
         <TextInput
           htmlFor="name"
           labelText="Name:"
@@ -245,6 +247,10 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 1rem;
   margin: 0.5rem 0rem;
+`;
+
+const PullLeft = styled.div`
+  margin-left: -1rem;
 `;
 
 export interface MapStateToProps {
