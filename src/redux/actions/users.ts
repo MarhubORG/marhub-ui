@@ -8,6 +8,9 @@ import {
   EDIT_USER,
   EDIT_USER_FAILURE,
   EDIT_USER_SUCCESS,
+  DELETE_USER,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 
@@ -160,6 +163,38 @@ export function logout(): LogoutAction {
   };
 }
 
+export interface DeleteUserAction {
+  type: typeof DELETE_USER;
+  payload: number;
+}
+
+export function deleteUser(payload: number): DeleteUserAction {
+  return {
+    type: DELETE_USER,
+    payload,
+  };
+}
+
+export interface DeleteUserFailureAction {
+  type: typeof DELETE_USER_FAILURE;
+}
+
+export function deleteUserFailure(): DeleteUserFailureAction {
+  return {
+    type: DELETE_USER_FAILURE,
+  };
+}
+
+export interface DeleteUserSuccessAction {
+  type: typeof DELETE_USER_SUCCESS;
+}
+
+export function deleteUserSuccess(): DeleteUserSuccessAction {
+  return {
+    type: DELETE_USER_SUCCESS,
+  };
+}
+
 export type UserActionTypes =
   | FetchUsersAction
   | FetchUsersFailureAction
@@ -170,4 +205,7 @@ export type UserActionTypes =
   | EditUserAction
   | EditUserSuccessAction
   | EditUserFailureAction
+  | DeleteUserAction
+  | DeleteUserFailureAction
+  | DeleteUserSuccessAction
   | LogoutAction;

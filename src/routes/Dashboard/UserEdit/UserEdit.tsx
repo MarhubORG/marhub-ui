@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
+import { navigate } from '@reach/router';
 import { RootState } from '../../../types/interfaces';
 import {
   FetchOrganizationsAction,
@@ -13,6 +14,8 @@ import {
   editUser,
   EditUserAction,
   EditUserPayload,
+  deleteUser,
+  DeleteUserAction,
 } from '../../../redux/actions/users';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
@@ -33,6 +36,7 @@ interface UserEditProps {
   id?: string;
   editUser(data: EditUserPayload): EditUserAction;
   message: string;
+  deleteUser(id: number): DeleteUserAction;
 }
 
 interface UserEditState {
@@ -86,6 +90,12 @@ export class UnconnectedUserEdit extends Component<
           id: user.id,
         });
       }
+    }
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.message === 'DELETE_USER_SUCCESS') {
+      navigate('/dashboard/users/');
     }
   }
 
@@ -144,6 +154,11 @@ export class UnconnectedUserEdit extends Component<
     this.setState({ isDisabled: !isDisabled });
   };
 
+  onDeleteClick = (): void => {
+    const { id } = this.state;
+    this.props.deleteUser(id);
+  };
+
   onButtonClick = () => {
     const {
       email,
@@ -169,7 +184,9 @@ export class UnconnectedUserEdit extends Component<
     return (
       <Layout>
         <h1>Edit {this.state.email}</h1>
-        <ErrorMessage message={this.props.message} />
+        <PullLeft>
+          <ErrorMessage message={this.props.message} />
+        </PullLeft>
         <TextInput
           htmlFor="name"
           labelText="Name:"
@@ -216,13 +233,34 @@ export class UnconnectedUserEdit extends Component<
             checked={this.state.isDisabled}
           />
         </Label>
-        <button type="button" onClick={this.onButtonClick}>
-          Edit User
-        </button>
+        <StyledButton type="button" onClick={this.onButtonClick}>
+          Submit
+        </StyledButton>
+        <DeleteButton type="button" onClick={this.onDeleteClick}>
+          Delete
+        </DeleteButton>
       </Layout>
     );
   }
 }
+
+const StyledButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
+`;
+
+const DeleteButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: #ff471a;
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
+`;
 
 const Layout = styled.div`
   margin: 1rem;
@@ -236,6 +274,10 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 1rem;
   margin: 0.5rem 0rem;
+`;
+
+const PullLeft = styled.div`
+  margin-left: -1rem;
 `;
 
 export interface MapStateToProps {
@@ -253,6 +295,7 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 export interface MapDispatchtoProps {
   fetchOrganizations(): FetchOrganizationsAction;
   editUser(data: EditUserPayload): EditUserAction;
+  deleteUser(id: number): DeleteUserAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
@@ -261,6 +304,7 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
       dispatch(fetchOrganizations()),
     editUser: (data: EditUserPayload): EditUserAction =>
       dispatch(editUser(data)),
+    deleteUser: (id: number): DeleteUserAction => dispatch(deleteUser(id)),
   };
 }
 

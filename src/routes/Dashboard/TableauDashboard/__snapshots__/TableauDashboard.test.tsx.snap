@@ -3,7 +3,8 @@
 exports[`renders correctly 1`] = `
 .c0 {
   height: 75vh;
-  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
 }
 
 <div>
@@ -41,7 +42,7 @@ exports[`renders correctly 1`] = `
       />
       <param
         name="toolbar"
-        value="yes"
+        value="no"
       />
       <param
         name="showAppBanner"

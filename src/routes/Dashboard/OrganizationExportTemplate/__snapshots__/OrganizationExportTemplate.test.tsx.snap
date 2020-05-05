@@ -1,11 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-.c3 {
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   max-height: 50vh;
 }
 
-.c2 {
+.c4 .thirds {
+  width: 32%;
+}
+
+.c3 {
   display: block;
   font-family: Open Sans,sans-serif;
   font-size: 0.85rem;
@@ -14,7 +29,7 @@ exports[`renders correctly 1`] = `
   margin: 0.5rem 0rem;
 }
 
-.c4 {
+.c5 {
   padding: 0.1rem 0;
 }
 
@@ -23,6 +38,15 @@ exports[`renders correctly 1`] = `
 }
 
 .c1 {
+  height: 2rem;
+  width: 5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.c2 {
+  font-size: 0.8rem;
+  background-color: #ff471a;
   height: 2rem;
   width: 5rem;
   margin-bottom: 0.5rem;
@@ -35,7 +59,7 @@ exports[`renders correctly 1`] = `
   <h1
     className=""
   >
-     Template
+     Permitted Fields
   </h1>
   <button
     className="c1"
@@ -44,17 +68,24 @@ exports[`renders correctly 1`] = `
   >
     Submit
   </button>
+  <button
+    className="c2"
+    onClick={[Function]}
+    type="button"
+  >
+    Delete
+  </button>
   <form>
     <span
-      className="c2"
+      className="c3"
     >
       Non-null fields
     </span>
     <div
-      className="c3"
+      className="c4"
     >
       <div
-        className="c4"
+        className="c5"
       >
         <label
           htmlFor="handoff_timestamp"
@@ -71,15 +102,15 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <span
-      className="c2"
+      className="c3"
     >
       Permitted fields
     </span>
     <div
-      className="c3"
+      className="c4"
     >
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="age"
@@ -91,75 +122,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          age
+          Age
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="arcurrentcountry"
-        >
-          <input
-            id="arcurrentcountry"
-            name="arcurrentcountry"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          arcurrentcountry
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="arfullrsc"
-        >
-          <input
-            id="arfullrsc"
-            name="arfullrsc"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          arfullrsc
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="arnationality1"
-        >
-          <input
-            id="arnationality1"
-            name="arnationality1"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          arnationality1
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="arrsc"
-        >
-          <input
-            id="arrsc"
-            name="arrsc"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          arrsc
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="ar_full_name"
@@ -171,11 +138,75 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          ar_full_name
+          AR Full Name
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="arcurrentcountry"
+        >
+          <input
+            id="arcurrentcountry"
+            name="arcurrentcountry"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Arcurrentcountry
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="arfullrsc"
+        >
+          <input
+            id="arfullrsc"
+            name="arfullrsc"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Arfullrsc
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="arnationality1"
+        >
+          <input
+            id="arnationality1"
+            name="arnationality1"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Arnationality1
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="arrsc"
+        >
+          <input
+            id="arrsc"
+            name="arrsc"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Arrsc
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="blocked"
@@ -187,11 +218,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          blocked
+          Blocked
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="canadian_private_sponsorhip"
@@ -203,11 +234,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          canadian_private_sponsorhip
+          Canadian Private Sponsorhip
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="canadian_sponsorship_info_rating"
@@ -219,11 +250,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          canadian_sponsorship_info_rating
+          Canadian Sponsorship Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="canadian_sponsorship_info_response"
@@ -235,11 +266,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          canadian_sponsorship_info_response
+          Canadian Sponsorship Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="child_illness"
@@ -251,11 +282,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          child_illness
+          Child Illness
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="createdAt"
@@ -267,11 +298,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          createdAt
+          Created At
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="created_on"
@@ -283,11 +314,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          created_on
+          Created On
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="current_country"
@@ -299,139 +330,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          current_country
+          Current Country
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="dapev_info_rating"
-        >
-          <input
-            id="dapev_info_rating"
-            name="dapev_info_rating"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dapev_info_rating
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="dapev_info_response"
-        >
-          <input
-            id="dapev_info_response"
-            name="dapev_info_response"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dapev_info_response
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="dapi130_info_rating"
-        >
-          <input
-            id="dapi130_info_rating"
-            name="dapi130_info_rating"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dapi130_info_rating
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="dapi130_info_response"
-        >
-          <input
-            id="dapi130_info_response"
-            name="dapi130_info_response"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dapi130_info_response
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="daprelsiv_info_rating"
-        >
-          <input
-            id="daprelsiv_info_rating"
-            name="daprelsiv_info_rating"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          daprelsiv_info_rating
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="daprelsiv_response"
-        >
-          <input
-            id="daprelsiv_response"
-            name="daprelsiv_response"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          daprelsiv_response
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="dap_via_i_130"
-        >
-          <input
-            id="dap_via_i_130"
-            name="dap_via_i_130"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dap_via_i_130
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="dap_via_ev"
-        >
-          <input
-            id="dap_via_ev"
-            name="dap_via_ev"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          dap_via_ev
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="dap_as_relative_of_siv"
@@ -443,11 +346,139 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          dap_as_relative_of_siv
+          DAP as Relative of SIV
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dap_via_ev"
+        >
+          <input
+            id="dap_via_ev"
+            name="dap_via_ev"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          DAP via EV
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dap_via_i_130"
+        >
+          <input
+            id="dap_via_i_130"
+            name="dap_via_i_130"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          DAP via I 130
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dapev_info_rating"
+        >
+          <input
+            id="dapev_info_rating"
+            name="dapev_info_rating"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Dapev Info Rating
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dapev_info_response"
+        >
+          <input
+            id="dapev_info_response"
+            name="dapev_info_response"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Dapev Info Response
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dapi130_info_rating"
+        >
+          <input
+            id="dapi130_info_rating"
+            name="dapi130_info_rating"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Dapi130 Info Rating
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="dapi130_info_response"
+        >
+          <input
+            id="dapi130_info_response"
+            name="dapi130_info_response"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Dapi130 Info Response
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="daprelsiv_info_rating"
+        >
+          <input
+            id="daprelsiv_info_rating"
+            name="daprelsiv_info_rating"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Daprelsiv Info Rating
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="daprelsiv_response"
+        >
+          <input
+            id="daprelsiv_response"
+            name="daprelsiv_response"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Daprelsiv Response
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="email_address1"
@@ -459,107 +490,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          email_address1
+          Email Address 1
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_follow_up_conversation"
-        >
-          <input
-            id="end_feedback_follow_up_conversation"
-            name="end_feedback_follow_up_conversation"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_follow_up_conversation
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_helpfulness_open_ended"
-        >
-          <input
-            id="end_feedback_helpfulness_open_ended"
-            name="end_feedback_helpfulness_open_ended"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_helpfulness_open_ended
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_helpfulness_rating"
-        >
-          <input
-            id="end_feedback_helpfulness_rating"
-            name="end_feedback_helpfulness_rating"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_helpfulness_rating
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_other_information_needs"
-        >
-          <input
-            id="end_feedback_other_information_needs"
-            name="end_feedback_other_information_needs"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_other_information_needs
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_recommend_open_ended"
-        >
-          <input
-            id="end_feedback_recommend_open_ended"
-            name="end_feedback_recommend_open_ended"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_recommend_open_ended
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="end_feedback_recommend_rating"
-        >
-          <input
-            id="end_feedback_recommend_rating"
-            name="end_feedback_recommend_rating"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          end_feedback_recommend_rating
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="en_full_name"
@@ -571,11 +506,107 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          en_full_name
+          EN Full Name
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_follow_up_conversation"
+        >
+          <input
+            id="end_feedback_follow_up_conversation"
+            name="end_feedback_follow_up_conversation"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Follow Up Conversation
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_helpfulness_open_ended"
+        >
+          <input
+            id="end_feedback_helpfulness_open_ended"
+            name="end_feedback_helpfulness_open_ended"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Helpfulness Open Ended
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_helpfulness_rating"
+        >
+          <input
+            id="end_feedback_helpfulness_rating"
+            name="end_feedback_helpfulness_rating"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Helpfulness Rating
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_other_information_needs"
+        >
+          <input
+            id="end_feedback_other_information_needs"
+            name="end_feedback_other_information_needs"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Other Information Needs
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_recommend_open_ended"
+        >
+          <input
+            id="end_feedback_recommend_open_ended"
+            name="end_feedback_recommend_open_ended"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Recommend Open Ended
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="end_feedback_recommend_rating"
+        >
+          <input
+            id="end_feedback_recommend_rating"
+            name="end_feedback_recommend_rating"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          End Feedback Recommend Rating
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="eo_waiver"
@@ -587,11 +618,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          eo_waiver
+          EO Waiver
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="fam_num"
@@ -603,11 +634,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          fam_num
+          Spouse Name
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="firstname"
@@ -619,11 +650,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          firstname
+          Firstname
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="fullrsc"
@@ -635,11 +666,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          fullrsc
+          Fullrsc
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="gender"
@@ -651,27 +682,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          gender
+          Gender
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="germany_family_reunification"
-        >
-          <input
-            id="germany_family_reunification"
-            name="germany_family_reunification"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          germany_family_reunification
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="german_reunification_info_rating"
@@ -683,11 +698,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          german_reunification_info_rating
+          German Reunification Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="german_reunification_info_response"
@@ -699,11 +714,27 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          german_reunification_info_response
+          German Reunification Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="germany_family_reunification"
+        >
+          <input
+            id="germany_family_reunification"
+            name="germany_family_reunification"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Germany Family Reunification
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="groups"
@@ -715,11 +746,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          groups
+          Groups
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="handoff_timestamp"
@@ -731,11 +762,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          handoff_timestamp
+          Handoff Timestamp
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="has_unhcr_file"
@@ -747,11 +778,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          has_unhcr_file
+          Has Unhcr File
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="hired_lawyer"
@@ -763,27 +794,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          hired_lawyer
+          Hired Lawyer
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="i_130_f"
-        >
-          <input
-            id="i_130_f"
-            name="i_130_f"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          i_130_f
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="i130_info_rating"
@@ -795,11 +810,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          i130_info_rating
+          I130 Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="i130_info_response"
@@ -811,27 +826,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          i130_info_response
+          I130 Info Response
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="i_130_ir"
-        >
-          <input
-            id="i_130_ir"
-            name="i_130_ir"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          i_130_ir
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="i730_info_rating"
@@ -843,11 +842,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          i730_info_rating
+          I730 Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="i730_info_response"
@@ -859,11 +858,43 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          i730_info_response
+          I730 Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="i_130_f"
+        >
+          <input
+            id="i_130_f"
+            name="i_130_f"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          I 130 F
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="i_130_ir"
+        >
+          <input
+            id="i_130_ir"
+            name="i_130_ir"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          I 130 Ir
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="i_730_pathway"
@@ -875,11 +906,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          i_730_pathway
+          I 730 Pathway
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="icorn_cpj"
@@ -891,11 +922,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          icorn_cpj
+          ICORN CPJ
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="icorn_info_rating"
@@ -907,11 +938,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          icorn_info_rating
+          Icorn Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="icorn_info_response"
@@ -923,11 +954,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          icorn_info_response
+          Icorn Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="id"
@@ -939,11 +970,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          id
+          Id
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="lack_of_durable_solutions"
@@ -955,11 +986,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          lack_of_durable_solutions
+          Lack Of Durable Solutions
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="language"
@@ -971,11 +1002,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          language
+          Language
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="lgbt"
@@ -987,11 +1018,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          lgbt
+          LGBT
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="lppn_score"
@@ -1003,11 +1034,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          lppn_score
+          Lppn Score
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="marital_status"
@@ -1019,11 +1050,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          marital_status
+          Marital Status
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="medical_needs_score"
@@ -1035,11 +1066,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          medical_needs_score
+          Medical Needs Score
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="minor_or_adult"
@@ -1051,11 +1082,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          minor_or_adult
+          Minor Or Adult
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="modified_on"
@@ -1067,11 +1098,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          modified_on
+          Modified On
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="name"
@@ -1083,11 +1114,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          name
+          Name
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="nationality1"
@@ -1099,11 +1130,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          nationality1
+          Nationality1
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="nationality2"
@@ -1115,11 +1146,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          nationality2
+          Nationality2
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="nationality3"
@@ -1131,11 +1162,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          nationality3
+          Nationality3
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="ongoing_usrap"
@@ -1147,27 +1178,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          ongoing_usrap
+          Ongoing Usrap
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="p_3"
-        >
-          <input
-            id="p_3"
-            name="p_3"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          p_3
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="p3_info_rating"
@@ -1179,11 +1194,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          p3_info_rating
+          P3 Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="p3_info_response"
@@ -1195,11 +1210,27 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          p3_info_response
+          P3 Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="p_3"
+        >
+          <input
+            id="p_3"
+            name="p_3"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          P 3
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="pause_handoffs"
@@ -1211,11 +1242,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          pause_handoffs
+          Pause Handoffs
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="phone_number"
@@ -1227,11 +1258,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          phone_number
+          Phone Number
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="prescreening_complete"
@@ -1243,11 +1274,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          prescreening_complete
+          Prescreening Complete
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="previous_us_resettlement"
@@ -1259,11 +1290,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          previous_us_resettlement
+          Previous Us Resettlement
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="pro_se_guidance_received"
@@ -1275,11 +1306,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          pro_se_guidance_received
+          Pro Se Guidance Received
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="referral_complete"
@@ -1291,11 +1322,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          referral_complete
+          Referral Complete
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_location"
@@ -1307,11 +1338,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_location
+          Relative Abroad Location
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_location1"
@@ -1323,11 +1354,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_location1
+          Relative Abroad Location1
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_location3"
@@ -1339,11 +1370,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_location3
+          Relative Abroad Location3
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_location4"
@@ -1355,11 +1386,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_location4
+          Relative Abroad Location4
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_location5"
@@ -1371,11 +1402,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_location5
+          Relative Abroad Location5
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_name"
@@ -1387,11 +1418,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_name
+          Relative Abroad Name
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_name1"
@@ -1403,11 +1434,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_name1
+          Relative Abroad Name1
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="relative_abroad_name2"
@@ -1419,11 +1450,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          relative_abroad_name2
+          Relative Abroad Name2
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="resettlement_relatives"
@@ -1435,11 +1466,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          resettlement_relatives
+          Resettlement Relatives
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="rfr_submission"
@@ -1451,11 +1482,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          rfr_submission
+          RFR Submission
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="rsc"
@@ -1467,11 +1498,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          rsc
+          Rsc
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="rsc_case_status_portal"
@@ -1483,11 +1514,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          rsc_case_status_portal
+          Rsc Case Status Portal
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="rsc_contact_email"
@@ -1499,11 +1530,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          rsc_contact_email
+          Rsc Contact Email
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="siv"
@@ -1515,27 +1546,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          siv
+          SIV
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="siv_follow_to_join"
-        >
-          <input
-            id="siv_follow_to_join"
-            name="siv_follow_to_join"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          siv_follow_to_join
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="siv_101a"
@@ -1547,11 +1562,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          siv_101a
+          SIV 101a
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="siv_1059"
@@ -1563,11 +1578,27 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          siv_1059
+          SIV 1059
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="siv_follow_to_join"
+        >
+          <input
+            id="siv_follow_to_join"
+            name="siv_follow_to_join"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          SIV Follow to Join
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="stopped"
@@ -1579,11 +1610,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          stopped
+          Stopped
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="svt"
@@ -1595,11 +1626,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          svt
+          Svt
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="textitContactName"
@@ -1611,11 +1642,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          textitContactName
+          Textitcontactname
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="textitContactUuid"
@@ -1627,11 +1658,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          textitContactUuid
+          Textitcontactuuid
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="textitSessionId"
@@ -1643,11 +1674,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          textitSessionId
+          Textitsessionid
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="unaccompanied_minor"
@@ -1659,11 +1690,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          unaccompanied_minor
+          Unaccompanied Minor
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="unhcr_case_file_family_adultminor_2"
@@ -1675,11 +1706,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          unhcr_case_file_family_adultminor_2
+          Kimlik Number
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="unhcr_case_file_family_adultminor_6"
@@ -1691,11 +1722,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          unhcr_case_file_family_adultminor_6
+          External Services Info Received
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="unhcr_number"
@@ -1707,11 +1738,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          unhcr_number
+          UNCHR Number
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="unique_session_id"
@@ -1723,11 +1754,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          unique_session_id
+          Unique Session Id
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="updatedAt"
@@ -1739,11 +1770,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          updatedAt
+          Updatedat
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="urns"
@@ -1755,43 +1786,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          urns
+          Urns
         </label>
       </div>
       <div
-        className="c4"
-      >
-        <label
-          htmlFor="us_relative_relationship"
-        >
-          <input
-            id="us_relative_relationship"
-            name="us_relative_relationship"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          us_relative_relationship
-        </label>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="us_relative_relationship1"
-        >
-          <input
-            id="us_relative_relationship1"
-            name="us_relative_relationship1"
-            onChange={[Function]}
-            type="checkbox"
-            value=""
-          />
-          us_relative_relationship1
-        </label>
-      </div>
-      <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="us_prior_admission"
@@ -1803,11 +1802,43 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          us_prior_admission
+          US Prior Admission
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="us_relative_relationship"
+        >
+          <input
+            id="us_relative_relationship"
+            name="us_relative_relationship"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Us Relative Relationship
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
+      >
+        <label
+          htmlFor="us_relative_relationship1"
+        >
+          <input
+            id="us_relative_relationship1"
+            name="us_relative_relationship1"
+            onChange={[Function]}
+            type="checkbox"
+            value=""
+          />
+          Us Relative Relationship1
+        </label>
+      </div>
+      <div
+        className="c5 thirds"
       >
         <label
           htmlFor="usrap_access"
@@ -1819,11 +1850,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          usrap_access
+          USRAP Access
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="usrap_case_number"
@@ -1835,11 +1866,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          usrap_case_number
+          USRAP Case Number
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="usrap_info_rating"
@@ -1851,11 +1882,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          usrap_info_rating
+          Usrap Info Rating
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="usrap_info_response"
@@ -1867,11 +1898,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          usrap_info_response
+          Usrap Info Response
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="uuid"
@@ -1883,11 +1914,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          uuid
+          Uuid
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="vulnerability_assessed"
@@ -1899,11 +1930,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          vulnerability_assessed
+          Vulnerability Assessed
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="western_left"
@@ -1915,11 +1946,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          western_left
+          Western Left
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="western_right"
@@ -1931,11 +1962,11 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          western_right
+          Western Right
         </label>
       </div>
       <div
-        className="c4"
+        className="c5 thirds"
       >
         <label
           htmlFor="women_and_girls_at_risk"
@@ -1947,7 +1978,7 @@ exports[`renders correctly 1`] = `
             type="checkbox"
             value=""
           />
-          women_and_girls_at_risk
+          Women And Girls At Risk
         </label>
       </div>
     </div>

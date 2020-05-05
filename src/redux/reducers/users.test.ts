@@ -118,7 +118,7 @@ describe('userReducer', () => {
     const expected = {
       ...initialState,
       loading: false,
-      message: '',
+      message: 'CREATE_USER_SUCCESS',
       users: [payload],
     };
     expect(state).toEqual(expected);

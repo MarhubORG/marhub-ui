@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { navigate } from '@reach/router';
 import { Dispatch } from 'redux';
 import { RootState } from '../../../types/interfaces';
 import {
@@ -30,6 +31,7 @@ interface UserNewProps {
   organizations: Organization[];
   fetchOrganizations(): void;
   createUser(action: CreateUserPayload): CreateUserAction;
+  message: string;
 }
 
 interface UserNewState {
@@ -50,7 +52,7 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
       name: '',
       selectedOrganization: '',
       role: '',
-      isDisabled: true,
+      isDisabled: false,
       message: '',
       password: '',
     };
@@ -58,6 +60,12 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
 
   componentDidMount(): void {
     this.props.fetchOrganizations();
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.message === 'CREATE_USER_SUCCESS') {
+      navigate('/dashboard/users/');
+    }
   }
 
   handleEmailChange = (email: string): void => {
@@ -154,7 +162,9 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
     return (
       <Layout>
         <h1>New User</h1>
-        <ErrorMessage message={this.state.message} />
+        <PullLeft>
+          <ErrorMessage message={this.state.message} />
+        </PullLeft>
         <TextInput
           htmlFor="name"
           labelText="Name: *"
@@ -201,9 +211,9 @@ export class UnconnectedUserNew extends Component<UserNewProps, UserNewState> {
             checked={this.state.isDisabled}
           />
         </Label>
-        <button type="button" onClick={this.handleCreateUser}>
-          Create New User
-        </button>
+        <StyledButton type="button" onClick={this.handleCreateUser}>
+          Submit
+        </StyledButton>
       </Layout>
     );
   }
@@ -215,11 +225,13 @@ const Layout = styled.div`
 
 export interface MapStateToProps {
   organizations: Organization[];
+  message: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
   const { organizations } = state.dashboardReducer;
-  return { organizations };
+  const { message } = state.userReducer;
+  return { organizations, message };
 }
 
 const Label = styled.label`
@@ -230,6 +242,19 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 1rem;
   margin: 0.5rem 0rem;
+`;
+
+const StyledButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
+`;
+
+const PullLeft = styled.div`
+  margin-left: -1rem;
 `;
 
 export interface MapDispatchtoProps {

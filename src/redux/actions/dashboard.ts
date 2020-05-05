@@ -20,6 +20,9 @@ import {
   DELETE_TEMPLATE_FAILURE,
   DELETE_TEMPLATE_SUCCESS,
   DELETE_TEMPLATE_REDIRECT,
+  DELETE_ORGANIZATION,
+  DELETE_ORGANIZATION_FAILURE,
+  DELETE_ORGANIZATION_SUCCESS,
 } from '../constants/actionTypes';
 
 export interface FetchOrganizationsAction {
@@ -297,6 +300,38 @@ export function deleteTemplateRedirect(): DeleteTemplateRedirectAction {
   };
 }
 
+export interface DeleteOrganizationAction {
+  type: typeof DELETE_ORGANIZATION;
+  payload: number;
+}
+
+export function deleteOrganization(payload: number): DeleteOrganizationAction {
+  return {
+    type: DELETE_ORGANIZATION,
+    payload,
+  };
+}
+
+export interface DeleteOrganizationSuccessAction {
+  type: typeof DELETE_ORGANIZATION_SUCCESS;
+}
+
+export function deleteOrganizationSuccess(): DeleteOrganizationSuccessAction {
+  return {
+    type: DELETE_ORGANIZATION_SUCCESS,
+  };
+}
+
+export interface DeleteOrganizationFailureAction {
+  type: typeof DELETE_ORGANIZATION_FAILURE;
+}
+
+export function deleteOrganizationFailure(): DeleteOrganizationFailureAction {
+  return {
+    type: DELETE_ORGANIZATION_FAILURE,
+  };
+}
+
 export type DashboardActionTypes =
   | LogoutAction
   | FetchOrganizationsAction
@@ -318,4 +353,7 @@ export type DashboardActionTypes =
   | DeleteTemplateAction
   | DeleteTemplateFailureAction
   | DeleteTemplateSuccessAction
-  | DeleteTemplateRedirectAction;
+  | DeleteTemplateRedirectAction
+  | DeleteOrganizationAction
+  | DeleteOrganizationFailureAction
+  | DeleteOrganizationSuccessAction;

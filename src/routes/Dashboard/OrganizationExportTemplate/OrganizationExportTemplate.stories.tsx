@@ -3,7 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../../../styles/themes';
 import { UnconnectedOrganizationExportTemplate } from './OrganizationExportTemplate';
-import { updateOrganization } from '../../../redux/actions/dashboard';
+import {
+  updateOrganization,
+  deleteOrganization,
+} from '../../../redux/actions/dashboard';
 
 storiesOf('OrganizationExportTemplate', module).add(
   'OrganizationExportTemplate Component',
@@ -13,6 +16,7 @@ storiesOf('OrganizationExportTemplate', module).add(
         organizations={[]}
         updateOrganization={updateOrganization}
         errorMessage=""
+        deleteOrganization={deleteOrganization}
       />
     </ThemeProvider>
   )

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, navigate } from '@reach/router';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { databaseFields, notNullFields } from '../../../utils/database';
+import {
+  databaseFields,
+  notNullFields,
+  titleize,
+  databaseFieldsNameMap,
+} from '../../../utils/database';
 import { RootState } from '../../../types/interfaces';
 import {
   Organization,
   updateOrganization,
   UpdateOrganizationAction,
   UpdateOrganizationPayload,
+  deleteOrganization,
+  DeleteOrganizationAction,
 } from '../../../redux/actions/dashboard';
 import ErrorMessage from '../../../components/Forms/ErrorMessage/ErrorMessage';
 
@@ -19,6 +26,7 @@ interface OrganizationExportTemplateProps extends RouteComponentProps {
   updateOrganization(
     action: UpdateOrganizationPayload
   ): UpdateOrganizationAction;
+  deleteOrganization(id: number): DeleteOrganizationAction;
   errorMessage: string;
 }
 
@@ -60,6 +68,12 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     });
   }
 
+  componentDidUpdate(): void {
+    if (this.props.errorMessage === 'DELETE_ORGANIZATION_SUCCESS') {
+      navigate('/dashboard/organizations/');
+    }
+  }
+
   getOrganizationId = (): number | undefined => {
     const { organizations } = this.props;
     let id;
@@ -96,12 +110,19 @@ export class UnconnectedOrganizationExportTemplate extends Component<
   };
 
   createCheckboxes = (): JSX.Element[] => {
-    return databaseFields.map(el => {
+    return databaseFields.sort().map(el => {
+      let displayName = titleize(el);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      const c = databaseFieldsNameMap[el];
+      if (c !== undefined) {
+        displayName = c;
+      }
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const checked = this.state[el];
       return (
-        <StyledCheckboxDiv key={el}>
+        <StyledCheckboxDiv key={el} className="thirds">
           <label htmlFor={el}>
             <input
               type="checkbox"
@@ -111,7 +132,7 @@ export class UnconnectedOrganizationExportTemplate extends Component<
               checked={checked}
               onChange={(e): void => this.toggleCheckbox(e)}
             />
-            {el}
+            {displayName}
           </label>
         </StyledCheckboxDiv>
       );
@@ -177,6 +198,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
     });
   };
 
+  handleDeleteClick = (): void => {
+    const id = this.getOrganizationId();
+    if (id !== undefined) {
+      this.props.deleteOrganization(id);
+    }
+  };
+
   render(): JSX.Element {
     const { errorMessage } = this.props;
     return (
@@ -186,10 +214,13 @@ export class UnconnectedOrganizationExportTemplate extends Component<
             <ErrorMessage message={errorMessage} />
           </StyledErrorMessage>
         )}
-        <StyledHeader>{this.props.organization} Template</StyledHeader>
+        <StyledHeader>{this.props.organization} Permitted Fields</StyledHeader>
         <StyledButton type="button" onClick={this.submitFields}>
           Submit
         </StyledButton>
+        <DeleteButton type="button" onClick={this.handleDeleteClick}>
+          Delete
+        </DeleteButton>
         <form>
           <Label>Non-null fields</Label>
           <CheckboxesLayout>{this.createNotNullCheckboxes()}</CheckboxesLayout>
@@ -203,9 +234,14 @@ export class UnconnectedOrganizationExportTemplate extends Component<
 }
 
 const CheckboxesLayout = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-height: 50vh;
+  .thirds {
+    width: 32%;
+  }
 `;
-
 const Label = styled.span`
   display: block;
   color: ${({ theme }): string => theme.grayText};
@@ -235,6 +271,16 @@ const StyledButton = styled.button`
   color: ${({ theme }): string => theme.white};
   height: 2rem;
   width: 5rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+`;
+
+const DeleteButton = styled.button`
+  font-size: 0.8rem;
+  background-color: #ff471a;
+  color: ${({ theme }): string => theme.white};
+  height: 2rem;
+  width: 5rem;
   margin-bottom: 0.5rem;
 `;
 
@@ -252,6 +298,7 @@ export interface MapDispatchToProps {
   updateOrganization(
     action: UpdateOrganizationPayload
   ): UpdateOrganizationAction;
+  deleteOrganization(id: number): DeleteOrganizationAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
@@ -259,6 +306,8 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     updateOrganization: (
       action: UpdateOrganizationPayload
     ): UpdateOrganizationAction => dispatch(updateOrganization(action)),
+    deleteOrganization: (id: number): DeleteOrganizationAction =>
+      dispatch(deleteOrganization(id)),
   };
 }
 

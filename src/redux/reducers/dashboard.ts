@@ -21,6 +21,9 @@ import {
   DELETE_TEMPLATE_FAILURE,
   DELETE_TEMPLATE_SUCCESS,
   DELETE_TEMPLATE_REDIRECT,
+  DELETE_ORGANIZATION,
+  DELETE_ORGANIZATION_FAILURE,
+  DELETE_ORGANIZATION_SUCCESS,
 } from '../constants/actionTypes';
 import { DashboardActionTypes, Organization } from '../actions/dashboard';
 
@@ -162,6 +165,25 @@ export default function dashboardReducer(
         ...state,
         loading: false,
         templateMessage: '',
+      };
+    case DELETE_ORGANIZATION:
+      return {
+        ...state,
+        loading: true,
+        templateMessage: '',
+      };
+    case DELETE_ORGANIZATION_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        errorMessage:
+          'Delete organization failed. Please contact the administrator',
+      };
+    case DELETE_ORGANIZATION_SUCCESS:
+      return {
+        ...state,
+        loading: true,
+        errorMessage: 'DELETE_ORGANIZATION_SUCCESS',
       };
     default:
       return state;
