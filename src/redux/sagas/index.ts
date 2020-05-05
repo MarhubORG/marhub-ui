@@ -10,7 +10,12 @@ import {
   deleteTemplateWatcher,
 } from './dashboard';
 
-import { fetchUsersWatcher, createUserWatcher, editUserWatcher } from './user';
+import {
+  fetchUsersWatcher,
+  createUserWatcher,
+  editUserWatcher,
+  deleteUserWatcher,
+} from './user';
 
 export default function* rootSaga() {
   yield all([
@@ -27,5 +32,6 @@ export default function* rootSaga() {
     createTemplateWatcher(),
     updateTemplateWatcher(),
     deleteTemplateWatcher(),
+    deleteUserWatcher(),
   ]);
 }

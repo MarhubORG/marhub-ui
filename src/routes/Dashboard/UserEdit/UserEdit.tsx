@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
+import { navigate } from '@reach/router';
 import { RootState } from '../../../types/interfaces';
 import {
   FetchOrganizationsAction,
@@ -13,6 +14,8 @@ import {
   editUser,
   EditUserAction,
   EditUserPayload,
+  deleteUser,
+  DeleteUserAction,
 } from '../../../redux/actions/users';
 import TextInput from '../../../components/Forms/TextInput/TextInput';
 import Select, { Option } from '../../../components/Forms/Select/Select';
@@ -33,6 +36,7 @@ interface UserEditProps {
   id?: string;
   editUser(data: EditUserPayload): EditUserAction;
   message: string;
+  deleteUser(id: number): DeleteUserAction;
 }
 
 interface UserEditState {
@@ -89,6 +93,12 @@ export class UnconnectedUserEdit extends Component<
     }
   }
 
+  componentDidUpdate(): void {
+    if (this.props.message === 'DELETE_USER_SUCCESS') {
+      navigate('/dashboard/users/');
+    }
+  }
+
   getUserById(): User | null {
     const { id, users } = this.props;
     if (id !== undefined) {
@@ -142,6 +152,11 @@ export class UnconnectedUserEdit extends Component<
   isDisabledChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { isDisabled } = this.state;
     this.setState({ isDisabled: !isDisabled });
+  };
+
+  onDeleteClick = (): void => {
+    const { id } = this.state;
+    this.props.deleteUser(id);
   };
 
   onButtonClick = () => {
@@ -221,6 +236,9 @@ export class UnconnectedUserEdit extends Component<
         <StyledButton type="button" onClick={this.onButtonClick}>
           Submit
         </StyledButton>
+        <DeleteButton type="button" onClick={this.onDeleteClick}>
+          Delete
+        </DeleteButton>
       </Layout>
     );
   }
@@ -231,6 +249,15 @@ const StyledButton = styled.button`
   width: 8rem;
   border-radius: 5px;
   background-color: ${({ theme }): string => theme.primaryColor};
+  color: ${({ theme }): string => theme.white};
+  font-size: 0.9rem;
+`;
+
+const DeleteButton = styled.button`
+  height: 2rem;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: #ff471a;
   color: ${({ theme }): string => theme.white};
   font-size: 0.9rem;
 `;
@@ -268,6 +295,7 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 export interface MapDispatchtoProps {
   fetchOrganizations(): FetchOrganizationsAction;
   editUser(data: EditUserPayload): EditUserAction;
+  deleteUser(id: number): DeleteUserAction;
 }
 
 export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
@@ -276,6 +304,7 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchtoProps {
       dispatch(fetchOrganizations()),
     editUser: (data: EditUserPayload): EditUserAction =>
       dispatch(editUser(data)),
+    deleteUser: (id: number): DeleteUserAction => dispatch(deleteUser(id)),
   };
 }
 

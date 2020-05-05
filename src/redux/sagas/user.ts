@@ -2,7 +2,12 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
-import { FETCH_USERS, CREATE_USER, EDIT_USER } from '../constants/actionTypes';
+import {
+  FETCH_USERS,
+  CREATE_USER,
+  EDIT_USER,
+  DELETE_USER,
+} from '../constants/actionTypes';
 
 import {
   fetchUsersFailure,
@@ -13,6 +18,9 @@ import {
   EditUserAction,
   editUserFailure,
   editUserSuccess,
+  deleteUserFailure,
+  deleteUserSuccess,
+  DeleteUserAction,
 } from '../actions/users';
 
 function* fetchUsers(): object {
@@ -106,4 +114,24 @@ function* editUser(action: EditUserAction): object {
 
 export function* editUserWatcher(): object {
   yield takeLatest(EDIT_USER, editUser);
+}
+
+function* deleteUser(action: DeleteUserAction): object {
+  try {
+    const token = cookie.load('token');
+    const url = 'http://localhost:8080/api/v1/users';
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield axios.delete(url, {
+      data: {
+        id: action.payload,
+      },
+    });
+    yield put(deleteUserSuccess());
+  } catch (error) {
+    yield put(deleteUserFailure());
+  }
+}
+
+export function* deleteUserWatcher(): object {
+  yield takeLatest(DELETE_USER, deleteUser);
 }

@@ -10,6 +10,9 @@ import {
   EDIT_USER,
   EDIT_USER_FAILURE,
   EDIT_USER_SUCCESS,
+  DELETE_USER,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
   LOGOUT,
 } from '../constants/actionTypes';
 
@@ -67,6 +70,24 @@ export default function userReducer(
         loading: false,
         message: editUserSuccessMessage,
         users: replaceWithUpdatedUser(action.payload, state),
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        loading: true,
+        message: '',
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: 'DELETE_USER_SUCCESS',
+      };
+    case DELETE_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        message: 'Delete user failed. Please contact the administrator.',
       };
     case LOGOUT:
       return initialState;

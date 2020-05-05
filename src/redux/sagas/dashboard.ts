@@ -144,7 +144,6 @@ function* deleteTemplate(action: DeleteTemplateAction): object {
         name: action.payload,
       },
     });
-    console.log('12', { json });
     yield put(deleteTemplateSuccess(json.data));
   } catch (error) {
     yield put(
