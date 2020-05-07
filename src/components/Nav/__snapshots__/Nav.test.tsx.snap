@@ -131,7 +131,7 @@ exports[`renders correctly while logged in 1`] = `
     <img
       alt="logo"
       className="c1"
-      src="logo.png"
+      src="../logo.png"
     />
   </a>
   <div
@@ -245,7 +245,7 @@ exports[`renders correctly while logged out 1`] = `
     <img
       alt="logo"
       className="c1"
-      src="logo.png"
+      src="../logo.png"
     />
   </a>
   <a

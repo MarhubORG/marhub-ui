@@ -117,7 +117,7 @@ export class UnconnectedIrapDownload extends Component<
   getTemplateOptions = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null && myOrg.organisation.templates !== undefined) {
-      const arr = [{ name: 'Full Template', value: 'Full Template' }];
+      const arr = [{ name: 'All Fields', value: 'All Fields' }];
       Object.keys(myOrg.organisation.templates).map(el => {
         arr.push({
           value: el,
