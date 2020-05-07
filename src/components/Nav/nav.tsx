@@ -76,8 +76,9 @@ const LoginLink = styled(Link)`
   text-decoration: none;
 `;
 
-const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
+const LOGO_SOURCE = '../logo.png';
 
+console.log({ LOGO_SOURCE });
 const DashboardLink = styled(Link)`
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
