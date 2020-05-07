@@ -78,7 +78,6 @@ const LoginLink = styled(Link)`
 
 const LOGO_SOURCE = '../logo.png';
 
-console.log({ LOGO_SOURCE });
 const DashboardLink = styled(Link)`
   background-color: ${({ theme }): string => theme.primaryColor};
   color: ${({ theme }): string => theme.white};
@@ -177,7 +176,7 @@ export function createDashboardLinks(params: Params) {
       );
     }
   });
-  // setSelectedButton('a');
+
   const nonNullItems = items.filter(el => {
     return el !== null;
   });

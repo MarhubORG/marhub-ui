@@ -50,7 +50,7 @@ export class UnconnectedSignup extends Component<SignupProps, SignupState> {
       this.props.registration.isLoggedIn === true &&
       this.props.navigate !== undefined
     ) {
-      this.props.navigate('/dashboard');
+      this.props.navigate('/dashboard/');
     }
   }
 
