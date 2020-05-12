@@ -12,8 +12,8 @@ export default function SearchAccordion(
   return (
     <Layout>
       <Label
-        onClick={() => setToggle(!toggle)}
-        onKeyDown={() => setToggle(!toggle)}
+        onClick={(): void => setToggle(!toggle)}
+        onKeyDown={(): void => setToggle(!toggle)}
       >
         {props.accordionText}
       </Label>

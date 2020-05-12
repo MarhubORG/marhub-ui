@@ -117,7 +117,7 @@ export class UnconnectedIrapDownload extends Component<
   getTemplateOptions = () => {
     const myOrg = this.getMyOrganization();
     if (myOrg !== null && myOrg.organisation.templates !== undefined) {
-      const arr = [{ name: 'Full Template', value: 'Full Template' }];
+      const arr = [{ name: 'All Fields', value: 'All Fields' }];
       Object.keys(myOrg.organisation.templates).map(el => {
         arr.push({
           value: el,
@@ -135,12 +135,23 @@ export class UnconnectedIrapDownload extends Component<
 
   updateEndDate = (): void => {
     const { startDate, endDate } = this.state;
-    if (startDate > endDate) {
+    if (
+      startDate !== undefined &&
+      endDate !== undefined &&
+      startDate > endDate
+    ) {
       const startDateToLocaleString = startDate.toLocaleString();
       const someDate = new Date(startDateToLocaleString);
       const date = someDate.getDate();
       someDate.setDate(date + 1);
+      this.setState({ endDate: someDate });
+    }
 
+    if (endDate === undefined && startDate !== undefined) {
+      const startDateToLocaleString = startDate.toLocaleString();
+      const someDate = new Date(startDateToLocaleString);
+      const date = someDate.getDate();
+      someDate.setDate(date + 1);
       this.setState({ endDate: someDate });
     }
   };
@@ -151,26 +162,6 @@ export class UnconnectedIrapDownload extends Component<
 
   handleEmailTextChange = (emailText: string): void => {
     this.setState({ emailText });
-  };
-
-  handleSessionClick = (): void => {
-    const { data, irapUuidSearchText } = this.state;
-    const updatedData = data.filter(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return el.textitSessionId.includes(irapUuidSearchText);
-    });
-    this.setState({ data: updatedData });
-  };
-
-  handleEmailClick = (): void => {
-    const { data, emailText } = this.state;
-    const updatedData = data.filter(el => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return el.email_address1 && el.email_address1.includes(emailText);
-    });
-    this.setState({ data: updatedData });
   };
 
   handleExcelClick = () => {

@@ -39,7 +39,8 @@ export function DashboardObject(): JSX.Element {
           name="site_root"
           value="&#47;t&#47;marhubinternationaldashboard"
         />
-        <param name="name" value="Dashboard_v0423&#47;Time" />
+        <param name="device" value="desktop" />
+        <param name="name" value="Dashboard_v0423&#47;Summary" />
         <param name="tabs" value="yes" />
         <param name="toolbar" value="no" />
         <param name="showAppBanner" value="false" />

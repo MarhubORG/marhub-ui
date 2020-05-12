@@ -33,8 +33,12 @@ exports[`renders correctly 1`] = `
         value="/t/marhubinternationaldashboard"
       />
       <param
+        name="device"
+        value="desktop"
+      />
+      <param
         name="name"
-        value="Dashboard_v0423/Time"
+        value="Dashboard_v0423/Summary"
       />
       <param
         name="tabs"

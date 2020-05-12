@@ -16,7 +16,7 @@ export const databaseFieldsNameMap = {
   ar_full_name: 'AR Full Name',
   en_full_name: 'EN Full Name',
   email_address1: 'Email Address 1',
-  unhcr_number: 'UNCHR Number',
+  unhcr_number: 'UNHCR Number',
   usrap_case_number: 'USRAP Case Number',
   lgbt: 'LGBT',
   icorn_cpj: 'ICORN CPJ',

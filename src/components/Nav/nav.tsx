@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-import { Link, useLocation } from '@reach/router';
+import { Link } from '@reach/router';
 
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -76,7 +76,7 @@ const LoginLink = styled(Link)`
   text-decoration: none;
 `;
 
-const LOGO_SOURCE = `${process.env.PUBLIC_URL}logo.png`;
+const LOGO_SOURCE = '../logo.png';
 
 const DashboardLink = styled(Link)`
   background-color: ${({ theme }): string => theme.primaryColor};
@@ -169,14 +169,14 @@ export function createDashboardLinks(params: Params) {
         <DashboardLink
           key={el.pathString}
           to={url}
-          onClick={() => params.setCurrentButton(url)}
+          onClick={(): void => params.setCurrentButton(url)}
         >
           {el.buttonText}
         </DashboardLink>
       );
     }
   });
-  // setSelectedButton('a');
+
   const nonNullItems = items.filter(el => {
     return el !== null;
   });
