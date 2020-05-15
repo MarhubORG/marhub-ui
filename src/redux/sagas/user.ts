@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
@@ -22,13 +21,14 @@ import {
   deleteUserSuccess,
   DeleteUserAction,
 } from '../actions/users';
+import { marhubApi } from '../../apis/apis';
 
 function* fetchUsers(): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/users';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.get(url);
+    const url = '/api/v1/users';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.get(url);
     yield put(fetchUsersSuccess(json.data[0]));
   } catch (error) {
     yield put(fetchUsersFailure());
@@ -50,10 +50,10 @@ function* createUser(action: CreateUserAction): object {
       isDisabled,
     } = action.payload;
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/users';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const url = '/api/v1/users';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-    const json = yield axios.post(url, {
+    const json = yield marhubApi.post(url, {
       name,
       email,
       password,
@@ -83,10 +83,10 @@ function* editUser(action: EditUserAction): object {
       isDisabled,
     } = action.payload;
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/users/update';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const url = '/api/v1/users/update';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-    yield axios.post(url, {
+    yield marhubApi.post(url, {
       name,
       email,
       password,
@@ -119,9 +119,9 @@ export function* editUserWatcher(): object {
 function* deleteUser(action: DeleteUserAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/users';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    yield axios.delete(url, {
+    const url = '/api/v1/users';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    yield marhubApi.delete(url, {
       data: {
         id: action.payload,
       },

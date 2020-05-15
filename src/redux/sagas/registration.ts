@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
@@ -13,11 +12,12 @@ import {
   logoutSuccess,
   logoutError,
 } from '../actions/index';
+import { marhubApi } from '../../apis/apis';
 
 function* signup(action: SignupAction): object {
   try {
-    const url = 'http://localhost:8080/api/v1/register';
-    yield axios.post(url, {
+    const url = '/api/v1/register';
+    yield marhubApi.post(url, {
       name: action.payload.name,
       organisation: action.payload.organization,
       email: action.payload.email,
@@ -35,8 +35,8 @@ export function* actionWatcher(): object {
 
 function* login(action: LoginAction): object {
   try {
-    const url = 'http://localhost:8080/api/v1/login';
-    const json = yield axios.post(url, {
+    const url = '/api/v1/login';
+    const json = yield marhubApi.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
@@ -76,8 +76,8 @@ function* logout(action: LoginAction): object {
   try {
     const token = cookie.load('token');
     const url = `http://localhost:8080/api/v1/logout?sessionToken=${token}`;
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    yield axios.post(url, {
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    yield marhubApi.post(url, {
       sessionToken: token,
     });
     yield put(logoutSuccess());

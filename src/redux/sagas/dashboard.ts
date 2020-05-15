@@ -34,6 +34,7 @@ import {
   deleteOrganizationFailure,
   deleteOrganizationSuccess,
 } from '../actions/dashboard';
+import { marhubApi } from '../../apis/apis';
 
 function* fetchOrgs(action: FetchOrganizationsAction): object {
   try {
@@ -43,9 +44,9 @@ function* fetchOrgs(action: FetchOrganizationsAction): object {
         Authorization: `Bearer ${token}`,
       },
     };
-    const url = 'http://localhost:8080/api/v1/organisations';
+    const url = '/api/v1/organisations';
 
-    const json = yield axios.get(url, axiosConfig);
+    const json = yield marhubApi.get(url, axiosConfig);
     yield put(fetchOrganizationsSuccess(json.data[0]));
   } catch (error) {
     // const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
@@ -60,9 +61,9 @@ export function* fetchOrganizationsWatcher(): object {
 function* updateOrganization(action: UpdateOrganizationAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/exportation_fields';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.post(url, {
+    const url = '/api/v1/exportation_fields';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.post(url, {
       id: action.payload.id,
       organization: action.payload.organization,
     });
@@ -83,9 +84,9 @@ export function* updateOrganizationWatcher(): object {
 function* createOrganization(action: CreateOrganizationAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/organisations';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.post(url, {
+    const url = '/api/v1/organisations';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.post(url, {
       name: action.payload,
     });
     yield put(createOrganizationSuccess(json.data));
@@ -101,9 +102,9 @@ export function* createOrganizationWatcher(): object {
 function* createTemplate(action: CreateTemplateAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/templates';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.post(url, {
+    const url = '/api/v1/templates';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.post(url, {
       name: action.payload.name,
       fields: action.payload.fields,
     });
@@ -120,9 +121,9 @@ export function* createTemplateWatcher(): object {
 function* updateTemplate(action: UpdateTemplateAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/templates';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.post(url, {
+    const url = '/api/v1/templates';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.post(url, {
       name: action.payload.name,
       fields: action.payload.fields,
     });
@@ -141,9 +142,9 @@ export function* updateTemplateWatcher(): object {
 function* deleteTemplate(action: DeleteTemplateAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/templates';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const json = yield axios.delete(url, {
+    const url = '/api/v1/templates';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const json = yield marhubApi.delete(url, {
       data: {
         name: action.payload,
       },
@@ -165,9 +166,9 @@ export function* deleteTemplateWatcher(): object {
 function* deleteOrganization(action: DeleteOrganizationAction): object {
   try {
     const token = cookie.load('token');
-    const url = 'http://localhost:8080/api/v1/organisations';
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    yield axios.delete(url, {
+    const url = '/api/v1/organisations';
+    marhubApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+    yield marhubApi.delete(url, {
       data: {
         id: action.payload,
       },
