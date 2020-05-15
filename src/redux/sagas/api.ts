@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import cookie from 'react-cookies';
 
@@ -9,6 +8,7 @@ import {
   ExportingIrapDataAction,
 } from '../actions/api';
 import { formatDate } from '../../utils/excel';
+import { marhubApi } from '../../apis/apis';
 
 function* exportIrapData(action: ExportingIrapDataAction): object {
   const formattedStartDate = formatDate(action.payload.startDate);
@@ -29,9 +29,9 @@ function* exportIrapData(action: ExportingIrapDataAction): object {
         irapUuidSearchText,
       },
     };
-    const url = 'http://localhost:8080/api/v1/irap_download';
+    const url = '/api/v1/irap_download';
 
-    const json = yield axios.get(url, axiosConfig);
+    const json = yield marhubApi.get(url, axiosConfig);
     yield put(exportingIrapDataSuccess(json.data[0]));
   } catch (error) {
     const errorMessage = `${error.request.status} Error: ${error.response.data.error}`;
