@@ -22,7 +22,7 @@
     "js-file-download": "^0.4.11",
     "react": "^16.13.0",
     "react-cookies": "^0.1.1",
-    "react-date-picker": "^7.10.0",
+    "react-date-picker": "7.10.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-modal": "^3.11.2",
