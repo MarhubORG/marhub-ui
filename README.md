@@ -32,4 +32,4 @@ Formats the project using prettier
 
 #### Husky, lint-staged, and git hooks
 
-This project uses Husky and lint-staged to manage git hooks. Each time before you commit, the `yarn lint` and `yarn format` will automatically run. If there are any errors you will be notified and will have to clean them up before committing the code.
+This project uses Husky and lint-staged to manage git hooks. Each time before you commit, the `yarn lint` and `yarn format` will automatically run. If there are any errors you will be notified and will have to clean them up before committing the code
