@@ -6,6 +6,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Using Docker Locally
+
+If you choose to use docker, you can start and stop your development environment using these scripts.
+
+#### `docker-compose up -d --build`
+
+#### `docker-compose stop`
+
+### Using Docker in Production
+
+#### `docker-compose -f docker-compose.prod.yml up -d --build`
+
+#### `docker-compose stop`
+
 ### Scripts
 
 #### `yarn start`
