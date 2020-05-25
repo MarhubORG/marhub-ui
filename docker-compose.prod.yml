@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  prod:
+    container_name: marhubui-prod
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - '5000:80'
