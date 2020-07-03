@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(34.232.72.215)
+domains=(monadashboard.org)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="andrewgimma@protonmail.com" # Adding a valid address is strongly recommended
