@@ -49,6 +49,7 @@ function* login(action: LoginAction): object {
     });
     let role = '';
     let organization = '';
+    console.log('saga json', json);
     try {
       role = json.data.user.profile.role;
       organization = json.data.user.profile.organisation;
