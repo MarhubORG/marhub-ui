@@ -34,13 +34,15 @@ export function* actionWatcher(): object {
 }
 
 function* login(action: LoginAction): object {
-  console.log('saga');
+  console.log('saga 2');
   try {
+    console.log('try 1');
     const url = '/api/v1/login';
     const json = yield marhubApi.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
+    console.log('json1', json);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
