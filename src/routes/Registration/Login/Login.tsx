@@ -95,11 +95,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
             />
           </div>
           <div>
-            <Button
-              type="submit"
-              disabled={this.props.registration.loading}
-              onClick={this.handleButtonClick}
-            >
+            <Button type="submit" onClick={this.handleButtonClick}>
               Login
             </Button>
           </div>
