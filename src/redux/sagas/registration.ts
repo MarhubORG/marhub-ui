@@ -60,8 +60,10 @@ function* login(action: LoginAction): object {
         )
       );
     }
+    console.log('success1', role, organization);
     yield put(loginSuccess(role, organization));
   } catch (error) {
+    console.log('error2', error);
     try {
       yield put(loginError(error.response.data.message));
     } catch (e) {
