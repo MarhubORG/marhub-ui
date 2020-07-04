@@ -61,6 +61,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
   };
 
   handleButtonClick = (): void => {
+    console.log('clicked');
     const { email, password } = this.state;
     this.props.login(email, password);
   };
