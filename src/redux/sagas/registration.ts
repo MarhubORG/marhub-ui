@@ -38,6 +38,7 @@ function* login(action: LoginAction): object {
   try {
     console.log('try 1');
     const url = '/api/v1/login';
+    console.log({ url });
     const json = yield marhubApi.post(url, {
       email: action.payload.email,
       password: action.payload.password,
