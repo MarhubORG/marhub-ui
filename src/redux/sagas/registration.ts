@@ -34,6 +34,7 @@ export function* actionWatcher(): object {
 }
 
 function* login(action: LoginAction): object {
+  console.log('saga');
   try {
     const url = '/api/v1/login';
     const json = yield marhubApi.post(url, {
@@ -52,6 +53,7 @@ function* login(action: LoginAction): object {
       role = json.data.user.profile.role;
       organization = json.data.user.profile.organisation;
     } catch (error) {
+      console.log('error', error);
       yield put(
         loginError(
           'There was a problem with your log in. Please contact the administrator.'
