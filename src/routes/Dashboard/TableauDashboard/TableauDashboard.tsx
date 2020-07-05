@@ -10,13 +10,13 @@ const StyledObject = styled.object`
 `;
 export default class TableauDashboard extends Component {
   componentDidMount(): void {
-    if (process.env.NODE_ENV === 'development') {
-      const refreshes = localStorage.getItem(REFRESHES);
-      if (!refreshes) {
-        window.location.reload();
-        localStorage.setItem(REFRESHES, 'true');
-      }
+    // if (process.env.NODE_ENV === 'development') {
+    const refreshes = localStorage.getItem(REFRESHES);
+    if (!refreshes) {
+      window.location.reload();
+      localStorage.setItem(REFRESHES, 'true');
     }
+    // }
   }
 
   componentWillUnmount(): void {
