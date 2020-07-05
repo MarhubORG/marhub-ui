@@ -61,7 +61,6 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
   };
 
   handleButtonClick = (): void => {
-    console.log('clicked');
     const { email, password } = this.state;
     this.props.login(email, password);
   };
@@ -73,7 +72,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
           <div>
             <Header>Login</Header>
           </div>
-          <ErrorMessage message={this.props.registration.error} />
+          {/* <ErrorMessage message={this.props.registration.error} /> */}
           <div>
             <TextInput
               htmlFor="email"

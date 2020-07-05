@@ -78,7 +78,6 @@ export interface LoginAction {
 }
 
 export function login(email: string, password: string): LoginAction {
-  console.log('action');
   return { type: LOGIN, payload: { email, password } };
 }
 

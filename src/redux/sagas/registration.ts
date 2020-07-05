@@ -34,16 +34,12 @@ export function* actionWatcher(): object {
 }
 
 function* login(action: LoginAction): object {
-  console.log('saga 2');
   try {
-    console.log('try 1');
     const url = '/api/v1/login';
-    console.log({ url });
     const json = yield marhubApi.post(url, {
       email: action.payload.email,
       password: action.payload.password,
     });
-    console.log('json1', json);
     cookie.save('token', json.data.user.sessionToken, {
       path: '/',
       // domain: 'http://localhost:8080',
@@ -52,22 +48,18 @@ function* login(action: LoginAction): object {
     });
     let role = '';
     let organization = '';
-    console.log('saga json', json);
     try {
       role = json.data.user.profile.role;
       organization = json.data.user.profile.organisation;
     } catch (error) {
-      console.log('error', error);
       yield put(
         loginError(
           'There was a problem with your log in. Please contact the administrator.'
         )
       );
     }
-    console.log('success1', role, organization);
     yield put(loginSuccess(role, organization));
   } catch (error) {
-    console.log('error2', error);
     try {
       yield put(loginError(error.response.data.message));
     } catch (e) {
