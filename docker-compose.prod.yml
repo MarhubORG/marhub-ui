@@ -8,3 +8,4 @@ services:
       dockerfile: prod.Dockerfile
     ports:
       - '80:80'
+      - '443:443'
