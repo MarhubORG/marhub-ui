@@ -114,7 +114,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
               name="password"
               value={this.state.password}
               onChange={this.onPasswordChange}
-              onKeyDown={this.handleButtonClick}
+              onKeyDown={this.onKeyDown}
               password
             />
           </div>
