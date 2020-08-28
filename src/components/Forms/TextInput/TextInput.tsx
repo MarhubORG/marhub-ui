@@ -9,6 +9,7 @@ interface Props {
   value: string;
   onChange(message: string): void;
   password?: boolean;
+  onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;
 }
 
 function TextInput(props: Props): JSX.Element {
@@ -21,6 +22,7 @@ function TextInput(props: Props): JSX.Element {
         name={props.name}
         value={props.value}
         onChange={(e): void => props.onChange(e.target.value)}
+        onKeyDown={(e): void => props.onKeyDown && props.onKeyDown(e)}
       />
     </div>
   );

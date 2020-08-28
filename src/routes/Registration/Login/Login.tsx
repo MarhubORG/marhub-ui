@@ -65,6 +65,26 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
     this.props.login(email, password);
   };
 
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      this.handleButtonClick();
+    }
+  };
+
+  currentlyAllowedErrors = (message: string): string => {
+    const lower = message.toLowerCase();
+    if (
+      lower.includes('password') ||
+      lower.includes('email') ||
+      lower.includes('server')
+    ) {
+      return message;
+    }
+    return '';
+  };
+
   render(): JSX.Element {
     return (
       <Layout>
@@ -72,7 +92,9 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
           <div>
             <Header>Login</Header>
           </div>
-          <ErrorMessage message={this.props.registration.error} />
+          <ErrorMessage
+            message={this.currentlyAllowedErrors(this.props.registration.error)}
+          />
           <div>
             <TextInput
               htmlFor="email"
@@ -81,6 +103,7 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
               name="email"
               value={this.state.email}
               onChange={this.onEmailChange}
+              onKeyDown={this.onKeyDown}
             />
           </div>
           <div>
@@ -91,15 +114,12 @@ export class UnconnectedLogin extends Component<LoginProps, LoginState> {
               name="password"
               value={this.state.password}
               onChange={this.onPasswordChange}
+              onKeyDown={this.onKeyDown}
               password
             />
           </div>
           <div>
-            <Button
-              type="submit"
-              disabled={this.props.registration.loading}
-              onClick={this.handleButtonClick}
-            >
+            <Button type="submit" onClick={this.handleButtonClick}>
               Login
             </Button>
           </div>

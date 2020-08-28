@@ -10,13 +10,13 @@ const StyledObject = styled.object`
 `;
 export default class TableauDashboard extends Component {
   componentDidMount(): void {
-    if (process.env.NODE_ENV === 'development') {
-      const refreshes = localStorage.getItem(REFRESHES);
-      if (!refreshes) {
-        window.location.reload();
-        localStorage.setItem(REFRESHES, 'true');
-      }
+    // if (process.env.NODE_ENV === 'development') {
+    const refreshes = localStorage.getItem(REFRESHES);
+    if (!refreshes) {
+      window.location.reload();
+      localStorage.setItem(REFRESHES, 'true');
     }
+    // }
   }
 
   componentWillUnmount(): void {
@@ -42,7 +42,7 @@ export function DashboardObject(): JSX.Element {
           value="&#47;t&#47;marhubinternationaldashboard"
         />
         <param name="device" value="desktop" />
-        <param name="name" value="Dashboard_v0423&#47;Summary" />
+        <param name="name" value="Dashboard_MONA_July&#47;Time" />
         <param name="tabs" value="yes" />
         <param name="toolbar" value="no" />
         <param name="showAppBanner" value="false" />
