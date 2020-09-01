@@ -97,6 +97,7 @@ exports[`renders correctly 1`] = `
           className="c4"
           name="email"
           onChange={[Function]}
+          onKeyDown={[Function]}
           placeholder="Email"
           type="text"
           value=""
@@ -115,6 +116,7 @@ exports[`renders correctly 1`] = `
           className="c4"
           name="password"
           onChange={[Function]}
+          onKeyDown={[Function]}
           placeholder="Password"
           type="password"
           value=""
@@ -124,7 +126,6 @@ exports[`renders correctly 1`] = `
     <div>
       <button
         className="c5"
-        disabled={false}
         onClick={[Function]}
         type="submit"
       >

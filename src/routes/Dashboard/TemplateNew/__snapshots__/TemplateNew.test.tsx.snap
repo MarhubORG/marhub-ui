@@ -92,6 +92,7 @@ exports[`renders correctly 1`] = `
         className="c4"
         name="name"
         onChange={[Function]}
+        onKeyDown={[Function]}
         placeholder="Name"
         type="text"
         value=""
