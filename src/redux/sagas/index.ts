@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import { actionWatcher, loginWatcher, logoutWatcher } from './registration';
-import { exportingIrapDataWatcher } from './api';
+import { exportingIrapDataWatcher, exportingBotpressDataWatcher } from './api';
 import {
   fetchOrganizationsWatcher,
   updateOrganizationWatcher,
@@ -23,6 +23,7 @@ export default function* rootSaga() {
     actionWatcher(),
     loginWatcher(),
     exportingIrapDataWatcher(),
+    exportingBotpressDataWatcher(),
     logoutWatcher(),
     fetchOrganizationsWatcher(),
     updateOrganizationWatcher(),

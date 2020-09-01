@@ -121,6 +121,47 @@ exports[`renders correctly when logged in 1`] = `
           <div>
             <label
               className="c6"
+              htmlFor="Select Source: *"
+            >
+              Select Source: *
+            </label>
+            <select
+              className="c7"
+              id="Select Source: *"
+              onChange={[Function]}
+            >
+              <option
+                className="c8"
+              >
+                Please Select:
+              </option>
+              <option
+                className="c8"
+                selected={false}
+                value="1"
+              >
+                Botpress
+              </option>
+              <option
+                className="c8"
+                selected={false}
+                value="2"
+              >
+                Textit
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c5"
+        >
+          <div>
+            <label
+              className="c6"
               htmlFor="Select Template: *"
             >
               Select Template: *

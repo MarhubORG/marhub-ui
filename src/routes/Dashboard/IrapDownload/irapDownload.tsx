@@ -10,6 +10,9 @@ import {
   ExportingIrapDataAction,
   exportingIrapData,
   ExportingIrapDataPayload,
+  ExportingBotpressDataAction,
+  exportingBotpressData,
+  ExportingBotpressDataPayload,
 } from '../../../redux/actions/api';
 import { ApiState, RootState } from '../../../types/interfaces';
 import Table from './Table';
@@ -25,6 +28,7 @@ import {
 
 interface IrapDownloadProps extends RouteComponentProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  exportingBotpressData(data: object): ExportingBotpressDataAction;
   apiReducer: ApiState;
   myOrganization: string;
   organizations: Organization[];
@@ -38,8 +42,12 @@ interface IrapDownloadState {
   data: object[];
   emailText: string;
   selectedTemplate: string;
+  selectedSource: string;
   message: string;
 }
+
+const BOTPRESS_VALUE = '1';
+const TEXTIT_VALUE = '2';
 
 /* eslint-disable @typescript-eslint/indent */
 export class UnconnectedIrapDownload extends Component<
@@ -56,6 +64,7 @@ export class UnconnectedIrapDownload extends Component<
       data: [],
       emailText: '',
       selectedTemplate: '',
+      selectedSource: '',
       message: '',
     };
   }
@@ -86,22 +95,41 @@ export class UnconnectedIrapDownload extends Component<
       selectedTemplate,
       emailText,
       irapUuidSearchText,
+      selectedSource,
     } = this.state;
+
+    if (selectedSource.length === 0) {
+      this.setState({ message: 'Please choose a source.' });
+      return null;
+    }
 
     if (selectedTemplate.length === 0) {
       this.setState({ message: 'Please choose a template.' });
       return null;
     }
+
     const trimmedEmail = emailText.trim();
     const trimmedUuid = irapUuidSearchText.trim();
     this.setState({ message: '' });
-    return this.props.exportingIrapData({
-      startDate,
-      endDate,
-      selectedTemplate,
-      emailText: trimmedEmail,
-      irapUuidSearchText: trimmedUuid,
-    });
+    if (selectedSource === TEXTIT_VALUE) {
+      return this.props.exportingIrapData({
+        startDate,
+        endDate,
+        selectedTemplate,
+        emailText: trimmedEmail,
+        irapUuidSearchText: trimmedUuid,
+      });
+    }
+    if (selectedSource === BOTPRESS_VALUE) {
+      return this.props.exportingBotpressData({
+        startDate,
+        endDate,
+        selectedTemplate,
+        emailText: trimmedEmail,
+        irapUuidSearchText: trimmedUuid,
+      });
+    }
+    return null;
   };
 
   getMyOrganization = (): Organization | null => {
@@ -178,10 +206,19 @@ export class UnconnectedIrapDownload extends Component<
     this.setState({ selectedTemplate: event.target.value });
   };
 
+  sourceOnChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    this.setState({ selectedSource: event.target.value });
+  };
+
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
+    console.log('DATA', this.state.data);
     const dataExists = this.state.data.length > 0;
     const templateOptions = this.getTemplateOptions();
+    const sourceOptions = [
+      { value: BOTPRESS_VALUE, name: 'Botpress' },
+      { value: TEXTIT_VALUE, name: 'Textit' },
+    ];
     return (
       <Layout>
         <PullMessageLeft>
@@ -189,6 +226,17 @@ export class UnconnectedIrapDownload extends Component<
         </PullMessageLeft>
         <FlexLayout>
           <SearchLayout>
+            <PushRight>
+              <StyledSelect>
+                <Select
+                  options={sourceOptions}
+                  labelName="Select Source: *"
+                  defaultValue={this.state.selectedSource}
+                  onChange={this.sourceOnChange}
+                  smallSelect={true}
+                />
+              </StyledSelect>
+            </PushRight>
             <PushRight>
               <StyledSelect>
                 <Select
@@ -279,6 +327,7 @@ export function mapStateToProps(state: RootState): MapStateToProps {
 
 export interface MapDispatchToProps {
   exportingIrapData(data: object): ExportingIrapDataAction;
+  exportingBotpressData(data: object): ExportingBotpressDataAction;
   fetchOrganizations(): FetchOrganizationsAction;
 }
 
@@ -287,6 +336,9 @@ export function mapDispatchToProps(dispatch: Dispatch): MapDispatchToProps {
     exportingIrapData: (
       data: ExportingIrapDataPayload
     ): ExportingIrapDataAction => dispatch(exportingIrapData(data)),
+    exportingBotpressData: (
+      data: ExportingBotpressDataPayload
+    ): ExportingBotpressDataAction => dispatch(exportingBotpressData(data)),
     fetchOrganizations: (): FetchOrganizationsAction =>
       dispatch(fetchOrganizations()),
   };
