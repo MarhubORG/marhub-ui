@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const marhubUrl =
   process.env.NODE_ENV === 'production'
-    ? 'http://monadashboard.org:8080'
+    ? 'https://monabot-api-staging.herokuapp.com:8080'
     : 'http://localhost:8080';
 
 export const marhubApi = axios.create({
