@@ -42,7 +42,7 @@ export function DashboardObject(): JSX.Element {
           value="&#47;t&#47;marhubinternationaldashboard"
         />
         <param name="device" value="desktop" />
-        <param name="name" value="Dashboard_MONA_0903&#47;Summar" />
+        <param name="name" value="Dashboard_MONA_0903&#47;Summary" />
         <param name="tabs" value="yes" />
         <param name="toolbar" value="no" />
         <param name="showAppBanner" value="false" />
