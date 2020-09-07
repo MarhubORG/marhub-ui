@@ -11,9 +11,12 @@ app.get('/ping', function(req, res) {
   return res.send('pong');
 });
 app.use(function(req, res, next) {
+  console.log('inside redirect');
   if (req.secure) {
+    console.log('secure');
     next();
   } else {
+    console.log('redirect');
     res.redirect('https://' + req.headers.host + req.url);
   }
 });
