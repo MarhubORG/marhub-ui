@@ -7,19 +7,22 @@ app.use(favicon(__dirname + '/build/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
-app.get('/ping', function(req, res) {
-  console.log('pong debug');
-  return res.send('pong');
-});
-app.use(function(req, res, next) {});
-app.get('/*', function(req, res) {
+app.use(function(req, res, next) {
   console.log('inside redirect');
   if (req.secure) {
     console.log('secure');
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    next();
   } else {
     console.log('redirect');
     res.redirect('https://' + req.headers.host + req.url);
   }
+});
+
+app.get('/ping', function(req, res) {
+  console.log('pong debug');
+  return res.send('pong');
+});
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(port);
