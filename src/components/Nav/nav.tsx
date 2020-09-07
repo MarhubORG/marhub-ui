@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../../types/interfaces';
 import { LogoutAction, logout } from '../../redux/actions/index';
 import { DashboardItems } from '../../routes/Dashboard/Dashboard';
+// import { marhubUrl } from '../../apis/apis';
 
 const StyledNav = styled.nav`
   height: 2.75rem;
@@ -68,6 +69,21 @@ const LoginLink = styled(Link)`
   color: ${({ theme }): string => theme.white};
   margin-left: auto;
   margin-right: 1rem;
+  background-color: ${({ theme }): string => theme.primaryColor};
+  padding-top: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-decoration: none;
+`;
+
+const DocsLink = styled.a`
+  text-align: center;
+  min-width: 8rem;
+  border-radius: 5px;
+  height: 1.75rem;
+  color: ${({ theme }): string => theme.white};
+  margin-left: auto;
   background-color: ${({ theme }): string => theme.primaryColor};
   padding-top: 0.8rem;
   font-weight: 600;
@@ -199,6 +215,12 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
       {props.isLoggedIn && (
         <>
           <DashboardLinks>
+            <DocsLink
+              href="https://monabot-api-staging.herokuapp.com/api/v1/documentation"
+              target="_blank"
+            >
+              Docs
+            </DocsLink>
             {createDashboardLinks({
               setCurrentButton,
               currentButton,

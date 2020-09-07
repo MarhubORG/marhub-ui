@@ -41,6 +41,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "scriptsstart": "react-scripts start",
     "build": "react-scripts build",
     "testCoverage": "react-scripts test --coverage --watchAll",
     "test": "react-scripts test",
