@@ -8,6 +8,7 @@ app.use(favicon(__dirname + '/build/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/ping', function(req, res) {
+  console.log('pong debug');
   return res.send('pong');
 });
 app.use(function(req, res, next) {
