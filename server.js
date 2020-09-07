@@ -11,17 +11,15 @@ app.get('/ping', function(req, res) {
   console.log('pong debug');
   return res.send('pong');
 });
-app.use(function(req, res, next) {
+app.use(function(req, res, next) {});
+app.get('/*', function(req, res) {
   console.log('inside redirect');
   if (req.secure) {
     console.log('secure');
-    next();
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
   } else {
     console.log('redirect');
     res.redirect('https://' + req.headers.host + req.url);
   }
-});
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(port);
