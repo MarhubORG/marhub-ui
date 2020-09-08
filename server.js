@@ -8,18 +8,11 @@ app.use(favicon(__dirname + '/build/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(function(req, res, next) {
-  console.log('inside redirect');
-  if (req.secure) {
-    console.log('secure');
-    next();
-  } else {
-    console.log('redirect');
-    res.redirect('https://' + req.headers.host + req.url);
-  }
+  if (req.get('X-Forwarded-Proto') !== 'https') {
+    res.redirect('https://' + req.get('Host') + req.url);
+  } else next();
 });
-
 app.get('/ping', function(req, res) {
-  console.log('pong debug');
   return res.send('pong');
 });
 app.get('/*', function(req, res) {
