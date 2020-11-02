@@ -205,7 +205,7 @@ export function createDashboardLinks(params: Params) {
 }
 export function UnconnectedNav(props: NavProps): JSX.Element {
   const [currentButton, setCurrentButton] = useState('');
-  const { pathname, role } = props;
+  const { pathname, role, myOrganization } = props;
   return (
     <StyledNav>
       <Link to="/">
@@ -230,6 +230,7 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
               currentButton,
               pathname,
               role,
+              myOrganization,
             })}
           </DashboardLinks>
           <StyledLink to="/" onClick={(): LogoutAction => props.logout()}>
