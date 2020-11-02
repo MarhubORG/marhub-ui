@@ -46,17 +46,21 @@ describe('mapStateToProps', () => {
 describe('hasPermission', () => {
   it('should return true if a predefined role is within the permissions array', () => {
     const allowedRole = 'allowedRole';
+    const allowedOrg = 'allowedOrd';
     const obj = {
       permissions: [allowedRole],
+      orgPermissions: [allowedOrg],
     };
-    expect(hasPermission(obj, allowedRole)).toBeTruthy();
+    expect(hasPermission(obj, allowedRole, allowedOrg)).toBeTruthy();
   });
   it('should return false if the role is not in the permissions array', () => {
     const allowedRole = 'allowedRole';
+    const allowedOrg = 'allowedOrd';
     const myRole = 'myRole';
     const obj = {
       permissions: [allowedRole],
+      orgPermissions: [allowedOrg],
     };
-    expect(hasPermission(obj, myRole)).toBeFalsy();
+    expect(hasPermission(obj, myRole, allowedOrg)).toBeFalsy();
   });
 });
