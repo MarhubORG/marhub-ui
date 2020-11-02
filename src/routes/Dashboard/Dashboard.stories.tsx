@@ -6,6 +6,10 @@ import { UnconnectedDashboard } from './Dashboard';
 
 storiesOf('Dashboard', module).add('Dashboard Component when logged in', () => (
   <ThemeProvider theme={mainTheme}>
-    <UnconnectedDashboard isLoggedIn />
+    <UnconnectedDashboard
+      myOrganization="myOrganization"
+      role="role"
+      isLoggedIn
+    />
   </ThemeProvider>
 ));
