@@ -131,6 +131,8 @@ export function hasPermission(
   role: string,
   org: string
 ): boolean {
+  console.log(this.props, 'props');
+
   if (el.permissions.includes(role)) {
     if (el.orgPermissions.includes(org)) {
       return true;
@@ -168,6 +170,7 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
 
   createRouterItems = () => {
     const { role, myOrganization } = this.props;
+    console.log(this.props, 'props');
     const items = DashboardItems.map(el => {
       if (role !== undefined && hasPermission(el, role, myOrganization)) {
         const DashboardComponent = el.component;
@@ -184,7 +187,6 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   };
 
   render(): JSX.Element {
-    console.log(this.props.myOrganization, 'myorg');
     if (this.props.isLoggedIn !== true) {
       return <Unauthorized />;
     }
