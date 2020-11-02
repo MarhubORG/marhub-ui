@@ -38,7 +38,7 @@ exports[`renders correctly 1`] = `
       />
       <param
         name="name"
-        value="Dashboard_MONA_July/Time"
+        value="Dashboard_MONA_0903/Summary"
       />
       <param
         name="tabs"

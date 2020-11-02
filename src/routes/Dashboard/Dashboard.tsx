@@ -24,12 +24,19 @@ import {
   USER,
 } from '../../auth/permissionTypes';
 
+import {
+  MARHUB,
+  IRAP,
+  TALENT_BEYOND_BOUNDARIES,
+} from '../../auth/organizations';
+
 export const DashboardItems = [
   {
     component: UserList,
     buttonText: 'Users',
     pathString: '/users',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: true,
   },
   {
@@ -37,6 +44,7 @@ export const DashboardItems = [
     buttonText: 'Organizations',
     pathString: '/organizations',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: true,
   },
   {
@@ -44,6 +52,7 @@ export const DashboardItems = [
     buttonText: 'Organization Export Template',
     pathString: 'organizations/organization-export-template/:organization',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: false,
   },
   {
@@ -51,6 +60,7 @@ export const DashboardItems = [
     buttonText: 'Dashboard',
     pathString: '/',
     permissions: [MARHUB_ADMIN, MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    orgPermissions: [MARHUB, IRAP, TALENT_BEYOND_BOUNDARIES],
     showButton: true,
   },
   {
@@ -58,6 +68,7 @@ export const DashboardItems = [
     buttonText: 'Search',
     pathString: '/search',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    orgPermissions: [MARHUB, IRAP],
     showButton: true,
   },
   {
@@ -65,6 +76,7 @@ export const DashboardItems = [
     buttonText: '',
     pathString: '/organizations/new',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: false,
   },
   {
@@ -72,6 +84,7 @@ export const DashboardItems = [
     buttonText: '',
     pathString: '/users/:id',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: false,
   },
   {
@@ -79,6 +92,7 @@ export const DashboardItems = [
     buttonText: '',
     pathString: '/users/new',
     permissions: [MARHUB_ADMIN],
+    orgPermissions: [MARHUB],
     showButton: false,
   },
   {
@@ -86,6 +100,7 @@ export const DashboardItems = [
     buttonText: 'Templates',
     pathString: '/templates',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    orgPermissions: [MARHUB, IRAP],
     showButton: true,
   },
   {
@@ -93,6 +108,7 @@ export const DashboardItems = [
     buttonText: '',
     pathString: '/templates/new',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    orgPermissions: [MARHUB, IRAP],
     showButton: false,
   },
   {
@@ -100,17 +116,25 @@ export const DashboardItems = [
     buttonText: '',
     pathString: '/templates/:name',
     permissions: [MARHUB_ADMIN, MARHUB_USER, ADMIN, USER],
+    orgPermissions: [MARHUB, IRAP],
     showButton: false,
   },
 ];
 
 interface DashboardItem {
   permissions: string[];
+  orgPermissions: string[];
 }
 
-export function hasPermission(el: DashboardItem, role: string): boolean {
+export function hasPermission(
+  el: DashboardItem,
+  role: string,
+  org: string
+): boolean {
   if (el.permissions.includes(role)) {
-    return true;
+    if (el.orgPermissions.includes(org)) {
+      return true;
+    }
   }
   return false;
 }
@@ -118,13 +142,18 @@ export function hasPermission(el: DashboardItem, role: string): boolean {
 interface DashboardProps extends RouteComponentProps {
   isLoggedIn: boolean;
   role?: string;
+  myOrganization: string;
 }
 
 export class UnconnectedDashboard extends Component<DashboardProps> {
   createActionItems = () => {
-    const { role } = this.props;
+    const { role, myOrganization } = this.props;
     return DashboardItems.map(el => {
-      if (role !== undefined && hasPermission(el, role) && el.showButton) {
+      if (
+        role !== undefined &&
+        hasPermission(el, role, myOrganization) &&
+        el.showButton
+      ) {
         return (
           <ActionItem
             key={el.pathString}
@@ -138,9 +167,9 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   };
 
   createRouterItems = () => {
-    const { role } = this.props;
+    const { role, myOrganization } = this.props;
     const items = DashboardItems.map(el => {
-      if (role !== undefined && hasPermission(el, role)) {
+      if (role !== undefined && hasPermission(el, role, myOrganization)) {
         const DashboardComponent = el.component;
         return <DashboardComponent key={el.pathString} path={el.pathString} />;
       }
@@ -210,11 +239,12 @@ const StyledLink = styled(Link)`
 export interface MapStateToProps {
   isLoggedIn: boolean;
   role: string;
+  myOrganization: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { isLoggedIn, role } = state.registration;
-  return { isLoggedIn, role };
+  const { isLoggedIn, role, myOrganization } = state.registration;
+  return { isLoggedIn, role, myOrganization };
 }
 
 export default connect(mapStateToProps)(UnconnectedDashboard);
