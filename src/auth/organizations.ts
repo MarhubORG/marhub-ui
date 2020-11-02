@@ -1,3 +1,3 @@
-export const IRAP = 'irap';
+export const IRAP = '2';
 export const MARHUB = '14';
-export const TALENT_BEYOND_BOUNDARIES = 'talent_beyond_boundaries';
+export const TALENT_BEYOND_BOUNDARIES = '17';
