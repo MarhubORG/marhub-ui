@@ -131,8 +131,6 @@ export function hasPermission(
   role: string,
   org: string
 ): boolean {
-  console.log(this.props, 'props');
-
   if (el.permissions.includes(role)) {
     if (el.orgPermissions.includes(org)) {
       return true;
