@@ -184,6 +184,7 @@ export class UnconnectedDashboard extends Component<DashboardProps> {
   };
 
   render(): JSX.Element {
+    console.log(this.props.myOrganization, 'myorg');
     if (this.props.isLoggedIn !== true) {
       return <Unauthorized />;
     }
