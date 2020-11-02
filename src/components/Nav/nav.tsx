@@ -172,6 +172,7 @@ export function createDashboardLinks(params: Params) {
     console.log({ el, role, myOrganization });
     if (!el.permissions.includes(role)) {
       if (!el.orgPermissions.includes(myOrganization)) {
+        console.log('pathstring', el.pathString);
         return null;
       }
     }
