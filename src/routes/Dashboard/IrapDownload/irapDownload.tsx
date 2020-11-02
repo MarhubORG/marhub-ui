@@ -212,7 +212,6 @@ export class UnconnectedIrapDownload extends Component<
 
   render(): JSX.Element {
     const { startDate, endDate } = this.state;
-    console.log('DATA', this.state.data);
     const dataExists = this.state.data.length > 0;
     const templateOptions = this.getTemplateOptions();
     const sourceOptions = [

@@ -169,16 +169,11 @@ export function createDashboardLinks(params: Params) {
   const { role, myOrganization } = params;
   // eslint-disable-next-line consistent-return
   const items = DashboardItems.map(el => {
-    console.log({ el, role, myOrganization });
-    console.log('permissions', el.permissions);
-    console.log('orgPermissions', el.orgPermissions);
-    console.log(!el.permissions.includes(role));
-    console.log(!el.orgPermissions.includes(myOrganization));
     if (!el.permissions.includes(role)) {
-      if (!el.orgPermissions.includes(myOrganization)) {
-        console.log('pathstring', el.pathString);
-        return null;
-      }
+      return null;
+    }
+    if (!el.orgPermissions.includes(myOrganization)) {
+      return null;
     }
     const url = `/dashboard${el.pathString}`;
     const currentString =
