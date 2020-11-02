@@ -155,6 +155,7 @@ interface NavProps {
   isLoggedIn: boolean;
   logout(): LogoutAction;
   role: string;
+  myOrganization: string;
 }
 
 interface Params {
@@ -162,13 +163,16 @@ interface Params {
   currentButton: string;
   pathname: string;
   role: string;
+  myOrganization: string;
 }
 export function createDashboardLinks(params: Params) {
-  const { role } = params;
+  const { role, myOrganization } = params;
   // eslint-disable-next-line consistent-return
   const items = DashboardItems.map(el => {
     if (!el.permissions.includes(role)) {
-      return null;
+      if (!el.orgPermissions.includes(myOrganization)) {
+        return null;
+      }
     }
     const url = `/dashboard${el.pathString}`;
     const currentString =
@@ -240,11 +244,12 @@ export function UnconnectedNav(props: NavProps): JSX.Element {
 export interface MapStateToProps {
   isLoggedIn: boolean;
   role: string;
+  myOrganization: string;
 }
 
 export function mapStateToProps(state: RootState): MapStateToProps {
-  const { isLoggedIn, role } = state.registration;
-  return { isLoggedIn, role };
+  const { isLoggedIn, role, myOrganization } = state.registration;
+  return { isLoggedIn, role, myOrganization };
 }
 
 export interface MapDispatchToProps {
